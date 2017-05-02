@@ -1,0 +1,149 @@
+header {
+  padding: 16px 0;
+}
+
+.header__upper {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  max-width: 100px;
+  height: 100px;
+  margin-right: 16px;
+  border-radius: 50px;
+}
+
+.header__title {
+  flex-grow: 1;
+  font-size: 1.6em;
+  color: $dark-main;
+  margin: 0;
+
+
+  span {
+    font-size: 0.7em;
+    display: block;
+  }
+}
+
+.header__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  height: 24px;
+  color: $dark-main;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  i {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 16px -16px;
+  color: white;
+  font-size: 0.9em;
+  background: #20376c;
+  background: linear-gradient(to right, #20376c 0%, #244388 50%, #20376c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#20376c', endColorstr='#20376c', GradientType=1);
+
+  .nav-a {
+    text-transform: uppercase;
+    display: block;
+    padding: 8px 8px;
+  }
+}
+
+.header__list-item {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+
+  &:hover {
+    background-color: white;
+    color: $dark-main;
+
+    .nav-menu-box {
+      display: flex;
+    }
+  }
+
+  &:nth-last-child(-n+3){
+
+    .nav-menu-box {
+      box-shadow: -6px 8px 5px -6px rgba(66, 66, 66, 0.5);
+      right: 0;
+    }
+  }
+}
+
+.nav-menu-box {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  box-shadow: 6px 8px 5px -6px rgba(66, 66, 66, 0.5);
+  min-width: 100%;
+  padding: 8px 0px;
+  text-decoration: none;
+  text-align: left;
+}
+
+.main-item {
+  list-style: none;
+  padding: 16px 21px;
+  border-right: 1px solid $grey-300;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.main-title {
+  display: block;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: $dark-main;
+}
+
+.sub-item {
+  margin-top: 10px;
+  color: $grey-600;
+}
+
+#search-form {
+  border: 1px solid $grey-300;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+  padding: 1px 6px;
+  margin-top: auto;
+
+  input {
+    border: none;
+    width: 200px;
+  }
+
+  button {
+    height: 24px;
+  }
+
+  i {
+    color: $grey-500;
+  }
+}
