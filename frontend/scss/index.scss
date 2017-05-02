@@ -1,0 +1,76 @@
+@import "frontend/scss/colors.scss";
+@import "frontend/scss/Header.scss";
+@import "frontend/scss/Carousel.scss";
+@import "frontend/scss/Footer.scss";
+
+* {
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: serif;
+  font-size: 16px;
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+main {
+  padding: 0 16px;
+}
+
+button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: white;
+  padding: 0;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+  font-size: 0.8em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+.input {
+  border: 1px solid $grey-300;
+  font-size: 0.9em;
+  border-radius: 3px;
+  line-height: 1.7em;
+  padding: 5px 10px;
+  box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+
+  &::placeholder {
+    color: $grey-400;
+  }
+}
+
+.vertical-divider {
+  width: 1px;
+  margin: 0 5px;
+  height: 100%;
+  background-color: $grey-400;
+}
+
+.smooth {
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout {
+  width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px;
+  box-shadow: 0px 0px 6px 0px rgba(50, 50, 50, 0.3);
+}
