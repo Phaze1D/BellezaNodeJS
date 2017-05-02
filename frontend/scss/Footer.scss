@@ -1,0 +1,23 @@
+.footer__wrapper {
+  margin-top: 24px;
+}
+
+.footer__divider {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  margin: 0 -16px;
+  padding: 0 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  h4 {
+    flex-grow: 1;
+    color: $dark-main;
+  }
+
+  input {
+    width: 250px;
+  }
+}
