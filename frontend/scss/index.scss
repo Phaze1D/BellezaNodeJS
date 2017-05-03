@@ -1,19 +1,25 @@
-@import "frontend/scss/colors.scss";
-@import "frontend/scss/Header.scss";
-@import "frontend/scss/Carousel.scss";
-@import "frontend/scss/Footer.scss";
+@import "~scss/colors";
+@import "~scss/home";
+@import "~scss/categories";
+@import "~scss/Header";
+@import "~scss/Carousel";
+@import "~scss/Footer";
+@import "~scss/Favorites";
+
+
 
 * {
   box-sizing: border-box;
-
 }
 
 body {
-  font-family: serif;
+  font-family: 'Lora', serif;
   font-size: 16px;
   margin: 0;
   width: 100vw;
   min-height: 100vh;
+  background: #bed9ec;
+  background: linear-gradient(to bottom, #bed9ec 0%, #ffffff 100%);
 }
 
 main {
@@ -30,6 +36,7 @@ button {
 }
 
 input {
+  font-family: 'Lora', serif;
   outline: none;
   font-size: 0.8em;
 }
@@ -68,9 +75,17 @@ a {
 }
 
 .layout {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 16px;
   box-shadow: 0px 0px 6px 0px rgba(50, 50, 50, 0.3);
+  background-color: white;
+}
+
+.overflow-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
