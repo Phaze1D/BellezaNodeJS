@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {catagories} from '../../../fake.js'
+import {categories} from '../../../fake.js'
+
+const cats = categories()
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -9,25 +11,30 @@ export default class Header extends React.Component {
 
   render() {
 
-    const navList = catagories().map( (catagory) =>
-      <li className="header__list-item" key={catagory.id}>
-        <Link to="#" className="nav-a">{catagory.name}</Link>
-        <MainList mains={catagory.mains}/>
+    const navList = cats.map( (category) =>
+      <li className="header__list-item" key={category.id}>
+        <Link to="/categories" className="nav-a">{category.name}</Link>
+        <MainList mains={category.mains}/>
       </li>
     )
 
     return (
       <header>
         <div className="header__upper">
-          <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
+          <Link to="/home" className="header__home">
+            <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
 
-          <h1 className="header__title smooth">
-            Neal's Yard Remedies México
-            <span className="header__sub-title">  Salud y Belleza Orgánica </span>
-          </h1>
+            <h1 className="header__title">
+              Neal's Yard Remedies México
+              <span className="header__sub-title">  Salud y Belleza Orgánica </span>
+            </h1>
+          </Link>
+
 
           <div className="header__form">
             <div className="header__links">
+              <Link to="#">Tiendas</Link>
+              <div className="vertical-divider"></div>
               <Link to="#">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
               <Link to="#" className="cart-link">
