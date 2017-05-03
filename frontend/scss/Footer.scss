@@ -21,3 +21,140 @@
     width: 250px;
   }
 }
+
+.footer__grid {
+  display: flex;
+  padding: 0 24px;
+}
+
+.footer__section {
+  flex-grow: 1;
+  padding: 15px 16px;
+  color: #D9B8E4;
+  max-width: 400px;
+
+  h4 {
+    color: $dark-main;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 16px 0 5px;
+  }
+
+  p {
+    font-size: 0.9em;
+    padding: 0 2px;
+  }
+
+  a {
+    font-size: 0.9em;
+  }
+}
+
+.footer__sub-title {
+  display: block;
+  margin: 15px 0 5px;
+  color: #D9B8E4;
+  font-size: 1em;
+}
+
+.footer__info {
+  color: $grey-500;
+  margin: 5px 0;
+  font-size: 1em;
+  text-align: justify;
+}
+
+.footer__ul {
+  padding-left: 5px;
+  color: $grey-500;
+
+  li {
+    margin: 10px 0;
+
+    &:hover {
+      color: $dark-main;
+    }
+  }
+}
+
+
+.social-ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 24px;
+
+  li {
+    margin-right: 26px;
+  }
+
+  i {
+    font-size: 3em;
+  }
+
+  img {
+    width: 42px;
+  }
+}
+
+.fa-facebook-square {
+  color: #3b5998;
+}
+
+.fa-twitter-square {
+  color: #00aced;
+}
+
+.instagram {
+  background:
+    /////// Use radial gradients to get the rounded
+    /////// gradient effect in each corner
+
+    // left bottom
+    radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
+    radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+    // left top
+    radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+    //  right top
+    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+    // right bottom
+    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+
+    /////// create a base coat to smooth
+    /////// corner gradients
+    linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+
+  border-radius: .2em;
+  font-size: 2.6em;
+  height: 1em;
+  position: relative;
+  width: 1em;
+
+  &:before,
+  &:after {
+    box-sizing: border-box;
+    color: #fff;
+    content: '';
+    display: block;
+    position: absolute;
+    border: .075em solid;
+  }
+
+  &:before {
+    border-radius: inherit;
+    height: .75em;
+    transform: translate(.125em, .125em);
+    width: .75em;
+  }
+
+  &:after {
+    border-radius: 1em;
+    box-shadow: .2em -.2em 0 -.16em;
+    height: .4em;
+    transform: translate(.3em, .3em);
+    width: .4em;
+  }
+}
