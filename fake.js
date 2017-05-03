@@ -1,7 +1,7 @@
 import faker from 'faker';
 
 
-export const catagories = function () {
+export const categories = function () {
   var cats = []
   for (var i = 0; i < 7; i++) {
     var c = {
@@ -34,4 +34,26 @@ export const catagories = function () {
   }
 
   return cats
+}
+
+
+export const category = function () {
+  var c = {
+    id: faker.random.uuid(),
+    name: faker.commerce.department(),
+    url: "#"
+  }
+
+  var mains = []
+  for (var j = 0; j < (Math.random() * 10) + 1; j++) {
+    var m = {
+      id: faker.random.uuid(),
+      name: faker.commerce.department(),
+      to: "#"
+    }
+    mains.push(m)
+  }
+
+  c.mains = mains
+  return c
 }
