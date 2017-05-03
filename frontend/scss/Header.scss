@@ -94,6 +94,15 @@ header {
       right: 0;
     }
   }
+
+  &.hide {
+    background-color: transparent;
+    color: white;
+
+    .nav-menu-box {
+      display: none;
+    }
+  }
 }
 
 .nav-menu-box {

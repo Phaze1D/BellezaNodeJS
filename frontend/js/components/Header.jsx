@@ -9,10 +9,22 @@ export default class Header extends React.Component {
     super(props)
   }
 
+  handleNavClick(event) {
+    if(event.target.tagName === "A"){
+      event.currentTarget.classList.add("hide")
+    }
+  }
+
+  handleNavLeave(event) {
+    if(event.currentTarget.classList.contains("hide")){
+      event.currentTarget.classList.remove("hide")
+    }
+  }
+
   render() {
 
     const navList = cats.map( (category) =>
-      <li className="header__list-item" key={category.id}>
+      <li className="header__list-item" key={category.id} onClick={this.handleNavClick} onMouseLeave={this.handleNavLeave}>
         <Link to="/categories" className="nav-a">{category.name}</Link>
         <MainList mains={category.mains}/>
       </li>
