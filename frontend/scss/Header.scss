@@ -66,12 +66,12 @@ header {
   background: #20376c;
   background: linear-gradient(to right, #20376c 0%, #244388 50%, #20376c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#20376c', endColorstr='#20376c', GradientType=1);
+}
 
-  .nav-a {
-    text-transform: uppercase;
-    display: block;
-    padding: 8px 8px;
-  }
+.nav-a {
+  text-transform: uppercase;
+  display: block;
+  padding: 8px 8px;
 }
 
 .header__list-item {
