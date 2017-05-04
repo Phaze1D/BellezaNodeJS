@@ -115,7 +115,7 @@ header {
   padding: 8px 0px;
   text-decoration: none;
   text-align: left;
-  border-radius: 3px;
+  border-radius: 2px;
   white-space: nowrap;
 }
 
@@ -151,14 +151,17 @@ header {
   padding: 1px 6px;
   max-width: 240px;
   margin-left: auto;
+  background-color: $grey-50;
 
   input {
     border: none;
     width: 200px;
+    background-color: $grey-50;
   }
 
   button {
     height: 24px;
+    background-color: $grey-50;
   }
 
   i {
