@@ -26,7 +26,7 @@ export default class Header extends React.Component {
 
     const navList = cats.map( (category) =>
       <li className="header__list-item" key={category.id} onClick={this.handleNavClick} onMouseLeave={this.handleNavLeave}>
-        <Link to="/categories" className="nav-a">{category.name}</Link>
+        <Link to="/categories" className="nav-a" title={category.name}>{category.name}</Link>
         <MainList mains={category.mains}/>
       </li>
     )
@@ -34,7 +34,7 @@ export default class Header extends React.Component {
     return (
       <header>
         <div className="header__upper">
-          <Link to="/search" className="header__home">
+          <Link to="/search" className="header__home" title="Neals Yard Remedies Mexico">
             <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
 
             <h1 className="header__title">
@@ -46,9 +46,9 @@ export default class Header extends React.Component {
 
           <div className="header__form">
             <div className="header__links">
-              <Link to="#">Tiendas</Link>
+              <Link to="#" title="Tiendas">Tiendas</Link>
               <div className="vertical-divider"></div>
-              <Link to="#">Mi Cuenta</Link>
+              <Link to="/signin" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
               <Link to="#" className="cart-link">
                 Carrito
@@ -57,7 +57,7 @@ export default class Header extends React.Component {
             </div>
 
             <form id="search-form">
-              <input type="search"/>
+              <input type="search" name="search"/>
               <button type="submit">
                 <i className="material-icons">search</i>
               </button>
@@ -81,7 +81,7 @@ const MainList = (props) => {
   const mainList = props.mains.map( (main) => {
 
     const subList = main.subs.map( (sub) =>
-      <li className="sub-item" key={sub.id}>
+      <li className="sub-item" key={sub.id} title={sub.name}>
         <Link to="/category">
           {sub.name}
         </Link>
@@ -90,7 +90,7 @@ const MainList = (props) => {
 
     return (
       <ul className="main-item" key={main.id}>
-        <Link to="#" className="main-title">{main.name}</Link>
+        <Link to="#" className="main-title" title={main.name}>{main.name}</Link>
         {subList}
       </ul>
     )
