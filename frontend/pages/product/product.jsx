@@ -42,7 +42,7 @@ export default class Product extends React.Component {
 
               <form>
                 <input className="add-button" type="submit" value="Agregar al Carrito"/>
-                <input className="input input-quantity" type="number" min="0" max="10" defaultValue="1"/>
+                <input className="input input-quantity" name="quantity" type="number" min="0" max="10" defaultValue="1"/>
               </form>
             </div>
 
