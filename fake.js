@@ -1,4 +1,5 @@
 import faker from 'faker';
+faker.locale = "es_MX";
 
 
 export const categories = function () {
@@ -56,4 +57,31 @@ export const category = function () {
 
   c.mains = mains
   return c
+}
+
+
+export const product = function () {
+  return {
+    name: faker.commerce.productName(),
+    price: faker.commerce.price(),
+    stock: faker.random.number(),
+    plu: Math.round(Math.random() * 9999),
+    volumn: `${faker.random.number()}ml`,
+    image: 'http://placehold.it/128x150',
+    imagelg: 'http://placehold.it/1024x1200',
+    description: faker.lorem.paragraphs(),
+    benefits: faker.lorem.paragraphs(),
+    ingredients: faker.lorem.paragraphs(),
+    url: '/product'
+  }
+}
+
+
+export const products = function (amount) {
+  var ps = []
+  for (var i = 0; i < amount; i++) {
+    ps.push(product())
+  }
+
+  return ps
 }
