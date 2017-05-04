@@ -1,0 +1,23 @@
+.sign__wrapper {
+  display: flex;
+}
+
+.sign__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 16px;
+
+  h4 {
+    width: 100%;
+  }
+
+  p {
+    color: $grey-500;
+    font-size: 0.9em;
+    margin: -10px 0 24px;
+    font-weight: bold;
+  }
+}
