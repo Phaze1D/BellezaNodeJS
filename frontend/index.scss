@@ -3,6 +3,7 @@
 @import "~pages/product/product";
 @import "~pages/search/search";
 @import "~pages/categories/categories";
+@import "~pages/signin/signin";
 @import "~components/Header/Header";
 @import "~components/Carousel/Carousel";
 @import "~components/Footer/Footer";
@@ -109,4 +110,45 @@ ul {
 .h-underline {
   border-bottom: 1px solid $grey-400;
   padding-bottom: 5px;
+}
+
+.green-form {
+  width: 100%;
+  max-width: 400px;
+
+  label {
+    display: block;
+    color: $mgreen;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    margin: 5px 0 32px;
+  }
+
+  .submit {
+    border: none;
+    padding: 8px 12px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.1em;
+    background-color: #bed9ec;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  }
+
+  .error {
+    border-radius: 2px;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    font-size: 0.85em;
+    margin: 5px 0;
+    padding: 2px 5px;
+    font-weight: lighter;
+  }
 }
