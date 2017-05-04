@@ -20,7 +20,7 @@ export default class Footer extends React.Component {
         <div className="footer__grid">
           <section className="footer__section">
             <h4>Ubicaciones</h4>
-            <a className="footer__sub-title" href="#">Oficina Matriz</a>
+            <a className="footer__sub-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
             <p className="footer__info">
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
@@ -28,7 +28,7 @@ export default class Footer extends React.Component {
   						Tel. (33) 36420178 y 3640 3736 <br/>
   					</p>
 
-            <a className="footer__sub-title" href="#">Ciudad de México</a>
+            <a className="footer__sub-title" href="#" title="Oficina Ciudad de México">Ciudad de México</a>
             <p className="footer__info">
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
@@ -78,19 +78,19 @@ export default class Footer extends React.Component {
             <h4>Redes Sociales</h4>
             <ul className="social-ul">
               <li>
-                <a href="#" target="_blank">
+                <a href="#" target="_blank" title="facebook page">
                   <i className="fa fa-facebook-square" aria-hidden="true"></i>
                 </a>
               </li>
 
               <li>
-                <a href="#" target="_blank">
+                <a href="#" target="_blank" title="twitter page">
                   <i className="fa fa-twitter-square" aria-hidden="true"></i>
                 </a>
               </li>
 
               <li>
-                <a href="#" target="_blank">
+                <a href="#" target="_blank" title="instagram page">
                   <div className='instagram'>
                   </div>
                 </a>
