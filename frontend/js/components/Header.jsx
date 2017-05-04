@@ -33,7 +33,7 @@ export default class Header extends React.Component {
     return (
       <header>
         <div className="header__upper">
-          <Link to="/home" className="header__home">
+          <Link to="/search" className="header__home">
             <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
 
             <h1 className="header__title">
