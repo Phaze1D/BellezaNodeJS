@@ -4,12 +4,20 @@ import Header from 'js/components/Header'
 import Footer from 'js/components/Footer'
 import Home from 'js/pages/home'
 import Categories from 'js/pages/categories'
+import Category from 'js/pages/category'
+import Product from 'js/pages/product'
 
 
 
 export default class Layout extends React.Component {
   constructor(props) {
     super(props)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0)
+    }
   }
 
   render() {
@@ -19,6 +27,8 @@ export default class Layout extends React.Component {
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories" component={Categories}/>
+        <Route path="/category" component={Category}/>
+        <Route path="/product" component={Product}/>
         <Footer/>
       </div>
     )
