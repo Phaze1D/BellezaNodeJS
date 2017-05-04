@@ -7,6 +7,7 @@ import Categories from 'pages/categories/categories'
 import Category from 'pages/category/category'
 import Product from 'pages/product/product'
 import Search from 'pages/search/search'
+import Signin from 'pages/signin/signin'
 
 
 
@@ -31,6 +32,7 @@ export default class Layout extends React.Component {
         <Route path="/category" component={Category}/>
         <Route path="/product" component={Product}/>
         <Route path="/search" component={Search}/>
+        <Route path="/signin" component={Signin}/>
         <Footer/>
       </div>
     )
