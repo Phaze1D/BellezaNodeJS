@@ -1,6 +1,7 @@
 @import "~scss/colors";
 @import "~scss/home";
 @import "~scss/product";
+@import "~scss/search";
 @import "~scss/categories";
 @import "~scss/Header";
 @import "~scss/Carousel";
@@ -66,6 +67,7 @@ ul {
   line-height: 1.7em;
   padding: 5px 10px;
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+  background-color: $grey-50;
 
   &::placeholder {
     color: $grey-400;
