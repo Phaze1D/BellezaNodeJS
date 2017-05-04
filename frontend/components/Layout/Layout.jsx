@@ -5,7 +5,7 @@ import Footer from 'components/Footer/Footer'
 import Home from 'pages/home/home'
 import CategoryIndex from 'pages/category/index'
 import CategoryShow from 'pages/category/show'
-import Product from 'pages/product/product'
+import ProductShow from 'pages/product/show'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
 
@@ -30,7 +30,7 @@ export default class Layout extends React.Component {
         <Route path="/home" component={Home}/>
         <Route path="/categories" component={CategoryIndex}/>
         <Route path="/category" component={CategoryShow}/>
-        <Route path="/product" component={Product}/>
+        <Route path="/product" component={ProductShow}/>
         <Route path="/search" component={Search}/>
         <Route path="/signin" component={Signin}/>
         <Footer/>

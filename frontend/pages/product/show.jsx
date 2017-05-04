@@ -9,7 +9,7 @@ import { products, product } from '../../../fake'
 const related = products(4)
 const pt = product()
 
-export default class Product extends React.Component {
+export default class ProductShow extends React.Component {
   constructor(props){
     super(props)
   }
