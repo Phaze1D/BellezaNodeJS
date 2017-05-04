@@ -6,6 +6,7 @@ import Home from 'js/pages/home'
 import Categories from 'js/pages/categories'
 import Category from 'js/pages/category'
 import Product from 'js/pages/product'
+import Search from 'js/pages/search'
 
 
 
@@ -29,6 +30,7 @@ export default class Layout extends React.Component {
         <Route path="/categories" component={Categories}/>
         <Route path="/category" component={Category}/>
         <Route path="/product" component={Product}/>
+        <Route path="/search" component={Search}/>
         <Footer/>
       </div>
     )
