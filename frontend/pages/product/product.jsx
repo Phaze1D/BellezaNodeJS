@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductResult from 'js/components/ProductResult'
+import ProductResult from 'components/ProductResult/ProductResult'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 Tabs.setUseDefaultStyles(false);
 

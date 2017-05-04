@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import Header from 'js/components/Header'
-import Footer from 'js/components/Footer'
-import Home from 'js/pages/home'
-import Categories from 'js/pages/categories'
-import Category from 'js/pages/category'
-import Product from 'js/pages/product'
-import Search from 'js/pages/search'
+import Header from 'components/Header/Header'
+import Footer from 'components/Footer/Footer'
+import Home from 'pages/home/home'
+import Categories from 'pages/categories/categories'
+import Category from 'pages/category/category'
+import Product from 'pages/product/product'
+import Search from 'pages/search/search'
 
 
 

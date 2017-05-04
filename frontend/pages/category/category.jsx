@@ -1,5 +1,5 @@
 import React from 'react'
-import Results from 'js/components/Results'
+import Results from 'components/Results/Results'
 
 
 export default class Category extends React.Component {

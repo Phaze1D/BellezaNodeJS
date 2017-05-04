@@ -3,7 +3,7 @@ var path = require('path');
 
 
 var config = {
-  entry: './frontend/js/index.jsx',
+  entry: './frontend/index.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')

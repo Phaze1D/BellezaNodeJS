@@ -1,15 +1,15 @@
-@import "~scss/colors";
-@import "~scss/home";
-@import "~scss/product";
-@import "~scss/search";
-@import "~scss/categories";
-@import "~scss/Header";
-@import "~scss/Carousel";
-@import "~scss/Footer";
-@import "~scss/Favorites";
-@import "~scss/Results";
-@import "~scss/DropDown";
-@import "~scss/Pagination";
+@import "~utils/colors";
+@import "~pages/home/home";
+@import "~pages/product/product";
+@import "~pages/search/search";
+@import "~pages/categories/categories";
+@import "~components/Header/Header";
+@import "~components/Carousel/Carousel";
+@import "~components/Footer/Footer";
+@import "~components/Favorites/Favorites";
+@import "~components/Results/Results";
+@import "~components/DropDown/DropDown";
+@import "~components/Pagination/Pagination";
 
 
 

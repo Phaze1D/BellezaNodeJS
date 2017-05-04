@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import DropDown from 'js/components/DropDown'
-import Pagination from 'js/components/Pagination'
-import ProductResult from 'js/components/ProductResult'
+import DropDown from 'components/DropDown/DropDown'
+import Pagination from 'components/Pagination/Pagination'
+import ProductResult from 'components/ProductResult/ProductResult'
 
 import { products } from '../../../fake'
 

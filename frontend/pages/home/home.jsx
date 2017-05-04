@@ -1,6 +1,6 @@
 import React from 'react'
-import Carousel from 'js/components/Carousel'
-import Favorites from 'js/components/Favorites'
+import Carousel from 'components/Carousel/Carousel'
+import Favorites from 'components/Favorites/Favorites'
 
 
 export default class Home extends React.Component {

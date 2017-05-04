@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Results from 'js/components/Results'
+import Results from 'components/Results/Results'
 
 class Search extends React.Component {
   render () {
