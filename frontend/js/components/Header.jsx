@@ -81,7 +81,7 @@ const MainList = (props) => {
 
     const subList = main.subs.map( (sub) =>
       <li className="sub-item" key={sub.id}>
-        <Link to="#">
+        <Link to="/category">
           {sub.name}
         </Link>
       </li>
