@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom'
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
 import Home from 'pages/home/home'
-import Categories from 'pages/categories/categories'
-import Category from 'pages/category/category'
+import CategoryIndex from 'pages/category/index'
+import CategoryShow from 'pages/category/show'
 import Product from 'pages/product/product'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
@@ -28,8 +28,8 @@ export default class Layout extends React.Component {
         <Header/>
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
-        <Route path="/categories" component={Categories}/>
-        <Route path="/category" component={Category}/>
+        <Route path="/categories" component={CategoryIndex}/>
+        <Route path="/category" component={CategoryShow}/>
         <Route path="/product" component={Product}/>
         <Route path="/search" component={Search}/>
         <Route path="/signin" component={Signin}/>
