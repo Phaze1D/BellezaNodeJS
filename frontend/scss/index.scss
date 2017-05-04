@@ -1,10 +1,14 @@
 @import "~scss/colors";
 @import "~scss/home";
+@import "~scss/product";
 @import "~scss/categories";
 @import "~scss/Header";
 @import "~scss/Carousel";
 @import "~scss/Footer";
 @import "~scss/Favorites";
+@import "~scss/Results";
+@import "~scss/DropDown";
+@import "~scss/Pagination";
 
 
 
@@ -20,6 +24,7 @@ body {
   min-height: 100vh;
   background: #bed9ec;
   background: linear-gradient(to bottom, #bed9ec 0%, #ffffff 100%);
+  color: $dark-main;
 }
 
 main {
@@ -50,10 +55,14 @@ a {
   }
 }
 
+ul {
+  margin: 0;
+}
+
 .input {
   border: 1px solid $grey-300;
   font-size: 0.9em;
-  border-radius: 3px;
+  border-radius: 2px;
   line-height: 1.7em;
   padding: 5px 10px;
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.1);
@@ -61,6 +70,10 @@ a {
   &::placeholder {
     color: $grey-400;
   }
+}
+
+.input-quantity {
+  padding: 5px 5px;
 }
 
 .vertical-divider {
@@ -88,4 +101,10 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+
+.h-underline {
+  border-bottom: 1px solid $grey-400;
+  padding-bottom: 5px;
 }
