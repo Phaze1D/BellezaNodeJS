@@ -52,7 +52,7 @@ export default class Header extends React.Component {
               <Link to="/user/details" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
               <div className="cart-div">
-                <Link to="#" className="cart-link">
+                <Link to="/cart" className="cart-link">
                   Carrito
                   <i className="material-icons">shopping_cart</i>
                 </Link>
