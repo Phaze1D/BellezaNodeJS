@@ -34,6 +34,7 @@ header {
 }
 
 .header__links {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,6 +42,12 @@ header {
   height: 24px;
   color: $dark-main;
   width: 300px;
+}
+
+.cart-div:hover {
+  .cart__box {
+    display: flex;
+  }
 }
 
 .cart-link {

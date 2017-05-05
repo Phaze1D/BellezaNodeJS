@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CartBox from 'components/CartBox/CartBox'
 
 import {categories} from '../../../fake.js'
 
@@ -50,10 +51,13 @@ export default class Header extends React.Component {
               <div className="vertical-divider"></div>
               <Link to="/user/details" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
-              <Link to="#" className="cart-link">
-                Carrito
-                <i className="material-icons">shopping_cart</i>
-              </Link>
+              <div className="cart-div">
+                <Link to="#" className="cart-link">
+                  Carrito
+                  <i className="material-icons">shopping_cart</i>
+                </Link>
+                <CartBox/>
+              </div>
             </div>
 
             <form id="search-form">
