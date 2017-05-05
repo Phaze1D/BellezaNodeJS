@@ -9,6 +9,7 @@ import ProductShow from 'pages/product/show'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
 import UserShow from 'pages/user/show'
+import CartShow from 'pages/cart/show'
 
 
 
@@ -27,7 +28,7 @@ export default class Layout extends React.Component {
     return (
       <div className='layout'>
         <Header/>
-        <Redirect from='/' to='/user/details'/>
+        <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories" component={CategoryIndex}/>
         <Route path="/category" component={CategoryShow}/>
@@ -35,6 +36,7 @@ export default class Layout extends React.Component {
         <Route path="/search" component={Search}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/user" component={UserShow}/>
+        <Route path="/cart" component={CartShow}/>
         <Footer/>
       </div>
     )
