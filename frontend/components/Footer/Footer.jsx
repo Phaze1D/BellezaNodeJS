@@ -21,20 +21,20 @@ export default class Footer extends React.Component {
           <section className="footer__section">
             <h4>Ubicaciones</h4>
             <a className="footer__sub-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
-            <p className="footer__info">
+            <address className="footer__info">
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
   						México<br/>
   						Tel. (33) 36420178 y 3640 3736 <br/>
-  					</p>
+  					</address>
 
             <a className="footer__sub-title" href="#" title="Oficina Ciudad de México">Ciudad de México</a>
-            <p className="footer__info">
+            <address className="footer__info">
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
   						México<br/>
   						Tel. (33) 36420178 y 3640 3736 <br/>
-  					</p>
+  					</address>
           </section>
 
           <section className="footer__section">
