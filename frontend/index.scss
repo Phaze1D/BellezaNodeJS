@@ -2,7 +2,8 @@
 @import "~pages/home/home";
 @import "~pages/product/product";
 @import "~pages/search/search";
-@import "~pages/categories/categories";
+@import "~pages/user/user";
+@import "~pages/category/category";
 @import "~pages/signin/signin";
 @import "~components/Header/Header";
 @import "~components/Carousel/Carousel";
@@ -11,6 +12,8 @@
 @import "~components/Results/Results";
 @import "~components/DropDown/DropDown";
 @import "~components/Pagination/Pagination";
+@import "~components/OrderItem/OrderItem";
+@import "~components/AddressForm/AddressForm";
 
 
 
@@ -34,6 +37,7 @@ main {
 }
 
 button {
+  font-family: 'Lora', serif;
   border: none;
   outline: none;
   box-shadow: none;
@@ -59,6 +63,21 @@ a {
 
 ul {
   margin: 0;
+}
+
+.overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.75);
+  padding: 40px;
 }
 
 .input {
