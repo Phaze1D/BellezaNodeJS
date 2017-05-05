@@ -25,8 +25,6 @@ export default class Cart extends React.Component {
 
         {ord.details.length > 0 &&
           <div className="cart__bottom smooth">
-            <p><span>Sin IVA</span> Subtotal: ${ord.subtotal}</p>
-
             <Link className="button light" to="/cart">Detalles</Link>
           </div>
         }
