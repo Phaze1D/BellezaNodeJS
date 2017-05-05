@@ -85,3 +85,90 @@ export const products = function (amount) {
 
   return ps
 }
+
+export const user = function () {
+
+  var telephones = []
+  for (var i = 0; i < Math.random() * 5; i++) {
+    telephones.push(faker.phone.phoneNumber())
+  }
+
+  var addresses = []
+  for (var i = 0; i < Math.random() * 5; i++) {
+    addresses.push(address())
+  }
+
+  return {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    telephones: telephones,
+    addresses: addresses
+  }
+}
+
+
+export const address = function () {
+  return {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    street1: faker.address.streetAddress(),
+    street2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zipcode: faker.address.zipCode(),
+    country: faker.address.country(),
+    telephone: faker.phone.phoneNumber()
+  }
+}
+
+export const orders = function () {
+  var ord = []
+  for (var i = 0; i <  Math.random() * 30; i++) {
+    ord.push(order())
+  }
+  return ord
+}
+
+
+export const order = function () {
+
+  var details = []
+  for (var i = 0; i < Math.random() * 10; i++) {
+    details.push(orderDetail())
+  }
+
+  return {
+    id: faker.random.number(),
+    date: faker.date.past(),
+    total: faker.commerce.price(),
+    subtotal: faker.commerce.price(),
+    shippedTo: address(),
+    discount: faker.commerce.price(),
+    iva: faker.commerce.price(),
+    details: details
+  }
+}
+
+export const orderDetail = function () {
+  return {
+    pimg: "http://placehold.it/128x150",
+    description: faker.commerce.productName(),
+    quantity: faker.random.number(),
+    price: faker.commerce.price(),
+    subtotal: faker.commerce.price()
+  }
+}
+
+
+export const codes = function () {
+  var c = []
+  for (var i = 0; i < Math.random() * 10; i++) {
+    c.push({
+      code: faker.random.word(),
+      discount: faker.random.number({max:100}),
+      expire: faker.date.past()
+    })
+  }
+  return c
+}
