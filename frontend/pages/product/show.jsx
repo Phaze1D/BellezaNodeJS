@@ -38,6 +38,7 @@ export default class ProductShow extends React.Component {
               <div>
                 <p className="product__sub-info">PLU: {pt.plu} / Disponibles: {pt.stock}</p>
                 <p className="product__main-info">${pt.price} / {pt.volumn}</p>
+                <p className="product__discount">Con {pt.discount}% de Descuento </p>
               </div>
 
               <form>
@@ -55,15 +56,15 @@ export default class ProductShow extends React.Component {
                <Tab className="product__tab">Ingredientes</Tab>
              </TabList>
 
-             <TabPanel className="product__tab-panel">
+             <TabPanel className="product__tab-panel smooth">
                {pt.description}
              </TabPanel>
 
-             <TabPanel className="product__tab-panel">
+             <TabPanel className="product__tab-panel smooth">
                {pt.benefits}
              </TabPanel>
 
-             <TabPanel className="product__tab-panel">
+             <TabPanel className="product__tab-panel smooth">
                {pt.ingredients}
              </TabPanel>
            </Tabs>

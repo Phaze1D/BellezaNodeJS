@@ -51,6 +51,12 @@
   font-size: 0.9em
 }
 
+.product__discount {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #FF9100;
+}
+
 
 .product__tabs {
   margin-top: 20px;
@@ -92,6 +98,7 @@
 
 
 .product__tab-panel {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 356px;
   padding: 16px;
   overflow-x: hidden;
