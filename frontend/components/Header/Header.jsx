@@ -34,7 +34,7 @@ export default class Header extends React.Component {
     return (
       <header>
         <div className="header__upper">
-          <Link to="/search" className="header__home" title="Neals Yard Remedies Mexico">
+          <Link to="/home" className="header__home" title="Neals Yard Remedies Mexico">
             <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
 
             <h1 className="header__title">
@@ -48,7 +48,7 @@ export default class Header extends React.Component {
             <div className="header__links">
               <Link to="#" title="Tiendas">Tiendas</Link>
               <div className="vertical-divider"></div>
-              <Link to="/signin" title="Signin">Mi Cuenta</Link>
+              <Link to="/user/details" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
               <Link to="#" className="cart-link">
                 Carrito
