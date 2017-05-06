@@ -23,11 +23,13 @@ class UserAddresses extends React.Component {
 
   handleCancel(event) {
     this.setState({showForm: false})
+    document.body.style.overflow = ""
   }
 
   handleOverlayClick(event){
     if(event.target.classList.contains('overlay')){
       this.setState({showForm: false})
+      document.body.style.overflow = ""
     }
   }
 
@@ -50,7 +52,12 @@ class UserAddresses extends React.Component {
         <button className="address__add" onClick={this.handleShow.bind(this, {})}>Agregar</button>
 
         {this.state.showForm &&
-          <div className="overlay" onClick={this.handleOverlayClick}>
+          <div
+            className="overlay"
+            onClick={this.handleOverlayClick}
+            onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+            onMouseLeave={(event) => document.body.style.overflow = ""}>
+
             <AddressForm onRequestCancel={this.handleCancel} {...this.address}/>
           </div>
         }

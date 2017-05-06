@@ -24,11 +24,13 @@ class UserDetails extends React.Component {
 
   handleCancel(event){
     this.setState({showForm: false})
+    document.body.style.overflow = ""
   }
 
   handleOverlayClick(event){
     if(event.target.classList.contains('overlay')){
       this.setState({showForm: false})
+      document.body.style.overflow = ""
     }
   }
 
@@ -87,7 +89,12 @@ class UserDetails extends React.Component {
           </div>
 
           {this.state.showForm &&
-            <div className="overlay" onClick={this.handleOverlayClick}>
+            <div
+              className="overlay"
+              onClick={this.handleOverlayClick}
+              onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+              onMouseLeave={(event) => document.body.style.overflow = ""}>
+
               <UserEdit onRequestCancel={this.handleCancel} {...us}/>
             </div>
           }

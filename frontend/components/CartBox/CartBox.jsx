@@ -13,7 +13,10 @@ export default class Cart extends React.Component {
     )
 
     return (
-      <div className="cart__box smooth">
+      <div
+        className="cart__box smooth"
+        onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+        onMouseLeave={(event) => document.body.style.overflow = ""}>
         <h3>Tu Carrito</h3>
 
         <div className="cart__mid">
