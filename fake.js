@@ -65,6 +65,7 @@ export const product = function () {
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
     stock: faker.random.number(),
+    discount: faker.random.number({max: 100}),
     plu: Math.round(Math.random() * 9999),
     volumn: `${faker.random.number()}ml`,
     image: 'http://placehold.it/128x150',
@@ -146,6 +147,7 @@ export const order = function () {
     shippedTo: address(),
     discount: faker.commerce.price(),
     iva: faker.commerce.price(),
+    shippingCost: faker.commerce.price(),
     details: details
   }
 }
@@ -154,7 +156,7 @@ export const orderDetail = function () {
   return {
     pimg: "http://placehold.it/128x150",
     description: faker.commerce.productName(),
-    quantity: faker.random.number(),
+    quantity: faker.random.number({max: 10}),
     price: faker.commerce.price(),
     subtotal: faker.commerce.price()
   }
