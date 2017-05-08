@@ -22,7 +22,7 @@ class OrderTable extends React.Component {
     )
 
     return (
-      <table className="order__table smooth">
+      <table className="order__table">
         <thead>
           <tr>
             <th>Producto</th>

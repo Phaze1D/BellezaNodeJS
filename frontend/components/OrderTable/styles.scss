@@ -1,5 +1,5 @@
 .order__table {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   border: 1px solid $grey-300;
   border-radius: 3px;
@@ -9,6 +9,10 @@
   td {
     border-bottom: 1px solid $grey-300;
     text-align: center;
+
+    &:last-child {
+      padding-right: 16px;
+    }
   }
 
   th {
