@@ -49,7 +49,7 @@ export default class Header extends React.Component {
             <div className="header__links">
               <Link to="#" title="Tiendas">Tiendas</Link>
               <div className="vertical-divider"></div>
-              <Link to="/user/details" title="Signin">Mi Cuenta</Link>
+              <Link to="/signin" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
               <div className="cart-div">
                 <Link to="/cart" className="cart-link">
