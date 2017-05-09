@@ -145,6 +145,7 @@ export const order = function () {
     total: faker.commerce.price(),
     subtotal: faker.commerce.price(),
     shippedTo: address(),
+    invoiceTo: address(),
     discount: faker.commerce.price(),
     iva: faker.commerce.price(),
     shippingCost: faker.commerce.price(),
