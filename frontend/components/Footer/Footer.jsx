@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default class Footer extends React.Component {
@@ -41,35 +42,35 @@ export default class Footer extends React.Component {
             <h4>Acerca de</h4>
             <ul className="footer__ul">
       				<li>
-      					<a  href="https://bellezaorganica.com.mx/quienSomos"> Quienes Somos</a>
+      					<Link to="/quienSomos"> Quienes Somos</Link>
       				</li>
 
       				<li>
-      					<a  href="https://bellezaorganica.com.mx/history"> Historia</a>
+      					<Link to="/history"> Historia</Link>
       				</li>
 
       				<li>
-      					<a href="https://bellezaorganica.com.mx/nuestraPromesa"> Nuestras Promesas</a>
+      					<Link to="/nuestraPromesa"> Nuestras Promesas</Link>
       				</li>
 
       				<li>
-      					<a href="https://bellezaorganica.com.mx/porqueOrganico"> ¿Porqué Orgánico?</a>
+      					<Link to="porqueOrganico"> ¿Porqué Orgánico?</Link>
       				</li>
 
       				<li>
-      					<a href="https://bellezaorganica.com.mx/reconocimiento"> Reconocimientos</a>
+      					<Link to="/awards"> Reconocimientos</Link>
       				</li>
 
       				<li>
-      					<a href="https://bellezaorganica.com.mx/terminosCondiciones"> Términos y condiciones</a>
+      					<Link to="/terminosCondiciones"> Términos y condiciones</Link>
       				</li>
 
       				<li>
-      					<a href="https://bellezaorganica.com.mx/contacto"> Contacto</a>
+      					<Link to="/contact"> Contacto</Link>
       				</li>
 
               <li>
-      					<a href="#">Tiendas Internacionales</a>
+      					<a href="http://www.nealsyardremedies.com/store-finder#international" target="_blank">Tiendas Internacionales</a>
       				</li>
       			</ul>
           </section>
