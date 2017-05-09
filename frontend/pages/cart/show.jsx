@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router-dom'
 import OrderTable from 'components/OrderTable/OrderTable'
 
 
@@ -22,13 +23,13 @@ class CartShow extends React.Component {
         </h2>
 
         <div className="cart__checkout">
-          <a href="#" className="button dark"> Checkout </a>
+          <Link to="/checkout" className="button dark"> Checkout </Link>
         </div>
 
-        <OrderTable/>
+        <OrderTable editable={true} size="lg"/>
 
         <div className="cart__checkout">
-          <a href="#" className="button dark"> Checkout </a>
+          <Link to="/checkout" className="button dark"> Checkout </Link>
         </div>
 
       </main>
