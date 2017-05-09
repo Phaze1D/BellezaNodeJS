@@ -6,7 +6,7 @@ class AddressForm extends React.Component {
     return (
       <div className="address__form">
         <h3>
-          Direccion
+          Dirección
           <i className="material-icons" onClick={this.props.onRequestCancel}>clear</i>
         </h3>
         <form className="green-form">
@@ -16,7 +16,7 @@ class AddressForm extends React.Component {
           <label htmlFor="lastName">Apellidos</label>
           <input className="input" type="text" name="lastName" defaultValue={this.props.lastName}/>
 
-          <label htmlFor="street1">Direccion</label>
+          <label htmlFor="street1">Dirección</label>
           <input className="input" type="text" name="street1" defaultValue={this.props.street1}/>
 
           <label htmlFor="street2">Colonia</label>
