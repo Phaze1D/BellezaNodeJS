@@ -6,6 +6,9 @@
 @import "~pages/category/styles";
 @import "~pages/signin/styles";
 @import "~pages/cart/styles";
+@import "~pages/checkout/styles";
+@import "~pages/order/styles";
+@import "~pages/others/styles";
 @import "~components/Header/styles";
 @import "~components/Carousel/styles";
 @import "~components/Footer/styles";
@@ -15,6 +18,7 @@
 @import "~components/Pagination/styles";
 @import "~components/OrderItem/styles";
 @import "~components/AddressForm/styles";
+@import "~components/AddressList/styles";
 @import "~components/CartBox/styles";
 @import "~components/OrderTable/styles";
 
@@ -135,6 +139,7 @@ ul {
 }
 
 .green-form {
+  margin-top: 16px;
   width: 100%;
   max-width: 400px;
 
@@ -146,10 +151,25 @@ ul {
     font-weight: bold;
   }
 
+  a {
+    display: inline-block;
+    text-align: right;
+    color: #337ab7;
+    font-size: 0.8em;
+  }
+
   input {
     display: block;
     width: 100%;
     margin: 5px 0 32px;
+  }
+
+
+  .lflex {
+    display: flex;
+    a {
+      flex-grow: 1;
+    }
   }
 
   .submit {
@@ -173,4 +193,24 @@ ul {
     padding: 2px 5px;
     font-weight: lighter;
   }
+}
+
+.flex-form {
+  display: flex;
+  max-width: 100%;
+  align-items: flex-end;
+
+
+  .input-div{
+    flex-grow: 1;
+  }
+
+  .submit {
+    width: 250px;
+    margin-left: 16px;
+  }
+}
+
+.flex-wrapper {
+  display: flex;
 }
