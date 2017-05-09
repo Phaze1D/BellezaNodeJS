@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default class Signin extends React.Component {
@@ -29,7 +30,7 @@ const LoginFrom = props => {
         {props.errors.last_name && <div className="error">{props.errors.email}</div>}
         <input className="input" type="email" name="email"/>
 
-        <label htmlFor="password">Contraseña</label>
+        <label className="lflex" htmlFor="password">Contraseña <Link to="/reset">(Olvidó su Contraseña)</Link></label>
         {props.errors.last_name && <div className="error">{props.errors.password}</div>}
         <input className="input" type="password" name="password"/>
 
@@ -61,7 +62,7 @@ const SignupForm = props => {
         {props.errors.email && <div className="error">{props.errors.email}</div>}
         <input className="input" type="email" name="email"/>
 
-        <label htmlFor="password">Contraseña</label>
+        <label htmlFor="password">Contraseña </label>
         {props.errors.password && <div className="error">{props.errors.password}</div>}
         <input className="input" type="password" name="password"/>
 
