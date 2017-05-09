@@ -33,6 +33,7 @@
   "dependencies": {
     "@material/menu": "^0.2.4",
     "axios": "^0.16.1",
+    "classnames": "^2.2.5",
     "express": "^4.15.2",
     "moment": "^2.18.1",
     "react": "^15.5.4",
