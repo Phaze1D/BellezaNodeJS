@@ -10,6 +10,18 @@ import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
 import UserShow from 'pages/user/show'
 import CartShow from 'pages/cart/show'
+import CheckoutDirections from 'pages/checkout/directions'
+import CheckoutConfirmation from 'pages/checkout/confirmation'
+import CheckoutSuccessful from 'pages/checkout/successful'
+import OrderShow from 'pages/order/show'
+import QuienSomos from 'pages/others/quien_somos'
+import History from 'pages/others/history'
+import NuestraPro from 'pages/others/nuestra_pro'
+import PorqueOrganico from 'pages/others/porque_organico'
+import Terms from 'pages/others/terms'
+import Awards from 'pages/others/awards'
+import Contact from 'pages/others/contact'
+import PasswordReset from 'pages/others/reset'
 
 
 
@@ -37,6 +49,18 @@ export default class Layout extends React.Component {
         <Route path="/signin" component={Signin}/>
         <Route path="/user" component={UserShow}/>
         <Route path="/cart" component={CartShow}/>
+        <Route path="/checkout" component={CheckoutDirections}/>
+        <Route path="/confirmation" component={CheckoutConfirmation}/>
+        <Route path="/successful" component={CheckoutSuccessful}/>
+        <Route path="/order" component={OrderShow}/>
+        <Route path="/quienSomos" component={QuienSomos}/>
+        <Route path="/history" component={History}/>
+        <Route path="/nuestraPromesa" component={NuestraPro}/>
+        <Route path="/porqueOrganico" component={PorqueOrganico}/>
+        <Route path="/terminosCondiciones" component={Terms}/>
+        <Route path="/awards" component={Awards}/>
+        <Route path="/contact" component={Contact}/>
+        <Route path="/reset" component={PasswordReset}/>
         <Footer/>
       </div>
     )
