@@ -28,7 +28,7 @@ const OrderItem = (props) => {
         <p>
           Referencia #{props.id}
           <span className="clickable">
-            <Link to="#">Detalles</Link>
+            <Link to="/order">Detalles</Link>
           </span>
         </p>
       </div>
