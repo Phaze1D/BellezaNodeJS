@@ -66,6 +66,7 @@ export const product = function () {
     price: faker.commerce.price(),
     stock: faker.random.number(),
     discount: faker.random.number({max: 100}),
+    iva: faker.random.number({max: 100}),
     plu: Math.round(Math.random() * 9999),
     volumn: `${faker.random.number()}ml`,
     image: 'http://placehold.it/128x150',
@@ -73,6 +74,7 @@ export const product = function () {
     description: faker.lorem.paragraphs(),
     benefits: faker.lorem.paragraphs(),
     ingredients: faker.lorem.paragraphs(),
+    active: faker.random.boolean(),
     url: '/product'
   }
 }
@@ -103,6 +105,7 @@ export const user = function () {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
+    amount: faker.commerce.price(),
     telephones: telephones,
     addresses: addresses
   }
@@ -148,6 +151,7 @@ export const order = function () {
     invoiceTo: address(),
     discount: faker.commerce.price(),
     iva: faker.commerce.price(),
+    user: user(),
     shippingCost: faker.commerce.price(),
     details: details
   }
@@ -174,4 +178,18 @@ export const codes = function () {
     })
   }
   return c
+}
+
+export const banners = function () {
+  var bs = []
+  for (var i = 0; i < Math.random() * 30; i++) {
+    bs.push({
+      img: 'http://placehold.it/640x320',
+      link: '#',
+      active: faker.random.boolean(),
+      start: faker.date.past(),
+      end: faker.date.past()
+    })
+  }
+  return bs
 }
