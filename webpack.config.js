@@ -27,7 +27,7 @@ var config = {
         }
       }]
     },{
-      test: /\.(scss|css)$/,
+      test: /\.(scss|sass|css)$/,
       loaders: [
         'style-loader',
         'css-loader',
