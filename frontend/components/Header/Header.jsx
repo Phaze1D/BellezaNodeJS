@@ -47,7 +47,7 @@ export default class Header extends React.Component {
 
           <div className="header__form">
             <div className="header__links">
-              <Link to="#" title="Tiendas">Tiendas</Link>
+              <Link to="/user/details" title="Tiendas">Tiendas</Link>
               <div className="vertical-divider"></div>
               <Link to="/signin" title="Signin">Mi Cuenta</Link>
               <div className="vertical-divider"></div>
