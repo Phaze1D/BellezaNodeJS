@@ -12,7 +12,7 @@ for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 export default class UserOrders extends React.Component {
   constructor(props){
     super(props)
-    this.state = {selectedIndex: 0}
+    this.state = {page: 0}
   }
 
   render () {
@@ -32,7 +32,7 @@ export default class UserOrders extends React.Component {
         {orderList}
         <Pagination
           links={links}
-          selectedIndex={this.state.selectedIndex}
+          page={this.state.page}
           onRequestClick={this.handlePageClick}/>
       </section>
     )

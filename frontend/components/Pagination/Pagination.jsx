@@ -14,14 +14,14 @@ export default class Pagination extends React.Component {
   }
 
   render(){
-    const selectedIndex = this.props.selectedIndex
+    const page = this.props.page
 
     const children = this.props.links.map( (link, index) =>
       <Link
         key={index}
         to={link.value}
         onClick={this.handleClick.bind(this, index)}
-        className={selectedIndex == index ? "active" : ""}>
+        className={page == index ? "active" : ""}>
 
         {link.name}
       </Link>
@@ -33,14 +33,14 @@ export default class Pagination extends React.Component {
       startArray.push(children[1])
     }
 
-    if(selectedIndex < this.startMax){
+    if(page < this.startMax){
       for (var i = 2; (i <= this.startMax && i < children.length - 1); i++) {
         startArray.push(children[i])
       }
     }
 
     let endArray = []
-    if(selectedIndex > children.length - this.startMax && selectedIndex >= this.startMax){
+    if(page > children.length - this.startMax && page >= this.startMax){
       for (var i = children.length - this.startMax; i < children.length; i++) {
         endArray.push(children[i])
       }
@@ -49,9 +49,9 @@ export default class Pagination extends React.Component {
     }
 
     let midArray = []
-    if(selectedIndex >= this.startMax && selectedIndex <= children.length - this.startMax){
+    if(page >= this.startMax && page <= children.length - this.startMax){
       for (var i = -1; i < 2; i++) {
-        midArray.push(children[selectedIndex + i])
+        midArray.push(children[page + i])
       }
     }
 

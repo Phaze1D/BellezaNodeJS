@@ -15,13 +15,13 @@ for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 export default class Results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {selectedIndex: 0}
+    this.state = {page: 0}
 
     this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   handlePageClick(index, event){
-    this.setState({selectedIndex: index})
+    this.setState({page: index})
   }
 
   render() {
@@ -39,7 +39,7 @@ export default class Results extends React.Component {
 
           <Pagination
             links={links}
-            selectedIndex={this.state.selectedIndex}
+            page={this.state.page}
             onRequestClick={this.handlePageClick}/>
         </div>
 
@@ -51,7 +51,7 @@ export default class Results extends React.Component {
           <div className="results__options">
             <Pagination
               links={links}
-              selectedIndex={this.state.selectedIndex}
+              page={this.state.page}
               onRequestClick={this.handlePageClick}/>
           </div>
         }
