@@ -9,6 +9,7 @@
 @import "~pages/checkout/styles";
 @import "~pages/order/styles";
 @import "~pages/others/styles";
+@import "~pages/backoffice/styles";
 @import "~components/Header/styles";
 @import "~components/Carousel/styles";
 @import "~components/Footer/styles";
@@ -21,6 +22,8 @@
 @import "~components/AddressList/styles";
 @import "~components/CartBox/styles";
 @import "~components/OrderTable/styles";
+@import "~components/ProductForm/styles";
+
 
 
 
@@ -70,6 +73,10 @@ a {
 
 ul {
   margin: 0;
+}
+
+select {
+  font-size: 0.9em;
 }
 
 .overlay {
