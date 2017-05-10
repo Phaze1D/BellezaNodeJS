@@ -7,6 +7,7 @@ import UserCodes from 'pages/user/codes'
 
 class UserShow extends React.Component {
   render () {
+    const match = this.props.match
 
     return (
       <main className="user__wrapper">
@@ -14,37 +15,37 @@ class UserShow extends React.Component {
           <ul className="user__options-list">
             <h4 className="smooth">Mis Pedidos</h4>
             <li>
-              <Link to="/user/orders">Historial de Pedidos</Link>
+              <Link to={`${match.url}/orders`}>Historial de Pedidos</Link>
             </li>
 
             <h4 className="smooth">Mis detalles</h4>
             <li>
-              <Link to="/user/details">Detalles</Link>
+              <Link to={`${match.url}/details`}>Detalles</Link>
             </li>
 
             <li>
-              <Link to="/user/addresses">Directorio</Link>
+              <Link to={`${match.url}/addresses`}>Directorio</Link>
             </li>
 
             <li>
-              <Link to="/user/codes">Códigos de Descuento</Link>
+              <Link to={`${match.url}/codes`}>Códigos de Descuento</Link>
             </li>
 
             <li>
-              <Link to="#">Backoffice</Link>
+              <Link to="/backoffice/orders">Backoffice</Link>
             </li>
 
             <h4 className="smooth">Privacidad</h4>
             <li>
-              <Link to="#">Política de Privacidad</Link>
+              <Link to="/terminosCondiciones">Política de Privacidad</Link>
             </li>
           </ul>
         </section>
 
-        <Route path="/user/details" component={UserDetails}/>
-        <Route path="/user/orders" component={UserOrders}/>
-        <Route path="/user/addresses" component={UserAddresses}/>
-        <Route path="/user/codes" component={UserCodes}/>
+        <Route path={`${match.url}/details`} component={UserDetails}/>
+        <Route path={`${match.url}/orders`} component={UserOrders}/>
+        <Route path={`${match.url}/addresses`} component={UserAddresses}/>
+        <Route path={`${match.url}/codes`} component={UserCodes}/>
       </main>
     )
   }
