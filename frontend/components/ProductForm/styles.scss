@@ -1,0 +1,59 @@
+.flex-green-form {
+  @extend .green-form;
+  max-width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .lg {
+    min-width: 33%;
+  }
+
+  .md {
+    min-width: 24%;
+  }
+
+  .fu {
+    min-width: 100%;
+    margin-top: 20px;
+  }
+
+  textarea {
+    height: 250px;
+  }
+}
+
+.cancel {
+  border: none;
+  padding: 8px 12px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 0.9em !important;
+  background-color: #E04C48;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  text-align: center !important;
+  color: white !important;
+}
+
+.add-cat {
+  display: block;
+  margin: 16px 0;
+  font-size: 0.85em;
+}
+
+.procat-list {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin: 5px 5px;
+    font-size: 0.8em;
+    width: 25%;
+  }
+
+  input {
+    margin: 5px 5px !important;
+  }
+
+}
