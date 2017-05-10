@@ -22,6 +22,7 @@ import Terms from 'pages/others/terms'
 import Awards from 'pages/others/awards'
 import Contact from 'pages/others/contact'
 import PasswordReset from 'pages/others/reset'
+import BackofficeShow from 'pages/backoffice/show'
 
 
 
@@ -61,6 +62,7 @@ export default class Layout extends React.Component {
         <Route path="/awards" component={Awards}/>
         <Route path="/contact" component={Contact}/>
         <Route path="/reset" component={PasswordReset}/>
+        <Route path="/backoffice" component={BackofficeShow}/>
         <Footer/>
       </div>
     )
