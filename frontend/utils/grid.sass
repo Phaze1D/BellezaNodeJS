@@ -1,0 +1,18 @@
+
+.grid-wrap
+  display: flex
+  flex-wrap: wrap
+
+@for $i from 1 through 12
+  .col-#{$i}
+    padding: 8px
+    width: 100% * ($i/12)
+
+.top
+  align-items: flex-start
+
+.bottom
+  align-items: flex-end
+
+.center
+  align-items: center

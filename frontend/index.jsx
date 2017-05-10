@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Routes } from 'utils/routes'
 
-import 'index.scss'
+import 'index.sass'
 
 ReactDOM.render(
   <Routes/>,

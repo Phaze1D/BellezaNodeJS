@@ -1,0 +1,141 @@
+
+*
+  box-sizing: border-box
+
+body
+  font-family: 'Lora', serif
+  font-size: $desktop-font-size
+  width: 100vw
+  min-height: 100vh
+  color: $primary
+
+main
+  padding: 16px
+
+button
+  display: inline-block
+  font-family: 'Lora', serif
+  font-size: 1em
+  color: $primary
+  border: none
+  outline: none
+  background-color: white
+  cursor: pointer
+  border-radius: $border-radius
+  padding: 5px 16px
+  border: 1px solid $grey-300
+  text-align: center
+  line-height: 1.2em
+  &:active
+    color: $primary
+    background-color: $grey-200
+
+a
+  text-decoration: none
+  color: $primary-light
+
+input[type="text"], input[type="number"]
+  +shadow-inner()
+  font-family: 'Lora', serif
+  border: 1px solid $grey-300
+  font-size: 0.9em
+  border-radius: $border-radius
+  line-height: 1.5em
+  padding: 5px 10px
+  background-color: $grey-50
+  outline: none
+  &::placeholder
+    color: $grey-400
+
+input[type="number"]
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  padding: 4px 5px 4px 10px
+
+h1, h2, h3, h4, h5, h6
+  font-weight: bold
+
+h1
+  font-size: 2em
+
+h2
+  font-size: 1.6em
+
+h3
+  font-size: 1.2em
+
+h4
+  font-size: 1em
+
+h5
+  font-size: 0.8em
+
+h6
+  font-size: 0.7em
+
+.h-underline
+  border-bottom: 1px solid $grey-400
+  padding-bottom: 5px
+
+.box
+  padding: 16px
+  border-radius: $border-radius
+  border: 1px solid $grey-300
+
+.dark-button
+  @extend button
+  background-color: $primary
+  color: white
+  border: none
+
+.light-button
+  @extend button
+  background-color: $primary-lighter
+  color: $primary
+  border: none
+
+.secondary-button
+  @extend button
+  background-color: $secondary
+  color: white
+  border: none
+
+.submit
+  @extend .light-button
+  font-weight: bold
+  font-size: 1.1em
+
+.cancel
+  @extend .submit
+  background-color: $mred
+  color: white
+
+.ul-dots
+  list-style: disc
+  color: $grey-500
+  li
+    padding: 0.35em
+    &:hover
+      color: $primary
+  a
+    display: block
+    color: inherit
+
+.main-form
+  label
+    display: block
+    color: $secondary
+    font-weight: bold
+    margin-bottom: 5px
+  input[type="text"]
+    margin-bottom: 26px
+    width: 100%
+    &:last-child
+      margin: 0
+
+.error-div
+  background-color: $light-error
+  border-radius: $border-radius
+  color: $error
+  padding: 8px 16px
+  margin: 5px 0
+  font-size: 0.8em
