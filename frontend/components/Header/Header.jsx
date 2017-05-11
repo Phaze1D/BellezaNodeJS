@@ -26,33 +26,38 @@ export default class Header extends React.Component {
   render() {
 
     const navList = cats.map( (category) =>
-      <li className="header__list-item" key={category.id} onClick={this.handleNavClick} onMouseLeave={this.handleNavLeave}>
-        <Link to="/categories" className="nav-a" title={category.name}>{category.name}</Link>
+      <li
+        key={category.id}
+        className="nav-item"
+        onClick={this.handleNavClick}
+        onMouseLeave={this.handleNavLeave}>
+
+        <Link to="/categories" title={category.name} className="nav-link">{category.name}</Link>
         <MainList mains={category.mains}/>
       </li>
     )
 
     return (
       <header>
-        <div className="header__upper">
-          <Link to="/home" className="header__home" title="Neals Yard Remedies Mexico">
-            <img className="header__logo" src="http://placehold.it/200" alt="logo"/>
+        <div className="grid center">
+          <Link className="grid center col-8" to="/home" title="Neals Yard Remedies Mexico">
+            <img id="logo-img" src="http://placehold.it/200" alt="logo"/>
 
-            <h1 className="header__title">
+            <h1 id="web-title">
               Neal's Yard Remedies México
-              <span className="header__sub-title">  Salud y Belleza Orgánica </span>
+              <span>  Salud y Belleza Orgánica </span>
             </h1>
           </Link>
 
 
-          <div className="header__form">
-            <div className="header__links">
-              <Link to="/user/details" title="Tiendas">Tiendas</Link>
-              <div className="vertical-divider"></div>
-              <Link to="/signin" title="Signin">Mi Cuenta</Link>
-              <div className="vertical-divider"></div>
-              <div className="cart-div">
-                <Link to="/cart" className="cart-link">
+          <div className="col-4">
+            <div className="grid center end">
+              <Link className="dark-a header-link" to="/user/details" title="Tiendas">Tiendas</Link>
+              <hr className="vertical-hr"></hr>
+              <Link className="dark-a header-link" to="/signin" title="Signin">Mi Cuenta</Link>
+              <hr className="vertical-hr"></hr>
+              <div id="cart-link" className="header-link">
+                <Link className="dark-a grid center" to="/cart">
                   Carrito
                   <i className="material-icons">shopping_cart</i>
                 </Link>
@@ -60,17 +65,18 @@ export default class Header extends React.Component {
               </div>
             </div>
 
-            <form id="search-form">
+            <form id="search-form" className="grid center">
               <input type="search" name="search"/>
               <button type="submit">
                 <i className="material-icons">search</i>
               </button>
             </form>
           </div>
+
         </div>
 
         <nav>
-          <ul className="header__nav">
+          <ul id="nav-ul" className="grid">
             {navList}
           </ul>
         </nav>
@@ -85,16 +91,16 @@ const MainList = (props) => {
   const mainList = props.mains.map( (main) => {
 
     const subList = main.subs.map( (sub) =>
-      <li className="sub-item" key={sub.id} title={sub.name}>
-        <Link to="/category">
+      <li key={sub.id} title={sub.name}>
+        <Link to="/category" className="sub-text">
           {sub.name}
         </Link>
       </li>
     )
 
     return (
-      <ul className="main-item" key={main.id}>
-        <Link to="#" className="main-title" title={main.name}>{main.name}</Link>
+      <ul key={main.id} className="main-item">
+        <Link to="#" title={main.name} className="dark-a">{main.name}</Link>
         {subList}
       </ul>
     )
@@ -102,7 +108,7 @@ const MainList = (props) => {
 
 
   return (
-    <div className='nav-menu-box'>
+    <div className="nav-menu-box">
       {mainList}
     </div>
   )

@@ -19,7 +19,7 @@ export default class Carousel extends React.Component {
 
     const carList = imgs.map( (img, index) =>
       <Link to={img.to} key={index}>
-        <img className="carousel__img" src={img.src} alt=""/>
+        <img className="carousel-img" src={img.src} alt=""/>
       </Link>
     )
 

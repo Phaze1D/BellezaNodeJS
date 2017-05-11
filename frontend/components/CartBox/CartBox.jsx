@@ -14,12 +14,12 @@ export default class Cart extends React.Component {
 
     return (
       <div
-        className="cart__box smooth"
+        className="cart-box"
         onMouseEnter={(event) => document.body.style.overflow = "hidden"}
         onMouseLeave={(event) => document.body.style.overflow = ""}>
         <h3>Tu Carrito</h3>
 
-        <div className="cart__mid">
+        <div className="cart-mid">
           {ord.details.length == 0 && <h4>No Hay Productos</h4>}
           <ul>
             {detList}
@@ -27,8 +27,8 @@ export default class Cart extends React.Component {
         </div>
 
         {ord.details.length > 0 &&
-          <div className="cart__bottom smooth">
-            <Link className="button light" to="/cart">Detalles</Link>
+          <div className="cart-bottom">
+            <Link className="light-button full" to="/cart">Detalles</Link>
           </div>
         }
       </div>
@@ -38,12 +38,12 @@ export default class Cart extends React.Component {
 
 
 const CartItem = props => (
-  <li className="cart__item">
+  <li className="cart-item">
     <img src={props.pimg}/>
     <div>
       <p className="overflow-text">{props.description}</p>
-      <p><span>Cantidad:</span> {props.quantity}</p>
-      <p><span>Precio:</span> ${props.price} </p>
+      <p><span className="sub-text">Cantidad:</span> {props.quantity}</p>
+      <p><span className="sub-text">Precio:</span> ${props.price} </p>
     </div>
   </li>
 )

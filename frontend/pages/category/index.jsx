@@ -10,7 +10,6 @@ export default class CategoryIndex extends React.Component {
   }
 
   render(){
-
     const sideList = cate.mains.map( (cat, index) =>
       <li key={index}>
         <Link to={cat.to}>{cat.name}</Link>
@@ -18,28 +17,28 @@ export default class CategoryIndex extends React.Component {
     )
 
     const gridList = cate.mains.map( (cat, index) =>
-      <div className="categ__cell" key={index}>
-        <Link to={cat.to} className="categ__item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
-          <h3>{cat.name}</h3>
+      <div className="col-4" key={index}>
+        <Link to={cat.to} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
+          <h3 className="highlight">{cat.name}</h3>
         </Link>
       </div>
     )
 
     return (
-      <main className="categ__main">
-        <section className="categ__section side">
-          <h3 className="categ__ul-title">{cate.name}</h3>
-          <ul className="categ__sidelist">
+      <main className="grid">
+        <section className="col-3">
+          <h3>{cate.name}</h3>
+          <ul className="ul-dots">
             {sideList}
           </ul>
         </section>
 
-        <section className="categ__section main">
-          <div className="categ__header-img" style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
+        <section className="col-9">
+          <div className="category-cover" style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
             <h2>{cate.name}</h2>
           </div>
 
-          <div className="categ__grid">
+          <div className="grid-wrap">
             {gridList}
           </div>
 

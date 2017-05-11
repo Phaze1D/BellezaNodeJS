@@ -39,7 +39,7 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div className='layout'>
+      <div id='layout'>
         <Header/>
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>

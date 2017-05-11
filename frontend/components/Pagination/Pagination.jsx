@@ -21,7 +21,7 @@ export default class Pagination extends React.Component {
         key={index}
         to={link.value}
         onClick={this.handleClick.bind(this, index)}
-        className={page == index ? "active" : ""}>
+        className={page == index ? "dark-button" : "white-button"}>
 
         {link.name}
       </Link>
@@ -56,13 +56,13 @@ export default class Pagination extends React.Component {
     }
 
     return (
-      <div className="pagination">
+      <div className="grid">
         {children.length > 1 && startArray}
 
-        {midArray.length > 0 && <span>...</span>}
+        {midArray.length > 0 && <span className="white-button disable">...</span>}
         {midArray.length > 0 && midArray}
 
-        {children.length > this.startMax + 2 && <span>...</span>}
+        {children.length > this.startMax + 2 && <span className="white-button disable">...</span>}
 
         {endArray}
 

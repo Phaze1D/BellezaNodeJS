@@ -33,9 +33,12 @@ export default class Results extends React.Component {
 
     return (
       <section>
-        <div className="results__options">
-          Ordenar por:
-          <DropDown options={sortOptions}/>
+        <div className="grid between results-options center">
+          <div className="grid center">
+            Ordenar por:
+            <DropDown options={sortOptions}/>
+          </div>
+
 
           <Pagination
             links={links}
@@ -43,12 +46,12 @@ export default class Results extends React.Component {
             onRequestClick={this.handlePageClick}/>
         </div>
 
-        <div className="results__grid">
+        <div className="grid-wrap">
           {prodList}
         </div>
 
         {links.length > 1 &&
-          <div className="results__options">
+          <div className="grid between results-options center end">
             <Pagination
               links={links}
               page={this.state.page}

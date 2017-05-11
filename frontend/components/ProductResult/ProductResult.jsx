@@ -10,7 +10,7 @@ export default class ProductResult extends React.Component {
   render() {
 
     return (
-      <article className="results__cell">
+      <article className="col-3 product-cell">
         <Link to={this.props.url}>
           <img src={this.props.image} alt={this.props.name}/>
           <h4 className="overflow-text">{this.props.name}</h4>
@@ -18,8 +18,8 @@ export default class ProductResult extends React.Component {
         </Link>
 
         <form>
-          <input className="add-button" type="submit" value="Agregar al Carrito"/>
-          <input className="input input-quantity" name="quantity" type="number" min="0" max="10" defaultValue="1"/>
+          <input className="secondary-button" type="submit" value="Agregar al Carrito"/>
+          <input name="quantity" type="number" min="0" max="10" defaultValue="1"/>
         </form>
       </article>
     )

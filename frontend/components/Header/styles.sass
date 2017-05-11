@@ -1,0 +1,108 @@
+header
+  padding: 0 8px
+
+.vertical-hr
+  height: 24px
+  width: 1px
+  background-color: $grey-400
+  margin: 0 16px
+  border: none
+
+.nav-item
+  position: relative
+  flex-grow: 1
+  text-align: center
+  &:hover
+    background-color: white
+    .nav-link
+      color: $primary
+    .nav-menu-box
+      display: flex
+  &:nth-last-child(-n+3)
+    .nav-menu-box
+      right: 0
+  &.hide
+    background-color: transparent
+    .nav-link
+      color: white
+    .nav-menu-box
+      display: none
+
+
+
+.nav-link
+  display: block
+  padding: 8px
+  color: white
+  text-transform: uppercase
+
+.nav-menu-box
+  display: none
+  position: absolute
+  z-index: 100
+  background-color: white
+  min-width: 100%
+  padding: 8px 0px
+  text-decoration: none
+  text-align: left
+  border-radius: 2px
+  white-space: nowrap
+  box-shadow: 0px 3px 5px 0px rgba(66, 66, 66, 0.2)
+
+.main-item
+  padding: 8px 21px
+  border-right: 1px solid $grey-300
+  &:last-child
+    border: none
+  a
+    display: block
+    padding: 8px 0
+
+#logo-img
+  display: inline-block
+  border-radius: 50%
+  width: 100px
+  height: 100px
+  margin: 0 16px
+
+#web-title
+  display: inline-block
+  color: $primary
+  span
+    display: block
+    font-size: 0.75em
+    font-weight: normal
+
+#cart-link
+  position: relative
+  &:hover
+    .cart-box
+      display: flex
+  i
+    margin-left: 10px
+    color: $primary-light
+    font-size: 1.3em
+
+#search-form
+  @extend input[type="text"]
+  padding: 1px 5px
+  max-width: 240px
+  margin: 40px 0 0 auto
+  input
+    border: none
+    background-color: transparent
+    outline: none
+    flex-grow: 1
+  button
+    height: 24px
+    border: none
+    background-color: transparent
+    padding: 0
+    color: $grey-500
+    margin-left: 5px
+
+#nav-ul
+  margin: 16px -8px
+  background: #20376c
+  background: linear-gradient(to right, #20376c 0%, #244388 50%, #20376c 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#20376c', endColorstr='#20376c', GradientType=1)

@@ -39,7 +39,7 @@ export default class DropDown extends React.Component {
 
     return (
       <div className="mdc-menu-anchor">
-        <button className="drop-button" onClick={this.handleToggle}>
+        <button className="drop-button center" onClick={this.handleToggle}>
           {this.props.options[this.state.focuson]}
           <i className="material-icons">keyboard_arrow_down</i>
         </button>

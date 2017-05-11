@@ -34,7 +34,7 @@ export default class Favorites extends React.Component {
     };
 
     const favList = imgs.map( (item, index) =>
-      <div key={index} className="fav__item" draggable="false">
+      <div key={index} className="fav-item" draggable="false">
         <Link to={item.to} draggable="false">
           <img src={item.src} alt={item.name} draggable="false"/>
           <p className="overflow-text">{item.name}</p>
@@ -43,7 +43,7 @@ export default class Favorites extends React.Component {
     )
 
     return (
-      <div className="fav__wrapper">
+      <div className="fav-wrapper">
         <Slider {...settings}>
           {favList}
         </Slider>
@@ -55,7 +55,7 @@ export default class Favorites extends React.Component {
 
 const NextArrow = (props) => {
   return (
-    <button className="fav__arrow" onClick={props.onClick} className={props.className}>
+    <button className="fav-arrow" onClick={props.onClick} className={props.className}>
       <i className="material-icons">keyboard_arrow_right</i>
     </button>
   )

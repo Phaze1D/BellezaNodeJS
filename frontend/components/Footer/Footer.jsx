@@ -10,27 +10,27 @@ export default class Footer extends React.Component {
   render(){
 
     return (
-      <footer className="footer__wrapper">
-        <div className="footer__divider" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
+      <footer>
+        <div id="footer-divider" className="grid center between cover-image" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
           <h4>Registrate y reciba información, ofertas y tips directo a su correo</h4>
           <form>
-            <input className="input" type="text" placeholder="Email y Presione Entre"/>
+            <input type="text" placeholder="Email y Presione Entre"/>
           </form>
         </div>
 
-        <div className="footer__grid">
-          <section className="footer__section">
-            <h4>Ubicaciones</h4>
-            <a className="footer__sub-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
-            <address className="footer__info">
+        <div className="grid around" style={{margin: '0 16px'}}>
+          <section className="col-4">
+            <h3>Ubicaciones</h3>
+            <a className="footer-address-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
+            <address>
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
   						México<br/>
   						Tel. (33) 36420178 y 3640 3736 <br/>
   					</address>
 
-            <a className="footer__sub-title" href="#" title="Oficina Ciudad de México">Ciudad de México</a>
-            <address className="footer__info">
+            <a className="footer-address-title" href="#" title="Oficina Ciudad de México">Ciudad de México</a>
+            <address>
   						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
   						Guadalajara Jalisco 44647<br/>
   						México<br/>
@@ -38,9 +38,9 @@ export default class Footer extends React.Component {
   					</address>
           </section>
 
-          <section className="footer__section">
-            <h4>Acerca de</h4>
-            <ul className="footer__ul">
+          <section className="col-3">
+            <h3>Acerca de</h3>
+            <ul className="ul-dots">
       				<li>
       					<Link to="/quienSomos"> Quienes Somos</Link>
       				</li>
@@ -75,22 +75,22 @@ export default class Footer extends React.Component {
       			</ul>
           </section>
 
-          <section className="footer__section">
-            <h4>Redes Sociales</h4>
-            <ul className="social-ul">
-              <li>
+          <section className="col-4">
+            <h3>Redes Sociales</h3>
+            <ul className="grid center footer-img-ul">
+              <li className="col-2">
                 <a href="#" target="_blank" title="facebook page">
                   <i className="fa fa-facebook-square" aria-hidden="true"></i>
                 </a>
               </li>
 
-              <li>
+              <li className="col-2">
                 <a href="#" target="_blank" title="twitter page">
                   <i className="fa fa-twitter-square" aria-hidden="true"></i>
                 </a>
               </li>
 
-              <li>
+              <li className="col-2">
                 <a href="#" target="_blank" title="instagram page">
                   <div className='instagram'>
                   </div>
@@ -98,30 +98,30 @@ export default class Footer extends React.Component {
               </li>
             </ul>
 
-            <h4>Métodos de Pago</h4>
-            <ul className="social-ul">
-              <li>
+            <h3>Métodos de Pago</h3>
+            <ul className="grid center footer-img-ul">
+              <li className="col-2">
                 <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
               </li>
 
-              <li>
+              <li className="col-2">
                 <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png" alt="mastercard"/>
               </li>
 
-              <li>
+              <li className="col-2">
                 <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png" alt="americanexpress"/>
               </li>
 
-              <li>
+              <li className="col-2">
                 <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"  alt="oxxo"/>
               </li>
 
-              <li>
+              <li className="col-2">
                 <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png" alt="bank transfer"/>
               </li>
             </ul>
 
-            <h4>Seguridad</h4>
+            <h3>Seguridad</h3>
 
           </section>
         </div>
