@@ -1,7 +1,11 @@
+.grid
+  display: flex
+  margin: 0 -8px
 
 .grid-wrap
   display: flex
   flex-wrap: wrap
+  margin: 0 -8px
 
 @for $i from 1 through 12
   .col-#{$i}
@@ -16,3 +20,18 @@
 
 .center
   align-items: center
+
+.around
+  justify-content: space-around
+
+.between
+  justify-content: space-between
+
+.just-center
+  justify-content: center
+
+.end
+  justify-content: flex-end
+
+.start
+  justify-content: flex-start

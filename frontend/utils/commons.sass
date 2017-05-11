@@ -8,11 +8,12 @@ body
   width: 100vw
   min-height: 100vh
   color: $primary
+  background-color: $primary-lighter
 
 main
   padding: 16px
 
-button
+button, .white-button
   display: inline-block
   font-family: 'Lora', serif
   font-size: 1em
@@ -22,17 +23,26 @@ button
   background-color: white
   cursor: pointer
   border-radius: $border-radius
-  padding: 5px 16px
+  padding: 6px 16px
   border: 1px solid $grey-300
   text-align: center
   line-height: 1.2em
+  margin: 0 5px
+  &.full
+    width: 100%
   &:active
     color: $primary
+    background-color: $grey-200
+  &.disable
+    cursor: not-allowed
     background-color: $grey-200
 
 a
   text-decoration: none
   color: $primary-light
+
+p
+  line-height: 1.3em
 
 input[type="text"], input[type="number"]
   +shadow-inner()
@@ -44,6 +54,7 @@ input[type="text"], input[type="number"]
   padding: 5px 10px
   background-color: $grey-50
   outline: none
+  margin: 0 5px
   &::placeholder
     color: $grey-400
 
@@ -53,6 +64,8 @@ input[type="number"]
 
 h1, h2, h3, h4, h5, h6
   font-weight: bold
+  margin: 16px 0
+  line-height: 1.25em
 
 h1
   font-size: 2em
@@ -80,6 +93,10 @@ h6
   padding: 16px
   border-radius: $border-radius
   border: 1px solid $grey-300
+
+.dark-a
+  @extend a
+  color: $primary
 
 .dark-button
   @extend button
@@ -112,6 +129,7 @@ h6
 .ul-dots
   list-style: disc
   color: $grey-500
+  padding-left: 16px
   li
     padding: 0.35em
     &:hover
@@ -119,6 +137,10 @@ h6
   a
     display: block
     color: inherit
+
+.sub-text
+  color: $grey-600
+  font-size: 0.9em
 
 .main-form
   label
@@ -139,3 +161,21 @@ h6
   padding: 8px 16px
   margin: 5px 0
   font-size: 0.8em
+
+.overflow-text
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.cover-image
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+
+#layout
+  +shadow-2dp()
+  width: 100%
+  max-width: 1200px
+  background-color: white
+  padding: 16px 0
+  margin: 0 auto
