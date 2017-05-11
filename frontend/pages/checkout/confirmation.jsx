@@ -22,44 +22,51 @@ export default class CheckoutConfirmation extends React.Component {
     return (
       <main>
         <h2>Confirmar Orden</h2>
-        <div className="flex-wrapper">
-          <section className="big">
-            <Link to="#" className="left-link">Editar</Link>
+        <div className="grid top between">
+          <section className="col-8">
+            <Link to="/cart" style={{float: 'right'}}>Editar</Link>
             <OrderTable editable={false} size="sm"/>
 
-            <form className="green-form flex-form">
-              <div className="input-div">
+            <form className="main-form grid bottom">
+              <div className="col-8">
                 <label htmlFor="code">Codigo De Descuento</label>
                 <input name="code" type="text" className="input"/>
               </div>
 
-              <input type="submit" value="Aplicar" className="submit"/>
+              <div className="col-4">
+                <input type="submit" value="Aplicar" className="submit full"/>
+              </div>
             </form>
 
             <h2>Forma de Pago</h2>
 
             <radioGroup>
               <div className="box" ref="boxCard">
-                <div className="payment_header">
-                  Tarjeta de Crédito
-        					<img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
-        					<img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png"/>
-        					<img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png"/>
-        					<input className="checkbox-pay" name="active" type="radio" defaultChecked={true} onChange={this.handleRadio}/>
+                <div className="grid center">
+                  Tarjeta de Crédito:
+        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
+        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png"/>
+        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png"/>
+        					<input
+                    style={{marginLeft: 'auto'}}
+                    name="active" type="radio"
+                    defaultChecked={true}
+                    onChange={this.handleRadio}/>
                 </div>
 
                 <form className="payment-form">
-                  <div>
-                    <label htmlFor="card-holder">Nombre: </label>
-                    <input name="card-holder" type="text" className="input"/>
-                  </div>
-                  <div>
-                    <label htmlFor="card-number">Numero de Tarjeta: </label>
-                    <input name="card-number" type="text" className="input"/>
+                  <div className="grid center">
+                    <label className="col-4" htmlFor="card-holder">Nombre: </label>
+                    <input className="col-8" name="card-holder" type="text"/>
                   </div>
 
-                  <div>
-                    <label htmlFor="card-date">Fecha de Caducidad: </label>
+                  <div className="grid center">
+                    <label className="col-4" htmlFor="card-number">Numero de Tarjeta: </label>
+                    <input className="col-8" name="card-number" type="text"/>
+                  </div>
+
+                  <div className="grid center">
+                    <label className="col-4" htmlFor="card-date">Fecha de Caducidad: </label>
                     <select>
                       <option>Mes</option>
                     </select>
@@ -69,34 +76,37 @@ export default class CheckoutConfirmation extends React.Component {
                     </select>
                   </div>
 
-                  <div>
-                    <label htmlFor="card-secret">Codigo de Seguridad: </label>
-                    <input name="card-secret" type="text" className="input sm"/>
+                  <div className="grid center">
+                    <label className="col-4" htmlFor="card-secret">Codigo de Seguridad: </label>
+                    <input className="col-3" name="card-secret" type="text"/>
                   </div>
 
-                  <input type="submit" value="Pagar" className="submit"/>
-
+                  <input type="submit" value="Pagar" className="submit full"/>
                 </form>
 
               </div>
 
               <div className="box hide-pay" ref="boxCash">
-                <div className="payment_header">
+                <div className="grid center">
                   Pagar en Efectivo
-        					<img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"/>
-                  <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png"/>
-        					<input className="checkbox-pay" name="active" type="radio" defaultChecked={false} onChange={this.handleRadio}/>
+        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"/>
+                  <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png"/>
+        					<input
+                    style={{marginLeft: 'auto'}}
+                    name="active" type="radio"
+                    defaultChecked={false}
+                    onChange={this.handleRadio}/>
                 </div>
 
                 <form className="payment-form">
-                  <div>
-                    <label htmlFor="card-date">Tipo: </label>
+                  <div className="grid center">
+                    <label className="col-4" htmlFor="card-date">Tipo: </label>
                     <select>
                       <option>OXXO</option>
                     </select>
                   </div>
 
-                  <input type="submit" value="Pagar" className="submit"/>
+                  <input type="submit" value="Pagar" className="submit full"/>
 
                 </form>
 
@@ -106,7 +116,7 @@ export default class CheckoutConfirmation extends React.Component {
 
           </section>
 
-          <section className="small">
+          <section className="col-4">
             <Address {...ord.shippedTo} title="Dirección de Envío"/>
             <Address {...ord.invoiceTo} title="Facturacion"/>
 
@@ -119,20 +129,15 @@ export default class CheckoutConfirmation extends React.Component {
 
 
 export const Address = props => (
-  <div className="address-box">
-    <h5>{props.title}</h5>
-    <p className="divider"></p>
-
+  <div className="box overflow-text sub-text">
+    <p>{props.title}</p>
+    <hr></hr>
     <p className="overflow-text">
       {props.firstName} {props.lastName}
     </p>
-
     <p className="overflow-text">{props.telephone}</p>
-
     <p className="overflow-text">{props.street1}</p>
-
     <p className="overflow-text">{props.street2}</p>
-
     <p className="overflow-text">
       {props.city}, {props.state}
     </p>

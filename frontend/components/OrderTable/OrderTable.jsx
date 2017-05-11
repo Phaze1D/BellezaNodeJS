@@ -17,7 +17,7 @@ class OrderTable extends React.Component {
   render () {
 
     const colSpan = this.props.editable ? 5 : 4
-    const tableClasses = classnames('order__table', this.props.size)
+    const tableClasses = classnames('order-table', this.props.size)
 
     const detList = ords.details.map( (detail, index) =>
       <OrderRow
@@ -44,7 +44,7 @@ class OrderTable extends React.Component {
           {detList}
         </tbody>
 
-        <tfoot className="order__table-foot">
+        <tfoot className="order-table-foot">
           <tr>
             <td colSpan={colSpan}>Subtotal: </td>
             <td className="foot-main">${ords.subtotal}</td>
@@ -92,7 +92,7 @@ const OrderRow = (props) => (
 
     <td>
       {props.editable ?
-        <input className="input input-quantity" type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
+        <input type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
         :
         props.quantity
       }
@@ -107,6 +107,5 @@ const OrderRow = (props) => (
         <a href="#">Eliminar</a>
       </td>
     }
-
   </tr>
 )

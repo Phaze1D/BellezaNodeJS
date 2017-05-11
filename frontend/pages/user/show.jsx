@@ -10,15 +10,15 @@ class UserShow extends React.Component {
     const match = this.props.match
 
     return (
-      <main className="user__wrapper">
-        <section className="user__options">
-          <ul className="user__options-list">
-            <h4 className="smooth">Mis Pedidos</h4>
+      <main className="grid around top">
+        <section className="col-3">
+          <ul id="user-options" className="box">
+            <h4>Mis Pedidos</h4>
             <li>
               <Link to={`${match.url}/orders`}>Historial de Pedidos</Link>
             </li>
 
-            <h4 className="smooth">Mis detalles</h4>
+            <h4>Mis detalles</h4>
             <li>
               <Link to={`${match.url}/details`}>Detalles</Link>
             </li>
@@ -35,7 +35,7 @@ class UserShow extends React.Component {
               <Link to="/backoffice/orders">Backoffice</Link>
             </li>
 
-            <h4 className="smooth">Privacidad</h4>
+            <h4>Privacidad</h4>
             <li>
               <Link to="/terminosCondiciones">Política de Privacidad</Link>
             </li>

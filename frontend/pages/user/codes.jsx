@@ -19,30 +19,30 @@ export default class UserCodes extends React.Component {
     )
 
     return (
-      <section className="user__section smooth">
+      <section className="col-9">
         <h2>
           Mis Códigos de Descuento
-          <Link to="#">Salir</Link>
+          <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
-        <div className="codes__wrapper ">
+        <div className="grid top around">
 
           {actives.length > 0 &&
-            <article className="active">
-              <div className="codes__top">Activados</div>
+            <article className="col-5 box active">
+              <div className="code-top">Activados</div>
               {aList}
             </article>
           }
 
           {deactives.length > 0 &&
-            <article className="deactive">
-              <div className="codes__top">Desactivados</div>
+            <article className="col-5 box deactive">
+              <div className="code-top">Desactivados</div>
               {dList}
             </article>
           }
 
           {actives.length == 0 && deactives.length == 0 &&
-            <h4 className="empty-state">Cero Códigos Encontrados</h4>
+            <h4 className="sub-text">Cero Códigos Encontrados</h4>
           }
 
         </div>
@@ -53,8 +53,8 @@ export default class UserCodes extends React.Component {
 }
 
 const CodeItem = props => (
-  <div className="codes__item">
-    <p>Codigo: <span>{props.code}</span></p>
+  <div className="code-item sub-text">
+    <p >Codigo: <span>{props.code}</span></p>
     <p>Descuento: <span>{props.discount}</span></p>
     <p>Fecha de Caducidad: <span>{moment(props.expire).format('MMM DD, YYYY')}</span></p>
   </div>

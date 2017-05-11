@@ -25,7 +25,7 @@ class BackofficeMails extends React.Component {
     return (
       <div>
         <div className="protop">
-          <Link to ="#" className="add-button">Download</Link>
+          <Link to ="#" className="white-button">Download</Link>
         </div>
 
         <table className="backoffice-table">

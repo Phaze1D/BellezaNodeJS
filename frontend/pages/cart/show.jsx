@@ -22,15 +22,16 @@ class CartShow extends React.Component {
           Carrito
         </h2>
 
-        <div className="cart__checkout">
-          <Link to="/checkout" className="button dark"> Checkout </Link>
+        <div className="grid end center" style={{margin: '10px 0'}}>
+          <Link to="/checkout" className="dark-button"> Checkout </Link>
         </div>
 
         <OrderTable editable={true} size="lg"/>
 
-        <div className="cart__checkout">
-          <Link to="/checkout" className="button dark"> Checkout </Link>
+        <div className="grid end center" style={{margin: '10px 0'}}>
+          <Link to="/checkout" className="dark-button"> Checkout </Link>
         </div>
+
 
       </main>
     )

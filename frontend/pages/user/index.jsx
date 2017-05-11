@@ -71,13 +71,13 @@ const UserItem = props => (
     <td>{props.email}</td>
     <td>${props.amount}</td>
     <td>
-      <Link className="link" to="/user/orders">Pedidos</Link>
+      <Link  to="/user/orders">Pedidos</Link>
     </td>
     <td>
-      <Link className="link" to="/backoffice/codes/new">Give Discount</Link>
+      <Link  to="/backoffice/codes/new">Give Discount</Link>
     </td>
     <td>
-      <Link className="link" to="/user/codes">Show Discounts</Link>
+      <Link  to="/user/codes">Show Discounts</Link>
     </td>
   </tr>
 )

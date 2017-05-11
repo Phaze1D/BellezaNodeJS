@@ -15,7 +15,12 @@ export default class CheckoutDirections extends React.Component {
   }
 
   handleFactura(event){
-    this.refs.facturaBox.classList.toggle('hide')
+    if(this.refs.facturaBox.style.height === "84px"){
+      this.refs.facturaBox.style.height = ""
+    }else {
+      this.refs.facturaBox.style.height = "84px"
+    }
+
   }
 
   render () {
@@ -27,8 +32,8 @@ export default class CheckoutDirections extends React.Component {
     return (
       <main>
         <h2>Información del Contacto</h2>
-        <div className="flex-wrapper">
-          <section className="big">
+        <div className="grid">
+          <section className="col-9">
             <article className="box">
               <h4 className="h-underline">Dirección de Envio</h4>
 
@@ -36,13 +41,13 @@ export default class CheckoutDirections extends React.Component {
 
               <h5 className="h-underline">Instrucciones de envío (Opcional)</h5>
 
-              <textarea rows="8"></textarea>
+              <textarea rows="6"></textarea>
             </article>
 
-            <article className="box hide" ref="facturaBox">
-              <h4 className="h-underline factura-title">
+            <article className="box" style={{height: '84px'}} ref="facturaBox">
+              <h4 className="h-underline">
                 Datos de Facturación
-                <label>
+                <label className="sub-text" style={{float: 'right'}}>
                   Quieres factura
                   <input type="checkbox" onChange={this.handleFactura}/>
                 </label>
@@ -50,21 +55,21 @@ export default class CheckoutDirections extends React.Component {
 
               <AddressList selectable={true}/>
 
-              <form className="green-form">
+              <form className="main-form">
                 <label htmlFor="name">Nombre</label>
-                <input name="name" type="text" className="input"/>
+                <input name="name" type="text"/>
                 <label htmlFor="rfc">RFC</label>
-                <input name="rfc" type="text" className="input"/>
+                <input name="rfc" type="text"/>
               </form>
 
             </article>
 
-            <Link to="/confirmation" className="button light">Continuar</Link>
+            <Link to="/confirmation" className="submit full">Continuar</Link>
           </section>
 
-          <section className="small">
+          <section className="col-3">
             <article className="box">
-              <ul className="checkout-list">
+              <ul>
                 {detailList}
               </ul>
             </article>
@@ -79,11 +84,11 @@ export default class CheckoutDirections extends React.Component {
 
 
 const DetailItem = props => (
-  <li>
-    <img src={props.pimg}/>
-    <div>
-      <h4>{props.description}</h4>
-      <p>
+  <li className="grid center">
+    <img className="col-4" src={props.pimg}/>
+    <div className="col-8">
+      <p className="sub-text primary">{props.description}</p>
+      <p className="sub-text">
         Cantidad: {props.quantity} <br/>
         Subtotal: ${props.subtotal}
       </p>

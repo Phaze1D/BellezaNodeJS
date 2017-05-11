@@ -23,10 +23,10 @@ export default class UserOrders extends React.Component {
 
 
     return (
-      <section className="user__section smooth">
+      <section className="col-9">
         <h2>
           Mis Pedidos
-          <Link to="#">Salir</Link>
+          <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
         {orderList}

@@ -60,92 +60,95 @@ class ProductForm extends React.Component {
     )
 
     const scatList = this.state.selectedCats.map( (category, index) =>
-      <div className="procat-list" key={category.id}>
-        <input type="text" disabled="true" defaultValue={category.name} className="input"/>
-        <button className="cancel" onClick={this.handleRemoveCategory.bind(this, index)}>Remove</button>
+      <div className="grid top" key={category.id}>
+        <input type="text" disabled="true" defaultValue={category.name} className="col-9"/>
+        <button
+          className="cancel col-3 margin-button"
+          style={{marginTop: '0'}}
+          onClick={this.handleRemoveCategory.bind(this, index)}>Remove</button>
       </div>
     )
 
     return (
       <div>
-        <form className="flex-green-form">
-          <div className="fu">
+        <form className="main-form grid-wrap">
+          <div className="col-12">
             <label>Activo</label>
             <input type="checkbox" defaultChecked={this.props.active}/>
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>PLU</label>
             <input type="text" name="plu" className="input" defaultValue={this.props.plu}/>
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>Nombre</label>
             <input type="text" name="name" className="input" defaultValue={this.props.name}/>
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>Volumen</label>
             <input type="text" name="volumn" className="input" defaultValue={this.props.volumn}/>
           </div>
 
-          <div className="md">
+          <div className="col-3">
             <label>Price</label>
             <input type="number" min="0" step="any" name="price" className="input input-quantity" defaultValue={this.props.price}/>
           </div>
 
-          <div className="md">
+          <div className="col-3">
             <label>Discount</label>
             <input type="number" min="0" max="100" name="discount" className="input input-quantity" defaultValue={this.props.discount}/>
           </div>
 
-          <div className="md">
+          <div className="col-3">
             <label>Stock</label>
             <input type="number" min="0" max="100" name="stock" className="input input-quantity" defaultValue={this.props.stock}/>
           </div>
 
-          <div className="md">
+          <div className="col-3">
             <label>IVA</label>
             <input type="number" min="0" max="100" step="any" name="iva" className="input input-quantity" defaultValue={this.props.iva}/>
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>Subcategories</label>
-            <select ref='categorySelect'>
+            <select ref='categorySelect' style={{margin: '0 0 18px'}}>
               {catList}
             </select>
 
-            <button className="add-button add-cat" onClick={this.handleAddCategory}>Add Category</button>
+            <button className="secondary-button margin-button" onClick={this.handleAddCategory}>Add Category</button>
             {scatList}
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>Main Image</label>
             <input type="file" name="main_image"/>
           </div>
 
-          <div className="lg">
+          <div className="col-4">
             <label>Second Image</label>
             <input type="file" name="second_image"/>
           </div>
 
-          <div className="fu">
+          <div className="col-12">
             <label>Description</label>
             <textarea defaultValue={this.props.description}></textarea>
           </div>
 
-          <div className="fu">
+          <div className="col-12">
             <label>Benefits</label>
             <textarea defaultValue={this.props.benefits}></textarea>
           </div>
 
-          <div className="fu">
+          <div className="col-12">
             <label>Ingredients</label>
             <textarea defaultValue={this.props.ingredients}></textarea>
           </div>
 
-          <input type="submit" value="Save" className="submit"/>
-          <Link className="cancel" to="/backoffice/products/index">Cancel</Link>
+          <input className="submit full" type="submit" value="Save"/>
+          <Link className="cancel full" to="/backoffice/products/index">Cancel</Link>
         </form>
       </div>
     )

@@ -26,9 +26,9 @@ export default class ProductsIndex extends React.Component {
     return (
       <div>
         <div className="protop">
-          <Link to={`/backoffice/products/new`} className="add-button">Add Product</Link>
+          <Link to={`/backoffice/products/new`} className="secondary-button">Add Product</Link>
           <form>
-            <input type="text" className="input" name="search"/>
+            <input type="text" name="search"/>
           </form>
         </div>
         <table className="backoffice-table">
@@ -67,7 +67,7 @@ const ProductItem = props => (
     <td>{props.name} {props.volumn}</td>
     <td>{props.stock}</td>
     <td>
-      <Link to={`/backoffice/products/edit`} className="link">Update</Link>
+      <Link to={`/backoffice/products/edit`}>Update</Link>
     </td>
   </tr>
 )

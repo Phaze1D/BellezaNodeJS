@@ -9,10 +9,10 @@ const us = user()
 class UserAddresses extends React.Component {
   render () {
     return (
-      <section className="user__section smooth">
+      <section className="col-9">
         <h2>
           Mi Directorio
-          <Link to="#">Salir</Link>
+          <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
         <AddressList selectable={false}/>

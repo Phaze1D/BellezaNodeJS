@@ -23,7 +23,7 @@ class BannersIndex extends React.Component {
     return (
       <div>
         <div className="protop">
-          <Link to ="/backoffice/banners/new" className="add-button">Add Banner</Link>
+          <Link to ="/backoffice/banners/new" className="secondary-button">Add Banner</Link>
         </div>
 
         <table className="backoffice-table">
@@ -68,13 +68,13 @@ const BannerItem = props => (
       <img className="banner-sm" src={props.img}/>
     </td>
     <td>
-      <Link to={props.link} className="link">Link</Link>
+      <Link to={props.link}>Link</Link>
     </td>
     <td>{props.active ? "Yes": "No"}</td>
     <td>{moment(props.start).format('MMM DD, YYYY')}</td>
     <td>{moment(props.end).format('MMM DD, YYYY')}</td>
     <td>
-      <Link to='/backoffice/banners/edit' className="link">Update</Link>
+      <Link to='/backoffice/banners/edit'>Update</Link>
     </td>
   </tr>
 )

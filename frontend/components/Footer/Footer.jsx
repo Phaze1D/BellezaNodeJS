@@ -99,25 +99,25 @@ export default class Footer extends React.Component {
             </ul>
 
             <h3>Métodos de Pago</h3>
-            <ul className="grid center footer-img-ul">
-              <li className="col-2">
-                <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
+            <ul className="grid center">
+              <li>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
               </li>
 
-              <li className="col-2">
-                <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png" alt="mastercard"/>
+              <li>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png" alt="mastercard"/>
               </li>
 
-              <li className="col-2">
-                <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png" alt="americanexpress"/>
+              <li>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png" alt="americanexpress"/>
               </li>
 
-              <li className="col-2">
-                <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"  alt="oxxo"/>
+              <li>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"  alt="oxxo"/>
               </li>
 
-              <li className="col-2">
-                <img src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png" alt="bank transfer"/>
+              <li>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png" alt="bank transfer"/>
               </li>
             </ul>
 

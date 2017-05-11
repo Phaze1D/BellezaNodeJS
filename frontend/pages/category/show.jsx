@@ -10,14 +10,12 @@ export default class CategoryShow extends React.Component {
   render() {
 
     return (
-      <div>
-        <div style={{padding: '0 24px'}}>
-          <div className="category-cover"  style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
-            <h2>Category</h2>
-          </div>
+      <main>
+        <div className="category-cover"  style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
+          <h2>Category</h2>
         </div>
         <Results/>
-      </div>
+      </main>
     )
   }
 }

@@ -70,7 +70,7 @@ const OrderRow = props => (
     <td>{props.user.firstName} {props.user.lastName}</td>
     <td>${props.total}</td>
     <td>
-      <Link to="/order" className="link">Details</Link>
+      <Link to="/order">Details</Link>
     </td>
   </tr>
 )

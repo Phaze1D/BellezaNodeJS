@@ -1,0 +1,49 @@
+.discount-text
+  color: $secondary
+
+.tabs
+  margin-top: 20px
+  border: 1px solid $grey-400
+  border-radius: 3px
+  overflow: hidden
+
+.tablist
+  display: flex
+  list-style: none
+  padding: 0
+
+.tab
+  flex-grow: 1
+  flex-basis: 0
+  background: transparent url("https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/tab-bck.png") repeat scroll 0% 0%
+  border-right: 1px solid $grey-400
+  border-bottom: 1px solid $grey-400
+  margin: 0
+  padding: 10px 0
+  color: $primary
+  cursor: pointer
+  text-align: center
+  outline: none
+  font-size: 0.9em
+  &:last-child
+    border-right: none
+  &.ReactTabs__Tab--selected
+    background: white
+    border-bottom: none
+
+.tab-panel
+  height: 356px
+  padding: 16px
+  overflow-x: hidden
+  overflow-y: scroll
+  color: black
+
+
+#product-mini
+  border: 1px solid $secondary
+  border-radius: $border-radius
+  padding: 0 5px
+
+  img
+    width: 100%
+    margin: 5px 0

@@ -6,16 +6,16 @@ class Contact extends React.Component {
     return (
       <main>
         <h2>Contáctanos</h2>
-        <form className="green-form">
+        <form className="main-form" style={{width: '400px'}}>
           <label htmlFor="name">Nombre</label>
-          <input type="text" name="name" className="input"/>
+          <input type="text" name="name"/>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" className="input"/>
+          <input type="text" name="email"/>
 
           <label htmlFor="question">Pregunta</label>
-          <textarea name="question" className="input" rows="5" cols="40" style={{width: '100%'}}></textarea>
+          <textarea name="question" className="input" rows="5" cols="40"></textarea>
 
-          <input type="submit" className="submit" value="Enviar"/>
+          <input className="submit full" type="submit" value="Enviar"/>
         </form>
       </main>
     )

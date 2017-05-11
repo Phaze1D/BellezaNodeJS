@@ -150,7 +150,7 @@ const Terms = (props) => {
       <br/>
       Se surtirá el PEDIDO bajo las siguientes condiciones:
   </p>
-  <ul type="disc">
+  <ul className="ul-normal" type="disc" >
       <li>
           Si existe inventario físico suficiente del(los) producto(s) PEDIDOS y la mercancía es entregada a mensajería dentro del tiempo señalado y enviada a su
           destino final.
@@ -159,7 +159,7 @@ const Terms = (props) => {
   <p>
       En el caso de que no exista inventario físico (suficiente) en nuestro almacén:
   </p>
-  <ul type="disc">
+  <ul className="ul-normal" type="disc">
       <li>
           Se le notificara al cliente de manera inmediata y el PEDIDO no se procesará, nuestro sistema está diseñado para procesar producto que se encuentre
           físicamente disponible en nuestro almacén.
@@ -178,13 +178,14 @@ const Terms = (props) => {
       qué usuario se realice la adquisición.
   </p>
   <p>
+    <br/>
       <strong>Devoluciones por Embarque Erróneo o Producto Defectuoso</strong>
       <br/>
       No aceptamos devoluciones en el caso de que el producto solicitado sea el embarcado.
       <br/>
       En caso de Embarque Erróneo o Producto Defectuoso se aplicaran los siguientes movimientos:
   </p>
-  <ul type="disc">
+  <ul className="ul-normal" type="disc">
       <li>
           En caso de haber recibido un producto que no haya sido solicitado por el cliente (únicamente atribuible a un despacho incorrecto de mercancía de parte
           de nuestro almacén).
@@ -196,7 +197,7 @@ const Terms = (props) => {
   <p>
       Para ambos casos, la mecánica es la siguiente:
   </p>
-  <ul type="disc">
+  <ul className="ul-normal" type="disc">
       <li>
           Debe ser reportado durante las primeras 48 horas posteriores a su entrega como máximo.
       </li>
@@ -224,7 +225,7 @@ const Terms = (props) => {
   <p>
       El procedimiento de devolución de producto incorrecto o defectuoso es el siguiente:
   </p>
-  <ul type="disc">
+  <ul className="ul-normal" type="disc">
       <li>
           El interesado deberá de mandar el producto incorrecto y solicitar una guía para su envío o por paquetería con una guía por cobrar, dicho producto a
           nuestras oficinas.
@@ -237,6 +238,7 @@ const Terms = (props) => {
       Este procedimiento podría tardar alrededor de seis días hábiles
   </p>
   <p>
+      <br/>
       <strong>Envíos</strong>
       <br/>
       Nuestro Servicio de Mensajería realiza entregas a las principales ciudades de la República Mexicana siempre y cuando no se trate de comunidades rurales,

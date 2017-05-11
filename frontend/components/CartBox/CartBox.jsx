@@ -28,7 +28,8 @@ export default class Cart extends React.Component {
 
         {ord.details.length > 0 &&
           <div className="cart-bottom">
-            <Link className="light-button full" to="/cart">Detalles</Link>
+            <Link className="light-button margin-button" to="/cart">Detalles</Link>
+            <Link className="dark-button margin-button" to="/checkout">Checkout</Link>
           </div>
         }
       </div>

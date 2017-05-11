@@ -24,47 +24,55 @@ export default class ProductShow extends React.Component {
 
     return (
       <main>
-        <section className="product__section">
-          <div className="product__mini">
+        <section className="grid top around">
+          <div id="product-mini" className="col-1">
             <img src={pt.image}/>
             <img src={pt.image}/>
           </div>
 
-          <img className="product__main-img" src={pt.imagelg}/>
+          <img className="col-5" src={pt.imagelg}/>
 
-          <div className="product__info">
+          <div className="col-5">
             <h2>{pt.name}</h2>
-            <div className="product__details">
-              <div>
-                <p className="product__sub-info">PLU: {pt.plu} / Disponibles: {pt.stock}</p>
-                <p className="product__main-info">${pt.price} / {pt.volumn}</p>
-                <p className="product__discount">Con {pt.discount}% de Descuento </p>
+            <div className="grid center">
+              <div className="col-8">
+                <p className="sub-text">PLU: {pt.plu} / Disponibles: {pt.stock}</p>
+                <p className="sub-text primary">${pt.price} / {pt.volumn}</p>
+                <p className="discount-text">Con {pt.discount}% de Descuento </p>
               </div>
 
-              <form>
-                <input className="add-button" type="submit" value="Agregar al Carrito"/>
-                <input className="input input-quantity" name="quantity" type="number" min="0" max="10" defaultValue="1"/>
+              <form className="col-4 grid end">
+                <input className="secondary-button raise" type="submit" value="Agregar"/>
+                <input name="quantity" type="number" min="0" max="10" defaultValue="1"/>
               </form>
             </div>
 
-            <Tabs
-              className="product__tabs">
+            <Tabs className="tabs">
 
-             <TabList className="product__tablist">
-               <Tab className="product__tab">Descripción</Tab>
-               <Tab className="product__tab">Beneficios y Usos</Tab>
-               <Tab className="product__tab">Ingredientes</Tab>
+             <TabList className="tablist">
+               <Tab className="tab">Descripción</Tab>
+               <Tab className="tab">Beneficios y Usos</Tab>
+               <Tab className="tab">Ingredientes</Tab>
              </TabList>
 
-             <TabPanel className="product__tab-panel smooth">
+             <TabPanel
+               className="tab-panel"
+               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+               onMouseLeave={(event) => document.body.style.overflow = ""}>
                {pt.description}
              </TabPanel>
 
-             <TabPanel className="product__tab-panel smooth">
+             <TabPanel
+               className="tab-panel"
+               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+               onMouseLeave={(event) => document.body.style.overflow = ""}>
                {pt.benefits}
              </TabPanel>
 
-             <TabPanel className="product__tab-panel smooth">
+             <TabPanel
+               className="tab-panel"
+               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+               onMouseLeave={(event) => document.body.style.overflow = ""}>
                {pt.ingredients}
              </TabPanel>
            </Tabs>
@@ -74,7 +82,7 @@ export default class ProductShow extends React.Component {
 
         <section>
           <h3 className="h-underline">Productos Relacionados</h3>
-          <div className="results__grid">
+          <div className="grid">
             {relatList}
           </div>
         </section>

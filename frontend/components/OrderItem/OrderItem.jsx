@@ -8,8 +8,8 @@ const OrderItem = (props) => {
   )
 
   return (
-    <article className="order-item__article">
-      <div className="order-item__top smooth">
+    <article className="box">
+      <div className="grid order-item-top">
         <p>
           Fecha Realizado
           <span>{moment(props.date).format('MMM DD, YYYY')}</span>
@@ -22,12 +22,12 @@ const OrderItem = (props) => {
 
         <p>
           Status
-          <span className="clickable green">Enviado</span>
+          <span style={{color: '#1eab30'}}>Enviado</span>
         </p>
 
         <p>
           Referencia #{props.id}
-          <span className="clickable">
+          <span>
             <Link to="/order">Detalles</Link>
           </span>
         </p>
@@ -40,17 +40,15 @@ const OrderItem = (props) => {
 
 
 const Detail = props => (
-  <div className="order-item__bottom smooth">
-    <img src={props.pimg}/>
-    <div>
-      <h4>{props.description}</h4>
-      <p>Precio: ${props.price} Cantidad: {props.quantity}</p>
-      <p className="subtotal">${props.subtotal}</p>
+  <div className="grid center">
+    <img src={props.pimg} className="col-2"/>
+    <div className="grow">
+      <p style={{fontWeight: 'bold', color: 'black'}}>{props.description}</p>
+      <p className="sub-text">Precio: ${props.price} Cantidad: {props.quantity}</p>
+      <p className="sub-text primary">${props.subtotal}</p>
     </div>
 
-    <div className="more">
-      <Link className="add-button" to="/product">Comparar de Nuevo</Link>
-    </div>
+    <Link to="/product" className="secondary-button raise">Comparar de Nuevo</Link>
   </div>
 )
 

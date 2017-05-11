@@ -5,10 +5,12 @@ class Search extends React.Component {
   render () {
 
     return (
-      <div>
-        <p className="search-label">Resultados para: "<i><span>search value</span></i>"</p>
+      <main>
+        <p className="search-label">Resultados para:
+          "<i><span className="sub-text light">search value</span></i>"
+        </p>
         <Results/>
-      </div>
+      </main>
     )
   }
 }

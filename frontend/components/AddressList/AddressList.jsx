@@ -46,14 +46,16 @@ export default class AddressList extends React.Component {
   }
 
   render () {
-    const selClass = classnames('address__item overflow-text', {'address__selectable': this.props.selectable})
+    const selClass = classnames('box overflow-text sub-text', {'address__selectable': this.props.selectable})
 
     const addrList = addresses.map( (addr, index) =>
-      <Address
-        className={selClass}
-        key={index} {...addr}
-        onRequestEdit={this.handleShow.bind(this, addr)}
-        onRequestSelect={this.handleAddressSelect}/>
+      <div key={index} className="col-4">
+        <Address
+          {...addr}
+          className={selClass}
+          onRequestEdit={this.handleShow.bind(this, addr)}
+          onRequestSelect={this.handleAddressSelect}/>
+      </div>
     )
 
 
@@ -63,7 +65,7 @@ export default class AddressList extends React.Component {
           <p className="empty-p">Usted no tiene ninguna dirección registrada</p>
         }
 
-        <div className="flex-grid" ref='grid'>
+        <div className="grid-wrap" ref='grid'>
           {addrList}
 
           {this.state.showForm &&
@@ -78,9 +80,8 @@ export default class AddressList extends React.Component {
           }
         </div>
 
-        <button className="address__add" onClick={this.handleShow.bind(this, {})}>Nueva Dirección</button>
+        <button className="light-button" onClick={this.handleShow.bind(this, {})}>Nueva Dirección</button>
       </div>
-
     )
   }
 }
@@ -94,7 +95,7 @@ export const Address = props => (
 
     <p className="overflow-text">{props.telephone}</p>
 
-    <p className="divider"></p>
+    <hr></hr>
 
     <p className="overflow-text">{props.street1}</p>
 
@@ -106,8 +107,9 @@ export const Address = props => (
     <p className="overflow-text">{props.zipcode}</p>
     <p className="overflow-text">{props.country}</p>
 
-    <ul>
+    <ul className="grid center end">
       <li><Link to="#" onClick={props.onRequestEdit}>Editar</Link></li>
+      <hr className="vertical-hr"></hr>
       <li><Link to="#">Borrar</Link></li>
     </ul>
   </div>

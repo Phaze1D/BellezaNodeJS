@@ -8,21 +8,33 @@ class DiscountForm extends React.Component {
         <h2>Discount Code For: {this.props.firstName} {this.props.lastName}</h2>
         <h4>Email: {this.props.email}</h4>
 
-        <form className="green-form">
-          <label>DiscountCode</label>
-          <input type="text" name="code" className="input"/>
+        <form className="main-form grid-wrap center">
+          <div className="col-6">
+            <label>DiscountCode</label>
+            <input type="text" name="code"/>
+          </div>
+          <div className="col-6"></div>
 
-          <label>Percentage</label>
-          <input type="checkbox" name="type"/>
+          <div className="col-4">
+            <label>Discount Amount</label>
+            <input type="text" name="amount"/>
+          </div>
 
-          <label>Discount Amount</label>
-          <input type="text" name="amount" className="input"/>
+          <div className="col-2">
+            <label>Percentage</label>
+            <input type="checkbox" name="type"/>
+          </div>
 
-          <label>Expires (YYYY-MM-DD)</label>
-          <input type="date" name="expires" className="input"/>
+          <div className="col-6"></div>
+          <div className="col-6">
+            <label>Expires (YYYY-MM-DD)</label>
+            <input type="date" name="expires"/>
+          </div>
 
-          <input type="submit" value="Send" className="submit"/>
-          <Link to="/backoffice/users/index" className="cancel" >Cancel</Link>
+          <div className="col-6"></div>
+          <input className="submit col-6" type="submit" value="Send"/>
+          <div className="col-6"></div>
+          <Link className="cancel col-6" to="/backoffice/users/index">Cancel</Link>
         </form>
       </div>
     )

@@ -37,51 +37,54 @@ class UserDetails extends React.Component {
   render () {
 
     const teleList = us.telephones.map( (tel, index) =>
-      <p key={index} className="overflow-text">{tel}</p>
+      <p key={index} className="overflow-text sub-text primary">{tel}</p>
     )
 
     const addreList = us.addresses.map( (add, index) =>
-      <p key={index} className="overflow-text">{add.street1}</p>
+      <p key={index} className="overflow-text sub-text primary">{add.street1}</p>
     )
 
     return (
-      <section className="user__section smooth">
+      <section className="col-9">
         <h2>
           Detalles
-          <Link to="#">Salir</Link>
+          <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
-        <div className="detail__wrapper">
-          <div className="detail__section">
+        <div className="grid top">
+          <div className="col-6">
             <h4 className="h-underline">
               Bienvenido {us.firstName} {us.lastName}
-              <span>
-                ( <Link to="#" onClick={this.handleShow}>Editar</Link> )
+              <span style={{float: 'right'}}>
+                ( <Link to="#" className="sub-text light" onClick={this.handleShow}>Editar</Link> )
               </span>
             </h4>
 
-            <div className="detail__info">
-              <h5>Teléfonos: </h5>
-              {teleList}
+            <div className="grid-wrap top">
+              <div className="col-6">
+                <p className="sub-text">Teléfonos: </p>
+                {teleList}
+              </div>
+
+              <div className="col-6">
+                <p className="sub-text">Direcciones: </p>
+                {addreList}
+              </div>
+
+              <div className="col-6">
+                <p className="sub-text">Email: </p>
+                <p className="overflow-text sub-text primary">{us.email}</p>
+              </div>
             </div>
 
-            <div className="detail__info">
-              <h5>Direcciones: </h5>
-              {addreList}
-            </div>
-
-            <div className="detail__info">
-              <h5>Email: </h5>
-              <p className="overflow-text">{us.email}</p>
-            </div>
           </div>
 
-          <div className="detail__section">
+          <div className="col-6">
             <h4 className="h-underline">Sus Preferencias</h4>
 
-            <form className="detail__form">
-              <input type="checkbox" name="pref"/>
-              <label htmlFor="pref">
+            <form>
+              <label htmlFor="pref" className="grid center sub-text col-12">
+                <input type="checkbox" name="pref" className="col-1"/>
                 Por favor agregarme a Neals Yard Remedies ofertas y actualizaciones por correo electrónico.
               </label>
 
