@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const ord = {
-  details: []
-}
+import {order} from '../../../fake'
+const ord = order()
 
 class OrderTable extends React.Component {
   constructor(props){

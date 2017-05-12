@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
-import moment from 'moment'
 
-const bans = []
+import {banners} from '../../../fake'
+const bans = banners()
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
@@ -70,8 +70,8 @@ const BannerItem = props => (
       <Link to={props.link}>Link</Link>
     </td>
     <td>{props.active ? "Yes": "No"}</td>
-    <td>{moment(props.start).format('MMM DD, YYYY')}</td>
-    <td>{moment(props.end).format('MMM DD, YYYY')}</td>
+    <td>{props.start.format('MMM DD, YYYY')}</td>
+    <td>{props.end.format('MMM DD, YYYY')}</td>
     <td>
       <Link to='/backoffice/banners/edit'>Update</Link>
     </td>

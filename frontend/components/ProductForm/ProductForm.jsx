@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 
-const cats = []
+import {categories} from '../../../fake'
+const cats = categories()
 
 class ProductForm extends React.Component {
   constructor(props){
     super(props)
-    this.state = {selectedCats: cats}
+    this.state = {selectedCats: categories()}
 
     this.handleAddCategory = this.handleAddCategory.bind(this)
   }

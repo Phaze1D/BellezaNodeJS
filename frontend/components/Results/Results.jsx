@@ -4,8 +4,8 @@ import DropDown from 'components/DropDown/DropDown'
 import Pagination from 'components/Pagination/Pagination'
 import ProductResult from 'components/ProductResult/ProductResult'
 
-
-const prod = []
+import {products} from '../../../fake'
+const prods = products(20)
 
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
@@ -26,7 +26,7 @@ export default class Results extends React.Component {
   render() {
     const sortOptions = ["A-Z", "Z-A", "Precio Alto", "Precio Bajo"]
 
-    const prodList = prod.map( (product, index) =>
+    const prodList = prods.map( (product, index) =>
       <ProductResult key={index} {...product}/>
     )
 

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 const OrderItem = (props) => {
   const detailList = props.details.map( (detail, index) =>
@@ -12,7 +11,7 @@ const OrderItem = (props) => {
       <div className="grid order-item-top">
         <p>
           Fecha Realizado
-          <span>{moment(props.date).format('MMM DD, YYYY')}</span>
+          <span>{props.date.format('MMM DD, YYYY')}</span>
         </p>
 
         <p>

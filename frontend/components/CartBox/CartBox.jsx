@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 
-
-const ord = {
-  details: []
-}
+import {order} from '../../../fake'
+const ord = order()
 
 export default class CartBox extends React.Component {
 

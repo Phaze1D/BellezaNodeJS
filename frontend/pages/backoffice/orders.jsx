@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
-import moment from 'moment'
 
 
-const ords = []
+import {orders} from '../../../fake'
+const ords = orders()
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
@@ -65,7 +65,7 @@ export default BackofficeOrders;
 const OrderRow = props => (
   <tr>
     <td>{props.id}</td>
-    <td>{moment(props.date).format('MMM DD, YYYY')}</td>
+    <td>{props.date.format('MMM DD, YYYY')}</td>
     <td>{props.user.firstName} {props.user.lastName}</td>
     <td>${props.total}</td>
     <td>

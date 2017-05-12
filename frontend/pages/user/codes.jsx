@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
-
-const actives = []
-const deactives = []
+import {codes} from '../../../fake'
+const actives = codes()
+const deactives = codes()
 
 export default class UserCodes extends React.Component {
   render () {
@@ -55,6 +54,6 @@ const CodeItem = props => (
   <div className="code-item sub-text">
     <p >Codigo: <span>{props.code}</span></p>
     <p>Descuento: <span>{props.discount}</span></p>
-    <p>Fecha de Caducidad: <span>{moment(props.expire).format('MMM DD, YYYY')}</span></p>
+    <p>Fecha de Caducidad: <span>{props.expire.format('MMM DD, YYYY')}</span></p>
   </div>
 )

@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom'
 import UserEdit from 'components/UserEdit/UserEdit'
 
 
-
-
-const us = {
-  telephones: [],
-  addresses: []
-}
+import {user} from '../../../fake'
+const us = user()
 
 class UserDetails extends React.Component {
   constructor(props){
