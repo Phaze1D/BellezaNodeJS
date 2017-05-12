@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
+import dateOptions from 'utils/date'
 
 const OrderItem = (props) => {
   const detailList = props.details.map( (detail, index) =>
@@ -11,7 +12,7 @@ const OrderItem = (props) => {
       <div className="grid order-item-top">
         <p>
           Fecha Realizado
-          <span>{props.date.format('MMM DD, YYYY')}</span>
+          <span>{props.date.toLocaleString('en-us', dateOptions)}</span>
         </p>
 
         <p>

@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
+import dateOptions from 'utils/date'
+
 
 
 import {orders} from '../../../fake'
@@ -65,7 +67,7 @@ export default BackofficeOrders;
 const OrderRow = props => (
   <tr>
     <td>{props.id}</td>
-    <td>{props.date.format('MMM DD, YYYY')}</td>
+    <td>{props.date.toLocaleString('en-us', dateOptions)}</td>
     <td>{props.user.firstName} {props.user.lastName}</td>
     <td>${props.total}</td>
     <td>

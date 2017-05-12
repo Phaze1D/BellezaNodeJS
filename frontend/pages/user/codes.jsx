@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
+import dateOptions from 'utils/date'
+
 
 import {codes} from '../../../fake'
 const actives = codes()
@@ -54,6 +56,6 @@ const CodeItem = props => (
   <div className="code-item sub-text">
     <p >Codigo: <span>{props.code}</span></p>
     <p>Descuento: <span>{props.discount}</span></p>
-    <p>Fecha de Caducidad: <span>{props.expire.format('MMM DD, YYYY')}</span></p>
+    <p>Fecha de Caducidad: <span>{props.expire.toLocaleString('en-us', dateOptions)}</span></p>
   </div>
 )

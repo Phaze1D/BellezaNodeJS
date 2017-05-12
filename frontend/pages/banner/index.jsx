@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
+import dateOptions from 'utils/date'
+
 
 import {banners} from '../../../fake'
 const bans = banners()
@@ -70,8 +72,8 @@ const BannerItem = props => (
       <Link to={props.link}>Link</Link>
     </td>
     <td>{props.active ? "Yes": "No"}</td>
-    <td>{props.start.format('MMM DD, YYYY')}</td>
-    <td>{props.end.format('MMM DD, YYYY')}</td>
+    <td>{props.start.toLocaleString('en-us', dateOptions)}</td>
+    <td>{props.end.toLocaleString('en-us', dateOptions)}</td>
     <td>
       <Link to='/backoffice/banners/edit'>Update</Link>
     </td>
