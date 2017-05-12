@@ -2,10 +2,9 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import {codes} from '../../../fake'
 
-const actives = codes()
-const deactives = codes()
+const actives = []
+const deactives = []
 
 export default class UserCodes extends React.Component {
   render () {

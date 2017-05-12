@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import OrderTable from 'components/OrderTable/OrderTable'
 
-import {order} from '../../../fake'
-const ord = order()
+const ord = {}
 
 export default class CheckoutConfirmation extends React.Component {
   constructor(props){

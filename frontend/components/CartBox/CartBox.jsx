@@ -2,10 +2,9 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 
 
-import {order} from '../../../fake'
-const ord = order();
+const ord = {}
 
-export default class Cart extends React.Component {
+export default class CartBox extends React.Component {
 
   render () {
     const detList = ord.details.map( (detail, index) =>

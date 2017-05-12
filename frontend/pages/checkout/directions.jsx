@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
 
-import { order, user } from '../../../fake.js'
-const ord = order();
-const usr = user();
+
+const ord = {}
+const usr = {}
 
 export default class CheckoutDirections extends React.Component {
   constructor(props){

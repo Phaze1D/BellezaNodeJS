@@ -3,8 +3,7 @@ import OrderTable from 'components/OrderTable/OrderTable'
 import { Address } from 'pages/checkout/confirmation'
 
 
-import {order} from '../../../fake'
-const ord = order()
+const ord = {}
 
 class OrderShow extends React.Component {
   render () {

@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 import moment from 'moment'
 
-import {banners} from '../../../fake'
-const bans = banners()
+const bans = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

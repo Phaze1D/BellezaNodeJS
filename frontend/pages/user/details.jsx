@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import UserEdit from 'components/UserEdit/UserEdit'
 
 
-import { user } from '../../../fake.js'
 
-const us = user();
+
+const us = {}
 
 class UserDetails extends React.Component {
   constructor(props){

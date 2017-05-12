@@ -4,9 +4,8 @@ import DropDown from 'components/DropDown/DropDown'
 import Pagination from 'components/Pagination/Pagination'
 import ProductResult from 'components/ProductResult/ProductResult'
 
-import { products } from '../../../fake'
 
-const prod = products(20)
+const prod = []
 
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})

@@ -4,10 +4,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 Tabs.setUseDefaultStyles(false);
 
 
-import { products, product } from '../../../fake'
-
-const related = products(4)
-const pt = product()
+const related = []
+const pt = {}
 
 export default class ProductShow extends React.Component {
   constructor(props){

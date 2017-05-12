@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 
-import {user} from '../../../fake'
 const usr = []
-for (var i = 0; i < 20; i++) usr.push(user())
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

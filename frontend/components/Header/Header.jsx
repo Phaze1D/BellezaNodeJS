@@ -2,9 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CartBox from 'components/CartBox/CartBox'
 
-import {categories} from '../../../fake.js'
 
-const cats = categories()
+const cats = []
 
 export default class Header extends React.Component {
   constructor(props) {

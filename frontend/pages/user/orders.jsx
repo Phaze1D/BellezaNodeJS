@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import OrderItem from 'components/OrderItem/OrderItem'
 import Pagination from 'components/Pagination/Pagination'
 
-import {orders} from '../../../fake.js'
 
-const ord = orders()
+const ord = {}
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

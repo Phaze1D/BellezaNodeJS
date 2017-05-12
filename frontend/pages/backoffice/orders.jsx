@@ -4,8 +4,7 @@ import Pagination from 'components/Pagination/Pagination'
 import moment from 'moment'
 
 
-import {orders} from '../../../fake'
-const ords = orders()
+const ords = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

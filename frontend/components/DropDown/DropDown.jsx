@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDCSimpleMenu, MDCSimpleMenuFoundation } from '@material/menu'
+import { MDCSimpleMenu, MDCSimpleMenuFoundation } from '@material/menu/dist/mdc.menu.js'
 import '@material/menu/dist/mdc.menu.css'
 
 
