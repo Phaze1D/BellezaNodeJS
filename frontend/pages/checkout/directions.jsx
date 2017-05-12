@@ -4,7 +4,7 @@ import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
 
 
-const ord = {}
+const ord = {details: []}
 const usr = {}
 
 export default class CheckoutDirections extends React.Component {

@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const ord = {}
+const ord = {
+  details: []
+}
 
 export default class CartBox extends React.Component {
 

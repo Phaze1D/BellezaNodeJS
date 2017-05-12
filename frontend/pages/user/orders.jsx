@@ -4,7 +4,7 @@ import OrderItem from 'components/OrderItem/OrderItem'
 import Pagination from 'components/Pagination/Pagination'
 
 
-const ord = {}
+const ords = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
@@ -16,7 +16,7 @@ export default class UserOrders extends React.Component {
 
   render () {
 
-    const orderList = ord.map( (order, index) =>
+    const orderList = ords.map( (order, index) =>
       <OrderItem key={index} {...order}/>
     )
 

@@ -6,7 +6,7 @@ const cats = []
 class ProductForm extends React.Component {
   constructor(props){
     super(props)
-    this.state = {selectedCats: categories()}
+    this.state = {selectedCats: cats}
 
     this.handleAddCategory = this.handleAddCategory.bind(this)
   }

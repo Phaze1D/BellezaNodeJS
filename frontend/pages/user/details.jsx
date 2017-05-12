@@ -5,7 +5,10 @@ import UserEdit from 'components/UserEdit/UserEdit'
 
 
 
-const us = {}
+const us = {
+  telephones: [],
+  addresses: []
+}
 
 class UserDetails extends React.Component {
   constructor(props){

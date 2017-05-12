@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const ords = {}
+const ord = {
+  details: []
+}
 
 class OrderTable extends React.Component {
   constructor(props){
@@ -18,7 +20,7 @@ class OrderTable extends React.Component {
     const colSpan = this.props.editable ? 5 : 4
     const tableClasses = classnames('order-table', this.props.size)
 
-    const detList = ords.details.map( (detail, index) =>
+    const detList = ord.details.map( (detail, index) =>
       <OrderRow
         key={index} {...detail}
         editable={this.props.editable}
@@ -46,23 +48,23 @@ class OrderTable extends React.Component {
         <tfoot className="order-table-foot">
           <tr>
             <td colSpan={colSpan}>Subtotal: </td>
-            <td className="foot-main">${ords.subtotal}</td>
+            <td className="foot-main">${ord.subtotal}</td>
           </tr>
           <tr>
             <td colSpan={colSpan}>IVA:</td>
-            <td className="foot-main">${ords.iva}</td>
+            <td className="foot-main">${ord.iva}</td>
           </tr>
           <tr>
             <td colSpan={colSpan}>Discount:</td>
-            <td className="foot-main">${ords.discount}</td>
+            <td className="foot-main">${ord.discount}</td>
           </tr>
           <tr>
             <td colSpan={colSpan}>Costo de Envío: </td>
-            <td className="foot-main">${ords.shippingCost}</td>
+            <td className="foot-main">${ord.shippingCost}</td>
           </tr>
           <tr>
             <td colSpan={colSpan}>Total:</td>
-            <td className="foot-main">${ords.total}</td>
+            <td className="foot-main">${ord.total}</td>
           </tr>
 
         </tfoot>
