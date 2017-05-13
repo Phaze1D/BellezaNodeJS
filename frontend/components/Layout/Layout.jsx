@@ -16,12 +16,12 @@ import CheckoutSuccessful from 'pages/checkout/successful'
 import OrderShow from 'pages/order/show'
 
 /******* REMOVE THIS SECTION IN PRODUCTION *******/
-import QuienSomos from 'pages/others/quien_somos'
-import History from 'pages/others/history'
-import NuestraPro from 'pages/others/nuestra_pro'
-import PorqueOrganico from 'pages/others/porque_organico'
-import Terms from 'pages/others/terms'
-import Awards from 'pages/others/awards'
+// import QuienSomos from 'pages/others/quien_somos'
+// import History from 'pages/others/history'
+// import NuestraPro from 'pages/others/nuestra_pro'
+// import PorqueOrganico from 'pages/others/porque_organico'
+// import Terms from 'pages/others/terms'
+// import Awards from 'pages/others/awards'
 /******* REMOVE THIS SECTION IN PRODUCTION *******/
 
 import Contact from 'pages/others/contact'
@@ -59,14 +59,14 @@ export default class Layout extends React.Component {
         <Route path="/successful" component={CheckoutSuccessful}/>
         <Route path="/order" component={OrderShow}/>
 
-        {/******* REMOVE THIS SECTION IN PRODUCTION *******/}
+        {/******* REMOVE THIS SECTION IN PRODUCTION *******
         <Route path="/quienSomos" component={QuienSomos}/>
         <Route path="/history" component={History}/>
         <Route path="/nuestraPromesa" component={NuestraPro}/>
         <Route path="/porqueOrganico" component={PorqueOrganico}/>
         <Route path="/terminosCondiciones" component={Terms}/>
         <Route path="/awards" component={Awards}/>
-        {/******* REMOVE THIS SECTION IN PRODUCTION *******/}
+        ******* REMOVE THIS SECTION IN PRODUCTION *******/}
 
         <Route path="/contact" component={Contact}/>
         <Route path="/reset" component={PasswordReset}/>
