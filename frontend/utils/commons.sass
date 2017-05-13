@@ -13,6 +13,9 @@ body
   @media screen and (max-width: $layout-lg)
     font-size: $md-font-size
 
+  @media screen and (max-width: $layout-xs)
+    font-size: $xs-font-size
+
 main
   padding: 16px
 
@@ -37,6 +40,7 @@ button, .white-button
     background-color: $grey-300
     box-shadow: none
   &.disable
+    color: $grey-500
     cursor: not-allowed
     background-color: $grey-200
 
