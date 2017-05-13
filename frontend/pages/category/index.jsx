@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import {category} from '../../../fake'
-const cate = category()
+const cate = {mains: []}
 
 export default class CategoryIndex extends React.Component {
   constructor(props){

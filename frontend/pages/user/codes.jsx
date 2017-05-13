@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import dateOptions from 'utils/date'
 
 
-import {codes} from '../../../fake'
-const actives = codes()
-const deactives = codes()
+const actives = []
+const deactives = []
 
 export default class UserCodes extends React.Component {
   render () {

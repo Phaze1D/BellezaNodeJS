@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link, Route } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 
-import {products} from '../../../fake'
-const prods = products(20)
+const prods = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

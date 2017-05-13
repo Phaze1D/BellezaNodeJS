@@ -5,8 +5,7 @@ import dateOptions from 'utils/date'
 
 
 
-import {orders} from '../../../fake'
-const ords = orders()
+const ords = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 

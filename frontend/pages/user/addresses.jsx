@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import AddressList from 'components/AddressList/AddressList'
 
-import {user} from '../../../fake'
-const us = user()
+const us = {}
 
 class UserAddresses extends React.Component {
   render () {

@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 import { Address } from './confirmation'
 import OrderTable from 'components/OrderTable/OrderTable'
 
-import {order} from '../../../fake'
-const ord = order()
+const ord = {details: []}
 
 class CheckoutSuccessful extends React.Component {
   render () {

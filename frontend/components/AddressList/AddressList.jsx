@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import AddressForm from 'components/AddressForm/AddressForm'
 import classnames from 'classnames'
 
-import {user} from '../../../fake'
-const addresses = user().addresses
+const addresses = []
 
 export default class AddressList extends React.Component {
   constructor(props){
