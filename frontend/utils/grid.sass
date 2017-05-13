@@ -99,3 +99,19 @@
     .col-xs-#{$i}
       padding: 8px
       width: 100% * ($i/12)
+
+
+@media screen and (max-width: $layout-xxs)
+  .col-xxs-hide
+    display: none
+  .col-xxs-show
+    display: inherit
+  .last-xxs
+    order: 1
+  .first-xxs
+    order: -1
+
+  @for $i from 1 through 12
+    .col-xxs-#{$i}
+      padding: 8px
+      width: 100% * ($i/12)

@@ -58,7 +58,7 @@ export default class Layout extends React.Component {
         <Route path="/confirmation" component={CheckoutConfirmation}/>
         <Route path="/successful" component={CheckoutSuccessful}/>
         <Route path="/order" component={OrderShow}/>
-        
+
         {/******* REMOVE THIS SECTION IN PRODUCTION *******/}
         <Route path="/quienSomos" component={QuienSomos}/>
         <Route path="/history" component={History}/>

@@ -80,6 +80,11 @@ header
   width: 100px
   height: 100px
   margin: 0 16px
+  flex-shrink: 0
+  @media screen and (max-width: $layout-xxs)
+    width: 65px
+    height: 65px
+    margin: 0 8px
 
 #web-title
   display: inline-block
@@ -91,6 +96,10 @@ header
 
   @media screen and (max-width: $layout-md)
     font-size: 1.8em
+
+  @media screen and (max-width: $layout-xxs)
+    font-size: 1.4em
+    white-space: normal
 
 #cart-link
   position: relative

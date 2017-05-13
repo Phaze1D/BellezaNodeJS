@@ -48,10 +48,10 @@ export default class Header extends React.Component {
     return (
       <header>
         <div className="grid center">
-          <Link className="grid center overflow-text col-8 col-sm-12" to="/home" title="Neals Yard Remedies Mexico">
+          <Link className="grid center overflow-text col-8 col-sm-11" to="/home" title="Neals Yard Remedies Mexico">
             <img id="logo-img" src="http://placehold.it/200" alt="logo"/>
 
-            <h1 id="web-title">
+            <h1 id="web-title" className="overflow-text">
               Neal's Yard Remedies México
               <span>  Salud y Belleza Orgánica </span>
             </h1>

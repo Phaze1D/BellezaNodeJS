@@ -37,7 +37,6 @@ export default class Pagination extends React.Component {
     )
 
     if(this.small){
-      console.log(page-1);
       const ar = classnames('white-button margin-button arrow-button', {'disable': page - 1 <= -1})
       const al = classnames('white-button margin-button arrow-button', {'disable': page + 1 >= children.length})
 

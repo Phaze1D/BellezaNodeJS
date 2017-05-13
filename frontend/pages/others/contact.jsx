@@ -6,7 +6,7 @@ class Contact extends React.Component {
     return (
       <main>
         <h2>Contáctanos</h2>
-        <form className="main-form" style={{width: '400px'}}>
+        <form className="main-form" style={{maxWidth: '400px', width: '100%'}}>
           <label htmlFor="name">Nombre</label>
           <input type="text" name="name"/>
           <label htmlFor="email">Email</label>

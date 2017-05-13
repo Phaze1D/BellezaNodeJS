@@ -10,7 +10,7 @@ export default class ProductResult extends React.Component {
   render() {
 
     return (
-      <article className="col-3 col-md-4 col-xs-6 product-cell">
+      <article className="col-3 col-md-4 col-xs-6 col-xxs-12 product-cell">
         <Link to={this.props.url}>
           <img src={this.props.image} alt={this.props.name}/>
           <h4 className="overflow-text">{this.props.name}</h4>

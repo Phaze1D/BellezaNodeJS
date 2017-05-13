@@ -10,12 +10,12 @@ const OrderItem = (props) => {
   return (
     <article className="box">
       <div className="grid order-item-top">
-        <p className="overflow-text">
+        <p className="overflow-text col-xxs-hide">
           Fecha Realizado
           <span>{props.date.toLocaleString('en-us', dateOptions)}</span>
         </p>
 
-        <p className="overflow-text">
+        <p className="overflow-text col-xxs-hide">
           Total
           <span>${props.total}</span>
         </p>
@@ -40,15 +40,15 @@ const OrderItem = (props) => {
 
 
 const Detail = props => (
-  <div className="grid center">
-    <img src={props.pimg} className="col-2"/>
-    <div className="grow">
+  <div className="grid-wrap center">
+    <img src={props.pimg} className="col-2 col-xxs-3"/>
+    <div className="grow col-xxs-9">
       <p style={{fontWeight: 'bold', color: 'black'}} className="overflow-text">{props.description}</p>
       <p className="sub-text overflow-text">Precio: ${props.price} Cantidad: {props.quantity}</p>
       <p className="sub-text primary">${props.subtotal}</p>
     </div>
 
-    <Link to="/product" className="secondary-button raise">
+    <Link to="/product" className="secondary-button raise col-xxs-hide">
       <span className="col-sm-hide">Comparar de Nuevo</span>
       <span className="col-hide col-sm-show">Comparar</span>
     </Link>

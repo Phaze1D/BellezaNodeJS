@@ -32,12 +32,11 @@ export default class Results extends React.Component {
 
     return (
       <section>
-        <div className="grid between results-options center">
+        <div className="grid-wrap between results-options center">
           <div className="grid center">
-            Ordenar por:
+            <span className="col-xxs-hide" style={{marginRight: '16px'}}>Ordenar por:</span>
             <DropDown options={sortOptions}/>
           </div>
-
 
           <Pagination
             links={links}

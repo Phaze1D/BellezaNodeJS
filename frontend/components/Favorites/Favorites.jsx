@@ -31,6 +31,27 @@ export default class Favorites extends React.Component {
       dots: false,
       nextArrow: <NextArrow/>,
       prevArrow: <PreviousArrow/>,
+      responsive: [{
+        breakpoint: 1012,
+        settings: {
+          slidesToShow: 4,
+        }
+      },{
+        breakpoint: 828,
+        settings: {
+          slidesToShow: 3,
+        }
+      },{
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        }
+      },{
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+        }
+      }]
     };
 
     const favList = imgs.map( (item, index) =>

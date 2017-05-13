@@ -11,16 +11,18 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    if(window.FB){
-      window.FB.XFBML.parse()
-    }
+    if(window.innerHeight > 828){
+      if(window.FB){
+        window.FB.XFBML.parse()
+      }
 
-    if(window.twttr.init){
-      window.twttr.widgets.load()
-    }
+      if(window.twttr.init){
+        window.twttr.widgets.load()
+      }
 
-    if(window.HM && window.HM.finishedLoadingMorePosts){
-      window.HM.render()
+      if(window.HM && window.HM.finishedLoadingMorePosts){
+        window.HM.render()
+      }
     }
   }
 

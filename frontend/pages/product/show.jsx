@@ -23,24 +23,24 @@ export default class ProductShow extends React.Component {
     return (
       <main>
         <section className="grid-wrap top around">
-          <div id="product-mini" className="col-1 col-xs-2">
+          <div id="product-mini" className="col-1 col-xs-2 col-xxs-3">
             <img src={pt.image}/>
             <img src={pt.image}/>
           </div>
 
-          <img className="col-5 col-md-4 col-sm-6 col-xs-6" src={pt.imagelg}/>
+          <img className="col-5 col-md-4 col-sm-6 col-xxs-8" src={pt.imagelg}/>
 
           <div className="col-5 col-md-6 col-sm-12">
             <h2>{pt.name}</h2>
-            <div className="grid center">
-              <div className="col-8">
+            <div className="grid-wrap center around">
+              <div className="col-8 col-xxs-12">
                 <p className="sub-text">PLU: {pt.plu} / Disponibles: {pt.stock}</p>
                 <p className="sub-text primary">${pt.price} / {pt.volumn}</p>
                 <p className="discount-text">Con {pt.discount}% de Descuento </p>
               </div>
 
-              <form className="col-4 grid end">
-                <input className="secondary-button raise" type="submit" value="Agregar"/>
+              <form className="col-4 col-xxs-12 grid end">
+                <input className="secondary-button raise grow" type="submit" value="Agregar"/>
                 <input name="quantity" type="number" min="0" max="10" defaultValue="1"/>
               </form>
             </div>

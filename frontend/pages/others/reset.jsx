@@ -10,7 +10,7 @@ class PasswordReset extends React.Component {
 					Proporcione a su cuenta de correo electrónico para recibir un correo electrónico para restablecer su contraseña
 				</p>
 
-        <form className="main-form" style={{width: '400px'}}>
+        <form className="main-form" style={{width: '100%', maxWidth: '400px'}}>
           <label htmlFor="email">Email</label>
           <input name="email" type="text"/>
           <input  className="submit full"  type="submit" value="Enviar"/>

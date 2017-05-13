@@ -15,12 +15,7 @@ export default class CheckoutDirections extends React.Component {
   }
 
   handleFactura(event){
-    if(this.refs.facturaBox.style.height === "84px"){
-      this.refs.facturaBox.style.height = ""
-    }else {
-      this.refs.facturaBox.style.height = "84px"
-    }
-
+    this.refs.facturaBox.classList.toggle('hide-f')
   }
 
   render () {
@@ -44,11 +39,14 @@ export default class CheckoutDirections extends React.Component {
               <textarea rows="6"></textarea>
             </article>
 
-            <article className="box" style={{height: '84px'}} ref="facturaBox">
+            <article className="box hide-f" ref="facturaBox">
               <h4 className="h-underline">
                 Datos de Facturación
                 <label className="sub-text" style={{float: 'right'}}>
-                  Quieres factura
+                  <span className="col-xxs-hide">
+                    Quieres factura
+                  </span>
+
                   <input type="checkbox" onChange={this.handleFactura}/>
                 </label>
               </h4>
@@ -67,7 +65,7 @@ export default class CheckoutDirections extends React.Component {
             <Link to="/confirmation" className="submit full">Continuar</Link>
           </section>
 
-          <section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs">
+          <section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs col-xxs-hide">
             <article className="box">
               <ul className="grid-wrap">
                 {detailList}

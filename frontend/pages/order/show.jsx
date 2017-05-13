@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import OrderTable from 'components/OrderTable/OrderTable'
 import { Address } from 'pages/checkout/confirmation'
+import dateOptions from 'utils/date'
+
 
 
 import {order} from '../../../fake'
@@ -12,7 +14,10 @@ class OrderShow extends React.Component {
     return (
       <main>
         <h2 style={{color: '#1eab30'}}>Status: Pago</h2>
-        <h4 className="sub-text">Referencia #{ord.id}</h4>
+        <h4 className="sub-text">Referencia: #{ord.id}</h4>
+        <h4 className="sub-text">
+          Fecha Realizado: {ord.date.toLocaleString('en-us', dateOptions)}
+        </h4>
         <div className="grid-wrap">
           <div className="col-9 col-md-8 col-sm-12">
             <OrderTable editable={false} size="sm"/>

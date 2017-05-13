@@ -14,6 +14,7 @@
     &:last-child
       padding: 0
 
+
   th
     border-bottom: 1px solid $grey-300
     padding: 16px 8px
@@ -46,11 +47,15 @@
 @media screen and (max-width: $layout-xs)
   .xs-td
     display: table-cell
-    .xs-span
-      display: block
-      text-align: left
-      padding: 8px 0
-
-
+  .xs-span
+    display: block
+    text-align: left
+    padding: 8px 0
   .sm-td
     display: none
+
+@media screen and (max-width: $layout-xxs)
+  .xs-span
+    display: block
+    text-align: left
+    padding: 4px 0

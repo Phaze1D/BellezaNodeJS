@@ -17,7 +17,7 @@ export default class CategoryIndex extends React.Component {
     )
 
     const gridList = cate.mains.map( (cat, index) =>
-      <div className="col-4 col-sm-6" key={index}>
+      <div className="col-4 col-sm-6 col-xxs-12" key={index}>
         <Link to={cat.to} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
           <h3 className="highlight">{cat.name}</h3>
         </Link>
