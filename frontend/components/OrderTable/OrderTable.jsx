@@ -33,7 +33,7 @@ class OrderTable extends React.Component {
             <th>Precio</th>
             <th>Cantidad</th>
             <th className="overflow-text">Subtotal <span className="sub-text">Sin IVA</span></th>
-            {this.props.editable && <th></th>}
+            <th></th>
           </tr>
         </thead>
 
