@@ -4,11 +4,14 @@
 
 body
   font-family: 'Lora', serif
-  font-size: $desktop-font-size
+  font-size: $lg-font-size
   width: 100vw
   min-height: 100vh
   color: $primary
   background-color: $primary-lighter
+
+  @media screen and (max-width: $layout-lg)
+    font-size: $md-font-size
 
 main
   padding: 16px
@@ -40,6 +43,7 @@ button, .white-button
 a
   text-decoration: none
   color: $primary-light
+
 
 p
   line-height: 1.5em
@@ -222,13 +226,23 @@ h6
   height: 100vh
   width: 100vw
   z-index: 100
-  background-color: rgba(0,0,0,0.75)
+  margin: 0 !important
+  will-change: all
+  transform: scale(0,0)
+  background-color: rgba(0,0,0,0)
+  transition: background-color 0.35s, transform 0.4s linear 0.4s
+
+  &.show
+    transition: background-color 0.35s
+    transform: scale(1,1)
+    background-color: rgba(0,0,0,0.75)
+
 
 
 #layout
   +shadow-2dp()
   width: 100%
   max-width: 1200px
+  min-height: 100vh
   background-color: white
-  padding: 16px 0
   margin: 0 auto

@@ -32,8 +32,8 @@ export default class CheckoutDirections extends React.Component {
     return (
       <main>
         <h2>Información del Contacto</h2>
-        <div className="grid">
-          <section className="col-9">
+        <div className="grid-wrap around">
+          <section className="col-9 col-md-8 col-sm-7 col-xs-12 last-xs">
             <article className="box">
               <h4 className="h-underline">Dirección de Envio</h4>
 
@@ -67,9 +67,9 @@ export default class CheckoutDirections extends React.Component {
             <Link to="/confirmation" className="submit full">Continuar</Link>
           </section>
 
-          <section className="col-3">
+          <section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs">
             <article className="box">
-              <ul>
+              <ul className="grid-wrap">
                 {detailList}
               </ul>
             </article>
@@ -84,7 +84,7 @@ export default class CheckoutDirections extends React.Component {
 
 
 const DetailItem = props => (
-  <li className="grid center">
+  <li className="grid center col-12 col-xs-6">
     <img className="col-4" src={props.pimg}/>
     <div className="col-8">
       <p className="sub-text primary">{props.description}</p>

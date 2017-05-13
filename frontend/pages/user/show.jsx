@@ -10,8 +10,8 @@ class UserShow extends React.Component {
     const match = this.props.match
 
     return (
-      <main className="grid around top">
-        <section className="col-3">
+      <main className="grid-wrap around top">
+        <section className="col-3 col-sm-4 col-xs-12">
           <ul id="user-options" className="box">
             <h4>Mis Pedidos</h4>
             <li>

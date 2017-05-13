@@ -9,11 +9,6 @@
   margin-left: -8px
   margin-right: -8px
 
-@for $i from 1 through 12
-  .col-#{$i}
-    padding: 8px
-    width: 100% * ($i/12)
-
 .top
   align-items: flex-start
 
@@ -40,3 +35,67 @@
 
 .grow
   flex-grow: 1
+
+.last
+  order: 1
+.first
+  order: -1
+
+.col-hide
+  display: none
+.col-show
+  display: inherit
+
+@for $i from 1 through 12
+  .col-#{$i}
+    padding: 8px
+    width: 100% * ($i/12)
+
+
+
+@media screen and (max-width: $layout-md)
+  .col-md-hide
+    display: none
+  .col-md-show
+    display: inherit
+  .last-md
+    order: 1
+  .first-md
+    order: -1
+
+  @for $i from 1 through 12
+    .col-md-#{$i}
+      padding: 8px
+      width: 100% * ($i/12)
+
+
+@media screen and (max-width: $layout-sm)
+  .col-sm-hide
+    display: none
+  .col-sm-show
+    display: inherit
+  .last-sm
+    order: 1
+  .first-sm
+    order: -1
+
+  @for $i from 1 through 12
+    .col-sm-#{$i}
+      padding: 8px
+      width: 100% * ($i/12)
+
+
+@media screen and (max-width: $layout-xs)
+  .col-xs-hide
+    display: none
+  .col-xs-show
+    display: inherit
+  .last-xs
+    order: 1
+  .first-xs
+    order: -1
+
+  @for $i from 1 through 12
+    .col-xs-#{$i}
+      padding: 8px
+      width: 100% * ($i/12)

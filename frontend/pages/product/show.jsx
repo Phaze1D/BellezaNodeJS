@@ -22,15 +22,15 @@ export default class ProductShow extends React.Component {
 
     return (
       <main>
-        <section className="grid top around">
+        <section className="grid-wrap top around">
           <div id="product-mini" className="col-1">
             <img src={pt.image}/>
             <img src={pt.image}/>
           </div>
 
-          <img className="col-5" src={pt.imagelg}/>
+          <img className="col-5 col-md-4 col-sm-6" src={pt.imagelg}/>
 
-          <div className="col-5">
+          <div className="col-5 col-md-6 col-sm-12">
             <h2>{pt.name}</h2>
             <div className="grid center">
               <div className="col-8">
@@ -80,7 +80,7 @@ export default class ProductShow extends React.Component {
 
         <section>
           <h3 className="h-underline">Productos Relacionados</h3>
-          <div className="grid">
+          <div className="grid-wrap">
             {relatList}
           </div>
         </section>

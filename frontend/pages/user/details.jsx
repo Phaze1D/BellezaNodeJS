@@ -44,16 +44,18 @@ class UserDetails extends React.Component {
     )
 
     return (
-      <section className="col-9">
+      <section className="col-9 col-sm-8 col-xs-11">
         <h2>
           Detalles
           <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
-        <div className="grid top">
-          <div className="col-6">
-            <h4 className="h-underline">
-              Bienvenido {us.firstName} {us.lastName}
+        <div className="grid-wrap top">
+          <div className="col-6 col-sm-12">
+            <h4 className="h-underline overflow-text">
+              <span className="overflow-text" style={{float: 'left', maxWidth: 'calc(100% - 70px)'}}>
+                {us.firstName} {us.lastName}
+              </span>
               <span style={{float: 'right'}}>
                 ( <Link to="#" className="sub-text light" onClick={this.handleShow}>Editar</Link> )
               </span>
@@ -70,7 +72,7 @@ class UserDetails extends React.Component {
                 {addreList}
               </div>
 
-              <div className="col-6">
+              <div className="col-6 grow">
                 <p className="sub-text">Email: </p>
                 <p className="overflow-text sub-text primary">{us.email}</p>
               </div>
@@ -78,12 +80,12 @@ class UserDetails extends React.Component {
 
           </div>
 
-          <div className="col-6">
+          <div className="col-6 col-sm-12">
             <h4 className="h-underline">Sus Preferencias</h4>
 
             <form>
               <label htmlFor="pref" className="grid center sub-text col-12">
-                <input type="checkbox" name="pref" className="col-1"/>
+                <input type="checkbox" name="pref" className="col-1 col-md-2 col-sm-1" />
                 Por favor agregarme a Neals Yard Remedies ofertas y actualizaciones por correo electrónico.
               </label>
 
@@ -92,7 +94,7 @@ class UserDetails extends React.Component {
 
           {this.state.showForm &&
             <div
-              className="overlay"
+              className="overlay show"
               onClick={this.handleOverlayClick}
               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
               onMouseLeave={(event) => document.body.style.overflow = ""}>

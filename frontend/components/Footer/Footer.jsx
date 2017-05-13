@@ -18,8 +18,8 @@ export default class Footer extends React.Component {
           </form>
         </div>
 
-        <div className="grid around" style={{margin: '0 16px'}}>
-          <section className="col-4">
+        <div className="grid-wrap around" style={{margin: '0 16px'}}>
+          <section className="col-4 col-sm-6 first-sm">
             <h3>Ubicaciones</h3>
             <a className="footer-address-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
             <address>
@@ -38,7 +38,7 @@ export default class Footer extends React.Component {
   					</address>
           </section>
 
-          <section className="col-3">
+          <section className="col-3 col-sm-12 last-sm">
             <h3>Acerca de</h3>
             <ul className="ul-dots">
       				<li>
@@ -75,7 +75,7 @@ export default class Footer extends React.Component {
       			</ul>
           </section>
 
-          <section className="col-4">
+          <section className="col-4 col-sm-6 first-sm">
             <h3>Redes Sociales</h3>
             <ul className="grid center footer-img-ul">
               <li className="col-2">

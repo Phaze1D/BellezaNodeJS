@@ -28,8 +28,6 @@ header
     .nav-menu-box
       display: none
 
-
-
 .nav-link
   display: block
   padding: 8px
@@ -58,32 +56,7 @@ header
     display: block
     padding: 8px 0
 
-#logo-img
-  display: inline-block
-  border-radius: 50%
-  width: 100px
-  height: 100px
-  margin: 0 16px
-
-#web-title
-  display: inline-block
-  color: $primary
-  span
-    display: block
-    font-size: 0.75em
-    font-weight: normal
-
-#cart-link
-  position: relative
-  &:hover
-    .cart-box
-      display: flex
-  i
-    margin-left: 10px
-    color: $primary-light
-    font-size: 1.3em
-
-#search-form
+.search-form
   @extend input[type="text"]
   padding: 1px 5px
   max-width: 240px
@@ -101,8 +74,105 @@ header
     color: $grey-500
     margin-left: 5px
 
+#logo-img
+  display: inline-block
+  border-radius: 50%
+  width: 100px
+  height: 100px
+  margin: 0 16px
+
+#web-title
+  display: inline-block
+  color: $primary
+  span
+    display: block
+    font-size: 0.75em
+    font-weight: normal
+
+  @media screen and (max-width: $layout-md)
+    font-size: 1.8em
+
+#cart-link
+  position: relative
+  &:hover
+    .cart-box
+      display: flex
+  i
+    margin-left: 10px
+    color: $primary-light
+    font-size: 1.3em
+
+#menu-button
+  position: absolute
+  top: 18px
+  right: 24px
+  padding: 0
+  border: none
+  i
+    font-size: 2.2em
+
 #nav-ul
   margin: 16px -8px
   background: #20376c
   background: linear-gradient(to right, #20376c 0%, #244388 50%, #20376c 100%)
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#20376c', endColorstr='#20376c', GradientType=1)
+
+
+
+@media screen and (max-width: $layout-sm)
+  header
+    border-bottom: 1px solid $grey-300
+
+  #nav-ul
+    +shadow-2dp()
+    position: absolute
+    top: 0
+    left: 0
+    width: 256px
+    min-height: 100vh
+    flex-direction: column
+    z-index: 1000
+    background: white
+    margin: 0
+    will-change: transform
+    transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1)
+    transform: translate3d(-100%, 0, 0)
+    &.show
+      transform: translate3d(0,0,0)
+
+
+  .nav-item
+    position: relative
+    flex-grow: 0
+    text-align: left
+    border-bottom: 1px solid $grey-300
+    &:hover, :active
+      background-color: $grey-100
+      .nav-menu-box
+        display: none
+    &.hide
+      .nav-link
+        color: $primary
+
+
+  .nav-link
+    padding: 16px
+    color: $primary
+    text-transform: uppercase
+    font-size: 1em
+    margin: 0
+    width: 100%
+
+  .dark-a
+    padding: 16px
+    color: $primary
+    text-transform: uppercase
+    font-size: 1em
+    margin: 0
+    width: 100%
+    i
+      font-size: 1.2em
+
+  .search-form
+    margin: 16px
+    width: 100%

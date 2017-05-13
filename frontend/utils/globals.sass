@@ -1,9 +1,14 @@
-
-$desktop-font-size: 16px
+$lg-font-size: 18px
+$md-font-size: 16px
 $border-radius: 2px
 $shadow-key-umbra-opacity: 0.2
 $shadow-key-penumbra-opacity: 0.14
 $shadow-ambient-shadow-opacity: 0.12
+
+$layout-lg: 1012px
+$layout-md: 942px
+$layout-sm: 828px
+$layout-xs: 712px
 
 =shadow-inner()
   box-shadow: inset 0 1px 1px 0px rgba(0, 0, 0, 0.1)
@@ -12,6 +17,11 @@ $shadow-ambient-shadow-opacity: 0.12
   box-shadow: 0 1px 2px rgba(0,0,0,0.2)
 
 =shadow-2dp()
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 3px 1px -2px rgba(0, 0, 0, $shadow-key-umbra-opacity),
+  0 1px 5px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity)
+
+=shadow-4dp()
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
   0 3px 1px -2px rgba(0, 0, 0, $shadow-key-umbra-opacity),
   0 1px 5px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity)

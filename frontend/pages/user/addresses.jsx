@@ -8,7 +8,7 @@ const us = user()
 class UserAddresses extends React.Component {
   render () {
     return (
-      <section className="col-9">
+      <section className="col-9 col-sm-8 col-xs-11">
         <h2>
           Mi Directorio
           <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>

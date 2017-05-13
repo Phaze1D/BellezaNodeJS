@@ -19,23 +19,23 @@ export default class UserCodes extends React.Component {
     )
 
     return (
-      <section className="col-9">
+      <section className="col-9 col-sm-8 col-xs-11">
         <h2>
           Mis Códigos de Descuento
           <Link to="#" className="sub-text light" style={{float: 'right'}}>Salir</Link>
         </h2>
 
-        <div className="grid top around">
+        <div className="grid-wrap top around">
 
           {actives.length > 0 &&
-            <article className="col-5 box active">
+            <article className="col-5 col-sm-12 box active">
               <div className="code-top">Activados</div>
               {aList}
             </article>
           }
 
           {deactives.length > 0 &&
-            <article className="col-5 box deactive">
+            <article className="col-5 col-sm-12 box deactive">
               <div className="code-top">Desactivados</div>
               {dList}
             </article>

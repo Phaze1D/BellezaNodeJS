@@ -31,7 +31,7 @@ export default class Home extends React.Component {
         <Carousel/>
         <Favorites/>
 
-        <div className="grid">
+        <div className="grid col-sm-hide">
           <div className="col-4 social-feed">
             <div className="fb-page" data-href="https://www.facebook.com/BellezaOrganicaCertificada/" data-tabs="timeline"
                 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">

@@ -9,7 +9,7 @@ export default class Signin extends React.Component {
       <main>
         <h3>Iniciar Sesión o Crea Nuevo Usuario</h3>
 
-        <div className="grid around">
+        <div className="grid-wrap around">
           <LoginFrom errors={{}}/>
           <SignupForm errors={{}}/>
         </div>
@@ -22,7 +22,7 @@ export default class Signin extends React.Component {
 const LoginFrom = props => {
 
   return (
-    <section className="col-5">
+    <section className="col-5 col-xs-10">
       <h4 className="h-underline">Iniciar Sesión</h4>
       <h5 className="sub-text">Si usted ya tiene una cuenta, ingrese aquí.</h5>
       <form className="main-form">
@@ -43,7 +43,7 @@ const LoginFrom = props => {
 const SignupForm = props => {
 
   return (
-    <section className="col-5">
+    <section className="col-5 col-xs-10">
       <h4 className="h-underline">Crea Nuevo Usuario</h4>
       <h5 className="sub-text">
 				Al crear una cuenta en nuestra tienda, usted será capaz de moverse a través del proceso

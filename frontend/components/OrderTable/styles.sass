@@ -1,25 +1,28 @@
 .order-table
-  // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
   width: 100%
   border: 1px solid $grey-300
   border-radius: 3px
-  border-collapse: collapse
+  border-collapse: separate
+
   td
     border-bottom: 1px solid $grey-300
     text-align: center
+    padding: 0 8px
+    img
+      width: 100%
+      max-width: 128px
     &:last-child
-      padding-right: 16px
+      padding: 0
+
   th
     border-bottom: 1px solid $grey-300
-    padding: 16px 0
+    padding: 16px 8px
     &:last-child
       padding-right: 16px
-  span
-    font-size: 0.7em
-    color: $grey-500
-  &.sm
-    img
-      height: 100px
+
+  i
+    color: $mred
+
 
 .order-table-foot
   td
@@ -33,3 +36,21 @@
     color: $primary
     text-align: right
     width: 50px
+
+.xs-td
+  display: none
+
+.foot-main
+  padding-right: 8px !important
+
+@media screen and (max-width: $layout-xs)
+  .xs-td
+    display: table-cell
+    .xs-span
+      display: block
+      text-align: left
+      padding: 8px 0
+
+
+  .sm-td
+    display: none

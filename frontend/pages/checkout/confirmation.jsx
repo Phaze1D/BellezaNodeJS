@@ -22,8 +22,8 @@ export default class CheckoutConfirmation extends React.Component {
     return (
       <main>
         <h2>Confirmar Orden</h2>
-        <div className="grid top between">
-          <section className="col-8">
+        <div className="grid-wrap top between">
+          <section className="col-8 col-sm-12 last-sm">
             <Link to="/cart" style={{float: 'right'}}>Editar</Link>
             <OrderTable editable={false} size="sm"/>
 
@@ -56,17 +56,17 @@ export default class CheckoutConfirmation extends React.Component {
 
                 <form className="payment-form">
                   <div className="grid center">
-                    <label className="col-4" htmlFor="card-holder">Nombre: </label>
-                    <input className="col-8" name="card-holder" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="card-holder">Nombre: </label>
+                    <input className="col-8 col-md-7" name="card-holder" type="text"/>
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4" htmlFor="card-number">Numero de Tarjeta: </label>
-                    <input className="col-8" name="card-number" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="card-number">Numero de Tarjeta: </label>
+                    <input className="col-8 col-md-7" name="card-number" type="text"/>
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4" htmlFor="card-date">Fecha de Caducidad: </label>
+                    <label className="col-4 col-md-5" htmlFor="card-date">Fecha de Caducidad: </label>
                     <select>
                       <option>Mes</option>
                     </select>
@@ -77,8 +77,8 @@ export default class CheckoutConfirmation extends React.Component {
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4" htmlFor="card-secret">Codigo de Seguridad: </label>
-                    <input className="col-3" name="card-secret" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="card-secret">Codigo de Seguridad: </label>
+                    <input className="col-3 col-md-7" name="card-secret" type="text"/>
                   </div>
 
                   <input type="submit" value="Pagar" className="submit full"/>
@@ -116,7 +116,7 @@ export default class CheckoutConfirmation extends React.Component {
 
           </section>
 
-          <section className="col-4">
+          <section className="col-4 col-sm-12 first-sm">
             <Address {...ord.shippedTo} title="Dirección de Envío"/>
             <Address {...ord.invoiceTo} title="Facturacion"/>
 

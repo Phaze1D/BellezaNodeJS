@@ -49,7 +49,7 @@ export default class AddressList extends React.Component {
     const selClass = classnames('box overflow-text sub-text', {'address__selectable': this.props.selectable})
 
     const addrList = addresses.map( (addr, index) =>
-      <div key={index} className="col-4">
+      <div key={index} className="col-4 col-md-6 col-sm-12">
         <Address
           {...addr}
           className={selClass}
@@ -70,7 +70,7 @@ export default class AddressList extends React.Component {
 
           {this.state.showForm &&
             <div
-              className="overlay"
+              className="overlay show"
               onClick={this.handleOverlayClick}
               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
               onMouseLeave={(event) => document.body.style.overflow = ""}>

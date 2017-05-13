@@ -29,14 +29,13 @@ class OrderTable extends React.Component {
     return (
       <table className={tableClasses}>
         <thead>
-          <tr>
+          <tr className="col-xs-hide">
             <th>Producto</th>
             <th>Descripcion</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            <th className="overflow-text">Subtotal <span>Sin IVA</span></th>
+            <th className="overflow-text">Subtotal <span className="sub-text">Sin IVA</span></th>
             {this.props.editable && <th></th>}
-
           </tr>
         </thead>
 
@@ -82,15 +81,38 @@ const OrderRow = (props) => (
       <img src={props.pimg}/>
     </td>
 
-    <td>
+    <td className="xs-td" colSpan="4">
+      <span className="xs-span">
+        {props.description}
+      </span>
+
+      <span className="xs-span">
+        <span className="sub-text">Precio: </span>${props.price}
+      </span>
+
+      <span className="xs-span">
+        {props.editable ?
+          <input type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
+          :
+          props.quantity
+        }
+      </span>
+
+      <span className="xs-span">
+        <span className="sub-text">Subtotal: </span>${props.subtotal}
+      </span>
+    </td>
+
+
+    <td className="sm-td">
       {props.description}
     </td>
 
-    <td>
+    <td className="sm-td">
       ${props.price}
     </td>
 
-    <td>
+    <td className="sm-td">
       {props.editable ?
         <input type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
         :
@@ -98,13 +120,14 @@ const OrderRow = (props) => (
       }
     </td>
 
-    <td>
+    <td className="sm-td">
       ${props.subtotal}
     </td>
 
+
     {props.editable &&
       <td>
-        <a href="#">Eliminar</a>
+        <i className="material-icons">clear</i>
       </td>
     }
   </tr>

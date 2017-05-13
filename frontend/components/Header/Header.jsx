@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CartBox from 'components/CartBox/CartBox'
+import classnames from 'classnames'
 
 import {categories} from '../../../fake'
 const cats = categories()
@@ -8,11 +9,15 @@ const cats = categories()
 export default class Header extends React.Component {
   constructor(props) {
     super(props)
+    this.handleToggleSide = this.handleToggleSide.bind(this)
+    this.handleNavClick = this.handleNavClick.bind(this)
   }
 
   handleNavClick(event) {
     if(event.target.tagName === "A"){
       event.currentTarget.classList.add("hide")
+      this.refs.overlay.classList.toggle('show')
+      this.refs.side.classList.toggle('show')
     }
   }
 
@@ -22,8 +27,12 @@ export default class Header extends React.Component {
     }
   }
 
-  render() {
+  handleToggleSide(event) {
+    this.refs.overlay.classList.toggle('show')
+    this.refs.side.classList.toggle('show')
+  }
 
+  render() {
     const navList = cats.map( (category) =>
       <li
         key={category.id}
@@ -39,7 +48,7 @@ export default class Header extends React.Component {
     return (
       <header>
         <div className="grid center">
-          <Link className="grid center col-8" to="/home" title="Neals Yard Remedies Mexico">
+          <Link className="grid center overflow-text col-8 col-sm-12" to="/home" title="Neals Yard Remedies Mexico">
             <img id="logo-img" src="http://placehold.it/200" alt="logo"/>
 
             <h1 id="web-title">
@@ -48,8 +57,11 @@ export default class Header extends React.Component {
             </h1>
           </Link>
 
+          <button id="menu-button" className="col-hide col-sm-show" onClick={this.handleToggleSide}>
+            <i className="material-icons">menu</i>
+          </button>
 
-          <div className="col-4">
+          <div className="col-4 col-sm-hide">
             <div className="grid center end">
               <Link className="dark-a header-link" to="/user/details" title="Tiendas">Tiendas</Link>
               <hr className="vertical-hr"></hr>
@@ -64,18 +76,47 @@ export default class Header extends React.Component {
               </div>
             </div>
 
-            <form id="search-form" className="grid center">
+            <form className="search-form grid center">
               <input type="search" name="search"/>
               <button type="submit">
                 <i className="material-icons">search</i>
               </button>
             </form>
           </div>
-
         </div>
 
+        <div
+          ref="overlay"
+          className="overlay col-sm-show col-hide"
+          onClick={this.handleToggleSide}></div>
+
         <nav>
-          <ul id="nav-ul" className="grid">
+          <ul ref="side" id="nav-ul" className="grid">
+
+            <li className="nav-item col-sm-show col-hide">
+              <Link to="/signin" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
+            </li>
+            <li className="nav-item col-sm-show col-hide">
+              <Link className="dark-a grid center" to="/cart" onClick={this.handleToggleSide}>
+                <span className="grow">
+                  Carrito
+                </span>
+                <i className="material-icons">shopping_cart</i>
+              </Link>
+            </li>
+            <li className="nav-item col-sm-show col-hide">
+              <Link to="/user/details" className="nav-link" onClick={this.handleToggleSide}>Tiendas</Link>
+            </li>
+
+            <li className="nav-item col-sm-show col-hide">
+              <form className="search-form grid center">
+                <input type="search" name="search"/>
+                <button type="submit">
+                  <i className="material-icons">search</i>
+                </button>
+              </form>
+            </li>
+
             {navList}
           </ul>
         </nav>
