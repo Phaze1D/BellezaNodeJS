@@ -8,20 +8,23 @@ export const categories = function () {
     var c = {
       id: faker.random.uuid(),
       name: faker.commerce.department(),
+      to: "/category"
     }
 
     var mains = []
     for (var j = 0; j < (Math.random() * 4) + 1; j++) {
       var m = {
         id: faker.random.uuid(),
-        name: faker.commerce.department()
+        name: faker.commerce.department(),
+        to: "/category"
       }
 
       var subs = []
       for (var k = 0; k < (Math.random() * 10) + 1; k++) {
         var s = {
           id: faker.random.uuid(),
-          name: faker.commerce.department()
+          name: faker.commerce.department(),
+          to: "/category"
         }
         subs.push(s)
       }
@@ -42,7 +45,7 @@ export const category = function () {
   var c = {
     id: faker.random.uuid(),
     name: faker.commerce.department(),
-    url: "#"
+    to: "/category"
   }
 
   var mains = []
@@ -50,7 +53,7 @@ export const category = function () {
     var m = {
       id: faker.random.uuid(),
       name: faker.commerce.department(),
-      to: "#"
+      to: "/category"
     }
     mains.push(m)
   }
