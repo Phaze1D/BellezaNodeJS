@@ -19,7 +19,7 @@ export default class Footer extends React.Component {
         </div>
 
         <div className="grid-wrap around" style={{margin: '0 16px'}}>
-          <section className="col-4 col-sm-6 first-sm">
+          <section className="col-4 col-sm-6 first-sm col-xs-12">
             <h3>Ubicaciones</h3>
             <a className="footer-address-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
             <address>
@@ -38,7 +38,7 @@ export default class Footer extends React.Component {
   					</address>
           </section>
 
-          <section className="col-3 col-sm-12 last-sm">
+          <section className="col-3 col-sm-12 last-sm col-xs-12">
             <h3>Acerca de</h3>
             <ul className="ul-dots">
       				<li>
@@ -75,9 +75,9 @@ export default class Footer extends React.Component {
       			</ul>
           </section>
 
-          <section className="col-4 col-sm-6 first-sm">
+          <section className="col-4 col-sm-6 first-sm col-xs-12">
             <h3>Redes Sociales</h3>
-            <ul className="grid center footer-img-ul">
+            <ul className="grid center around footer-img-ul">
               <li className="col-2">
                 <a href="#" target="_blank" title="facebook page">
                   <i className="fa fa-facebook-square" aria-hidden="true"></i>
@@ -99,7 +99,7 @@ export default class Footer extends React.Component {
             </ul>
 
             <h3>Métodos de Pago</h3>
-            <ul className="grid center">
+            <ul className="grid center around">
               <li>
                 <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
               </li>

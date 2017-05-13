@@ -3,6 +3,10 @@ footer
   @media screen and (max-width: $layout-md)
     font-size: 0.85em
 
+  @media screen and (max-width: $layout-xs)
+    text-align: center
+    font-size: 0.9em
+
 address
   color: $grey-500
   margin: 5px 0
@@ -68,3 +72,12 @@ address
   padding: 0 16px
   input
     width: 250px
+
+
+@media screen and (max-width: $layout-xs)
+  address
+    text-align: center
+
+  .ul-dots
+    padding: 0
+    list-style: none
