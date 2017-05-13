@@ -23,12 +23,12 @@ export default class ProductShow extends React.Component {
     return (
       <main>
         <section className="grid-wrap top around">
-          <div id="product-mini" className="col-1">
+          <div id="product-mini" className="col-1 col-xs-2">
             <img src={pt.image}/>
             <img src={pt.image}/>
           </div>
 
-          <img className="col-5 col-md-4 col-sm-6" src={pt.imagelg}/>
+          <img className="col-5 col-md-4 col-sm-6 col-xs-6" src={pt.imagelg}/>
 
           <div className="col-5 col-md-6 col-sm-12">
             <h2>{pt.name}</h2>
