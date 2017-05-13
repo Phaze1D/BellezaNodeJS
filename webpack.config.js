@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 
 var config = {
@@ -27,15 +29,14 @@ var config = {
         }
       }]
     },{
-      test: /\.(scss|sass|css)$/,
-      loaders: [
-        'style-loader',
-        'css-loader',
-        'sass-loader'
-      ]
-    },{
       test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
       loader: 'file-loader?name=fonts/[name].[ext]'
+    },{
+      test: /\.(scss|sass|css)$/,
+      use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
     }]
   },
   devServer: {
@@ -44,6 +45,9 @@ var config = {
     historyApiFallback: true,
     hot: true,
   },
+  plugins: [
+    new ExtractTextPlugin("styles.css"),
+  ],
 }
 
 module.exports = config
