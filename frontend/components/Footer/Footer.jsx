@@ -11,9 +11,9 @@ export default class Footer extends React.Component {
 
     return (
       <footer>
-        <div id="footer-divider" className="grid center between cover-image" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
-          <h4>Registrate y reciba información, ofertas y tips directo a su correo</h4>
-          <form>
+        <div id="footer-divider" className="grid center around cover-image" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
+          <h4 className="col-xs-hide grow">Registrate y reciba información, ofertas y tips directo a su correo</h4>
+          <form >
             <input type="text" placeholder="Email y Presione Entre"/>
           </form>
         </div>
