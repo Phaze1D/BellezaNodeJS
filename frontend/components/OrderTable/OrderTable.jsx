@@ -15,8 +15,6 @@ class OrderTable extends React.Component {
   }
 
   render () {
-
-    const colSpan = this.props.editable ? 5 : 4
     const tableClasses = classnames('order-table', this.props.size)
 
     const detList = ord.details.map( (detail, index) =>
@@ -45,23 +43,23 @@ class OrderTable extends React.Component {
 
         <tfoot className="order-table-foot">
           <tr>
-            <td colSpan={colSpan}>Subtotal: </td>
+            <td colSpan="5">Subtotal: </td>
             <td className="foot-main">${ord.subtotal}</td>
           </tr>
           <tr>
-            <td colSpan={colSpan}>IVA:</td>
+            <td colSpan="5">IVA:</td>
             <td className="foot-main">${ord.iva}</td>
           </tr>
           <tr>
-            <td colSpan={colSpan}>Discount:</td>
+            <td colSpan="5">Discount:</td>
             <td className="foot-main">${ord.discount}</td>
           </tr>
           <tr>
-            <td colSpan={colSpan}>Costo de Envío: </td>
+            <td colSpan="5">Costo de Envío: </td>
             <td className="foot-main">${ord.shippingCost}</td>
           </tr>
           <tr>
-            <td colSpan={colSpan}>Total:</td>
+            <td colSpan="5">Total:</td>
             <td className="foot-main">${ord.total}</td>
           </tr>
 
@@ -125,10 +123,11 @@ const OrderRow = (props) => (
     </td>
 
 
-    {props.editable &&
+
       <td>
+        {props.editable &&
         <i className="material-icons">clear</i>
+        }
       </td>
-    }
   </tr>
 )
