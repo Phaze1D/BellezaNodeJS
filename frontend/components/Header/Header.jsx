@@ -62,9 +62,9 @@ export default class Header extends React.Component {
 
           <div className="col-4 col-sm-hide">
             <div className="grid center end">
-              <Link className="dark-a header-link" to="/user/details" title="Tiendas">Tiendas</Link>
+              <Link className="dark-a header-link" to="/stores" title="Tiendas">Tiendas</Link>
               <hr className="vertical-hr"></hr>
-              <Link className="dark-a header-link" to="/signin" title="Signin">Mi Cuenta</Link>
+              <Link className="dark-a header-link" to="/user/details" title="Signin">Mi Cuenta</Link>
               <hr className="vertical-hr"></hr>
               <div id="cart-link" className="header-link">
                 <Link className="dark-a grid center" to="/cart">
@@ -93,7 +93,7 @@ export default class Header extends React.Component {
           <ul ref="side" id="nav-ul" className="grid">
 
             <li className="nav-item col-sm-show col-hide">
-              <Link to="/signin" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
+              <Link to="/user/details" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
             </li>
             <li className="nav-item col-sm-show col-hide">
               <Link className="dark-a grid center" to="/cart" onClick={this.handleToggleSide}>
@@ -104,7 +104,7 @@ export default class Header extends React.Component {
               </Link>
             </li>
             <li className="nav-item col-sm-show col-hide">
-              <Link to="/user/details" className="nav-link" onClick={this.handleToggleSide}>Tiendas</Link>
+              <Link to="/stores" className="nav-link" onClick={this.handleToggleSide}>Tiendas</Link>
             </li>
 
             <li className="nav-item col-sm-show col-hide">
