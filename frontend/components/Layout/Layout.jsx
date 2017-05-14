@@ -26,6 +26,7 @@ import OrderShow from 'pages/order/show'
 
 import Contact from 'pages/others/contact'
 import PasswordReset from 'pages/others/reset'
+import Stores from 'pages/store/stores'
 import BackofficeShow from 'pages/backoffice/show'
 
 
@@ -70,6 +71,7 @@ export default class Layout extends React.Component {
 
         <Route path="/contact" component={Contact}/>
         <Route path="/reset" component={PasswordReset}/>
+        <Route path="/stores" component={Stores}/>
         <Route path="/backoffice" component={BackofficeShow}/>
         <Footer/>
       </div>
