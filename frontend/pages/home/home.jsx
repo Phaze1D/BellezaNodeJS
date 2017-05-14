@@ -11,7 +11,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    if(window.innerHeight > 828){
+    if(window.innerWidth > 828){
       if(window.FB){
         window.FB.XFBML.parse()
       }
