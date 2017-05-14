@@ -28,14 +28,6 @@ export default class Footer extends React.Component {
   						México<br/>
   						Tel. (33) 36420178 y 3640 3736 <br/>
   					</address>
-
-            <a className="footer-address-title" href="#" title="Oficina Ciudad de México">Ciudad de México</a>
-            <address>
-  						Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
-  						Guadalajara Jalisco 44647<br/>
-  						México<br/>
-  						Tel. (33) 36420178 y 3640 3736 <br/>
-  					</address>
           </section>
 
           <section className="col-3 col-sm-12 last-sm col-xs-12">
