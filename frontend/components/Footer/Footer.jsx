@@ -91,7 +91,7 @@ export default class Footer extends React.Component {
             </ul>
 
             <h3>Métodos de Pago</h3>
-            <ul className="grid center around">
+            <ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
               <li>
                 <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
               </li>
