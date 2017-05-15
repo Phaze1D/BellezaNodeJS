@@ -48,7 +48,7 @@ export default class Layout extends React.Component {
     return (
       <div id='layout'>
         <Header/>
-        <Redirect from='/' to='/backoffice'/>
+        <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories" component={CategoryIndex}/>
         <Route path="/category" component={CategoryShow}/>
