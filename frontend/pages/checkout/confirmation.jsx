@@ -4,6 +4,26 @@ import OrderTable from 'components/OrderTable/OrderTable'
 
 const ord = {details:[]}
 
+/**
+* LOCAL - GET
+* @param {object} user - The current logged in user
+*
+* LOCAL - GET
+* @param {object} cartOrder - The current cart order
+*
+* HTTP - POST
+* @param {string} discountCode - The discount code to check
+*
+* LOCAL - POST
+* @param {object} discountInfo - The discount info to add to the cart order if valid
+*
+* HTTP - POST
+* @param {object} cardPayment - All the info to create a card payment including cartOrder
+*
+* HTTP - POST
+* @param {object} cashPayment - All the info to create a cash payment including cartOrder
+*/
+
 export default class CheckoutConfirmation extends React.Component {
   constructor(props){
     super(props)

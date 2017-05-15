@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 
 const cate = {mains: []}
 
+/**
+* LOCAL - GET
+* @param {object} category - A object with a category information and its sub categories
+*
+*/
+
 export default class CategoryIndex extends React.Component {
   constructor(props){
     super(props)

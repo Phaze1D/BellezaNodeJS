@@ -8,6 +8,14 @@ const bans = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
+/**
+* HTTP - GET
+* @param {array} banners - An array of banners
+*
+* LOCAL - POST (on unmount)
+* @param {array} reset - An empty array to banners array
+*/
+
 class BannersIndex extends React.Component {
   constructor(props){
     super(props)

@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react'
 
+/**
+* HTTP - POST
+* @param {object} question - The question object to ask
+*/
 class Contact extends React.Component {
   render () {
 

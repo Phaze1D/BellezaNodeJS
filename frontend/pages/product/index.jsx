@@ -6,6 +6,14 @@ const prods = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
+/**
+* HTTP - GET
+* @param {array} products - An array of products
+*
+* LOCAL - POST (on unmount)
+* @param {array} reset - An empty array to reset products array
+*/
+
 export default class ProductsIndex extends React.Component {
   constructor(props){
     super(props)

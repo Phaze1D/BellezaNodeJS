@@ -7,6 +7,17 @@ const ords = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
+/**
+* HTTP - GET
+* @param {array} orders - An array of the current users orders
+*
+* LOCAL - POST
+* @param {object} resetLogout - Logouts the user by reseting it with empty object
+*
+* LOCAL - POST (on unmount)
+* @param {array} resetOrders - An empty array to reset the user orders
+*/
+
 export default class UserOrders extends React.Component {
   constructor(props){
     super(props)

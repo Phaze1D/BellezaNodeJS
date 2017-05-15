@@ -6,11 +6,31 @@ Tabs.setUseDefaultStyles(false);
 const related = []
 const pt = {}
 
+/**
+* if product is empty object or url changed (to different product)
+*   HTTP - GET
+*   @param {object} product - Entire product object with summaries
+* else
+*   HTTP - GET
+*   @param {object} summaries - Just a single products summaries
+*   LOCAL - GET
+*   @param {object} product - Product object basic info
+* endif
+*
+* HTTP - GET
+* @param {array} related - Array of related products
+*
+* LOCAL - POST
+* @param {object} cartDetail - Adds a product to the cart
+*
+* LOCAL - POST (on unmount)
+* @param {object} reset - An empty object to reset product
+*/
+
 export default class ProductShow extends React.Component {
   constructor(props){
     super(props)
   }
-
 
 
   render() {

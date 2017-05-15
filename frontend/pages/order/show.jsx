@@ -5,6 +5,14 @@ import dateOptions from 'utils/date'
 
 const ord = {details: []}
 
+/**
+* HTTP - GET
+* @param {object} order - Full order info
+*
+* LOCAL - POST
+* @param {object} reset - reset the order with empty object
+*/
+
 class OrderShow extends React.Component {
   render () {
 

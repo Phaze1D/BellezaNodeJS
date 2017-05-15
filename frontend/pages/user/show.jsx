@@ -5,6 +5,11 @@ import UserOrders from 'pages/user/orders'
 import UserAddresses from 'pages/user/addresses'
 import UserCodes from 'pages/user/codes'
 
+/**
+* LOCAL - GET
+* @param {object} user - The current logged in user
+*/
+
 class UserShow extends React.Component {
   render () {
     const match = this.props.match
@@ -42,6 +47,7 @@ class UserShow extends React.Component {
           </ul>
         </section>
 
+        <Redirect from={`${match.url}/`} to={`${match.url}/details`}/>
         <Route path={`${match.url}/details`} component={UserDetails}/>
         <Route path={`${match.url}/orders`} component={UserOrders}/>
         <Route path={`${match.url}/addresses`} component={UserAddresses}/>

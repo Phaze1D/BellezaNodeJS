@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react'
 
+/**
+* HTTP - POST
+* @param {object} passwordReset - The password reset info
+*/
+
 class PasswordReset extends React.Component {
   render () {
 

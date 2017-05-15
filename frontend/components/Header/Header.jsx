@@ -5,6 +5,17 @@ import classnames from 'classnames'
 
 const cats = []
 
+/**
+* HTTP - GET
+* @param {object} cartOrder - The Object the represent the current order (shopping cart)
+*
+* HTTP - GET
+* @param {array} categories - An array of all the categories
+
+* LOCAL - POST
+* @param {string} searchInput - Sets the search input
+*/
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props)

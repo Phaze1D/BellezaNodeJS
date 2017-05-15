@@ -2,6 +2,13 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import OrderTable from 'components/OrderTable/OrderTable'
 
+/**
+* LOCAL - GET
+* @param {object} cartOrder - The current cart order
+*
+* LOCAL - POST
+* @param {object} cartOrder - The new modified cart order
+*/
 
 class CartShow extends React.Component {
   constructor(props){

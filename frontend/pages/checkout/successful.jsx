@@ -4,6 +4,17 @@ import OrderTable from 'components/OrderTable/OrderTable'
 
 const ord = {details: []}
 
+/**
+* LOCAL - GET
+* @param {object} user - The current logged in user
+*
+* LOCAL - GET
+* @param {object} cartOrder - The current cart order
+*
+* LOCAL - POST (on unmount)
+* @param {object} reset - Reset the current cart order with empty object
+*/
+
 class CheckoutSuccessful extends React.Component {
   render () {
 

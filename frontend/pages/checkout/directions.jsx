@@ -6,6 +6,20 @@ import AddressList from 'components/AddressList/AddressList'
 const ord = {details: []}
 const usr = {}
 
+/**
+* LOCAL - GET
+* @param {object} user - The current logged in user
+*
+* LOCAL - GET
+* @param {object} cartOrder - The cart order
+*
+* LOCAL - POST
+* @param {object} cartInfo - Adds shipping info and factura info to the cart
+*
+* LOCAL - POST (on unmount)
+* @param {object} resetAll - An empty object to reset errors
+*/
+
 export default class CheckoutDirections extends React.Component {
   constructor(props){
     super(props)

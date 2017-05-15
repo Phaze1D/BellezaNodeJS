@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 import dateOptions from 'utils/date'
 
-
-
 const ords = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
+
+/**
+* HTTP - GET
+* @param {array} orders - An array of orders
+*
+* LOCAL - POST (on unmount)
+* @param {array} reset - An empty array to reset orders array
+*/
 
 class BackofficeOrders extends React.Component {
   constructor(props){

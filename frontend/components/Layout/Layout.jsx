@@ -42,22 +42,32 @@ export default class Layout extends React.Component {
     }
   }
 
+  /******* REMEMBER ALL POST COULD HAVE ERRORS *******/
+
   render() {
     return (
       <div id='layout'>
         <Header/>
-        <Redirect from='/' to='/home'/>
+        <Redirect from='/' to='/backoffice'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories" component={CategoryIndex}/>
         <Route path="/category" component={CategoryShow}/>
         <Route path="/product" component={ProductShow}/>
         <Route path="/search" component={Search}/>
-        <Route path="/signin" component={Signin}/>
-        <Route path="/user" component={UserShow}/>
         <Route path="/cart" component={CartShow}/>
+        <Route path="/signin" component={Signin}/>
+        <Route path="/contact" component={Contact}/>
+        <Route path="/reset" component={PasswordReset}/>
+        <Route path="/stores" component={Stores}/>
+
+        {/* Missing Redirect if user is not logged in */}
+        <Route path="/user" component={UserShow}/>
         <Route path="/checkout" component={CheckoutDirections}/>
         <Route path="/confirmation" component={CheckoutConfirmation}/>
         <Route path="/successful" component={CheckoutSuccessful}/>
+
+        {/* Missing Redirect if user is not logged in and user is not admin*/}
+        <Route path="/backoffice" component={BackofficeShow}/>
         <Route path="/order" component={OrderShow}/>
 
         {/******* REMOVE THIS SECTION IN PRODUCTION *******
@@ -69,10 +79,6 @@ export default class Layout extends React.Component {
         <Route path="/awards" component={Awards}/>
         ******* REMOVE THIS SECTION IN PRODUCTION *******/}
 
-        <Route path="/contact" component={Contact}/>
-        <Route path="/reset" component={PasswordReset}/>
-        <Route path="/stores" component={Stores}/>
-        <Route path="/backoffice" component={BackofficeShow}/>
         <Footer/>
       </div>
     )

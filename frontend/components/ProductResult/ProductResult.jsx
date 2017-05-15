@@ -2,6 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
+/**
+* LOCAL - POST
+* @param {object} cartDetail - Adds a product to the cart
+*/
+
 export default class ProductResult extends React.Component {
   constructor(props) {
     super(props)

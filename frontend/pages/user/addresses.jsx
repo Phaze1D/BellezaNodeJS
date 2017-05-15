@@ -4,6 +4,15 @@ import AddressList from 'components/AddressList/AddressList'
 
 const us = {}
 
+/**
+* LOCAL - GET
+* @param {array} addresses - An array of the current user addresses
+*
+* LOCAL - POST
+* @param {object} resetLogout - Logouts the user by reseting it with empty object
+*
+*/
+
 class UserAddresses extends React.Component {
   render () {
     return (

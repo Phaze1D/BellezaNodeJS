@@ -1,5 +1,20 @@
 import React, { PropTypes } from 'react'
 
+
+/**
+* HTTP - POST
+* @param {object} user - The new user info
+*
+* HTTP - GET
+* @param {object} errors - An object of form errors
+*
+* LOCAL - POST
+* @param {string} resetOne - A string to reset one property of the error object
+*
+* LOCAL - POST (on unmount)
+* @param {object} resetAll - An empty object to reset errors
+*/
+
 class UserEdit extends React.Component {
   render () {
 

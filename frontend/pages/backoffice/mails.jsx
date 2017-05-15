@@ -6,6 +6,14 @@ const usr = []
 const links = [];
 for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
+/**
+* HTTP - GET
+* @param {array} mails - An array of mails
+*
+* LOCAL - POST (on unmount)
+* @param {array} reset - An empty array to mails array
+*/
+
 class BackofficeMails extends React.Component {
   constructor(props){
     super(props)

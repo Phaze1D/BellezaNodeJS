@@ -2,6 +2,11 @@ import React from 'react'
 import Carousel from 'components/Carousel/Carousel'
 import Favorites from 'components/Favorites/Favorites'
 
+/**
+* HTTP - GET
+* @param {array} carouselImages - An array of the images to display on the carousel
+* @param {array} favorites - An array of product objects to display on the favorites
+*/
 
 export default class Home extends React.Component {
   constructor(props){
