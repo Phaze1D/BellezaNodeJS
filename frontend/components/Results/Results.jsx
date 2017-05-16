@@ -4,28 +4,44 @@ import DropDown from 'components/DropDown/DropDown'
 import Pagination from 'components/Pagination/Pagination'
 import ProductResult from 'components/ProductResult/ProductResult'
 
-const prods = []
-
-const links = [];
-for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
-
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {page: 0}
+    this.state = {page: 0, prePage: 20, sortIndex: 0}
 
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   handlePageClick(index, event){
     this.setState({page: index})
   }
 
-  render() {
-    const sortOptions = ["A-Z", "Z-A", "Precio Alto", "Precio Bajo"]
+  handleSort(index){
+    this.setState({sortIndex: index, page: 0})
+  }
 
-    const prodList = prods.map( (product, index) =>
+  render() {
+    const {
+      products,
+      total,
+      url
+    } = this.props
+
+    const links = []
+    for(let i = 0; i < Math.ceil(total/this.state.prePage); i++ ){
+      links.push({value: `${url}page=${i}&sort=${this.state.sortIndex}`, name: i+1})
+    }
+
+    const sortOptions = [
+      {link: `${url}page=0&sort=0`, name:"A-Z"},
+      {link: `${url}page=0&sort=1`, name:"Z-A"},
+      {link: `${url}page=0&sort=2`, name:"Precio Alto"},
+      {link: `${url}page=0&sort=3`, name:"Precio Bajo"}
+    ]
+
+    const prodList = products.map( (product, index) =>
       <ProductResult key={index} {...product}/>
     )
 
@@ -34,7 +50,10 @@ export default class Results extends React.Component {
         <div className="grid-wrap between results-options center">
           <div className="grid center">
             <span className="col-xxs-hide" style={{marginRight: '16px'}}>Ordenar por:</span>
-            <DropDown options={sortOptions}/>
+            <DropDown
+              options={sortOptions}
+              focuson={this.state.sortIndex}
+              onRequestItem={this.handleSort}/>
           </div>
 
           <Pagination
