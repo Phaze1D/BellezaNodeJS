@@ -19,12 +19,12 @@ var config = {
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,
+      test: /\.(jsx|js)?$/,
       exclude: /(node_modules)/,
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: [['es2015', {modules: false}], 'react'],
+          presets: [['es2015', {modules: false}], 'react', 'stage-3'],
           plugins: ["transform-decorators-legacy"]
         }
       }]
@@ -40,7 +40,7 @@ var config = {
     }]
   },
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 3000,
     historyApiFallback: true,
     disableHostCheck: true,

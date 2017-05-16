@@ -27,7 +27,7 @@ var config = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: [['es2015', {modules: false}], 'react'],
+          presets: [['es2015', {modules: false}], 'react', 'stage-3'],
           plugins: ["transform-decorators-legacy"]
         }
       }]
