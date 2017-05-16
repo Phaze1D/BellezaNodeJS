@@ -47,12 +47,13 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div id='layout'>
-        <Header/>
+        <Header history={this.props.history}/>
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
-        <Route path="/categories" component={CategoryIndex}/>
-        <Route path="/category" component={CategoryShow}/>
-        <Route path="/product" component={ProductShow}/>
+        <Route path="/categories/:index" component={CategoryIndex}/>
+        <Route path="/categories/:index/sub/:sub" component={CategoryIndex}/>
+        <Route path="/category/:index/sub/:sub/show/:show" component={CategoryShow}/>
+        <Route path="/product/:id" component={ProductShow}/>
         <Route path="/search" component={Search}/>
         <Route path="/cart" component={CartShow}/>
         <Route path="/signin" component={Signin}/>
