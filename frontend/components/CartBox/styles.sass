@@ -1,17 +1,20 @@
 .cart-box
   +shadow-2dp()
-  position: absolute
+  display: none
+  position: fixed
   width: 350px
   max-height: 500px
   background-color: $grey-100
   z-index: 200
-  top: 90%
-  right: 0
+  top: 42px
+  right: 16px
   border-radius: $border-radius
-  display: none
   flex-direction: column
   text-align: center
   overflow: hidden
+
+  &.show
+    display: flex
 
 .cart-mid
   flex-grow: 1
