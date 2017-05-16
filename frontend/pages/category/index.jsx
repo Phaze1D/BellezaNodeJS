@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const cate = {mains: []}
 
 /**
 * LOCAL - GET
@@ -9,22 +9,37 @@ const cate = {mains: []}
 *
 */
 
+@connect( store => {
+  return {
+    categories: store.categories,
+  }
+})
 export default class CategoryIndex extends React.Component {
   constructor(props){
     super(props)
   }
 
   render(){
-    const sideList = cate.mains.map( (cat, index) =>
+    const {
+      categories,
+      match
+    } = this.props
+
+    let category = categories[match.params.index]
+    if(!category) return (<Redirect to="/home"/>)
+    category = match.params.sub ? category.subs[match.params.sub] : category
+    if(!category) return (<Redirect to="/home"/>)
+
+    const sideList = category.subs.map( (sub, index) =>
       <li key={index}>
-        <Link to={cat.to}>{cat.name}</Link>
+        <Link to={sub.to}>{sub.name}</Link>
       </li>
     )
 
-    const gridList = cate.mains.map( (cat, index) =>
+    const gridList = category.subs.map( (sub, index) =>
       <div className="col-4 col-sm-6 col-xxs-12" key={index}>
-        <Link to={cat.to} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
-          <h3 className="highlight">{cat.name}</h3>
+        <Link to={sub.to} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
+          <h3 className="highlight">{sub.name}</h3>
         </Link>
       </div>
     )
@@ -32,7 +47,7 @@ export default class CategoryIndex extends React.Component {
     return (
       <main className="grid">
         <section className="col-3 col-xs-hide">
-          <h3>{cate.name}</h3>
+          <h3>{category.name}</h3>
           <ul className="ul-dots">
             {sideList}
           </ul>
@@ -40,7 +55,7 @@ export default class CategoryIndex extends React.Component {
 
         <section className="col-9 col-xs-12">
           <div className="category-cover" style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
-            <h2>{cate.name}</h2>
+            <h2>{category.name}</h2>
           </div>
 
           <div className="grid-wrap">
