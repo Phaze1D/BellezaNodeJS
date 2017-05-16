@@ -1,0 +1,8 @@
+export const GET_CATEGORIES = "GET_CATEGORIES"
+export const SET_SEARCH_INPUT = "SET_SEARCH_INPUT"
+export const GET_PRODUCTS = "GET_PRODUCTS"
+export const RESET_PRODUCTS = "RESET_PRODUCTS"
+export const GET_PRODUCT = "GET_PRODUCT"
+export const RESET_PRODUCT = "RESET_PRODUCT"
+export const CART_ADD_DETAIL = "CART_ADD_DETAIL"
+export const HIDE_CART = "HIDE_CART"
