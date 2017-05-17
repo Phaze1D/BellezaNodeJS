@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Results from 'components/Results/Results'
 import { connect } from 'react-redux'
-import { getProducts, resetProducts } from 'actions/products'
+import { getProducts, resetProducts } from 'actions/product'
 import queryString from 'query-string'
 
 /**
@@ -38,6 +38,7 @@ class Search extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
       this.props.dispatch(getProducts(parse.q, undefined, parse.page, parse.sort))
+      .then()
       .catch(this.handleGlobalError)
     }
   }
@@ -60,8 +61,8 @@ class Search extends React.Component {
           "<i><span className="sub-text light">{parse.q}</span></i>"
         </p>
         <Results
-          products={products.results}
-          total={products.total}
+          products={products.get('results')}
+          total={products.get('total')}
           url={`${match.url}?q=${parse.q}&`}/>
       </main>
     )

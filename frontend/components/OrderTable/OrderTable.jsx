@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const ord = {details:[]}
 
 class OrderTable extends React.Component {
   constructor(props){
@@ -10,21 +9,30 @@ class OrderTable extends React.Component {
   }
 
   handleInputChange(index, event) {
-    this.props.onRequestChange(index, event)
+    this.props.onRequestInputChange(index, Number(event.target.value))
+  }
+
+  handleRemove(index, event){
+    this.props.onRequestRemove(index)
   }
 
   render () {
-    const tableClasses = classnames('order-table', this.props.size)
+    const {
+      order,
+      editable
+    } = this.props
 
-    const detList = ord.details.map( (detail, index) =>
+    const detList = order.get('details').map( (detail, index) =>
       <OrderRow
-        key={index} {...detail}
-        editable={this.props.editable}
-        onRequestChange={this.handleInputChange.bind(this, index)}/>
+        key={index}
+        detail={detail}
+        editable={editable}
+        onRequestChange={this.handleInputChange.bind(this, index)}
+        onRequestRemove={this.handleRemove.bind(this, index)}/>
     )
 
     return (
-      <table className={tableClasses}>
+      <table className='order-table'>
         <thead>
           <tr className="col-xs-hide">
             <th>Producto</th>
@@ -43,23 +51,23 @@ class OrderTable extends React.Component {
         <tfoot className="order-table-foot">
           <tr>
             <td colSpan="5">Subtotal: </td>
-            <td className="foot-main">${ord.subtotal}</td>
+            <td className="foot-main">${order.get('subTotal').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">IVA:</td>
-            <td className="foot-main">${ord.iva}</td>
+            <td className="foot-main">${order.get('ivaTotal').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Discount:</td>
-            <td className="foot-main">${ord.discount}</td>
+            <td className="foot-main">${order.get('discountTotal').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Costo de Envío: </td>
-            <td className="foot-main">${ord.shippingCost}</td>
+            <td className="foot-main">${order.get('shippingTotal').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Total:</td>
-            <td className="foot-main">${ord.total}</td>
+            <td className="foot-main">${order.get('total').toFixed(2)}</td>
           </tr>
 
         </tfoot>
@@ -75,58 +83,56 @@ export default OrderTable;
 const OrderRow = (props) => (
   <tr>
     <td>
-      <img src={props.pimg}/>
+      <img src={props.details.get('pimg')}/>
     </td>
 
     <td className="xs-td" colSpan="4">
       <span className="xs-span">
-        {props.description}
+        {props.details.get('name')}
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Precio: </span>${props.price}
+        <span className="sub-text">Precio: </span>${props.details.get('price')}
       </span>
 
       <span className="xs-span">
         {props.editable ?
-          <input type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
+          <input type="number" max="10" min="0" value={props.details.get('quantity')} onChange={props.onRequestChange}/>
           :
-          props.quantity
+          props.details.get('quantity')
         }
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Subtotal: </span>${props.subtotal}
+        <span className="sub-text">Subtotal: </span>${props.details.get('subTotal')}
       </span>
     </td>
 
 
     <td className="sm-td">
-      {props.description}
+      {props.details.get('name')}
     </td>
 
     <td className="sm-td">
-      ${props.price}
+      ${props.details.get('price')}
     </td>
 
     <td className="sm-td">
       {props.editable ?
-        <input type="number" max="10" min="0" value={props.quantity} onChange={props.onRequestChange}/>
+        <input type="number" max="10" min="0" value={props.details.get('quantity')} onChange={props.onRequestChange}/>
         :
-        props.quantity
+        props.details.get('quantity')
       }
     </td>
 
     <td className="sm-td">
-      ${props.subtotal}
+      ${props.details.get('subTotal')}
     </td>
 
-
-
-      <td>
-        {props.editable &&
-        <i className="material-icons">clear</i>
-        }
-      </td>
+    <td>
+      {props.editable &&
+        <i className="material-icons" onClick={props.onRequestRemove}>clear</i>
+      }
+    </td>
   </tr>
 )
