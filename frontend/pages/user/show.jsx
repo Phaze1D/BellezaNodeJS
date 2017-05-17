@@ -1,18 +1,28 @@
 import React, { PropTypes } from 'react'
 import { Route, Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import UserDetails from 'pages/user/details'
 import UserOrders from 'pages/user/orders'
 import UserAddresses from 'pages/user/addresses'
 import UserCodes from 'pages/user/codes'
+
 
 /**
 * LOCAL - GET
 * @param {object} user - The current logged in user
 */
 
+@connect( store => {
+  return {
+    user: store.user
+  }
+})
 class UserShow extends React.Component {
   render () {
-    const match = this.props.match
+    const {
+      user,
+      match
+    } = this.props
 
     return (
       <main className="grid-wrap around top">
@@ -36,9 +46,11 @@ class UserShow extends React.Component {
               <Link to={`${match.url}/codes`}>Códigos de Descuento</Link>
             </li>
 
-            <li>
-              <Link to="/backoffice/orders">Backoffice</Link>
-            </li>
+            {user.get('isAdmin') &&
+              <li>
+                <Link to="/backoffice/orders">Backoffice</Link>
+              </li>
+            }
 
             <h4>Privacidad</h4>
             <li>
