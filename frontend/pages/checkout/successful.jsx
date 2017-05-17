@@ -33,7 +33,7 @@ class CheckoutSuccessful extends React.Component {
         <div className="col-8 col-xs-12">
           <Address {...ord.shippedTo} title="Dirección de Envío"/>
           <Address {...ord.invoiceTo} title="Facturacion"/>
-          <OrderTable editable={false} size="sm"/>
+          <OrderTable editable={false}/>
         </div>
       </main>
     )

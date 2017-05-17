@@ -44,7 +44,7 @@ export default class CheckoutConfirmation extends React.Component {
         <div className="grid-wrap top between">
           <section className="col-8 col-sm-12 last-sm">
             <Link to="/cart" style={{float: 'right'}}>Editar</Link>
-            <OrderTable editable={false} size="sm"/>
+            <OrderTable editable={false}/>
 
             <form className="main-form grid bottom">
               <div className="col-8">

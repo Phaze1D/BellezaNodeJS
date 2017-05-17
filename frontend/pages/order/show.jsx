@@ -25,7 +25,7 @@ class OrderShow extends React.Component {
         </h4>
         <div className="grid-wrap">
           <div className="col-9 col-md-8 col-sm-12">
-            <OrderTable editable={false} size="sm"/>
+            <OrderTable editable={false}/>
           </div>
 
 
