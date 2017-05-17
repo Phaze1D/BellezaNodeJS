@@ -30,7 +30,19 @@ export default class DropDown extends React.Component {
   }
 
   render(){
-    const optionList = this.props.options.map( (option, index) =>
+    const {
+      url,
+      focuson
+    } = this.props
+
+    const options = [
+      {link: `${url}page=0&sort=0`, name:"A-Z"},
+      {link: `${url}page=0&sort=1`, name:"Z-A"},
+      {link: `${url}page=0&sort=2`, name:"Precio Alto"},
+      {link: `${url}page=0&sort=3`, name:"Precio Bajo"}
+    ]
+
+    const optionList = options.map( (option, index) =>
       <Link to={option.link} key={index} className="mdc-list-item" role="menuitem" tabIndex="0">
         {option.name}
       </Link>
@@ -39,7 +51,7 @@ export default class DropDown extends React.Component {
     return (
       <div className="mdc-menu-anchor">
         <button className="drop-button center" onClick={this.handleToggle}>
-          {this.props.options[this.props.focuson].name}
+          {options[focuson].name}
           <i className="material-icons">keyboard_arrow_down</i>
         </button>
         <div ref="dom_menu" className="mdc-simple-menu" tabIndex="-1">

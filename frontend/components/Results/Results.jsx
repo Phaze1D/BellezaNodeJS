@@ -34,15 +34,8 @@ export default class Results extends React.Component {
       links.push({value: `${url}page=${i}&sort=${this.state.sortIndex}`, name: i+1})
     }
 
-    const sortOptions = [
-      {link: `${url}page=0&sort=0`, name:"A-Z"},
-      {link: `${url}page=0&sort=1`, name:"Z-A"},
-      {link: `${url}page=0&sort=2`, name:"Precio Alto"},
-      {link: `${url}page=0&sort=3`, name:"Precio Bajo"}
-    ]
-
     const prodList = products.map( (product, index) =>
-      <ProductResult key={index} {...product}/>
+      <ProductResult key={index} product={product}/>
     )
 
     return (
@@ -51,7 +44,7 @@ export default class Results extends React.Component {
           <div className="grid center">
             <span className="col-xxs-hide" style={{marginRight: '16px'}}>Ordenar por:</span>
             <DropDown
-              options={sortOptions}
+              url={url}
               focuson={this.state.sortIndex}
               onRequestItem={this.handleSort}/>
           </div>
