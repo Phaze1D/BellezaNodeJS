@@ -9,8 +9,6 @@ import Immutable from 'immutable'
 
 import 'index.sass'
 
-
-
 let middleware = null
 
 if(process.env.NODE_ENV === 'production'){
