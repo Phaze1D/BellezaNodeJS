@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import CartBox from 'components/CartBox/CartBox'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
-import { getCategories } from 'actions/categories'
+import { getCategories } from 'actions/category'
 import { hideCart } from 'actions/cart'
 
 
@@ -33,11 +33,13 @@ export default class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getCategories()).catch(this.handleGlobalError)
+    this.props.dispatch(getCategories())
+    .then()
+    .catch(this.handleGlobalError)
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(nextProps.cart.show && !this.props.cart.show) {
+    if( nextProps.cart.get('show') && !this.props.cart.get('show') ) {
       setTimeout( () => {this.dispatch(hideCart())}, 4000)
     }
   }
@@ -81,24 +83,24 @@ export default class Header extends React.Component {
       cart
     } = this.props
 
-    const showC = this.state.showCart || cart.show
+    const showC = this.state.showCart || cart.get('show')
 
     const navList = categories.map( (category, index) =>
       <li
-        key={category.id}
+        key={category.get('id')}
         className="nav-item"
         onClick={this.handleNavClick}
         onMouseLeave={this.handleNavLeave}>
 
-        <Link to={category.to} title={category.name} className="nav-link">{category.name}</Link>
-        <MainList subs={category.subs}/>
+        <Link to={category.get('to')} title={category.get('name')} className="nav-link">{category.get('name')}</Link>
+        <MainList subs={category.get('subs')}/>
       </li>
     )
 
     return (
       <header>
         <CartBox
-          {...cart}
+          cart={cart}
           show={showC}
           onRequestMouseLeave={(event) => {this.setState({showCart: false})} }/>
 
@@ -187,17 +189,17 @@ const MainList = (props) => {
 
   const mainList = props.subs.map( (main) => {
 
-    const subList = main.subs.map( (sub) =>
-      <li key={sub.id} title={sub.name}>
-        <Link to={sub.to} className="sub-text">
-          {sub.name}
+    const subList = main.get('subs').map( (sub) =>
+      <li key={sub.get('id')} title={sub.get('name')}>
+        <Link to={sub.get('to')} className="sub-text">
+          {sub.get('name')}
         </Link>
       </li>
     )
 
     return (
-      <ul key={main.id} className="main-item">
-        <Link to={main.to} title={main.name} className="dark-a">{main.name}</Link>
+      <ul key={main.get('id')} className="main-item">
+        <Link to={main.get('to')} title={main.get('name')} className="dark-a">{main.get('name')}</Link>
         {subList}
       </ul>
     )
