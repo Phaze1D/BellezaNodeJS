@@ -58,7 +58,7 @@ export default class Layout extends React.Component {
         <Route path="/cart" component={CartShow}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/contact" component={Contact}/>
-        <Route path="/reset" component={PasswordReset}/>
+        <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
         {/* Missing Redirect if user is not logged in */}
