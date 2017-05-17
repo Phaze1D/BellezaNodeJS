@@ -72,6 +72,12 @@ input[type="text"], input[type="number"], input[type="password"]
   &::placeholder
     color: $grey-400
 
+  &:disabled
+    box-shadow: none
+    color: $grey-500
+    cursor: not-allowed
+    background-color: $grey-200
+
 textarea
   @extend input[type="text"]
   width: 100%
