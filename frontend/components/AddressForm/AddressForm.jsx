@@ -1,52 +1,79 @@
 import React, { PropTypes } from 'react'
 
-/**
-* HTTP - POST
-* @param {object} address - The new address info
-*
-* HTTP - GET
-* @param {object} errors - An object of form errors
-*
-* LOCAL - POST
-* @param {string} resetOne - A string to reset one property of the error object
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
-*/
 
 class AddressForm extends React.Component {
   render () {
+    const {
+      errors,
+      address,
+      onRequestCancel,
+      onRequestSubmit,
+      onRequestBlur,
+      onRequestFocus
+    } = this.props
 
     return (
       <div className="box with-y">
         <h3>
           Dirección
-          <i className="material-icons clear-icon" onClick={this.props.onRequestCancel}>clear</i>
+          <i className="material-icons clear-icon" onClick={onRequestCancel}>clear</i>
         </h3>
-        <form className="main-form">
+        <form className="main-form" onSubmit={onRequestSubmit}>
           <label htmlFor="firstName">Nombre</label>
-          <input type="text" name="firstName" defaultValue={this.props.firstName}/>
+          {errors.get('firstName') && <div className="error-div">{errors.get('firstName')}</div>}
+          <input type="text" name="firstName"
+            defaultValue={address.get('firstName')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="lastName">Apellidos</label>
-          <input type="text" name="lastName" defaultValue={this.props.lastName}/>
+          {errors.get('lastName') && <div className="error-div">{errors.get('lastName')}</div>}
+          <input type="text" name="lastName"
+            defaultValue={address.get('lastName')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="street1">Dirección</label>
-          <input type="text" name="street1" defaultValue={this.props.street1}/>
+          {errors.get('street1') && <div className="error-div">{errors.get('street1')}</div>}
+          <input type="text" name="street1"
+            defaultValue={address.get('street1')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="street2">Colonia</label>
-          <input type="text" name="street2" defaultValue={this.props.street2}/>
+          {errors.get('street2') && <div className="error-div">{errors.get('street2')}</div>}
+          <input type="text" name="street2"
+            defaultValue={address.get('street2')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="city">Ciudad</label>
-          <input type="text" name="city" defaultValue={this.props.city}/>
+          {errors.get('city') && <div className="error-div">{errors.get('city')}</div>}
+          <input type="text" name="city"
+            defaultValue={address.get('city')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="state">Estado</label>
-          <input type="text" name="state" defaultValue={this.props.state}/>
+          {errors.get('state') && <div className="error-div">{errors.get('state')}</div>}
+          <input type="text" name="state"
+            defaultValue={address.get('state')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="zipcode">Codigo Postal</label>
-          <input type="text" name="zipcode" defaultValue={this.props.zipcode}/>
+          {errors.get('zipcode') && <div className="error-div">{errors.get('zipcode')}</div>}
+          <input type="text" name="zipcode"
+            defaultValue={address.get('zipcode')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <label htmlFor="telephone">Telefono</label>
-          <input type="text" name="telephone" defaultValue={this.props.telephone}/>
+          {errors.get('telephone') && <div className="error-div">{errors.get('telephone')}</div>}
+          <input type="text" name="telephone"
+            defaultValue={address.get('telephone')}
+            onBlur={onRequestBlur}
+            onFocus={onRequestFocus}/>
 
           <input className="submit" type="submit" value="Guardar"/>
         </form>
