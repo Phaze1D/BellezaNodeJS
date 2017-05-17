@@ -2,7 +2,7 @@ import React from 'react'
 import Results from 'components/Results/Results'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getProducts, resetProducts } from 'actions/products'
+import { getProducts, resetProducts } from 'actions/product'
 import queryString from 'query-string'
 
 
@@ -46,13 +46,14 @@ export default class CategoryShow extends React.Component {
 
   handleUrlChanged(location, action) {
     let mParams = this.props.match.params
-    let category = this.props.categories[mParams.index]
-    category = category ? category.subs[mParams.sub] : false
-    category = category ? category.subs[mParams.show] : false
+    let category = this.props.categories.get(mParams.index)
+    category = category ? category.getIn(['subs', mParams.sub]) : false
+    category = category ? category.getIn(['subs', mParams.show]) : false
 
     if(this.props.match.url === location.pathname && category){
       const parse = queryString.parse(location.search)
-      this.props.dispatch(getProducts(undefined, category.id, parse.page, parse.sort))
+      this.props.dispatch(getProducts(undefined, category.get('id'), parse.page, parse.sort))
+      .then()
       .catch(this.handleGlobalError)
     }
   }
@@ -68,21 +69,21 @@ export default class CategoryShow extends React.Component {
       match
     } = this.props
 
-    let category = categories[match.params.index]
+    let category = categories.get(match.params.index)
     if(!category) return (<Redirect to="/home"/>)
-    category = category.subs[match.params.sub]
+    category = category.getIn(['subs', match.params.sub])
     if(!category) return (<Redirect to="/home"/>)
-    category = category.subs[match.params.show]
+    category = category.getIn(['subs', match.params.show])
     if(!category) return (<Redirect to="/home"/>)
 
     return (
       <main>
         <div className="category-cover"  style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
-          <h2>{category.name}</h2>
+          <h2>{category.get('name')}</h2>
         </div>
         <Results
-          products={products.results}
-          total={products.total}
+          products={products.get('results')}
+          total={products.get('total')}
           url={`${match.url}?`}/>
       </main>
     )
