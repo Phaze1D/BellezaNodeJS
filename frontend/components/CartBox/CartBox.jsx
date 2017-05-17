@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
 
-export default class CartBox extends React.Component {
+export default class CartBox extends React.PureComponent {
   constructor(props){
     super(props)
 
@@ -17,12 +17,13 @@ export default class CartBox extends React.Component {
 
   render () {
     const {
-      details,
+      cart,
       show
     } = this.props
 
-    const detList = details.map( (detail, index) =>
-      <CartItem key={index} {...detail}/>
+
+    const detList = cart.get('details').map( (detail, index) =>
+      <CartItem key={index} detail={detail}/>
     )
 
     const boxClasses = classnames('cart-box', {'show': show})
@@ -35,13 +36,13 @@ export default class CartBox extends React.Component {
         <h3>Tu Carrito</h3>
 
         <div className="cart-mid">
-          {details.length == 0 && <h4 className="sub-text">No Hay Productos</h4>}
+          {cart.get('details').size == 0 && <h4 className="sub-text">No Hay Productos</h4>}
           <ul>
             {detList}
           </ul>
         </div>
 
-        {details.length > 0 &&
+        {cart.get('details').size > 0 &&
           <div className="cart-bottom">
             <Link className="light-button margin-button" to="/cart">Detalles</Link>
             <Link className="dark-button margin-button" to="/checkout">Checkout</Link>
@@ -55,11 +56,11 @@ export default class CartBox extends React.Component {
 
 const CartItem = props => (
   <li className="cart-item">
-    <img src={props.pimg}/>
+    <img src={props.detail.get('pimg')}/>
     <div>
-      <p className="overflow-text">{props.name}</p>
-      <p><span className="sub-text">Cantidad:</span> {props.quantity}</p>
-      <p><span className="sub-text">Precio:</span> ${props.price} </p>
+      <p className="overflow-text">{props.detail.get('name')}</p>
+      <p><span className="sub-text">Cantidad:</span> {props.detail.get('quantity')}</p>
+      <p><span className="sub-text">Precio:</span> ${props.detail.get('price')} </p>
     </div>
   </li>
 )
