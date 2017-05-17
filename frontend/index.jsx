@@ -5,9 +5,11 @@ import { applyMiddleware, createStore } from "redux"
 import promise from "redux-promise-middleware"
 import { Routes } from 'utils/routes'
 import reducers from 'reducers'
-
+import Immutable from 'immutable'
 
 import 'index.sass'
+
+
 
 let middleware = null
 
