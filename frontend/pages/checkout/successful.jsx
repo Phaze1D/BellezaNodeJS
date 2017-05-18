@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Address } from './confirmation'
 import OrderTable from 'components/OrderTable/OrderTable'
-
-const ord = {details: []}
+import { connect } from 'react-redux'
+import { resetCart } from 'actions/cart'
 
 /**
 * LOCAL - GET
@@ -15,8 +15,25 @@ const ord = {details: []}
 * @param {object} reset - Reset the current cart order with empty object
 */
 
+@connect( store => {
+  return {
+    cart: store.cart,
+    user: store.user,
+    payment: store.payment
+  }
+})
 class CheckoutSuccessful extends React.Component {
+
+  componentWillUnmount() {
+    this.props.dispatch(resetCart())
+  }
+
   render () {
+    const {
+      cart,
+      user,
+      payment,
+    } = this.props
 
     return (
       <main>
@@ -25,15 +42,17 @@ class CheckoutSuccessful extends React.Component {
           Tu pedido está siendo procesado
           <br/>
 					Te hemos enviado instrucciones a su correo electrónico
-          (<span className="sub-text light"> footdavid@hotmail.com </span>) acerca de su estado de la orden
+          (<span className="sub-text light"> {user.get('email')} </span>) acerca de su estado de la orden
           <br/>
 				  Cuando hayamos confirmado su pago, usted recibirá información sobre su envío.
         </p>
 
         <div className="col-8 col-xs-12">
-          <Address {...ord.shippedTo} title="Dirección de Envío"/>
-          <Address {...ord.invoiceTo} title="Facturacion"/>
-          <OrderTable editable={false}/>
+          <Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
+          <Address address={cart.get('invoiceAddress')} title="Facturacion"/>
+          <OrderTable
+            order={cart}
+            editable={false}/>
         </div>
       </main>
     )

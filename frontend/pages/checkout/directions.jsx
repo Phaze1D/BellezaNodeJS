@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
+import { addCartAddress, addCartExtra } from 'actions/cart'
+import { CART_SHIPPING_ADDRESS, CART_INVOICE_ADDRESS } from 'actions/types'
 
-const ord = {details: []}
-const usr = {}
+
+
 
 /**
 * LOCAL - GET
@@ -12,29 +15,47 @@ const usr = {}
 *
 * LOCAL - GET
 * @param {object} cartOrder - The cart order
-*
-* LOCAL - POST
-* @param {object} cartInfo - Adds shipping info and factura info to the cart
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
 */
 
+@connect( store => {
+  return {
+    cart: store.cart,
+    user: store.user
+  }
+})
 export default class CheckoutDirections extends React.Component {
   constructor(props){
     super(props)
 
     this.handleFactura = this.handleFactura.bind(this)
+    this.handleContinue = this.handleContinue.bind(this)
   }
 
-  handleFactura(event){
+  handleFactura(event) {
     this.refs.facturaBox.classList.toggle('hide-f')
+    if(this.refs.facturaBox.classList.contains('hide-f')){
+      this.props.dispatch(addCartAddress({}, CART_INVOICE_ADDRESS))
+    }
+  }
+
+  handleContinue(event) {
+    let extraData = new FormData()
+    extraData.append('note', this.refs.noteInput.value)
+    if(!this.refs.facturaBox.classList.contains('hide-f')){
+      extraData.append('rfc', this.refs.rfcInput.value)
+    }
+    this.props.dispatch(addCartExtra(extraData))
   }
 
   render () {
+    const {
+      cart,
+      user,
+      dispatch
+    } = this.props
 
-    const detailList = ord.details.map( (detail, index) =>
-      <DetailItem key={index} {...detail} />
+    const detailList = cart.get('details').map( (detail, index) =>
+      <DetailItem key={index} detail={detail}/>
     )
 
     return (
@@ -45,11 +66,16 @@ export default class CheckoutDirections extends React.Component {
             <article className="box">
               <h4 className="h-underline">Dirección de Envio</h4>
 
-              <AddressList selectable={true}/>
+              <AddressList
+                selectable={true}
+                selectActionType={CART_SHIPPING_ADDRESS}
+                addresses={user.get('addresses')}
+                errors={user.get('errors')}
+                dispatch={dispatch}/>
 
               <h5 className="h-underline">Instrucciones de envío (Opcional)</h5>
 
-              <textarea rows="6"></textarea>
+              <textarea rows="6" ref="noteInput"></textarea>
             </article>
 
             <article className="box hide-f" ref="facturaBox">
@@ -64,18 +90,24 @@ export default class CheckoutDirections extends React.Component {
                 </label>
               </h4>
 
-              <AddressList selectable={true}/>
+              <AddressList
+                selectable={true}
+                selectActionType={CART_INVOICE_ADDRESS}
+                addresses={user.get('addresses')}
+                errors={user.get('errors')}
+                dispatch={dispatch}/>
 
-              <form className="main-form">
-                <label htmlFor="name">Nombre</label>
-                <input name="name" type="text"/>
+              <form className="main-form" onSubmit={event => event.preventDefault()}>
                 <label htmlFor="rfc">RFC</label>
-                <input name="rfc" type="text"/>
+                <input name="rfc" type="text" ref="rfcInput"/>
               </form>
-
             </article>
 
-            <Link to="/confirmation" className="submit full">Continuar</Link>
+            <Link to="/confirmation"
+              className="submit full"
+              onClick={this.handleContinue}>
+              Continuar
+            </Link>
           </section>
 
           <section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs col-xxs-hide">
@@ -96,12 +128,12 @@ export default class CheckoutDirections extends React.Component {
 
 const DetailItem = props => (
   <li className="grid center col-12 col-xs-6">
-    <img className="col-4" src={props.pimg}/>
+    <img className="col-4" src={props.detail.get('pimg')}/>
     <div className="col-8">
-      <p className="sub-text primary">{props.description}</p>
+      <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
-        Cantidad: {props.quantity} <br/>
-        Subtotal: ${props.subtotal}
+        Cantidad: {props.detail.get('quantity')} <br/>
+        Subtotal: ${props.detail.get('subTotal')}
       </p>
     </div>
   </li>
