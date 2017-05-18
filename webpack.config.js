@@ -8,7 +8,8 @@ var config = {
   entry: './frontend/index.jsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/'
   },
   resolve: {
     modules: [
@@ -44,6 +45,7 @@ var config = {
     port: 3000,
     historyApiFallback: true,
     disableHostCheck: true,
+    publicPath: '/',
     hot: true,
   },
   plugins: [
