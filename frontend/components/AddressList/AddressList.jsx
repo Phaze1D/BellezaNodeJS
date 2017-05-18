@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import AddressForm from 'components/AddressForm/AddressForm'
 import classnames from 'classnames'
 import { Map } from 'immutable'
+import { addressDelete } from 'actions/address'
+import { addCartAddress } from 'actions/cart'
 
+// REMEMBER TO RESET ERRORS ON CANCEL
 
 
 export default class AddressList extends React.Component {
@@ -13,7 +16,6 @@ export default class AddressList extends React.Component {
     this.state = {showForm: false}
 
     this.handleCancel = this.handleCancel.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.handleAddressSelect = this.handleAddressSelect.bind(this)
   }
@@ -24,24 +26,23 @@ export default class AddressList extends React.Component {
     this.setState({showForm: true})
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    this.props.onRequestSubmit(this.address.get('id'), event)
-  }
-
   handleCancel(event) {
     this.setState({showForm: false})
     document.body.style.overflow = ""
-  }
-
-  handleDelete(address, event){
-    this.onRequestDelete(address.get('id'))
+    let prev = this.refs.grid.getElementsByClassName('address-selected')[0]
+    if( prev ){
+      prev.classList.remove('address-selected')
+    }
   }
 
   handleOverlayClick(event){
     if(event.target.classList.contains('overlay')){
       this.setState({showForm: false})
       document.body.style.overflow = ""
+      let prev = this.refs.grid.getElementsByClassName('address-selected')[0]
+      if( prev ){
+        prev.classList.remove('address-selected')
+      }
     }
   }
 
@@ -60,23 +61,21 @@ export default class AddressList extends React.Component {
       errors,
       addresses,
       selectable,
-      onRequestBlur,
-      onRequestFocus
+      selectActionType,
+      dispatch
     } = this.props
-
-    const selClass = classnames('box overflow-text sub-text', {'address-selectable': selectable})
 
     const addrList = addresses.map( (address, index) =>
       <div key={index} className="col-4 col-md-6 col-sm-12">
         <Address
           address={address}
-          className={selClass}
+          selectable={selectable}
+          selectActionType={selectActionType}
+          dispatch={dispatch}
           onRequestEdit={this.handleShow.bind(this, address)}
-          onRequestDelete={this.handleDelete.bind(this, address)}
           onRequestSelect={this.handleAddressSelect}/>
       </div>
     )
-
 
     return (
       <div>
@@ -97,10 +96,8 @@ export default class AddressList extends React.Component {
               <AddressForm
                 errors={errors}
                 address={this.address}
-                onRequestCancel={this.handleCancel}
-                onRequestSubmit={this.handleSubmit}
-                onRequestBlur={onRequestBlur}
-                onRequestFocus={onRequestFocus}/>
+                dispatch={dispatch}
+                onRequestCancel={this.handleCancel}/>
             </div>
           }
         </div>
@@ -115,40 +112,67 @@ export default class AddressList extends React.Component {
 }
 
 
-export const Address = props => {
-  const {
-    address,
-    className,
-    onRequestSelect,
-    onRequestEdit,
-    onRequestDelete
-  } = props
+class Address extends React.PureComponent {
+  constructor(props){
+    super(props)
 
-  return (
-    <div className={className} onClick={onRequestSelect}>
-      <p className="overflow-text">
-        {address.get('firstName')} {address.get('lastName')}
-      </p>
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
+  }
 
-      <p className="overflow-text">{address.get('telephone')}</p>
+  handleSelect(event) {
+    this.props.onRequestSelect(event)
+    if(this.props.selectable){
+      this.props.dispatch(addCartAddress(this.props.address.toJS(), this.props.selectActionType))
+    }
+  }
 
-      <hr></hr>
+  handleDelete(event){
+    event.preventDefault()
+    this.props.dispatch(addressDelete(this.props.address.get('id')))
+    .then()
+    .catch(this.handleError)
+  }
 
-      <p className="overflow-text">{address.get('street1')}</p>
+  handleError(response){
 
-      <p className="overflow-text">{address.get('street2')}</p>
+  }
 
-      <p className="overflow-text">
-        {address.get('city')}, {address.get('state')}
-      </p>
-      <p className="overflow-text">{address.get('zipcode')}</p>
-      <p className="overflow-text">{address.get('country')}</p>
+  render(){
+    const {
+      address,
+      selectable,
+      onRequestEdit
+    } = props
 
-      <ul className="grid center end">
-        <li><Link to="#" onClick={onRequestEdit}>Editar</Link></li>
-        <hr className="vertical-hr"></hr>
-        <li><Link to="#" onClick={onRequestDelete}>Borrar</Link></li>
-      </ul>
-    </div>
-  )
+    const selClass = classnames('box overflow-text sub-text', {'address-selectable': selectable})
+
+    return (
+      <div className={selClass} onClick={this.handleSelect}>
+        <p className="overflow-text">
+          {address.get('firstName')} {address.get('lastName')}
+        </p>
+
+        <p className="overflow-text">{address.get('telephone')}</p>
+
+        <hr></hr>
+
+        <p className="overflow-text">{address.get('street1')}</p>
+
+        <p className="overflow-text">{address.get('street2')}</p>
+
+        <p className="overflow-text">
+          {address.get('city')}, {address.get('state')}
+        </p>
+        <p className="overflow-text">{address.get('zipcode')}</p>
+        <p className="overflow-text">{address.get('country')}</p>
+
+        <ul className="grid center end">
+          <li><Link to="#" onClick={onRequestEdit}>Editar</Link></li>
+          <hr className="vertical-hr"></hr>
+          <li><Link to="#" onClick={this.handleDelete}>Borrar</Link></li>
+        </ul>
+      </div>
+    )
+  }
 }
