@@ -24,7 +24,7 @@ class PasswordReset extends React.Component {
     event.preventDefault()
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('email', elements.email)
+    formData.append('email', elements.email.value)
 
     this.props.dispatch(passwordReset(formData))
     .then()
@@ -37,7 +37,7 @@ class PasswordReset extends React.Component {
 
   render () {
     const errors = this.props.others.get('errors')
-    
+
     return (
       <main>
         <h2>¿Olvidaste Tu Contraseña?</h2>

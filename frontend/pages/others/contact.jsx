@@ -27,9 +27,9 @@ class Contact extends React.Component {
     event.preventDefault()
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('email', elements.email)
-    formData.append('name', elements.name)
-    formData.append('question', elements.question)
+    formData.append('email', elements.email.value)
+    formData.append('name', elements.name.value)
+    formData.append('question', elements.question.value)
 
     this.props.dispatch(contact(formData))
     .then()
