@@ -15,7 +15,7 @@ const INITIAL_CART = fromJS({
   show: false,
 })
 
-export const addDetailReducer = ( state = INITIAL_CART, action) => {
+export const addDetailReducer = (state = INITIAL_CART, action) => {
   if(action.type === types.CART_ADD_DETAIL){
 
   }
@@ -39,6 +39,31 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
 
 export const hideCartReducer = (state = INITIAL_CART, action) => {
   if(action.type === types.HIDE_CART){
+
+  }
+  return state
+}
+
+export const addCartAddressReducer = (state = INITIAL_CART, action) => {
+  if(action.type === types.CART_SHIPPING_ADDRESS){
+
+  }
+
+  if(action.type === types.CART_INVOICE_ADDRESS){
+
+  }
+  return state
+}
+
+export const addCartExtraReducer = (state = INITIAL_CART, action) => {
+  if(action.type === types.CART_EXTRA){
+
+  }
+  return state
+}
+
+export const resetCartReducer = (state = INITIAL_CART, action) => {
+  if(action.type === types.RESET_CART){
 
   }
   return state

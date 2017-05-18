@@ -3,11 +3,13 @@ import { fromJS } from 'immutable'
 
 const INITIAL_PRODUCTS = fromJS({
   results: [],
-  total: 0
+  total: 30
 })
 
 const INITIAL_PRODUCT = fromJS({
   related: [],
+  categories: [],
+  errors: {}
 })
 
 export const getProductsReducer = (state = INITIAL_PRODUCTS, action) => {
@@ -24,10 +26,7 @@ export const getProductsReducer = (state = INITIAL_PRODUCTS, action) => {
 
 export const resetProductsReducer = (state = INITIAL_PRODUCTS, action) => {
   if(action.type === types.RESET_PRODUCTS){
-    return fromJS({
-      results: [],
-      total: 0
-    })
+
   }
   return state
 }

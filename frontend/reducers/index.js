@@ -18,7 +18,10 @@ import {
   addDetailReducer,
   hideCartReducer,
   changeQuantityReducer,
-  removeDetailReducer
+  removeDetailReducer,
+  addCartAddressReducer,
+  addCartExtraReducer,
+  resetCartReducer
  } from 'reducers/cart'
 
 import {
@@ -35,7 +38,7 @@ import {
 import {
   contactReducer,
   validateContactReducer,
-  resetOthersErrorsReducer
+  resetOthersErrorsReducer,
 } from 'reducers/others'
 
 import {
@@ -44,6 +47,45 @@ import {
   validateAddressReducer,
   addressDeleteReducer
 } from 'reducers/address'
+
+import {
+  getOrdersReducer,
+  resetOrdersReducer,
+  getOrderReducer,
+  resetOrderReducer
+} from 'reducers/order'
+
+import {
+  getUserCodesReducer,
+  resetCodesReducer,
+  checkUserCodeReducer
+} from 'reducers/discountcode'
+
+import {
+  cashPaymentReducer,
+  cardPaymentReducer
+} from 'reducers/payment'
+
+const paymentReducers = reduceReducers(
+  cashPaymentReducer,
+  cardPaymentReducer
+)
+
+const codesReducers = reduceReducers(
+  getUserCodesReducer,
+  resetCodesReducer,
+  checkUserCodeReducer
+)
+
+const ordersReducer = reduceReducers(
+  getOrdersReducer,
+  resetOrdersReducer
+)
+
+const orderReducer = reduceReducers(
+  getOrderReducer,
+  resetOrderReducer
+)
 
 const othersReducer = reduceReducers(
   contactReducer,
@@ -84,7 +126,10 @@ const cartReducer = reduceReducers(
   addDetailReducer,
   hideCartReducer,
   changeQuantityReducer,
-  removeDetailReducer
+  removeDetailReducer,
+  addCartAddressReducer,
+  addCartExtraReducer,
+  resetCartReducer
 )
 
 const StateRecord = Immutable.Record({
@@ -93,7 +138,11 @@ const StateRecord = Immutable.Record({
   products: undefined,
   product: undefined,
   user: undefined,
-  others: undefined
+  others: undefined,
+  orders: undefined,
+  codes: undefined,
+  payment: undefined,
+  order: undefined
 });
 
 export default combineReducers({
@@ -102,5 +151,9 @@ export default combineReducers({
   products: productsReducer,
   product: productReducer,
   user: userReducer,
-  others: othersReducer
+  others: othersReducer,
+  orders: ordersReducer,
+  codes: codesReducers,
+  payment: paymentReducers,
+  order: orderReducer
 }, StateRecord)
