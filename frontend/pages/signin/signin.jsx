@@ -45,8 +45,8 @@ export default class Signin extends React.Component {
     event.preventDefault()
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('email', elements.email)
-    formData.append('password', elements.password)
+    formData.append('email', elements.email.value)
+    formData.append('password', elements.password.value)
 
     this.props.dispatch(userLogin(formData))
     .then()
@@ -57,10 +57,10 @@ export default class Signin extends React.Component {
     event.preventDefault()
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('email', elements.email)
-    formData.append('password', elements.password)
-    formData.append('firstName', elements.firstName)
-    formData.append('lastName', elements.lastName)
+    formData.append('email', elements.email.value)
+    formData.append('password', elements.password.value)
+    formData.append('firstName', elements.firstName.value)
+    formData.append('lastName', elements.lastName.value)
 
     this.props.dispatch(userSignUp(formData))
     .then()
