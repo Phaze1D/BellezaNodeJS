@@ -27,3 +27,27 @@ export const hideCart = () => {
     type: types.HIDE_CART
   }
 }
+
+
+export const addCartAddress = (address, type) => {
+  return {
+    type: type,
+    payload: {
+      address: address,
+      type: type
+    }
+  }
+}
+
+export const addCartExtra = (extraData) => {
+  return {
+    type: types.CART_EXTRA,
+    payload: extraData
+  }
+}
+
+export const resetCart = () => {
+  return {
+    type: types.RESET_CART
+  }
+}
