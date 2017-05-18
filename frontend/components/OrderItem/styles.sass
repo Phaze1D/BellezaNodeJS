@@ -14,3 +14,18 @@
   span
     display: block
     color: $grey-700
+
+.status
+  text-transform: capitalize
+
+.status-pagado, .status-enviado
+  @extend .status
+  color: $secondary
+
+.status-procesando
+  @extend .status
+  color: $myello
+
+.status-cancelado, .status-
+  @extend .status
+  color: $mred
