@@ -51,7 +51,8 @@ class Search extends React.Component {
     const {
       products,
       history,
-      match
+      match,
+      dispatch
     } = this.props
 
     const parse = queryString.parse(history.location.search)
@@ -63,7 +64,8 @@ class Search extends React.Component {
         <Results
           products={products.get('results')}
           total={products.get('total')}
-          url={`${match.url}?q=${parse.q}&`}/>
+          url={`${match.url}?q=${parse.q}&`}
+          dispatch={dispatch}/>
       </main>
     )
   }
