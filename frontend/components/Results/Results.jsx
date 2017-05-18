@@ -26,7 +26,8 @@ export default class Results extends React.Component {
     const {
       products,
       total,
-      url
+      url,
+      dispatch
     } = this.props
 
     const links = []
@@ -35,7 +36,10 @@ export default class Results extends React.Component {
     }
 
     const prodList = products.map( (product, index) =>
-      <ProductResult key={index} product={product}/>
+      <ProductResult
+        key={index}
+        product={product}
+        dispatch={dispatch}/>
     )
 
     return (
