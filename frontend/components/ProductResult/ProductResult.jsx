@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { addDetail } from 'actions/cart'
 
 
@@ -9,9 +8,6 @@ import { addDetail } from 'actions/cart'
 * LOCAL - POST
 * @param {object} cartDetail - Adds a product to the cart
 */
-@connect( store => {
-  return {}
-})
 export default class ProductResult extends React.PureComponent {
   constructor(props) {
     super(props)
