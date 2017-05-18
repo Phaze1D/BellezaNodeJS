@@ -122,7 +122,7 @@ export default class Header extends React.Component {
             <div className="grid center end">
               <Link className="dark-a header-link" to="/stores" title="Tiendas">Tiendas</Link>
               <hr className="vertical-hr"></hr>
-              <Link className="dark-a header-link" to="/user/details" title="Signin">Mi Cuenta</Link>
+              <Link className="dark-a header-link" to="/user" title="Signin">Mi Cuenta</Link>
               <hr className="vertical-hr"></hr>
               <div
                 id="cart-link"
@@ -153,7 +153,7 @@ export default class Header extends React.Component {
           <ul ref="side" id="nav-ul" className="grid">
 
             <li className="nav-item col-sm-show col-hide">
-              <Link to="/user/details" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
+              <Link to="/user" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
             </li>
             <li className="nav-item col-sm-show col-hide">
               <Link className="dark-a grid center" to="/cart" onClick={this.handleToggleSide}>
