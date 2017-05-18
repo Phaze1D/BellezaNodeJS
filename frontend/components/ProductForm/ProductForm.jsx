@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 
-const cats = []
 
 class ProductForm extends React.Component {
   constructor(props){
     super(props)
-    this.state = {selectedCats: categories()}
+    this.state = {selectedCats: props.product.get('categories').toJS()}
 
     this.handleAddCategory = this.handleAddCategory.bind(this)
   }
@@ -53,14 +52,21 @@ class ProductForm extends React.Component {
   }
 
   render () {
+    const {
+      product,
+      categories,
+      onRequestSubmit
+    } = this.props
 
-    const catList = cats.map( (category, index) =>
-      <option key={category.id} value={category.id}>{category.name}</option>
+    const errors = product.get('errors')
+
+    const catList = categories.map( (category, index) =>
+      <option key={category.get('id')} value={category.get('id')}>{category.get('name')}</option>
     )
 
     const scatList = this.state.selectedCats.map( (category, index) =>
       <div className="grid top" key={category.id}>
-        <input type="text" disabled="true" defaultValue={category.name} className="col-9"/>
+        <input type="text" name="categories[]" disabled="true" value={category.name} className="col-9"/>
         <button
           className="cancel col-3 margin-button"
           style={{marginTop: '0'}}
@@ -70,49 +76,58 @@ class ProductForm extends React.Component {
 
     return (
       <div>
-        <form className="main-form grid-wrap">
+        <form className="main-form grid-wrap" onSubmit={onRequestSubmit}>
           <div className="col-12">
             <label>Activo</label>
-            <input type="checkbox" defaultChecked={this.props.active}/>
+            {errors.get('active') && <div className="error-div">{errors.get('active')}</div>}
+            <input type="checkbox" name="active" defaultChecked={product.get('active')}/>
           </div>
 
           <div className="col-4">
             <label>PLU</label>
-            <input type="text" name="plu" className="input" defaultValue={this.props.plu}/>
+            {errors.get('plu') && <div className="error-div">{errors.get('plu')}</div>}
+            <input type="text" name="plu" className="input" defaultValue={product.get('plu')}/>
           </div>
 
           <div className="col-4">
             <label>Nombre</label>
-            <input type="text" name="name" className="input" defaultValue={this.props.name}/>
+            {errors.get('name') && <div className="error-div">{errors.get('name')}</div>}
+            <input type="text" name="name" className="input" defaultValue={product.get('name')}/>
           </div>
 
           <div className="col-4">
             <label>Volumen</label>
-            <input type="text" name="volumn" className="input" defaultValue={this.props.volumn}/>
+            {errors.get('volumn') && <div className="error-div">{errors.get('volumn')}</div>}
+            <input type="text" name="volumn" className="input" defaultValue={product.get('volumn')}/>
           </div>
 
           <div className="col-3">
             <label>Price</label>
-            <input type="number" min="0" step="any" name="price" className="input input-quantity" defaultValue={this.props.price}/>
+            {errors.get('price') && <div className="error-div">{errors.get('price')}</div>}
+            <input type="number" min="0" step="any" name="price" className="input input-quantity" defaultValue={product.get('price')}/>
           </div>
 
           <div className="col-3">
             <label>Discount</label>
-            <input type="number" min="0" max="100" name="discount" className="input input-quantity" defaultValue={this.props.discount}/>
+            {errors.get('discount') && <div className="error-div">{errors.get('discount')}</div>}
+            <input type="number" min="0" max="100" name="discount" className="input input-quantity" defaultValue={product.get('discount')}/>
           </div>
 
           <div className="col-3">
             <label>Stock</label>
-            <input type="number" min="0" max="100" name="stock" className="input input-quantity" defaultValue={this.props.stock}/>
+            {errors.get('stock') && <div className="error-div">{errors.get('stock')}</div>}
+            <input type="number" min="0" max="100" name="stock" className="input input-quantity" defaultValue={product.get('stock')}/>
           </div>
 
           <div className="col-3">
             <label>IVA</label>
-            <input type="number" min="0" max="100" step="any" name="iva" className="input input-quantity" defaultValue={this.props.iva}/>
+            {errors.get('iva') && <div className="error-div">{errors.get('iva')}</div>}
+            <input type="number" min="0" max="100" step="any" name="iva" className="input input-quantity" defaultValue={product.get('iva')}/>
           </div>
 
           <div className="col-4">
             <label>Subcategories</label>
+            {errors.get('categories') && <div className="error-div">{errors.get('categories')}</div>}
             <select ref='categorySelect' style={{margin: '0 0 18px'}}>
               {catList}
             </select>
@@ -123,31 +138,36 @@ class ProductForm extends React.Component {
 
           <div className="col-4">
             <label>Main Image</label>
+            {errors.get('main_image') && <div className="error-div">{errors.get('main_image')}</div>}
             <input type="file" name="main_image"/>
           </div>
 
           <div className="col-4">
             <label>Second Image</label>
+            {errors.get('second_image') && <div className="error-div">{errors.get('second_image')}</div>}
             <input type="file" name="second_image"/>
           </div>
 
           <div className="col-12">
             <label>Description</label>
-            <textarea defaultValue={this.props.description}></textarea>
+            {errors.get('description') && <div className="error-div">{errors.get('description')}</div>}
+            <textarea name="description" defaultValue={product.get('description')}></textarea>
           </div>
 
           <div className="col-12">
             <label>Benefits</label>
-            <textarea defaultValue={this.props.benefits}></textarea>
+            {errors.get('benefits') && <div className="error-div">{errors.get('benefits')}</div>}
+            <textarea name="benefits" defaultValue={product.get('benefits')}></textarea>
           </div>
 
           <div className="col-12">
             <label>Ingredients</label>
-            <textarea defaultValue={this.props.ingredients}></textarea>
+            {errors.get('ingredients') && <div className="error-div">{errors.get('ingredients')}</div>}
+            <textarea name="ingredients" defaultValue={product.get('ingredients')}></textarea>
           </div>
 
           <input className="submit full" type="submit" value="Save"/>
-          <Link className="cancel full" to="/backoffice/products/index">Cancel</Link>
+          <Link className="cancel full" to="/backoffice/products">Cancel</Link>
         </form>
       </div>
     )
