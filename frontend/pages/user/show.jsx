@@ -30,7 +30,7 @@ class UserShow extends React.Component {
           <ul id="user-options" className="box">
             <h4>Mis Pedidos</h4>
             <li>
-              <Link to={`${match.url}/orders`}>Historial de Pedidos</Link>
+              <Link to={`${match.url}/orders?page=0`}>Historial de Pedidos</Link>
             </li>
 
             <h4>Mis detalles</h4>

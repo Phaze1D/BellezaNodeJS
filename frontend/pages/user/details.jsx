@@ -62,9 +62,9 @@ class UserDetails extends React.Component {
     event.preventDefault()
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('telephone', elements.telephone)
-    formData.append('firstName', elements.firstName)
-    formData.append('lastName', elements.lastName)
+    formData.append('telephone', elements.telephone.value)
+    formData.append('firstName', elements.firstName.value)
+    formData.append('lastName', elements.lastName.value)
 
     this.props.dispatch(userUpdate(formData))
     .then()
