@@ -15,43 +15,45 @@ import BannersEdit from 'pages/banner/edit'
 
 export default class BackofficeShow extends React.Component {
   render() {
-
+    const {
+      match
+    } = this.props
 
     return (
       <main>
         <ul className="backoffice-nav">
           <li>
-            <Link to={`${this.props.match.url}/orders`}>Orders</Link>
+            <Link to={`${match.url}/orders?status=pagado&page=0`}>Orders</Link>
           </li>
 
           <li>
-            <Link to={`${this.props.match.url}/products/index`}>Products</Link>
+            <Link to={`${match.url}/products`}>Products</Link>
           </li>
 
           <li>
-            <Link to={`${this.props.match.url}/users/index`}>Clients</Link>
+            <Link to={`${match.url}/users`}>Clients</Link>
           </li>
 
           <li>
-            <Link to={`${this.props.match.url}/banners/index`}>Banners</Link>
+            <Link to={`${match.url}/banners`}>Banners</Link>
           </li>
 
           <li>
-            <Link to={`${this.props.match.url}/mails`}>Mailing List</Link>
+            <Link to={`${match.url}/mails`}>Mailing List</Link>
           </li>
         </ul>
 
-        <Redirect from={`${this.props.match.url}/`} to={`${this.props.match.url}/orders`}/>
-        <Route path={`${this.props.match.url}/orders`} component={BackofficeOrders}/>
-        <Route path={`${this.props.match.url}/products/index`} component={ProductsIndex}/>
-        <Route path={`${this.props.match.url}/products/new`} component={ProductsNew}/>
-        <Route path={`${this.props.match.url}/products/edit`} component={ProductsEdit}/>
-        <Route path={`${this.props.match.url}/users/index`} component={UsersIndex}/>
-        <Route path={`${this.props.match.url}/codes/new`} component={CodesNew}/>
-        <Route path={`${this.props.match.url}/banners/index`} component={BannersIndex}/>
-        <Route path={`${this.props.match.url}/banners/new`} component={BannersNew}/>
-        <Route path={`${this.props.match.url}/banners/edit`} component={BannersEdit}/>
-        <Route path={`${this.props.match.url}/mails`} component={BackofficeMails}/>
+        <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>
+        <Route path={`${match.url}/orders`} component={BackofficeOrders}/>
+        <Route path={`${match.url}/products`} component={ProductsIndex}/>
+        <Route path={`${match.url}/product/new`} component={ProductsNew}/>
+        <Route path={`${match.url}/product/edit`} component={ProductsEdit}/>
+        <Route path={`${match.url}/users`} component={UsersIndex}/>
+        <Route path={`${match.url}/codes/new`} component={CodesNew}/>
+        <Route path={`${match.url}/banners`} component={BannersIndex}/>
+        <Route path={`${match.url}/banners/new`} component={BannersNew}/>
+        <Route path={`${match.url}/banners/edit`} component={BannersEdit}/>
+        <Route path={`${match.url}/mails`} component={BackofficeMails}/>
       </main>
     )
   }
