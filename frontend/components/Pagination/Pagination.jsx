@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
 
-export default class Pagination extends React.Component {
+export default class Pagination extends React.PureComponent {
   constructor(props){
     super(props)
     this.startMax = 5
