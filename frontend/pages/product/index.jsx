@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link, Route } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
+import { connect } from 'react-redux'
+import { getProducts, resetProducts } from 'actions/product'
+import queryString from 'query-string'
 
-const prods = []
-const links = [];
-for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 
 /**
 * HTTP - GET
@@ -14,28 +14,95 @@ for (var i = 0; i < 12; i++) links.push({value: "#", name: i+1})
 * @param {array} reset - An empty array to reset products array
 */
 
+@connect(store => {
+  return {
+    products: store.products,
+    user: store.user
+  }
+})
 export default class ProductsIndex extends React.Component {
   constructor(props){
     super(props)
-    this.state = {page: 0}
+    this.state = {page: 0, prePage: 20}
+
+    this.handleUrlChanged = this.handleUrlChanged.bind(this)
+    this.handlePageClick = this.handlePageClick.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.unlisten = null
+  }
+
+  componentDidMount() {
+    this.handleUrlChanged(this.props.history.location, this.props.history.action)
+    this.unlisten = this.props.history.listen(this.handleUrlChanged)
+  }
+
+  componentWillUnmount() {
+    this.unlisten()
+    this.props.dispatch(resetProducts())
+  }
+
+  handleUrlChanged(location, action) {
+    if(this.props.match.url === location.pathname){
+      const parse = queryString.parse(location.search)
+
+      this.props.dispatch(getProducts(parse.query, undefined, parse.page))
+      .then()
+      .catch(this.handleError)
+    }
+  }
+
+  handlePageClick(index, event){
+    this.setState({page: index})
+  }
+
+  handleSearch(event) {
+    event.preventDefault()
+    let input = event.target.elements['query']
+    let search = input.value ? `?query=${input.value}&page=0&sort=0` : `?page=0&sort=0`
+
+    this.props.history.push({
+      pathname: '/backoffice/products',
+      search: search
+    })
+  }
+
+  handleError(response) {
+
   }
 
   render () {
-    const match = this.props.match
+    const {
+      products,
+      user,
+      match,
+      history
+    } = this.props
 
-    const productList = prods.map( (product, index) =>
+    const productList = products.get('results').map( (product, index) =>
       <ProductItem
-        {...product}
         key={index}
+        product={product}
         match={match}/>
     )
+
+    const parse = queryString.parse(history.location.search)
+    const links = []
+    for(let i = 0; i < Math.ceil(products.get('total')/this.state.prePage); i++ ){
+      if(parse.query){
+        links.push({value: `${match.url}?query=${parse.query}&page=${i}`, name: i+1})
+      }else{
+        links.push({value: `${match.url}?page=${i}`, name: i+1})
+      }
+    }
 
     return (
       <div>
         <div className="protop">
-          <Link to={`/backoffice/products/new`} className="secondary-button">Add Product</Link>
-          <form>
-            <input type="text" name="search"/>
+          <Link to={`product/new`} className="secondary-button">Add Product</Link>
+          <form onSubmit={this.handleSearch}>
+            <input type="text" name="query"/>
+            <input type="submit" style={{display: 'none'}}/>
           </form>
         </div>
         <table className="backoffice-table">
@@ -74,7 +141,7 @@ const ProductItem = props => (
     <td>{props.name} {props.volumn}</td>
     <td>{props.stock}</td>
     <td>
-      <Link to={`/backoffice/products/edit`}>Update</Link>
+      <Link to={`product/edit`}>Update</Link>
     </td>
   </tr>
 )
