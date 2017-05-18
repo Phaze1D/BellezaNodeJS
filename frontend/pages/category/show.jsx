@@ -66,7 +66,8 @@ export default class CategoryShow extends React.Component {
     const {
       products,
       categories,
-      match
+      match,
+      dispatch
     } = this.props
 
     let category = categories.get(match.params.index)
@@ -84,7 +85,8 @@ export default class CategoryShow extends React.Component {
         <Results
           products={products.get('results')}
           total={products.get('total')}
-          url={`${match.url}?`}/>
+          url={`${match.url}?`}
+          dispatch={dispatch}/>
       </main>
     )
   }
