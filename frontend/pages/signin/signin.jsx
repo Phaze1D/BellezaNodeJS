@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { resetErrors } from 'actions/errors'
 import {
   userSignUp,
   userLogin,
   validateUserNew,
-  resetUserErrors
 } from 'actions/user'
 
 /**
@@ -27,7 +27,8 @@ import {
 
 @connect( store => {
   return {
-    user: store.user
+    user: store.user,
+    errors: store.errors
   }
 })
 export default class Signin extends React.Component {
@@ -39,6 +40,10 @@ export default class Signin extends React.Component {
     this.handleInputBlur = this.handleInputBlur.bind(this)
     this.handleInputFocus = this.handleInputFocus.bind(this)
     this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleLogin(event){
@@ -77,7 +82,7 @@ export default class Signin extends React.Component {
   }
 
   handleInputFocus(event){
-    this.props.dispatch(resetUserErrors(event.target.name))
+    this.props.dispatch(resetErrors(event.target.name))
   }
 
   handleError(response){
@@ -86,7 +91,8 @@ export default class Signin extends React.Component {
 
   render () {
     const {
-      user
+      user,
+      errors
     } = this.props
 
     return (
@@ -95,11 +101,11 @@ export default class Signin extends React.Component {
 
         <div className="grid-wrap around">
           <LoginFrom
-            errors={user.get('errors')}
+            errors={errors}
             onRequestSubmit={this.handleLogin}/>
 
           <SignUpForm
-            errors={user.get('errors')}
+            errors={errors}
             onRequestSubmit={this.handleSignUp}
             onRequestBlur={this.handleInputBlur}
             onRequestFocus={this.handleInputFocus}/>

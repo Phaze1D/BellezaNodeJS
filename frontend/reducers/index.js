@@ -11,7 +11,9 @@ import {
   getProductsReducer,
   resetProductsReducer,
   getProductReducer,
-  resetProductReducer
+  resetProductReducer,
+  newProductReducer,
+  editProductReducer
 } from 'reducers/product'
 
 import {
@@ -31,14 +33,18 @@ import {
   userUpdateReducer,
   validateUserUpdateReducer,
   userPreferenceReducer,
-  resetUserErrorsReducer,
   userLogoutReducer
 } from 'reducers/user'
 
 import {
   contactReducer,
   validateContactReducer,
-  resetOthersErrorsReducer,
+  getBannersReducer,
+  resetBannersReducer,
+  newBannerReducer,
+  editBannerReducer,
+  getMailingReducer,
+  resetMailingReducer
 } from 'reducers/others'
 
 import {
@@ -58,13 +64,35 @@ import {
 import {
   getUserCodesReducer,
   resetCodesReducer,
-  checkUserCodeReducer
+  checkUserCodeReducer,
+  codeNewReducer
 } from 'reducers/discountcode'
 
 import {
   cashPaymentReducer,
   cardPaymentReducer
 } from 'reducers/payment'
+
+import {
+  errorsReducer
+} from 'reducers/errors'
+
+import {
+  getClientsReducer,
+  resetClientsReducer,
+  getClientReducer,
+  resetClientReducer
+} from 'reducers/clients'
+
+const clientReducers = reduceReducers(
+    getClientReducer,
+    resetClientReducer
+)
+
+const clientsReducers = reduceReducers(
+  getClientsReducer,
+  resetClientsReducer,
+)
 
 const paymentReducers = reduceReducers(
   cashPaymentReducer,
@@ -74,7 +102,8 @@ const paymentReducers = reduceReducers(
 const codesReducers = reduceReducers(
   getUserCodesReducer,
   resetCodesReducer,
-  checkUserCodeReducer
+  checkUserCodeReducer,
+  codeNewReducer
 )
 
 const ordersReducer = reduceReducers(
@@ -90,7 +119,12 @@ const orderReducer = reduceReducers(
 const othersReducer = reduceReducers(
   contactReducer,
   validateContactReducer,
-  resetOthersErrorsReducer
+  getBannersReducer,
+  resetBannersReducer,
+  newBannerReducer,
+  editBannerReducer,
+  getMailingReducer,
+  resetMailingReducer
 )
 
 const userReducer = reduceReducers(
@@ -100,7 +134,6 @@ const userReducer = reduceReducers(
   userUpdateReducer,
   validateUserUpdateReducer,
   userPreferenceReducer,
-  resetUserErrorsReducer,
   userLogoutReducer,
   addressNewReducer,
   addressUpdateReducer,
@@ -119,7 +152,9 @@ const productsReducer = reduceReducers(
 
 const productReducer = reduceReducers(
   getProductReducer,
-  resetProductReducer
+  resetProductReducer,
+  newProductReducer,
+  editProductReducer
 )
 
 const cartReducer = reduceReducers(
@@ -142,7 +177,10 @@ const StateRecord = Immutable.Record({
   orders: undefined,
   codes: undefined,
   payment: undefined,
-  order: undefined
+  order: undefined,
+  clients: undefined,
+  client: undefined,
+  errors: undefined
 });
 
 export default combineReducers({
@@ -155,5 +193,8 @@ export default combineReducers({
   orders: ordersReducer,
   codes: codesReducers,
   payment: paymentReducers,
-  order: orderReducer
+  order: orderReducer,
+  clients: clientsReducers,
+  client: clientReducers,
+  errors: errorsReducer
 }, StateRecord)

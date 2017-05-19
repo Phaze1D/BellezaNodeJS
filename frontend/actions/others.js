@@ -30,9 +30,63 @@ export const addMailer = (formData, isUser=false) => {
   }
 }
 
-export const resetOthersErrors = (field) => {
+export const getBanners = (page) => {
   return {
-    type: types.OTHERS_RESET_ERRORS,
-    payload: {field: field}
+    type: types.GET_BANNERS,
+    payload: axios.get('/banners', {
+      params: {
+        page: page
+      }
+    })
+  }
+}
+
+export const resetBanners = () => {
+  return {
+    type: types.RESET_BANNERS
+  }
+}
+
+
+export const getBanner = (id) => {
+  return {
+    type: types.GET_BANNER,
+    payload: axios.get(`/banner/${id}`)
+  }
+}
+
+export const resetBanner = () => {
+  return {
+    type: types.RESET_BANNER
+  }
+}
+
+
+export const newBanner = (formData) => {
+  return {
+    type: types.NEW_BANNER,
+    payload: axios.post('/banner', formData)
+  }
+}
+
+export const editBanner = (formData, id) => {
+  return {
+    type: types.EDIT_BANNER,
+    payload: axios.put(`/banner/${id}`, formData)
+  }
+}
+
+export const getMailing = (page) => {
+  return {
+    type: types.GET_MAILING,
+    payload: axios.get('/mailing', {
+      params: {page: page}
+    })
+  }
+}
+
+export const resetMailing = () => {
+  return {
+    type: RESET_MAILING
   }
 }

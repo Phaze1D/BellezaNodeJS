@@ -8,14 +8,17 @@ const INITIAL_ORDERS = fromJS({
 
 const INITIAL_ORDER = fromJS({
   details: [],
+  status: '',
   subTotal: 0,
   ivaTotal: 0,
   discountTotal: 0,
   shippingTotal: 0,
   total: 0,
+  notes: '',
   shippingAddress: {},
   invoiceAddress: {},
-  status: '',
+  rfc: '',
+  razonSocial: '',
   date: new Date()
 })
 

@@ -27,7 +27,8 @@ import { cashPayment, cardPayment } from 'actions/payment'
     cart: store.cart,
     user: store.user,
     codes: store.codes,
-    payment: store.payment
+    payment: store.payment,
+    errors: store.errors
   }
 })
 export default class CheckoutConfirmation extends React.Component {
@@ -91,7 +92,8 @@ export default class CheckoutConfirmation extends React.Component {
       cart,
       user,
       codes,
-      payment
+      payment,
+      errors
     } = this.props
 
 
@@ -108,7 +110,7 @@ export default class CheckoutConfirmation extends React.Component {
             <form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
               <div className="col-8">
                 <label htmlFor="code">Codigo De Descuento</label>
-                {codes.get('errors').get('code') && <div className="error-div">{codes.get('errors').get('code')}</div>}
+                {errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
                 <input name="code" type="text" className="input"/>
               </div>
 
@@ -192,7 +194,7 @@ export default class CheckoutConfirmation extends React.Component {
                   </div>
 
                   <input type="submit" value="Pagar" className="submit full"/>
-                  {payment.get('errors').get('card') && <div className="error-div">{payment.get('errors').get('card')}</div>}
+                  {errors.get('card') && <div className="error-div">{errors.get('card')}</div>}
                 </form>
               </div>
 
@@ -218,7 +220,7 @@ export default class CheckoutConfirmation extends React.Component {
                   </div>
 
                   <input type="submit" value="Pagar" className="submit full"/>
-                  {payment.get('errors').get('cash') && <div className="error-div">{payment.get('errors').get('cash')}</div>}
+                  {errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
                 </form>
               </div>
             </radioGroup>

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { passwordReset } from 'actions/others'
+import { resetErrors } from 'actions/errors'
 
 /**
 * HTTP - POST
@@ -9,7 +10,8 @@ import { passwordReset } from 'actions/others'
 
 @connect( store => {
   return {
-    others: store.others
+    others: store.others,
+    errors: store.errors
   }
 })
 class PasswordReset extends React.Component {
@@ -17,7 +19,12 @@ class PasswordReset extends React.Component {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleInputFocus = this.handleInputFocus.bind(this)
     this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleSubmit(event){
@@ -31,12 +38,16 @@ class PasswordReset extends React.Component {
     .catch(this.handleError)
   }
 
+  handleInputFocus(event){
+    this.props.dispatch(resetErrors(event.target.name))
+  }
+
   handleError(response){
 
   }
 
   render () {
-    const errors = this.props.others.get('errors')
+    const errors = this.props.errors
 
     return (
       <main>
@@ -48,7 +59,7 @@ class PasswordReset extends React.Component {
         <form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
           <label htmlFor="email">Email</label>
           {errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
-          <input name="email" type="text"/>
+          <input name="email" type="text" onFocus={this.handleInputFocus}/>
           <input  className="submit full"  type="submit" value="Enviar"/>
         </form>
       </main>

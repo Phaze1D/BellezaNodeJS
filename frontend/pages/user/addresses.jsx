@@ -8,7 +8,8 @@ import { userLogout } from 'actions/user'
 
 @connect( store => {
   return {
-    user: store.user
+    user: store.user,
+    errors: store.errors
   }
 })
 class UserAddresses extends React.Component {
@@ -26,7 +27,7 @@ class UserAddresses extends React.Component {
 
   render () {
     const addresses = this.props.user.get('addresses')
-    const errors = this.props.user.get('errors')
+    const errors = this.props.errors
 
     return (
       <section className="col-9 col-sm-8 col-xs-11">

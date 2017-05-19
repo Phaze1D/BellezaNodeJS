@@ -43,18 +43,20 @@ export default class BackofficeShow extends React.Component {
           </li>
         </ul>
 
-        <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>
+        <Redirect from={`${match.url}/`} to={`${match.url}/mailing`}/>
         <Route path={`${match.url}/orders`} component={BackofficeOrders}/>
         <Route path={`${match.url}/products`} component={ProductsIndex}/>
         <Route path={`${match.url}/product/new`} component={ProductsNew}/>
-        <Route path={`${match.url}/product/edit`} component={ProductsEdit}/>
+        <Route path={`${match.url}/product/edit/:id`} component={ProductsEdit}/>
         <Route path={`${match.url}/users`} component={UsersIndex}/>
-        <Route path={`${match.url}/codes/new`} component={CodesNew}/>
+        <Route path={`${match.url}/user/:user_id/codes/new`} component={CodesNew}/>
         <Route path={`${match.url}/banners`} component={BannersIndex}/>
-        <Route path={`${match.url}/banners/new`} component={BannersNew}/>
-        <Route path={`${match.url}/banners/edit`} component={BannersEdit}/>
-        <Route path={`${match.url}/mails`} component={BackofficeMails}/>
+        <Route path={`${match.url}/banner/new`} component={BannersNew}/>
+        <Route path={`${match.url}/banner/:id/edit`} component={BannersEdit}/>
+        <Route path={`${match.url}/mailing`} component={BackofficeMails}/>
       </main>
     )
   }
 }
+
+// <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>

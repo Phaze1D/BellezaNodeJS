@@ -5,7 +5,6 @@ const INITIAL_CODES = fromJS({
   active: [],
   deactive: [],
   discount: {},
-  errors: {}
 })
 
 
@@ -29,7 +28,6 @@ export const resetCodesReducer = (state = INITIAL_CODES, action) => {
   return state
 }
 
-
 export const checkUserCodeReducer = (state = INITIAL_CODES, action) => {
   switch (action.type) {
     case `${types.CHECK_USER_CODE}_LOADING`:
@@ -37,6 +35,19 @@ export const checkUserCodeReducer = (state = INITIAL_CODES, action) => {
     case `${types.CHECK_USER_CODE}_SUCCESS`:
 
     case `${types.CHECK_USER_CODE}_ERROR`:
+
+    default: return state
+  }
+  return state
+}
+
+export const codeNewReducer = (state = INITIAL_CODES, action) => {
+  switch (action.type) {
+    case `${types.CODE_NEW}_LOADING`:
+
+    case `${types.CODE_NEW}_SUCCESS`:
+
+    case `${types.CODE_NEW}_ERROR`:
 
     default: return state
   }

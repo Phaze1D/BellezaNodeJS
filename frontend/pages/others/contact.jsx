@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { resetErrors } from 'actions/errors'
 import {
   contact,
   validateContact,
-  resetOthersErrors
 } from 'actions/others'
 
 
 
 @connect( store => {
   return {
-    others: store.others
+    others: store.others,
+    errors: store.errors
   }
 })
 class Contact extends React.Component {
@@ -46,7 +47,7 @@ class Contact extends React.Component {
   }
 
   handleInputFocus(event){
-    this.props.dispatch(resetOthersErrors(event.target.name))
+    this.props.dispatch(resetErrors(event.target.name))
   }
 
   handleError(response){
@@ -54,7 +55,7 @@ class Contact extends React.Component {
   }
 
   render () {
-    const errors = this.props.others.get('errors')
+    const errors = this.props.errors
 
     return (
       <main>

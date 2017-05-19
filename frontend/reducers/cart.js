@@ -9,8 +9,11 @@ const INITIAL_CART = fromJS({
   discountTotal: 0,
   shippingTotal: 0,
   total: 0,
+  notes: '',
   shippingAddress: {},
   invoiceAddress: {},
+  rfc: '',
+  razonSocial: '',
   error: null,
   show: false,
 })

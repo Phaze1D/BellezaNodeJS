@@ -20,7 +20,8 @@ import { CART_SHIPPING_ADDRESS, CART_INVOICE_ADDRESS } from 'actions/types'
 @connect( store => {
   return {
     cart: store.cart,
-    user: store.user
+    user: store.user,
+    errors: store.errors
   }
 })
 export default class CheckoutDirections extends React.Component {
@@ -51,6 +52,7 @@ export default class CheckoutDirections extends React.Component {
     const {
       cart,
       user,
+      errors,
       dispatch
     } = this.props
 
@@ -70,7 +72,7 @@ export default class CheckoutDirections extends React.Component {
                 selectable={true}
                 selectActionType={CART_SHIPPING_ADDRESS}
                 addresses={user.get('addresses')}
-                errors={user.get('errors')}
+                errors={errors}
                 dispatch={dispatch}/>
 
               <h5 className="h-underline">Instrucciones de envío (Opcional)</h5>
@@ -94,7 +96,7 @@ export default class CheckoutDirections extends React.Component {
                 selectable={true}
                 selectActionType={CART_INVOICE_ADDRESS}
                 addresses={user.get('addresses')}
-                errors={user.get('errors')}
+                errors={errors}
                 dispatch={dispatch}/>
 
               <form className="main-form" onSubmit={event => event.preventDefault()}>

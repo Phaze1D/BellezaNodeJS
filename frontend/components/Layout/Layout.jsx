@@ -49,7 +49,7 @@ export default class Layout extends React.Component {
       <div id='layout'>
         <Header history={this.props.history}/>
 
-        <Redirect from='/' to='/backoffice'/>
+        <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories/:index" component={CategoryIndex}/>
         <Route path="/categories/:index/sub/:sub" component={CategoryIndex}/>
@@ -63,7 +63,7 @@ export default class Layout extends React.Component {
         <Route path="/stores" component={Stores}/>
 
         {/* Missing Redirect if user is not logged in */}
-        <Route path="/user" component={UserShow}/>
+        <Route path="/user/:id" component={UserShow}/>
         <Route path="/checkout" component={CheckoutDirections}/>
         <Route path="/confirmation" component={CheckoutConfirmation}/>
         <Route path="/successful" component={CheckoutSuccessful}/>

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { resetUserErrors } from 'actions/user'
+import { resetErrors } from 'actions/errors'
 import {
   addressNew,
   addressUpdate,
@@ -15,6 +15,10 @@ class AddressForm extends React.Component {
     this.handleInputBlur = this.handleInputBlur.bind(this)
     this.handleInputFocus = this.handleInputFocus.bind(this)
     this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleSubmit(event){
@@ -52,7 +56,7 @@ class AddressForm extends React.Component {
   }
 
   handleInputFocus(event) {
-    this.props.dispatch(resetUserErrors(event.target.name))
+    this.props.dispatch(resetErrors(event.target.name))
   }
 
   handleError(response){

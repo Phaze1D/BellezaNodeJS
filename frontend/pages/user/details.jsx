@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addMailer } from 'actions/others'
+import { resetErrors } from 'actions/errors'
 import {
   userUpdate,
   validateUserUpdate,
   userLogout,
-  resetUserErrors,
 } from 'actions/user'
 
 
@@ -22,7 +22,8 @@ import {
 
 @connect( store => {
   return {
-    user: store.user
+    user: store.user,
+    errors: store.errors
   }
 })
 class UserDetails extends React.Component {
@@ -39,6 +40,10 @@ class UserDetails extends React.Component {
     this.handlePreference = this.handlePreference.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleShow(event){
@@ -81,7 +86,7 @@ class UserDetails extends React.Component {
   }
 
   handleInputFocus(event){
-    this.props.dispatch(resetUserErrors(event.target.name))
+    this.props.dispatch(resetErrors(event.target.name))
   }
 
   handlePreference(event){
@@ -107,7 +112,8 @@ class UserDetails extends React.Component {
 
   render () {
     const {
-      user
+      user,
+      errors
     } = this.props
 
     const teleList = user.get('telephones').map( (tel, index) =>
@@ -179,6 +185,7 @@ class UserDetails extends React.Component {
 
               <UserEdit
                 user={user}
+                errors={errors}
                 onRequestSubmit={this.handleSubmit}
                 onRequestCancel={this.handleCancel}
                 onRequestBlur={this.handleInputBlur}
@@ -197,13 +204,13 @@ export default UserDetails;
 const UserEdit = (props) => {
   const {
     user,
+    errors,
     onRequestCancel,
     onRequestSubmit,
     onRequestBlur,
     onRequestFocus
   } = props
 
-  const errors = user.get('errors')
 
   return (
     <div className="box with-y">

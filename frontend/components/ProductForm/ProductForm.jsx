@@ -55,10 +55,9 @@ class ProductForm extends React.Component {
     const {
       product,
       categories,
-      onRequestSubmit
+      onRequestSubmit,
+      errors
     } = this.props
-
-    const errors = product.get('errors')
 
     const catList = categories.map( (category, index) =>
       <option key={category.get('id')} value={category.get('id')}>{category.get('name')}</option>

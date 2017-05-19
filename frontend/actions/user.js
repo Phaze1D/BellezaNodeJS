@@ -37,13 +37,6 @@ export const validateUserUpdate = (fieldData) => {
   }
 }
 
-export const resetUserErrors = (field) => {
-  return {
-    type: types.USER_RESET_ERRORS,
-    payload: {field: field}
-  }
-}
-
 export const userLogout = () => {
   return {
     type: types.USER_LOGOUT

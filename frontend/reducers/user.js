@@ -5,7 +5,6 @@ export const INITIAL_USER = fromJS({
   telephones: [],
   addresses: [],
   preferences: true,
-  errors: {}
 })
 
 export const userSignUpReducer = (state = INITIAL_USER, action) => {
@@ -75,13 +74,6 @@ export const validateUserUpdateReducer = (state = INITIAL_USER, action) => {
     case `${types.USER_VALIDATE_UPDATE}_ERROR`:
 
     default: return state
-  }
-  return state
-}
-
-export const resetUserErrorsReducer = (state = INITIAL_USER, action) => {
-  if(action.type === types.USER_RESET_ERRORS){
-
   }
   return state
 }

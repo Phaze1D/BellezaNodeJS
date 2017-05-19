@@ -1,9 +1,7 @@
 import * as types from 'actions/types'
-import { fromJS } from 'immutable'
+import { fromJS, Map } from 'immutable'
 
-const INITIAL_PAYMENT = fromJS({
-  errors: {}
-})
+const INITIAL_PAYMENT = Map()
 
 export const cashPaymentReducer = (state = INITIAL_PAYMENT, action) => {
   switch (action.type) {

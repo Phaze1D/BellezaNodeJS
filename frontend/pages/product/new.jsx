@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import ProductForm from 'components/ProductForm/ProductForm'
 import { connect } from 'react-redux'
 import { getProduct, resetProduct } from 'actions/product'
+import { resetErrors } from 'actions/errors'
 
 /**
 * HTTP - POST
@@ -18,7 +19,8 @@ import { getProduct, resetProduct } from 'actions/product'
   return {
     user: store.user,
     categories: store.categories,
-    product: store.product
+    product: store.product,
+    errors: store.errors
   }
 })
 class ProductsNew extends React.Component {
@@ -26,6 +28,11 @@ class ProductsNew extends React.Component {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleSubmit(event){
@@ -33,17 +40,23 @@ class ProductsNew extends React.Component {
     let elements = event.target.elements
   }
 
+  handleError(response) {
+
+  }
+
   render () {
     const {
       user,
       categories,
-      product
+      product,
+      errors
     } = this.props
 
     return (
       <ProductForm
         product={product}
         categories={categories}
+        errors={errors}
         onRequestSubmit={this.handleSubmit}/>
     )
   }

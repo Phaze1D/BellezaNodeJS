@@ -34,3 +34,17 @@ export const resetProduct = () => {
     type: types.RESET_PRODUCT,
   }
 }
+
+export const newProduct = (formData) => {
+  return {
+    type: types.NEW_PRODUCT,
+    payload: axios.post('/product', formData)
+  }
+}
+
+export const editProduct = (formData, id) => {
+  return {
+    type: types.EDIT_PRODUCT,
+    payload: axios.put(`/product/${id}`, formData)
+  }
+}

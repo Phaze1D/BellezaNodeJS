@@ -24,3 +24,10 @@ export const checkUserCode = (formData) => {
     payload: axios.post('/check-code', formData)
   }
 }
+
+export const codeNew = (formData) => {
+  return {
+    type: types.CODE_NEW,
+    payload: axios.post('/code', formData)
+  }
+}
