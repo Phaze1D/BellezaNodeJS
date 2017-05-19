@@ -1,7 +1,8 @@
 /* jshint indent: 2 */
+var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Order', {
+  const Order =  sequelize.define('Order', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -14,23 +15,53 @@ module.exports = function(sequelize, DataTypes) {
     },
     sub_total: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
     },
     iva_total: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
     },
     shipping_total: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
     },
     discount_total: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
     },
     total: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
     },
     notes: {
       type: DataTypes.TEXT,
@@ -79,4 +110,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'orders'
   });
+
+  Order.belongsTo('User', {as: 'user'});
+  Order.belongsTo('Address', {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
+  Order.belongsTo('Address', {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
+  Order.hasMany('Detail', {as: 'details'})
+  return Order
 };

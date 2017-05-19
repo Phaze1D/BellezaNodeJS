@@ -1,7 +1,8 @@
 /* jshint indent: 2 */
+var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('DiscountCode', {
+  const DiscountCode =  sequelize.define('DiscountCode', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -10,11 +11,42 @@ module.exports = function(sequelize, DataTypes) {
     },
     code: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     expires_date: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
+    },
+    discount: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+        min: {
+          args: 0,
+          msg: valmsg.min(0)
+        },
+      }
+    },
+    is_percentage: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: false,
+      defaultValue: '1'
     },
     user_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
@@ -24,16 +56,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    discount: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false
-    },
-    is_percentage: {
-      type: DataTypes.BOOLEAN(),
-      allowNull: false,
-      defaultValue: '1'
-    }
   }, {
     tableName: 'discount_codes'
   });
+
+  DiscountCode.belongsTo('User', {as: 'user'});
+  return DiscountCode
 };

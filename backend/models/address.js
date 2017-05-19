@@ -1,7 +1,8 @@
 /* jshint indent: 2 */
+var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Address', {
+  const Address = sequelize.define('Address', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -10,19 +11,58 @@ module.exports = function(sequelize, DataTypes) {
     },
     first_name: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     last_name: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     telephone: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        phone(value){
+          valmsg.phone(value)
+        }
+      }
     },
     street: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 255,
+          msg: valmsg.max(255)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     street2: {
       type: DataTypes.STRING(255),
@@ -30,15 +70,45 @@ module.exports = function(sequelize, DataTypes) {
     },
     city: {
       type: DataTypes.STRING(60),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 60,
+          msg: valmsg.max(60)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     state: {
       type: DataTypes.STRING(60),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 60,
+          msg: valmsg.max(60)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     zipcode: {
       type: DataTypes.STRING(60),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 60,
+          msg: valmsg.max(60)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     country: {
       type: DataTypes.STRING(45),
@@ -56,4 +126,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'addresses'
   });
+
+
+  Address.belongsTo('User', {as: 'user'});
+  Address.hasMany('Order', {as: 'orderShip', foreignKey: 'shipping_address_id'});
+  Address.hasMany('Order', {as: 'orderInvoice', foreignKey: 'invoice_address_id'});
+  return Address
 };

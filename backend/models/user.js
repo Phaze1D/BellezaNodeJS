@@ -1,7 +1,8 @@
 /* jshint indent: 2 */
+var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('User', {
+  const User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -9,70 +10,103 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     email: {
-      type: DataTypes.STRING(127),
+      type: DataTypes.STRING(125),
       allowNull: false,
-      unique: true,
+      unique: {
+        args: true,
+        message: valmsg.email_unique
+      },
+      validate: {
+        isEmail: {
+          args: true,
+          msg: valmsg.email
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+        max: {
+          args: 125,
+          msg valmsg.max(125)
+        }
+      }
     },
     password: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: {
+          args: 6,
+          msg: valmsg.min(6)
+        },
+        max: {
+          args: 255,
+          msg: valmsg.max(255)
+        }
+      }
     },
     first_name: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     last_name: {
       type: DataTypes.STRING(45),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     telephone: {
       type: DataTypes.STRING(45),
-      allowNull: true
+      allowNull: true,
+      validate: {
+        max: {
+          args: 45,
+          msg: valmsg.max(45)
+        },
+        phone(value){
+          valmsg.phone(value)
+        }
+      }
     },
     admin: {
       type: DataTypes.BOOLEAN(),
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: false
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: Sequelize.NOW
     }
   }, {
     tableName: 'users'
   });
+
+  User.hasMany('Order', {as: 'orders'})
+  User.hasMany('Address', {as: 'addresses'})
+  User.hasMany('DiscountCode', {as: 'discountCodes'})
+  return User
 };
-
-
-// public static $error_messages = [
-//         'required' => 'Necesario',
-//         'email' => 'El correo electrónico tiene que ser válida.',
-//         'min' => 'Debe tener como mínimo :min caracteres',
-//         'max' => 'Debe tener como maximo :max caracteres',
-//         'email.unique' => 'El correo electrónico ya esta registrado',
-//         'password.confirmed' => 'Por favor confirmar tu contraseña'
-//     ];
-//
-//
-//     public static function create_rules()
-//     {
-//         return [
-//         'email' => 'required|email|max:45|unique:users,email',
-//         'password' => 'required|confirmed|min:6',
-//         'first_name' => 'required|max:45',
-//         'last_name' => 'required|max:45'
-//         ];
-//     }
-//
-//     public static function update_rules($id)
-//     {
-//         return [
-//         'email' => 'required|email|max:45|unique:users,email,'.$id,
-//         'first_name' => 'required|max:45',
-//         'last_name' => 'required|max:45'
-//         ];
-//     }

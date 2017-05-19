@@ -1,7 +1,8 @@
 /* jshint indent: 2 */
+var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Category', {
+  const Category =  sequelize.define('Category', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -10,7 +11,17 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING(60),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+        max: {
+          args: 0,
+          msg: valmsg.max(60)
+        },
+      }
     },
     description: {
       type: DataTypes.TEXT,
@@ -27,4 +38,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'categories'
   });
+
+  Category.belongsTo('Category', {as: 'parent', foreignKey: 'parent_id'});
+  Category.hasMany('Category', {as: 'subs', foreignKey: 'parent_id'})
+  Category.belongsToMany('Product', { as: 'products', through: 'category_product'})
+  return Category
 };
