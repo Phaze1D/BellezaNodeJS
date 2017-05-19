@@ -6,7 +6,7 @@ const valmsg = {
   min: (min) => `Debe tener como mínimo ${min} caracteres`,
   max: (max) => `Debe tener como maximo ${max} caracteres`,
   email_unique: 'El correo electrónico ya esta registrado',
-  phone(value): () => {
+  phone: (value) => {
     if(phone(value, 'MX').length == 0){
       throw new Error('Numero invalido')
     }
@@ -15,4 +15,4 @@ const valmsg = {
 
 }
 
-export default valmsg
+module.exports = valmsg;
