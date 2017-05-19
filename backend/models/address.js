@@ -127,9 +127,5 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'addresses'
   });
 
-
-  Address.belongsTo('User', {as: 'user'});
-  Address.hasMany('Order', {as: 'orderShip', foreignKey: 'shipping_address_id'});
-  Address.hasMany('Order', {as: 'orderInvoice', foreignKey: 'invoice_address_id'});
   return Address
 };
