@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 var valmsg =  require('../helpers/validationMessages.js')
+var Sequelize = require('sequelize');
+
 
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define('User', {
@@ -27,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         max: {
           args: 125,
-          msg valmsg.max(125)
+          msg: valmsg.max(125)
         }
       }
     },
@@ -105,8 +107,8 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'users'
   });
 
-  User.hasMany('Order', {as: 'orders'})
-  User.hasMany('Address', {as: 'addresses'})
-  User.hasMany('DiscountCode', {as: 'discountCodes'})
+  // User.hasMany('Order', {as: 'orders'})
+  // User.hasMany('Address', {as: 'addresses'})
+  // User.hasMany('DiscountCode', {as: 'discountCodes'})
   return User
 };

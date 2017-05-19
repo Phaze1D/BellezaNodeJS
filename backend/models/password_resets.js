@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 var valmsg =  require('../helpers/validationMessages.js')
+var Sequelize = require('sequelize');
+
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('PasswordReset', {
@@ -17,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         max: {
           args: 125,
-          msg valmsg.max(125)
+          msg: valmsg.max(125)
         }
       }
     },

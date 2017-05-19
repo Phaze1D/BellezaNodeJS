@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     plu: {
       type: DataTypes.STRING(45),
       allowNull: false,
-      unique: unique: {
+      unique: {
         args: true,
         message: valmsg.plu_unique
       },
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         max: {
           args: 125,
-          msg valmsg.max(125)
+          msg: valmsg.max(125)
         },
         notEmpty: {
           args: true,
@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         max: {
           args: 32,
-          msg valmsg.max(32)
+          msg: valmsg.max(32)
         }
       }
     },
@@ -76,7 +76,7 @@ module.exports = function(sequelize, DataTypes) {
       validate:{
         max: {
           args: 100,
-          msg valmsg.max(100)
+          msg: valmsg.max(100)
         }
       }
     },
@@ -86,7 +86,7 @@ module.exports = function(sequelize, DataTypes) {
       validate:{
         max: {
           args: 100,
-          msg valmsg.max(100)
+          msg: valmsg.max(100)
         },
         notEmpty: {
           args: true,
@@ -108,7 +108,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'products'
   });
 
-  Product.hasMany('Detail', {as: 'details'})
-  Product.belongsToMany('Category', { as: 'categories', through: 'category_product'})
+  // Product.hasMany('Detail', {as: 'details'})
+  // Product.belongsToMany('Category', { as: 'categories', through: 'category_product'})
   return Product
 };

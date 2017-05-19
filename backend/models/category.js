@@ -39,8 +39,5 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'categories'
   });
 
-  Category.belongsTo('Category', {as: 'parent', foreignKey: 'parent_id'});
-  Category.hasMany('Category', {as: 'subs', foreignKey: 'parent_id'})
-  Category.belongsToMany('Product', { as: 'products', through: 'category_product'})
   return Category
 };

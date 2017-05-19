@@ -60,6 +60,6 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'discount_codes'
   });
 
-  DiscountCode.belongsTo('User', {as: 'user'});
+  // DiscountCode.belongsTo('User', {as: 'user'});
   return DiscountCode
 };

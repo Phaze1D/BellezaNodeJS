@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         max: {
           args: 125,
-          msg valmsg.max(125)
+          msg: valmsg.max(125)
         }
       }
     },

@@ -91,7 +91,5 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'details'
   });
 
-  Detail.belongsTo('Order', {as: 'order'});
-  Detail.belongsTo('Product', {as: 'product'});
   return Detail
 };

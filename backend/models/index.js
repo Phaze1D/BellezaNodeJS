@@ -33,4 +33,29 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Address.belongsTo(db.User, {as: 'user'});
+db.Address.hasMany(db.Order, {as: 'orderShip', foreignKey: 'shipping_address_id'});
+db.Address.hasMany(db.Order, {as: 'orderInvoice', foreignKey: 'invoice_address_id'});
+
+db.Category.belongsTo(db.Category, {as: 'parent', foreignKey: 'parent_id'});
+db.Category.hasMany(db.Category, {as: 'subs', foreignKey: 'parent_id'})
+db.Category.belongsToMany(db.Product, { as: 'products', through: 'category_product'})
+
+db.Detail.belongsTo(db.Order, {as: 'order'});
+db.Detail.belongsTo(db.Product, {as: 'product'});
+
+db.DiscountCode.belongsTo(db.User, {as: 'user'});
+
+db.Order.belongsTo(db.User, {as: 'user'});
+db.Order.belongsTo(db.Address, {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
+db.Order.belongsTo(db.Address, {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
+db.Order.hasMany(db.Detail, {as: 'details'})
+
+db.Product.hasMany(db.Detail, {as: 'details'})
+db.Product.belongsToMany(db.Category, { as: 'categories', through: 'category_product'})
+
+db.User.hasMany(db.Order, {as: 'orders'})
+db.User.hasMany(db.Address, {as: 'addresses'})
+db.User.hasMany(db.DiscountCode, {as: 'discountCodes'})
+
 module.exports = db;

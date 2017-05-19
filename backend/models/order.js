@@ -111,9 +111,9 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'orders'
   });
 
-  Order.belongsTo('User', {as: 'user'});
-  Order.belongsTo('Address', {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
-  Order.belongsTo('Address', {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
-  Order.hasMany('Detail', {as: 'details'})
+  // Order.belongsTo('User', {as: 'user'});
+  // Order.belongsTo('Address', {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
+  // Order.belongsTo('Address', {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
+  // Order.hasMany('Detail', {as: 'details'})
   return Order
 };
