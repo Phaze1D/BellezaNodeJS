@@ -6,12 +6,12 @@ const valmsg = {
   min: (min) => `Debe tener como mínimo ${min} caracteres`,
   max: (max) => `Debe tener como maximo ${max} caracteres`,
   email_unique: 'El correo electrónico ya esta registrado',
+  plu_unique: 'El plu ya esta registrado',
   phone: (value) => {
     if(phone(value, 'MX').length == 0){
       throw new Error('Numero invalido')
     }
   },
-  plu_unique: 'El plu ya esta registrado'
 
 }
 
