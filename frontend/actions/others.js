@@ -11,7 +11,7 @@ export const contact = (formData) => {
 export const validateContact = (fieldData) => {
   return {
     type: types.CONTACT_VALIDATE,
-    payload: axios.post('/validate-contact', fieldData)
+    payload: axios.get('/validate-contact', fieldData)
   }
 }
 

@@ -19,21 +19,14 @@ export const userLogin = (formData) => {
 export const validateUserNew = (fieldData) => {
   return {
     type: types.USER_VALIDATE_NEW,
-    payload: axios.post('/validate-user-new', fieldData)
+    payload: axios.get('/validate-user', fieldData)
   }
 }
 
 export const userUpdate = (formData, id) => {
   return {
     type: types.USER_UPDATE,
-    payload: axios.post(`/user/${id}`, formData)
-  }
-}
-
-export const validateUserUpdate = (fieldData) => {
-  return {
-    type: types.USER_VALIDATE_UPDATE,
-    payload: axios.post('/validate-user-update', fieldData)
+    payload: axios.put(`/user/${id}`, formData)
   }
 }
 

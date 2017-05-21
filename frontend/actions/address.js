@@ -11,14 +11,14 @@ export const addressNew = (formData) => {
 export const addressUpdate = (formData, id) => {
   return {
     type: types.ADDRESS_UPDATE,
-    payload: axios.post(`/address/${id}`, formData)
+    payload: axios.put(`/address/${id}`, formData)
   }
 }
 
 export const validateAddress = (fieldData) => {
   return {
     type: types.ADDRESS_VALIDATE,
-    payload: axios.post('/validate-address')
+    payload: axios.get('/validate-address')
   }
 }
 
