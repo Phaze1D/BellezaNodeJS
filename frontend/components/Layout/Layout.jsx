@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, Switch } from 'react-router-dom'
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
 import Home from 'pages/home/home'
@@ -51,8 +51,9 @@ export default class Layout extends React.Component {
 
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
-        <Route path="/categories/:index" component={CategoryIndex}/>
-        <Route path="/categories/:index/:sub" component={CategoryIndex}/>
+        <Route exact path="/categories/:index" component={CategoryIndex}/>
+        <Route exact path="/categories/:index/:sub" component={CategoryIndex}/>
+
         <Route path="/category/:index/:sub/:show" component={CategoryShow}/>
         <Route path="/product/:id" component={ProductShow}/>
         <Route path="/search" component={Search}/>

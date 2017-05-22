@@ -30,15 +30,22 @@ export default class CategoryIndex extends React.Component {
     category = match.params.sub ? category.getIn(['subs', match.params.sub]) : category
     if(!category) return (<Redirect to="/home"/>)
 
+    let to = ''
+    if(match.params.sub){
+      to = `/category/${match.params.index}/${match.params.sub}/`
+    }else{
+      to = `/categories/${match.params.index}/`
+    }
+
     const sideList = category.get('subs').map( (sub, index) =>
       <li key={index}>
-        <Link to={sub.get('to')}>{sub.get('name')}</Link>
+        <Link to={`${to}${index}`}>{sub.get('name')}</Link>
       </li>
     )
 
     const gridList = category.get('subs').map( (sub, index) =>
       <div className="col-4 col-sm-6 col-xxs-12" key={index}>
-        <Link to={sub.get('to')} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
+        <Link to={`${to}${index}`} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
           <h3 className="highlight">{sub.get('name')}</h3>
         </Link>
       </div>
