@@ -3,7 +3,7 @@ import { fromJS } from 'immutable'
 
 const INITIAL_PRODUCTS = fromJS({
   results: [],
-  total: 30
+  total: 0
 })
 
 const INITIAL_PRODUCT = fromJS({
