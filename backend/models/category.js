@@ -2,6 +2,8 @@
 var valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
+
+
   const Category =  sequelize.define('Category', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,

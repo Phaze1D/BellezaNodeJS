@@ -92,8 +92,8 @@ export default class Header extends React.Component {
         onClick={this.handleNavClick}
         onMouseLeave={this.handleNavLeave}>
 
-        <Link to={category.get('to')} title={category.get('name')} className="nav-link">{category.get('name')}</Link>
-        <MainList subs={category.get('subs')}/>
+        <Link to={`/categories/${index}`} title={category.get('name')} className="nav-link">{category.get('name')}</Link>
+        <MainList subs={category.get('subs')} index={index}/>
       </li>
     )
 
@@ -187,11 +187,11 @@ export default class Header extends React.Component {
 
 const MainList = (props) => {
 
-  const mainList = props.subs.map( (main) => {
+  const mainList = props.subs.map( (main, mindex) => {
 
-    const subList = main.get('subs').map( (sub) =>
+    const subList = main.get('subs').map( (sub, sindex) =>
       <li key={sub.get('id')} title={sub.get('name')}>
-        <Link to={sub.get('to')} className="sub-text">
+        <Link to={`/category/${props.index}/${mindex}/${sindex}`} className="sub-text">
           {sub.get('name')}
         </Link>
       </li>
@@ -199,12 +199,11 @@ const MainList = (props) => {
 
     return (
       <ul key={main.get('id')} className="main-item">
-        <Link to={main.get('to')} title={main.get('name')} className="dark-a">{main.get('name')}</Link>
+        <Link to={`/categories/${props.index}/${mindex}`} title={main.get('name')} className="dark-a">{main.get('name')}</Link>
         {subList}
       </ul>
     )
   })
-
 
   return (
     <div className="nav-menu-box">

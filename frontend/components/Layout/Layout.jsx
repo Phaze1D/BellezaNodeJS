@@ -52,8 +52,8 @@ export default class Layout extends React.Component {
         <Redirect from='/' to='/home'/>
         <Route path="/home" component={Home}/>
         <Route path="/categories/:index" component={CategoryIndex}/>
-        <Route path="/categories/:index/sub/:sub" component={CategoryIndex}/>
-        <Route path="/category/:index/sub/:sub/show/:show" component={CategoryShow}/>
+        <Route path="/categories/:index/:sub" component={CategoryIndex}/>
+        <Route path="/category/:index/:sub/:show" component={CategoryShow}/>
         <Route path="/product/:id" component={ProductShow}/>
         <Route path="/search" component={Search}/>
         <Route path="/cart" component={CartShow}/>
