@@ -5,7 +5,7 @@ import { addMailer } from 'actions/others'
 import { resetErrors } from 'actions/errors'
 import {
   userUpdate,
-  validateUserUpdate,
+  validateUser,
   userLogout,
 } from 'actions/user'
 
@@ -80,7 +80,7 @@ class UserDetails extends React.Component {
     let fieldData = new FormData()
     fieldData.append(event.target.name, event.target.value)
 
-    this.props.dispatch(validateUserUpdate(fieldData))
+    this.props.dispatch(validateUser(fieldData))
     .then()
     .catch(this.handleError)
   }

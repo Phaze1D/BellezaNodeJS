@@ -16,7 +16,7 @@ export const userLogin = (formData) => {
   }
 }
 
-export const validateUserNew = (fieldData) => {
+export const validateUser = (fieldData) => {
   return {
     type: types.USER_VALIDATE_NEW,
     payload: axios.get('/validate-user', fieldData)

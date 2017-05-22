@@ -5,7 +5,7 @@ import { resetErrors } from 'actions/errors'
 import {
   userSignUp,
   userLogin,
-  validateUserNew,
+  validateUser,
 } from 'actions/user'
 
 /**
@@ -76,7 +76,7 @@ export default class Signin extends React.Component {
     let fieldData = new FormData()
     fieldData.append(event.target.name, event.target.value)
 
-    this.props.dispatch(validateUserNew(fieldData))
+    this.props.dispatch(validateUser(fieldData))
     .then()
     .catch(this.handleError)
   }

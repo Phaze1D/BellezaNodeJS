@@ -29,9 +29,8 @@ import {
 import {
   userSignUpReducer,
   userLoginReducer,
-  validateUserNewReducer,
+  validateUserReducer,
   userUpdateReducer,
-  validateUserUpdateReducer,
   userPreferenceReducer,
   userLogoutReducer
 } from 'reducers/user'
@@ -130,9 +129,8 @@ const othersReducer = reduceReducers(
 const userReducer = reduceReducers(
   userSignUpReducer,
   userLoginReducer,
-  validateUserNewReducer,
+  validateUserReducer,
   userUpdateReducer,
-  validateUserUpdateReducer,
   userPreferenceReducer,
   userLogoutReducer,
   addressNewReducer,

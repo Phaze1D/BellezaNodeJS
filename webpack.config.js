@@ -42,11 +42,17 @@ var config = {
   },
   devServer: {
     host: 'localhost',
-    port: 3000,
+    port: 8080,
     historyApiFallback: true,
     disableHostCheck: true,
     publicPath: '/',
     hot: true,
+    proxy: {
+    '/': {
+      target: 'http://localhost:3000/',
+      secure: false
+    }
+  }
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
