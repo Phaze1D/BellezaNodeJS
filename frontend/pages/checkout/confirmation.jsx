@@ -49,8 +49,8 @@ export default class CheckoutConfirmation extends React.Component {
 
   handleSubmitCode(event){
     event.preventDefault()
-    let formData = new FormData()
-    formData.append('code', event.target.elements.code.value)
+    let formData = {}
+    formData['code'] = event.target.elements.code.value
 
     this.props.dispatch(checkUserCode(formData))
     .then()
@@ -242,10 +242,10 @@ export const Address = props => (
     <p>{props.address.get('title')}</p>
     <hr></hr>
     <p className="overflow-text">
-      {props.address.get('firstName')} {props.address.get('lastName')}
+      {props.address.get('first_name')} {props.address.get('last_name')}
     </p>
     <p className="overflow-text">{props.address.get('telephone')}</p>
-    <p className="overflow-text">{props.address.get('street1')}</p>
+    <p className="overflow-text">{props.address.get('street')}</p>
     <p className="overflow-text">{props.address.get('street2')}</p>
     <p className="overflow-text">
       {props.address.get('city')}, {props.address.get('state')}

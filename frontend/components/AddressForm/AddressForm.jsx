@@ -26,9 +26,9 @@ class AddressForm extends React.Component {
     let id = this.props.address.get('id')
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('firstName', elements.firstName.value)
-    formData.append('lastName', elements.lastName.value)
-    formData.append('street1', elements.street1.value)
+    formData.append('first_name', elements.first_name.value)
+    formData.append('last_name', elements.last_name.value)
+    formData.append('street', elements.street.value)
     formData.append('street2', elements.street2.value)
     formData.append('city', elements.city.value)
     formData.append('state', elements.state.value)
@@ -47,9 +47,8 @@ class AddressForm extends React.Component {
   }
 
   handleInputBlur(event) {
-    let fieldData = new FormData()
-    fieldData.append(event.target.name, event.target.value)
-
+    let fieldData = {}
+    fieldData[event.target.name] = event.target.value
     this.props.dispatch(validateAddress(fieldData))
     .then()
     .catch(this.handleError)
@@ -77,24 +76,24 @@ class AddressForm extends React.Component {
           <i className="material-icons clear-icon" onClick={onRequestCancel}>clear</i>
         </h3>
         <form className="main-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">Nombre</label>
-          {errors.get('firstName') && <div className="error-div">{errors.get('firstName')}</div>}
-          <input type="text" name="firstName"
-            defaultValue={address.get('firstName')}
+          <label htmlFor="first_name">Nombre</label>
+          {errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
+          <input type="text" name="first_name"
+            defaultValue={address.get('first_name')}
             onBlur={this.handleInputBlur}
             onFocus={this.handleInputFocus}/>
 
-          <label htmlFor="lastName">Apellidos</label>
-          {errors.get('lastName') && <div className="error-div">{errors.get('lastName')}</div>}
-          <input type="text" name="lastName"
-            defaultValue={address.get('lastName')}
+          <label htmlFor="last_name">Apellidos</label>
+          {errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
+          <input type="text" name="last_name"
+            defaultValue={address.get('last_name')}
             onBlur={this.handleInputBlur}
             onFocus={this.handleInputFocus}/>
 
-          <label htmlFor="street1">Dirección</label>
-          {errors.get('street1') && <div className="error-div">{errors.get('street1')}</div>}
-          <input type="text" name="street1"
-            defaultValue={address.get('street1')}
+          <label htmlFor="street">Dirección</label>
+          {errors.get('street') && <div className="error-div">{errors.get('street')}</div>}
+          <input type="text" name="street"
+            defaultValue={address.get('street')}
             onBlur={this.handleInputBlur}
             onFocus={this.handleInputFocus}/>
 
