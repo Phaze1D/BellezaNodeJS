@@ -21,7 +21,9 @@ export const resetCodes = () => {
 export const checkUserCode = (formData) => {
   return {
     type: types.CHECK_USER_CODE,
-    payload: axios.get('/check-code', formData)
+    payload: axios.get('/check-code', {
+      params: formData
+    })
   }
 }
 

@@ -19,7 +19,9 @@ export const userLogin = (formData) => {
 export const validateUser = (fieldData) => {
   return {
     type: types.USER_VALIDATE_NEW,
-    payload: axios.get('/validate-user', fieldData)
+    payload: axios.get('/validate-user', {
+      params: fieldData
+    })
   }
 }
 

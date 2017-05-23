@@ -18,7 +18,9 @@ export const addressUpdate = (formData, id) => {
 export const validateAddress = (fieldData) => {
   return {
     type: types.ADDRESS_VALIDATE,
-    payload: axios.get('/validate-address')
+    payload: axios.get('/validate-address', {
+      params: fieldData
+    })
   }
 }
 
