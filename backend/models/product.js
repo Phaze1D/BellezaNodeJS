@@ -1,5 +1,5 @@
-/* jshint indent: 2 */
-var valmsg =  require('../helpers/validationMessages.js')
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
   const Product =  sequelize.define('Product', {
@@ -108,7 +108,75 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'products'
   });
 
-  // Product.hasMany('Detail', {as: 'details'})
-  // Product.belongsToMany('Category', { as: 'categories', through: 'category_product'})
+  Product.allOptions = function (querys) {
+    let search = querys.search
+    let category = querys.category
+    let sort = querys.sort ? querys.sort : 0
+    let page = querys.page ? querys.page : 0
+
+    let sortOptions = [['name', 'ASC'], ['name', 'DESC'], ['price', 'DESC'], ['price', 'ASC']]
+    let options = {
+      subquery: false,
+      attributes: { exclude: ['description', 'ingredients', 'benefits'] },
+      where: {active: true},
+      offset: 20 * page,
+      limit: 20,
+      order: [sortOptions[sort]]
+    }
+
+    if(search){
+      options.where.$or = [
+        {plu: {$like: `${search}%`}},
+        {name: {$like: `${search}%`}}
+      ]
+    }
+
+    if(category){
+      options.include = [{
+        model: sequelize.model('Category'),
+        as: 'categories',
+        where: {id: category},
+        attributes: [],
+        through: {
+          where: {categories_id: category}
+        }
+      }]
+    }
+    return options
+  }
+
+
+  Product.singleOptions = function (id) {
+    let options = {
+      where: {id: id},
+      include: [{
+        model: sequelize.model('Category'),
+        as: 'categories',
+        through: {
+          where: {products_id: id}
+        }
+      }]
+    }
+    return options
+  }
+
+  Product.relatedOptions = function (category_id) {
+    let options = {
+      limit: 4,
+      attributes: { exclude: ['description', 'ingredients', 'benefits'] },
+      include: [{
+        model: sequelize.model('Category'),
+        as: 'categories',
+        where: {id: category_id},
+        attributes: [],
+        through: {
+          where: {categories_id: category_id}
+        }
+      }]
+    }
+
+    return options
+  }
+
   return Product
 };
