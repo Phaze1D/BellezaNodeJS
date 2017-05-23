@@ -51,10 +51,14 @@ export default class ProductResult extends React.PureComponent {
           <p>${product.get('price')}</p>
         </Link>
 
-        <form onSubmit={this.handleAddDetail}>
-          <input className="secondary-button" type="submit" value="Agregar al Carrito"/>
-          <input name="quantity" type="number" min="0" max="10" defaultValue="1"/>
-        </form>
+        {product.get('stock') > 0 ?
+          <form onSubmit={this.handleAddDetail}>
+            <input className="secondary-button" type="submit" value="Agregar al Carrito"/>
+            <input name="quantity" type="number" min="0" max={product.get('stock')} defaultValue="1"/>
+          </form>
+          :
+          <input className="secondary-button" type="submit" value="Agotado" disabled/>
+        }
       </article>
     )
   }
