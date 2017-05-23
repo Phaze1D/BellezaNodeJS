@@ -72,7 +72,7 @@ class CodesNew extends React.Component {
 
     return (
       <div>
-        <h2>Discount Code For: {client.get('firstName')} {client.get('lastName')}</h2>
+        <h2>Discount Code For: {client.get('first_name')} {client.get('last_name')}</h2>
         <h4>Email: {client.get('email')}</h4>
 
         <form className="main-form grid-wrap center" onSubmit={this.handleSubmit}>

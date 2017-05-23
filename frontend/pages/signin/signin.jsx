@@ -48,9 +48,10 @@ export default class Signin extends React.Component {
 
   handleLogin(event){
     event.preventDefault()
+    this.props.dispatch(resetErrors())
     let elements = event.target.elements
     let formData = new FormData()
-    formData.append('email', elements.email.value)
+    formData.append('email', elements.login.value)
     formData.append('password', elements.password.value)
 
     this.props.dispatch(userLogin(formData))
@@ -60,12 +61,13 @@ export default class Signin extends React.Component {
 
   handleSignUp(event){
     event.preventDefault()
+    this.props.dispatch(resetErrors())
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('email', elements.email.value)
     formData.append('password', elements.password.value)
-    formData.append('firstName', elements.firstName.value)
-    formData.append('lastName', elements.lastName.value)
+    formData.append('first_name', elements.first_name.value)
+    formData.append('last_name', elements.last_name.value)
 
     this.props.dispatch(userSignUp(formData))
     .then()
@@ -73,8 +75,8 @@ export default class Signin extends React.Component {
   }
 
   handleInputBlur(event){
-    let fieldData = new FormData()
-    fieldData.append(event.target.name, event.target.value)
+    let fieldData = {}
+    fieldData[event.target.name] = event.target.value
 
     this.props.dispatch(validateUser(fieldData))
     .then()
@@ -102,7 +104,9 @@ export default class Signin extends React.Component {
         <div className="grid-wrap around">
           <LoginFrom
             errors={errors}
-            onRequestSubmit={this.handleLogin}/>
+            onRequestSubmit={this.handleLogin}
+            onRequestBlur={this.handleInputBlur}
+            onRequestFocus={this.handleInputFocus}/>
 
           <SignUpForm
             errors={errors}
@@ -124,7 +128,9 @@ const LoginFrom = props => {
       <form className="main-form" onSubmit={props.onRequestSubmit}>
         <label htmlFor="email">Email</label>
         {props.errors.get('login') && <div className="error-div">{props.errors.get('login')}</div>}
-        <input type="text" name="email" />
+        <input type="text" name="login"
+          onBlur={props.onRequestBlur}
+          onFocus={props.onRequestFocus}/>
 
         <label htmlFor="password">Contraseña <Link to="/reset" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
         <input type="password" name="password"/>
@@ -145,15 +151,15 @@ const SignUpForm = props => {
         de pago más rápido, guardar múltiples direcciones de envío.
       </h5>
       <form className="main-form" onSubmit={props.onRequestSubmit}>
-        <label htmlFor="firstName">Nombre</label>
-        {props.errors.get('firstName') && <div className="error-div">{props.errors.get('firstName')}</div>}
-        <input type="text" name="firstName"
+        <label htmlFor="first_name">Nombre</label>
+        {props.errors.get('first_name') && <div className="error-div">{props.errors.get('first_name')}</div>}
+        <input type="text" name="first_name"
           onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 
-        <label htmlFor="lastName">Apellido</label>
-        {props.errors.get('lastName') && <div className="error-div">{props.errors.get('lastName')}</div>}
-        <input type="text" name="lastName"
+        <label htmlFor="last_name">Apellido</label>
+        {props.errors.get('last_name') && <div className="error-div">{props.errors.get('last_name')}</div>}
+        <input type="text" name="last_name"
           onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 

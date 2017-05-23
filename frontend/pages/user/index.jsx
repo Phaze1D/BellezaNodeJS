@@ -141,8 +141,8 @@ export default class UsersIndex extends React.Component {
 
 const UserItem = props => (
   <tr>
-    <td>{props.client.get('firstName')}</td>
-    <td>{props.client.get('lastName')}</td>
+    <td>{props.client.get('first_name')}</td>
+    <td>{props.client.get('last_name')}</td>
     <td>{props.client.get('email')}</td>
     <td>${props.client.get('amount')}</td>
     <td>

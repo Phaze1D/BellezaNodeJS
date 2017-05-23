@@ -68,8 +68,8 @@ class UserDetails extends React.Component {
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('telephone', elements.telephone.value)
-    formData.append('firstName', elements.firstName.value)
-    formData.append('lastName', elements.lastName.value)
+    formData.append('first_name', elements.first_name.value)
+    formData.append('last_name', elements.last_name.value)
 
     this.props.dispatch(userUpdate(formData))
     .then()
@@ -121,7 +121,7 @@ class UserDetails extends React.Component {
     )
 
     const addreList = user.get('addresses').map( (add, index) =>
-      <p key={index} className="overflow-text sub-text primary">{add.get('street1')}</p>
+      <p key={index} className="overflow-text sub-text primary">{add.get('street')}</p>
     )
 
     return (
@@ -136,7 +136,7 @@ class UserDetails extends React.Component {
           <div className="col-6 col-sm-12">
             <h4 className="h-underline overflow-text">
               <span className="overflow-text" style={{float: 'left', maxWidth: 'calc(100% - 70px)'}}>
-                {user.get('firstName')} {user.get('lastName')}
+                {user.get('first_name')} {user.get('last_name')}
               </span>
               <span style={{float: 'right'}}>
                 ( <Link to="#" className="sub-text light" onClick={this.handleShow}>Editar</Link> )
@@ -219,17 +219,17 @@ const UserEdit = (props) => {
         <i className="material-icons clear-icon" onClick={onRequestCancel}>clear</i>
       </h3>
       <form className="main-form" onSubmit={onRequestSubmit}>
-        <label htmlFor="firstName">Nombre</label>
-        {errors.get('firstName') && <div className="error-div">{errors.get('firstName')}</div>}
-        <input type="text" name="firstName"
-          defaultValue={user.get('firstName')}
+        <label htmlFor="first_name">Nombre</label>
+        {errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
+        <input type="text" name="first_name"
+          defaultValue={user.get('first_name')}
           onBlur={onRequestBlur}
           onFocus={onRequestFocus}/>
 
-        <label htmlFor="lastName">Apellidos</label>
-        {errors.get('lastName') && <div className="error-div">{errors.get('lastName')}</div>}
-        <input type="text" name="lastName"
-          defaultValue={user.get('lastName')}
+        <label htmlFor="last_name">Apellidos</label>
+        {errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
+        <input type="text" name="last_name"
+          defaultValue={user.get('last_name')}
           onBlur={onRequestBlur}
           onFocus={onRequestFocus}/>
 

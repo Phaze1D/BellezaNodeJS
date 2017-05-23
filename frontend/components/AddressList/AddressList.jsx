@@ -150,14 +150,14 @@ class Address extends React.PureComponent {
     return (
       <div className={selClass} onClick={this.handleSelect}>
         <p className="overflow-text">
-          {address.get('firstName')} {address.get('lastName')}
+          {address.get('first_name')} {address.get('last_name')}
         </p>
 
         <p className="overflow-text">{address.get('telephone')}</p>
 
         <hr></hr>
 
-        <p className="overflow-text">{address.get('street1')}</p>
+        <p className="overflow-text">{address.get('street')}</p>
 
         <p className="overflow-text">{address.get('street2')}</p>
 
