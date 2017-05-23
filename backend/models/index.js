@@ -1,17 +1,18 @@
 'use strict';
 
-var fs        = require('fs');
-var path      = require('path');
-var Sequelize = require('sequelize');
-var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/database.json')[env];
-var db        = {};
+let fs        = require('fs');
+let path      = require('path');
+let Sequelize = require('sequelize');
+let basename  = path.basename(module.filename);
+let env       = process.env.NODE_ENV || 'development';
+let config    = require(__dirname + '/../config/database.json')[env];
+let db        = {};
+let sequelize = {}
 
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
@@ -20,7 +21,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(function(file) {
-    var model = sequelize['import'](path.join(__dirname, file));
+    let model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
   });
 
@@ -39,7 +40,7 @@ db.Address.hasMany(db.Order, {as: 'orderInvoice', foreignKey: 'invoice_address_i
 
 db.Category.belongsTo(db.Category, {as: 'parent', foreignKey: 'parent_id'});
 db.Category.hasMany(db.Category, {as: 'subs', foreignKey: 'parent_id'})
-db.Category.belongsToMany(db.Product, { as: 'products', through: 'category_product'})
+db.Category.belongsToMany(db.Product, { as: 'products', through: db.CategoriesProducts,  foreignKey: 'categories_id'})
 
 db.Detail.belongsTo(db.Order, {as: 'order'});
 db.Detail.belongsTo(db.Product, {as: 'product'});
@@ -52,7 +53,7 @@ db.Order.belongsTo(db.Address, {as: 'invoiceAddress', foreignKey: 'invoice_addre
 db.Order.hasMany(db.Detail, {as: 'details'})
 
 db.Product.hasMany(db.Detail, {as: 'details'})
-db.Product.belongsToMany(db.Category, { as: 'categories', through: 'category_product'})
+db.Product.belongsToMany(db.Category, { as: 'categories', through: db.CategoriesProducts, foreignKey: 'products_id'})
 
 db.User.hasMany(db.Order, {as: 'orders'})
 db.User.hasMany(db.Address, {as: 'addresses'})
