@@ -41,6 +41,15 @@ export default class ProductShow extends React.Component {
     this.unlisten = this.props.history.listen(this.handleUrlChanged)
   }
 
+  componentDidUpdate(prevProps, prevState){
+    let oldParams = prevProps.match.params
+    let newParams = this.props.match.params
+
+    if(newParams.id !== oldParams.id){
+      this.handleUrlChanged(this.props.history.location, this.props.history.action)
+    }
+  }
+
   componentWillUnmount() {
     this.unlisten()
     this.props.dispatch(resetProduct())
@@ -87,6 +96,8 @@ export default class ProductShow extends React.Component {
       product
     } = this.props
 
+    const price = product.get('price') ? product.get('price').toFixed(2) : 0
+
     const relatList = product.get('related').map( (rproduct, index) =>
       <ProductResult key={index} product={rproduct}/>
     )
@@ -106,14 +117,20 @@ export default class ProductShow extends React.Component {
             <div className="grid-wrap center around">
               <div className="col-8 col-xxs-12">
                 <p className="sub-text">PLU: {product.get('plu')} / Disponibles: {product.get('stock')}</p>
-                <p className="sub-text primary">${product.get('price')} / {product.get('volumn')}</p>
-                <p className="discount-text">Con {product.get('discount')}% de Descuento </p>
+                <p className="sub-text primary">${price} / {product.get('volume')}</p>
+                {product.get('discount') > 0 &&
+                  <p className="discount-text">Con {product.get('discount')}% de Descuento </p>
+                }
               </div>
 
-              <form className="col-4 col-xxs-12 grid end" onSubmit={this.handleAddDetail}>
-                <input className="secondary-button raise grow" type="submit" value="Agregar"/>
-                <input name="quantity" type="number" min="0" max="10" defaultValue="1"/>
-              </form>
+              {product.get('stock') > 0 ?
+                <form className="col-4 col-xxs-12 grid end" onSubmit={this.handleAddDetail}>
+                  <input className="secondary-button raise grow" type="submit" value="Agregar"/>
+                  <input name="quantity" type="number" min="0" max={product.get('stock')} defaultValue="1"/>
+                </form>
+                :
+                <input className="secondary-button" type="submit" value="Agotado" disabled/>
+              }
             </div>
 
             <Tabs className="tabs">
@@ -128,21 +145,24 @@ export default class ProductShow extends React.Component {
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               {product.get('description')}
+               <div dangerouslySetInnerHTML={{__html: product.get('description')}}>
+               </div>
              </TabPanel>
 
              <TabPanel
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               {product.get('benefits')}
+               <div dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
+               </div>
              </TabPanel>
 
              <TabPanel
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               {product.get('ingredients')}
+               <div dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
+               </div>
              </TabPanel>
            </Tabs>
 

@@ -39,6 +39,15 @@ export default class CategoryShow extends React.Component {
     this.unlisten = this.props.history.listen(this.handleUrlChanged)
   }
 
+  componentDidUpdate(prevProps, prevState){
+    let oldParams = prevProps.match.params
+    let newParams = this.props.match.params
+
+    if(newParams.index !== oldParams.index || newParams.sub !== oldParams.sub || newParams.show !== oldParams.show){
+      this.handleUrlChanged(this.props.history.location, this.props.history.action)
+    }
+  }
+
   componentWillUnmount() {
     this.unlisten()
     this.props.dispatch(resetProducts())
@@ -50,7 +59,7 @@ export default class CategoryShow extends React.Component {
     category = category ? category.getIn(['subs', mParams.sub]) : false
     category = category ? category.getIn(['subs', mParams.show]) : false
 
-    if(this.props.match.url === location.pathname && category){
+    if((this.props.match.url === location.pathname) && category){
       const parse = queryString.parse(location.search)
       this.props.dispatch(getProducts(undefined, category.get('id'), parse.page, parse.sort))
       .then()
