@@ -1,5 +1,6 @@
-var express = require('express')
-var router = express.Router()
+'use strict'
+let express = require('express')
+let router = express.Router()
 
 
 router.post('/contact', function (req, res) {

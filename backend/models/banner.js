@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+'use strict'
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Banner', {

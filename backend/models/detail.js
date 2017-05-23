@@ -1,5 +1,5 @@
-/* jshint indent: 2 */
-var valmsg =  require('../helpers/validationMessages.js')
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
   const Detail =  sequelize.define('Detail', {

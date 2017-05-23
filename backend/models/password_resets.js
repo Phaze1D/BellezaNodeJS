@@ -1,6 +1,6 @@
-/* jshint indent: 2 */
-var valmsg =  require('../helpers/validationMessages.js')
-var Sequelize = require('sequelize');
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
+let Sequelize = require('sequelize');
 
 
 module.exports = function(sequelize, DataTypes) {
@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     created_at: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.NOW
+      defaultValue: DataTypes.NOW
     },
   }, {
     tableName: 'password_resets'

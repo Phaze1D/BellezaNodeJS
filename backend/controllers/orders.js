@@ -1,5 +1,8 @@
-var express = require('express')
-var router = express.Router()
+'use strict'
+let express = require('express')
+let Order = require('../models').Order
+
+let router = express.Router()
 
 
 /** REQUIRES USER OR ADMIN VALIDATION */
