@@ -7,11 +7,18 @@ const INITIAL_ERRORS = Map()
 export const errorsReducer = (state = INITIAL_ERRORS, action) => {
 
   if(action.type.includes('ERROR')){
-
+    let res = action.payload.response.data
+    return state.withMutations(map => {
+      res.forEach(error => map.set(error.path, error.message))
+    })
   }
 
-  if(action.type === types.RESET_ERRORS){
-    
+  if(action.type === types.RESET_ERRS){
+    if(action.payload.key){
+      return state.delete(action.payload.key)
+    }else{
+      return state.clear()
+    }
   }
 
   return state

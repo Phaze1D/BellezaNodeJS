@@ -15,7 +15,14 @@ export const getProductsReducer = (state = INITIAL_PRODUCTS, action) => {
   switch (action.type) {
     case `${types.GET_PRODUCTS}_LOADING`:
 
+    return state
+
     case `${types.GET_PRODUCTS}_SUCCESS`:
+
+    return fromJS({
+      results: action.payload.data.rows,
+      total: action.payload.data.count
+    })
 
     case `${types.GET_PRODUCTS}_ERROR`:
 
@@ -25,7 +32,7 @@ export const getProductsReducer = (state = INITIAL_PRODUCTS, action) => {
 
 export const resetProductsReducer = (state = INITIAL_PRODUCTS, action) => {
   if(action.type === types.RESET_PRODUCTS){
-
+    return INITIAL_PRODUCTS
   }
   return state
 }
@@ -34,8 +41,10 @@ export const resetProductsReducer = (state = INITIAL_PRODUCTS, action) => {
 export const getProductReducer = ( state = INITIAL_PRODUCT, action) => {
   switch (action.type) {
     case `${types.GET_PRODUCT}_LOADING`:
+      return state
 
     case `${types.GET_PRODUCT}_SUCCESS`:
+      return fromJS(action.payload.data)
 
     case `${types.GET_PRODUCT}_ERROR`:
 
@@ -43,11 +52,10 @@ export const getProductReducer = ( state = INITIAL_PRODUCT, action) => {
   }
 }
 
+
 export const resetProductReducer = (state = INITIAL_PRODUCT, action) => {
   if(action.type === types.RESET_PRODUCT){
-    return fromJS({
-      related: [],
-    })
+    return INITIAL_PRODUCT
   }
   return state
 }
@@ -64,6 +72,8 @@ export const newProductReducer = (state = INITIAL_PRODUCT, action) => {
     default: return state
   }
 }
+
+
 export const editProductReducer = (state = INITIAL_PRODUCT, action) => {
   switch (action.type) {
     case `${types.EDIT_PRODUCT}_LOADING`:

@@ -1,17 +1,16 @@
 import * as types from 'actions/types'
-import { fromJS } from 'immutable'
+import { fromJS, Map } from 'immutable'
 
-export const INITIAL_USER = fromJS({
-  telephones: [],
-  addresses: [],
-  preferences: true,
-})
+export const INITIAL_USER = Map()
 
 export const userSignUpReducer = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case `${types.USER_SIGN_UP}_LOADING`:
+      return state
 
     case `${types.USER_SIGN_UP}_SUCCESS`:
+      let usr = action.payload.data
+      return fromJS(usr)
 
     case `${types.USER_SIGN_UP}_ERROR`:
 
@@ -23,8 +22,11 @@ export const userSignUpReducer = (state = INITIAL_USER, action) => {
 export const userLoginReducer = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case `${types.USER_LOGIN}_LOADING`:
+      return state
 
     case `${types.USER_LOGIN}_SUCCESS`:
+      let usr = action.payload.data
+      return fromJS(usr)
 
     case `${types.USER_LOGIN}_ERROR`:
 

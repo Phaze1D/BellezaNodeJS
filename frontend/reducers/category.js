@@ -9,17 +9,7 @@ export const getCategoriesReducer = (state = INITIAL_CATEGORIES, action) => {
       return state
 
     case `${types.GET_CATEGORIES}_SUCCESS`:
-      let newState = []
-      action.payload.data.parents.forEach( parent => {
-        parent.subs = []
-        action.payload.data.subs.forEach( sub => {
-          if(sub.parent_id == parent.id){
-            parent.subs.push(sub)
-          }
-        })
-        newState.push(parent)
-      })
-      return fromJS(newState)
+      return fromJS(action.payload.data)
 
     case `${types.GET_CATEGORIES}_ERROR`:
 
