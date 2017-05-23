@@ -122,7 +122,7 @@ export default class Header extends React.Component {
             <div className="grid center end">
               <Link className="dark-a header-link" to="/stores" title="Tiendas">Tiendas</Link>
               <hr className="vertical-hr"></hr>
-              <Link className="dark-a header-link" to="/user" title="Signin">Mi Cuenta</Link>
+              <Link className="dark-a header-link" to="/signin" title="Signin">Mi Cuenta</Link>
               <hr className="vertical-hr"></hr>
               <div
                 id="cart-link"
