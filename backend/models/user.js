@@ -1,6 +1,8 @@
-/* jshint indent: 2 */
-var valmsg =  require('../helpers/validationMessages.js')
-var Sequelize = require('sequelize');
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
+let Sequelize = require('sequelize');
+var bcrypt = require('bcryptjs')
+
 
 
 module.exports = function(sequelize, DataTypes) {
@@ -19,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
         message: valmsg.email_unique
       },
       validate: {
+        len: {
+          args: [1, 125],
+          msg: valmsg.len(1, 125)
+        },
         isEmail: {
           args: true,
           msg: valmsg.email
@@ -27,9 +33,17 @@ module.exports = function(sequelize, DataTypes) {
           args: true,
           msg: valmsg.required
         },
-        max: {
-          args: 125,
-          msg: valmsg.max(125)
+        isUnique: (value, next) => {
+          User.findOne({where: {email: value}})
+          .then( (user) => {
+            if(user){
+              throw new Error(valmsg.email_unique)
+            }
+            return next();
+          })
+          .catch(function (err) {
+            return next(err);
+          });
         }
       }
     },
@@ -37,23 +51,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false,
       validate: {
-        min: {
-          args: 6,
-          msg: valmsg.min(6)
+        len: {
+          args: [6, 255],
+          msg: valmsg.len(6, 255)
         },
-        max: {
-          args: 255,
-          msg: valmsg.max(255)
-        }
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
       }
     },
     first_name: {
       type: DataTypes.STRING(45),
       allowNull: false,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         notEmpty: {
           args: true,
@@ -65,9 +79,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         notEmpty: {
           args: true,
@@ -79,9 +93,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         phone(value){
           valmsg.phone(value)
@@ -107,8 +121,13 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'users'
   });
 
-  // User.hasMany('Order', {as: 'orders'})
-  // User.hasMany('Address', {as: 'addresses'})
-  // User.hasMany('DiscountCode', {as: 'discountCodes'})
+  User.beforeCreate((user, options, cb) => {
+    bcrypt.hash(user.password, 10).then((hash) => {
+      user.password = hash
+      return cb(null, options)
+    })
+  });
+
+
   return User
 };
