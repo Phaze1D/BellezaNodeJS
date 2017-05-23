@@ -42,14 +42,14 @@ var config = {
   },
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     historyApiFallback: true,
     disableHostCheck: true,
     publicPath: '/',
     hot: true,
     proxy: {
     '/': {
-      target: 'http://localhost:3000/',
+      target: 'http://localhost:8080/',
       secure: false
     }
   }
