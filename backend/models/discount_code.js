@@ -1,5 +1,5 @@
-/* jshint indent: 2 */
-var valmsg =  require('../helpers/validationMessages.js')
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
   const DiscountCode =  sequelize.define('DiscountCode', {
@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: {
           args: true,
           msg: valmsg.required
+        },
+        unique: {
+          args: true,
+          message: valmsg.email_unique
         },
       }
     },
