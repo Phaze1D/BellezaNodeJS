@@ -17,8 +17,10 @@ export default class Pagination extends React.PureComponent {
   }
 
   handleClick(index, event){
-    if(index > -1 && index < this.props.links.length){
+    if(index >= 0 && index < this.props.links.length){
       this.props.onRequestClick(index, event)
+    }else{
+      event.preventDefault()
     }
   }
 
@@ -42,15 +44,15 @@ export default class Pagination extends React.PureComponent {
 
       return (
         <div className="grid center">
-          <span className={ar}
+          <Link className={ar} to={page > 0 ? this.props.links[page - 1].value : '#'}
             onClick={this.handleClick.bind(this, page - 1)}>
             <i className="material-icons">keyboard_arrow_left</i>
-          </span>
+          </Link>
           {children[page]}
-          <span className={al}
+          <Link className={al} to={page < this.props.links.length - 1 ? this.props.links[page + 1].value : '#'}
             onClick={this.handleClick.bind(this, page + 1)}>
             <i className="material-icons">keyboard_arrow_right</i>
-          </span>
+          </Link>
         </div>
       )
 
