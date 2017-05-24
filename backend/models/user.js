@@ -40,10 +40,7 @@ module.exports = function(sequelize, DataTypes) {
               throw new Error(valmsg.email_unique)
             }
             return next();
-          })
-          .catch(function (err) {
-            return next(err);
-          });
+          }).catch(next);
         }
       }
     },
@@ -102,10 +99,24 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
+    preferences: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: false,
+      defaultValue: true
+    },
     admin: {
       type: DataTypes.BOOLEAN(),
       allowNull: false,
       defaultValue: false
+    },
+    password_reset_token: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    password_reset_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: Sequelize.NOW
     },
     created_at: {
       type: DataTypes.DATE,
@@ -127,6 +138,16 @@ module.exports = function(sequelize, DataTypes) {
       return cb(null, options)
     })
   });
+
+  User.loginOptions = function (email) {
+    return {
+      where: {email: email},
+      include: [{
+        model: sequelize.model('Address'),
+        as: 'addresses',
+      }]
+    }
+  }
 
 
   return User
