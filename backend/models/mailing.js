@@ -25,10 +25,10 @@ module.exports = function(sequelize, DataTypes) {
           args: true,
           msg: valmsg.required
         },
-        max: {
-          args: 125,
-          msg: valmsg.max(125)
-        }
+        len: {
+          args: [1, 125],
+          msg: valmsg.len(1, 125)
+        },
       }
     },
     active: {

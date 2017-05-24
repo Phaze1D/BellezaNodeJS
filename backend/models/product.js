@@ -21,15 +21,24 @@ module.exports = function(sequelize, DataTypes) {
           args: true,
           msg: valmsg.required
         },
+        isUnique: (value, next) => {
+          Product.findOne({where: {plu: value}})
+          .then( (product) => {
+            if(product){
+              throw new Error(valmsg.plu_unique)
+            }
+            return next();
+          }).catch(next);
+        }
       }
     },
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
       validate: {
-        max: {
-          args: 125,
-          msg: valmsg.max(125)
+        len: {
+          args: [1, 125],
+          msg: valmsg.len(1, 125)
         },
         notEmpty: {
           args: true,
@@ -41,10 +50,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(32),
       allowNull: true,
       validate: {
-        max: {
-          args: 32,
-          msg: valmsg.max(32)
-        }
+        len: {
+          args: [1, 32],
+          msg: valmsg.len(1, 32)
+        },
       }
     },
     description: {

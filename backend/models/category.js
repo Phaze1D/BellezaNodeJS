@@ -17,9 +17,9 @@ module.exports = function(sequelize, DataTypes) {
           args: true,
           msg: valmsg.required
         },
-        max: {
-          args: 0,
-          msg: valmsg.max(60)
+        len: {
+          args: [1, 60],
+          msg: valmsg.len(1, 60)
         },
       }
     },

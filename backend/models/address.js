@@ -13,9 +13,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         notEmpty: {
           args: true,
@@ -27,9 +27,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: false,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         notEmpty: {
           args: true,
@@ -39,11 +39,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     telephone: {
       type: DataTypes.STRING(45),
-      allowNull: true,
+      allowNull: false,
       validate: {
-        max: {
-          args: 45,
-          msg: valmsg.max(45)
+        len: {
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
+        },
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
         },
         phone(value){
           valmsg.phone(value)
@@ -54,9 +58,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false,
       validate: {
-        max: {
-          args: 255,
-          msg: valmsg.max(255)
+        len: {
+          args: [1, 255],
+          msg: valmsg.len(1, 255)
         },
         notEmpty: {
           args: true,
@@ -66,15 +70,21 @@ module.exports = function(sequelize, DataTypes) {
     },
     street2: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
+      validate: {
+        len: {
+          args: [1, 255],
+          msg: valmsg.len(1, 255)
+        },
+      }
     },
     city: {
       type: DataTypes.STRING(60),
       allowNull: false,
       validate: {
-        max: {
-          args: 60,
-          msg: valmsg.max(60)
+        len: {
+          args: [1, 60],
+          msg: valmsg.len(1, 60)
         },
         notEmpty: {
           args: true,
@@ -86,9 +96,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(60),
       allowNull: false,
       validate: {
-        max: {
-          args: 60,
-          msg: valmsg.max(60)
+        len: {
+          args: [1, 60],
+          msg: valmsg.len(1, 60)
         },
         notEmpty: {
           args: true,
@@ -100,9 +110,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(60),
       allowNull: false,
       validate: {
-        max: {
-          args: 60,
-          msg: valmsg.max(60)
+        len: {
+          args: [1, 60],
+          msg: valmsg.len(1, 60)
         },
         notEmpty: {
           args: true,
