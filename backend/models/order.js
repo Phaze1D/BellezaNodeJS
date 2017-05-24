@@ -111,9 +111,34 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'orders'
   });
 
-  // Order.belongsTo('User', {as: 'user'});
-  // Order.belongsTo('Address', {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
-  // Order.belongsTo('Address', {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
-  // Order.hasMany('Detail', {as: 'details'})
+  Order.userAllOptions = function (query, user_id) {
+    let page = query.page ? query.page : 0
+    let options = {
+      where: {
+        user_id: user_id,
+      },
+      offset: 20 * page,
+      limit: 20
+    }
+    return options
+  }
+
+  Order.allOptions = function (query) {
+    let page = query.page ? query.page : 0
+    let options = {
+      where: {
+        status: query.status,
+      },
+      offset: 20 * page,
+      limit: 20,
+      include: [{
+        model: sequelize.model('User'),
+        as: 'user',
+        attributes: ['id', 'first_name', 'last_name']
+      }]
+    }
+    return options
+  }
+
   return Order
 };
