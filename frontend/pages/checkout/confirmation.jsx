@@ -51,8 +51,9 @@ export default class CheckoutConfirmation extends React.Component {
     event.preventDefault()
     let formData = {}
     formData['code'] = event.target.elements.code.value
+    let user = this.props.user
 
-    this.props.dispatch(checkUserCode(formData))
+    this.props.dispatch(checkUserCode(formData, user.get('id') ,user.get('token')))
     .then()
     .catch(this.handleError)
   }
@@ -96,6 +97,9 @@ export default class CheckoutConfirmation extends React.Component {
       errors
     } = this.props
 
+    if(!user.get('token')){
+      return <Redirect to='/home'/>
+    }
 
     return (
       <main>

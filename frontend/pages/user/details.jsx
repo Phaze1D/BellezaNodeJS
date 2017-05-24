@@ -70,8 +70,9 @@ class UserDetails extends React.Component {
     formData.append('telephone', elements.telephone.value)
     formData.append('first_name', elements.first_name.value)
     formData.append('last_name', elements.last_name.value)
+    let id = this.props.match.params.id
 
-    this.props.dispatch(userUpdate(formData))
+    this.props.dispatch(userUpdate(formData, id, this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }
@@ -94,7 +95,7 @@ class UserDetails extends React.Component {
     const email = this.props.user.get('email')
     let formData = new FormData()
     formData.append('email', email)
-    formData.append('value', value)
+    formData.append('active', value)
 
     this.props.dispatch(addMailer(formData, true))
     .then()
@@ -115,10 +116,6 @@ class UserDetails extends React.Component {
       user,
       errors
     } = this.props
-
-    const teleList = user.get('telephones').map( (tel, index) =>
-      <p key={index} className="overflow-text sub-text primary">{tel}</p>
-    )
 
     const addreList = user.get('addresses').map( (add, index) =>
       <p key={index} className="overflow-text sub-text primary">{add.get('street')}</p>
@@ -146,7 +143,7 @@ class UserDetails extends React.Component {
             <div className="grid-wrap top">
               <div className="col-6">
                 <p className="sub-text">Teléfono: </p>
-                {teleList}
+                <p className="overflow-text sub-text primary">{user.get('telephone')}</p>
               </div>
 
               <div className="col-6">

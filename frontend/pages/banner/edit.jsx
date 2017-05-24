@@ -18,7 +18,8 @@ import { editBanner, resetBanner, getBanner } from 'actions/others'
 @connect(store => {
   return {
     banner: store.others.get('banner'),
-    errors: store.errors
+    errors: store.errors,
+    user: store.user
   }
 })
 class BannersEdit extends React.Component {
@@ -31,7 +32,7 @@ class BannersEdit extends React.Component {
 
   componentDidMount() {
     let id = this.props.match.params.id
-    this.props.dispatch(getBanner(id))
+    this.props.dispatch(getBanner(id, this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }

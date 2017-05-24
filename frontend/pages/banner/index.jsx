@@ -48,7 +48,7 @@ class BannersIndex extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
 
-      this.props.dispatch(getBanners(parse.page))
+      this.props.dispatch(getBanners(parse.page, this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }
@@ -70,13 +70,13 @@ class BannersIndex extends React.Component {
       history
     } = this.props
 
-    const bannerList = banners.get('results').map( (banner, index) =>
+    const bannerList = banners.get('rows').map( (banner, index) =>
       <BannerItem key={index} banner={banner} />
     )
 
     const parse = queryString.parse(history.location.search)
     const links = []
-    for(let i = 0; i < Math.ceil(banners.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(banners.get('count')/this.state.prePage); i++ ){
       links.push({value: `${match.url}?page=${i}`, name: i+1})
     }
 

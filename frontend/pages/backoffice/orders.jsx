@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 import dateOptions from 'utils/date'
 import { connect } from 'react-redux'
-import { resetOrders, getOrders } from 'actions/order'
+import { resetOrders, getAllOrders } from 'actions/order'
 import queryString from 'query-string'
 
 
@@ -48,7 +48,7 @@ class BackofficeOrders extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
 
-      this.props.dispatch(getOrders(parse.page, undefined, parse.status))
+      this.props.dispatch(getAllOrders(parse.page, parse.status, this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }
@@ -70,13 +70,13 @@ class BackofficeOrders extends React.Component {
       history
     } = this.props
 
-    const orderList = orders.get('results').map( (order, index) =>
+    const orderList = orders.get('rows').map( (order, index) =>
       <OrderRow key={index} order={order}/>
     )
 
     const parse = queryString.parse(history.location.search)
     const links = []
-    for(let i = 0; i < Math.ceil(orders.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(orders.get('count')/this.state.prePage); i++ ){
       links.push({value: `${match.url}?status=${parse.status}&page=${i}`, name: i+1})
     }
 
@@ -136,7 +136,7 @@ const OrderRow = props => (
     <td>{props.order.get('user').get('first_name')} {props.order.get('user').get('last_name')}</td>
     <td>${props.order.get('total')}</td>
     <td>
-      <Link to={`/order/${props.order.get('id')}`}>Details</Link>
+      <Link to={`/user/${props.order.get('user').get('id')}/order/${props.order.get('id')}`}>Details</Link>
     </td>
   </tr>
 )

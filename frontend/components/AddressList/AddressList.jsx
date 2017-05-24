@@ -62,7 +62,9 @@ export default class AddressList extends React.Component {
       addresses,
       selectable,
       selectActionType,
-      dispatch
+      dispatch,
+      token,
+      userId
     } = this.props
 
     const addrList = addresses.map( (address, index) =>
@@ -96,6 +98,8 @@ export default class AddressList extends React.Component {
               <AddressForm
                 errors={errors}
                 address={this.address}
+                token={token}
+                userId={userId}
                 dispatch={dispatch}
                 onRequestCancel={this.handleCancel}/>
             </div>
@@ -143,7 +147,7 @@ class Address extends React.PureComponent {
       address,
       selectable,
       onRequestEdit
-    } = props
+    } = this.props
 
     const selClass = classnames('box overflow-text sub-text', {'address-selectable': selectable})
 

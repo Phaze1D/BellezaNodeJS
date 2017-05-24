@@ -47,7 +47,7 @@ export default class UsersIndex extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
 
-      this.props.dispatch(getClients(parse.query, parse.page))
+      this.props.dispatch(getClients(parse.query, parse.page, this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }
@@ -80,7 +80,7 @@ export default class UsersIndex extends React.Component {
       history
     } = this.props
 
-    const userList = clients.get('results').map( (client, index) =>
+    const userList = clients.get('rows').map( (client, index) =>
       <UserItem
         client={client}
         key={index}/>
@@ -88,7 +88,7 @@ export default class UsersIndex extends React.Component {
 
     const parse = queryString.parse(history.location.search)
     const links = []
-    for(let i = 0; i < Math.ceil(clients.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(clients.get('count')/this.state.prePage); i++ ){
       if(parse.query){
         links.push({value: `${match.url}?query=${parse.query}&page=${i}`, name: i+1})
       }else{

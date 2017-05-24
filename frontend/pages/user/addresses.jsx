@@ -26,8 +26,11 @@ class UserAddresses extends React.Component {
   }
 
   render () {
-    const addresses = this.props.user.get('addresses')
-    const errors = this.props.errors
+    const {
+      user,
+      errors,
+      match
+    } = this.props
 
     return (
       <section className="col-9 col-sm-8 col-xs-11">
@@ -39,7 +42,9 @@ class UserAddresses extends React.Component {
 
         <AddressList
           selectable={false}
-          addresses={addresses}
+          addresses={user.get('addresses')}
+          token={user.get('token')}
+          userId={match.params.id}
           dispatch={this.props.dispatch}
           errors={errors}/>
 

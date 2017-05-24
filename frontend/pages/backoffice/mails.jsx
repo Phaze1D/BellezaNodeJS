@@ -45,7 +45,7 @@ class BackofficeMails extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
 
-      this.props.dispatch(getMailing(parse.page))
+      this.props.dispatch(getMailing(parse.page, this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }
@@ -66,7 +66,7 @@ class BackofficeMails extends React.Component {
       history
     } = this.props
 
-    const emailList = mailing.get('results').map((mail, index) =>
+    const emailList = mailing.get('rows').map((mail, index) =>
       <tr key={index}>
         <td>{mail.email}</td>
       </tr>
@@ -74,7 +74,7 @@ class BackofficeMails extends React.Component {
 
     const parse = queryString.parse(history.location.search)
     const links = []
-    for(let i = 0; i < Math.ceil(mailing.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(mailing.get('count')/this.state.prePage); i++ ){
       links.push({value: `${match.url}?page=${i}`, name: i+1})
     }
 

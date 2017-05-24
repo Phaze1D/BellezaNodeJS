@@ -50,8 +50,8 @@ export default class UserOrders extends React.Component {
   handleUrlChanged(location, action) {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
-      let userID = this.props.user.get('id')
-      this.props.dispatch(getOrders(parse.page, userID))
+      let user_id = this.props.match.params.id
+      this.props.dispatch(getOrders(parse.page, user_id, this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }
@@ -76,12 +76,12 @@ export default class UserOrders extends React.Component {
       match
     } = this.props
 
-    const orderList = orders.get('results').map( (order, index) =>
+    const orderList = orders.get('rows').map( (order, index) =>
       <OrderItem key={index} order={order}/>
     )
 
     const links = []
-    for(let i = 0; i < Math.ceil(orders.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(orders.get('count')/this.state.prePage); i++ ){
       links.push({value: `${match.url}?page=${i}`, name: i+1})
     }
 

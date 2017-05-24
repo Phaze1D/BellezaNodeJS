@@ -33,8 +33,8 @@ export default class UserCodes extends React.Component {
   }
 
   componentDidMount() {
-    let userID = this.props.user.get(id)
-    this.props.dispatch(getUserCodes(userID))
+    let user_id = this.props.match.params.id
+    this.props.dispatch(getUserCodes(user_id, this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }

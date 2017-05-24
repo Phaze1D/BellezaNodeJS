@@ -36,11 +36,11 @@ class AddressForm extends React.Component {
     formData.append('telephone', elements.telephone.value)
 
     if(id){
-      this.props.dispatch(addressUpdate(formData, id))
+      this.props.dispatch(addressUpdate(formData, id, this.props.userId, this.props.token))
       .then()
       .catch(this.handleError)
     }else{
-      this.props.dispatch(addressNew(formData))
+      this.props.dispatch(addressNew(formData, this.props.userId, this.props.token))
       .then()
       .catch(this.handleError)
     }
@@ -49,7 +49,7 @@ class AddressForm extends React.Component {
   handleInputBlur(event) {
     let fieldData = {}
     fieldData[event.target.name] = event.target.value
-    this.props.dispatch(validateAddress(fieldData))
+    this.props.dispatch(validateAddress(fieldData, this.props.token))
     .then()
     .catch(this.handleError)
   }

@@ -35,7 +35,7 @@ class CodesNew extends React.Component {
 
   componentDidMount() {
     let id = this.props.match.params.user_id
-    this.props.dispatch(getClient(id))
+    this.props.dispatch(getClient(id, thie.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }
@@ -53,8 +53,7 @@ class CodesNew extends React.Component {
     formData.append('amount', elements.amount.value)
     formData.append('type', elements.type.checked)
     formData.append('expires', elements.expires.value)
-
-    this.props.dispatch(codeNew(formData))
+    this.props.dispatch(codeNew(formData, this.props.client.get('id'), this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }
