@@ -2,33 +2,39 @@
 let express = require('express')
 let multer = require('multer')
 let User = require('../models').User
-let Sequelize = require('sequelize');
+let Sequelize = require('sequelize')
 var bcrypt = require('bcryptjs')
+let jwt = require('jsonwebtoken')
+let middware = require('../middleware/user.js')
 
+let isLogin = middware.isLogin
+let isUser = middware.isUser
 let upload = multer()
 let router = express.Router()
 
 router.post('/user', upload.none(), function (req, res, next) {
   User.create(req.body, {fields: ['first_name', 'last_name', 'email', 'password']})
   .then(user => {
-    // MISSING JWT TOKEN
     let ru = user.toJSON()
+    let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, 'SECRET');
     delete ru.password
     ru.addresses = []
+    ru.token = token
     res.json(ru);
   }).catch(next)
 })
 
 
 router.post('/login', upload.none(), function (req, res, next) {
-  User.findOne({where: {email: req.body.email}}).then( user => {
+  User.findOne(User.loginOptions(req.body.email)).then( user => {
     if(user){
       bcrypt.compare(req.body.password, user.password).then((correct) => {
         if(correct){
-          // MISSING JWT TOKEN
           let ru = user.toJSON()
+          let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, 'SECRET');
           delete ru.password
-          res.json(ru);
+          ru.token = token
+          res.json(ru)
         }else{
           let err = new Sequelize.ValidationError('El correo y la contraseña que has introducido no coinciden.')
           err.errors.push({path: 'login', message: 'El correo y la contraseña que has introducido no coinciden.'})
@@ -56,8 +62,8 @@ router.get('/validate-user', function (req, res, next) {
 })
 
 /** REQUIRES USER VALIDATION */
-router.put('/user/:id', upload.none(), function (req, res, next) {
-  User.findById(req.params.id).then(user => {
+router.put('/user/:user_id', isLogin, isUser, upload.none(), function (req, res, next) {
+  User.findById(req.params.user_id).then(user => {
     return user.update(req.body, {fields: ['first_name', 'last_name', 'telephone']})
   }).then((user) => {
     // MISSING JWT TOKEN
