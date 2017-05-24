@@ -2,8 +2,8 @@ import * as types from 'actions/types'
 import { fromJS, Map } from 'immutable'
 
 const INITIAL_CLIENTS = fromJS({
-  results: [],
-  total: 0
+  rows: [],
+  count: 0
 })
 
 const INITIAL_CLIENT = Map()

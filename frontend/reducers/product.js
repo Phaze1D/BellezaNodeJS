@@ -2,8 +2,8 @@ import * as types from 'actions/types'
 import { fromJS } from 'immutable'
 
 const INITIAL_PRODUCTS = fromJS({
-  results: [],
-  total: 0
+  rows: [],
+  count: 0
 })
 
 const INITIAL_PRODUCT = fromJS({
@@ -19,10 +19,7 @@ export const getProductsReducer = (state = INITIAL_PRODUCTS, action) => {
 
     case `${types.GET_PRODUCTS}_SUCCESS`:
 
-    return fromJS({
-      results: action.payload.data.rows,
-      total: action.payload.data.count
-    })
+    return fromJS(action.payload.data)
 
     case `${types.GET_PRODUCTS}_ERROR`:
 

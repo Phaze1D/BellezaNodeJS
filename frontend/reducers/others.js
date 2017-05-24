@@ -3,12 +3,12 @@ import { fromJS, Map } from 'immutable'
 
 const INITIAL_OTHERS = fromJS({
   banners: {
-    results: [],
-    total: 0
+    rows: [],
+    count: 0
   },
   mailing: {
-    results: [],
-    total: 0
+    rows: [],
+    count: 0
   },
   banner: {}
 })
