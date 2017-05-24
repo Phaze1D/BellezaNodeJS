@@ -35,16 +35,20 @@ export const resetProduct = () => {
   }
 }
 
-export const newProduct = (formData) => {
+export const newProduct = (formData, token) => {
   return {
     type: types.NEW_PRODUCT,
-    payload: axios.post('/product', formData)
+    payload: axios.post('/product', formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 
-export const editProduct = (formData, id) => {
+export const editProduct = (formData, id, token) => {
   return {
     type: types.EDIT_PRODUCT,
-    payload: axios.put(`/product/${id}`, formData)
+    payload: axios.put(`/product/${id}`, formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }

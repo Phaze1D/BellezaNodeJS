@@ -30,13 +30,14 @@ export const addMailer = (formData, isUser=false) => {
   }
 }
 
-export const getBanners = (page) => {
+export const getBanners = (page, token) => {
   return {
     type: types.GET_BANNERS,
     payload: axios.get('/banners', {
       params: {
         page: page
-      }
+      },
+      headers: {'Authorization': `Bearer ${token}`}
     })
   }
 }
@@ -48,10 +49,12 @@ export const resetBanners = () => {
 }
 
 
-export const getBanner = (id) => {
+export const getBanner = (id, token) => {
   return {
     type: types.GET_BANNER,
-    payload: axios.get(`/banner/${id}`)
+    payload: axios.get(`/banner/${id}`, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 
@@ -62,25 +65,30 @@ export const resetBanner = () => {
 }
 
 
-export const newBanner = (formData) => {
+export const newBanner = (formData, token) => {
   return {
     type: types.NEW_BANNER,
-    payload: axios.post('/banner', formData)
+    payload: axios.post('/banner', formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 
-export const editBanner = (formData, id) => {
+export const editBanner = (formData, id, token) => {
   return {
     type: types.EDIT_BANNER,
-    payload: axios.put(`/banner/${id}`, formData)
+    payload: axios.put(`/banner/${id}`, formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 
-export const getMailing = (page) => {
+export const getMailing = (page, token) => {
   return {
     type: types.GET_MAILING,
     payload: axios.get('/mailing', {
-      params: {page: page}
+      params: {page: page},
+      headers: {'Authorization': `Bearer ${token}`}
     })
   }
 }

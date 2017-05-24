@@ -1,13 +1,11 @@
 import * as types from 'actions/types'
 import axios from "axios"
 
-export const getUserCodes = (userID) => {
+export const getUserCodes = (user_id, token) => {
   return {
     type: types.GET_USER_CODES,
-    payload: axios.get('/codes', {
-      params: {
-        userID: userID
-      }
+    payload: axios.get(`/user/${user_id}/codes`, {
+      headers: {'Authorization': `Bearer ${token}`}
     })
   }
 }
@@ -18,18 +16,21 @@ export const resetCodes = () => {
   }
 }
 
-export const checkUserCode = (formData) => {
+export const checkUserCode = (formData, user_id, token) => {
   return {
     type: types.CHECK_USER_CODE,
-    payload: axios.get('/check-code', {
-      params: formData
+    payload: axios.get(`/user/${user_id}/check-code`, {
+      params: formData,
+      headers: {'Authorization': `Bearer ${token}`}
     })
   }
 }
 
-export const codeNew = (formData) => {
+export const codeNew = (formData, user_id, token) => {
   return {
     type: types.CODE_NEW,
-    payload: axios.post('/code', formData)
+    payload: axios.post(`/user/${user_id}/code`, formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }

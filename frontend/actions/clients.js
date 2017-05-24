@@ -1,14 +1,15 @@
 import * as types from 'actions/types'
 import axios from "axios"
 
-export const getClients = (query, page) => {
+export const getClients = (query, page, token) => {
   return {
     type: types.GET_CLIENTS,
     payload: axios.get('/clients', {
       params: {
         search: query,
         page: page
-      }
+      },
+      headers: {'Authorization': `Bearer ${token}`}
     })
   }
 }
@@ -20,10 +21,12 @@ export const resetClients = () => {
 }
 
 
-export const getClient = (id) => {
+export const getClient = (id, token) => {
   return {
     type: types.GET_CLIENT,
-    payload: axios.get(`/client/${id}`)
+    payload: axios.get(`/client/${id}`, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 

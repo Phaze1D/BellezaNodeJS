@@ -25,10 +25,12 @@ export const validateUser = (fieldData) => {
   }
 }
 
-export const userUpdate = (formData, id) => {
+export const userUpdate = (formData, id, token) => {
   return {
     type: types.USER_UPDATE,
-    payload: axios.put(`/user/${id}`, formData)
+    payload: axios.put(`/user/${id}`, formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
   }
 }
 
