@@ -2,31 +2,33 @@ import * as types from 'actions/types'
 import { fromJS } from 'immutable'
 
 const INITIAL_ORDERS = fromJS({
-  results: [],
-  total: 0
+  rows: [],
+  count: 0
 })
 
 const INITIAL_ORDER = fromJS({
   details: [],
   status: '',
-  subTotal: 0,
-  ivaTotal: 0,
-  discountTotal: 0,
-  shippingTotal: 0,
+  sub_total: 0,
+  iva_total: 0,
+  discount_total: 0,
+  shipping_total: 0,
   total: 0,
   notes: '',
   shippingAddress: {},
   invoiceAddress: {},
   rfc: '',
-  razonSocial: '',
+  razon_social: '',
   date: new Date()
 })
 
 export const getOrdersReducer = (state = INITIAL_ORDERS, action) => {
   switch (action.type) {
     case `${types.GET_ORDERS}_LOADING`:
+      return state
 
     case `${types.GET_ORDERS}_SUCCESS`:
+      return fromJS(action.payload.data)
 
     case `${types.GET_ORDERS}_ERROR`:
 
@@ -38,7 +40,7 @@ export const getOrdersReducer = (state = INITIAL_ORDERS, action) => {
 
 export const resetOrdersReducer = (state = INITIAL_ORDERS, action) => {
   if(action.type === types.RESET_ORDERS){
-
+    return INITIAL_ORDERS
   }
   return state
 }
@@ -60,7 +62,7 @@ export const getOrderReducer = (state = INITIAL_ORDER, action) => {
 
 export const resetOrderReducer = (state = INITIAL_ORDER, action) => {
   if(action.type === types.RESET_ORDER){
-
+    return INITIAL_ORDER
   }
   return state
 }

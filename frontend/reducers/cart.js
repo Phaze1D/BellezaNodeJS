@@ -4,16 +4,16 @@ import { fromJS } from 'immutable'
 
 const INITIAL_CART = fromJS({
   details: [],
-  subTotal: 0,
-  ivaTotal: 0,
-  discountTotal: 0,
-  shippingTotal: 0,
+  sub_total: 0,
+  iva_total: 0,
+  discount_total: 0,
+  shipping_total: 0,
   total: 0,
   notes: '',
   shippingAddress: {},
   invoiceAddress: {},
   rfc: '',
-  razonSocial: '',
+  razon_social: '',
   error: null,
   show: false,
 })
