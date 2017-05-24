@@ -3,7 +3,7 @@ let express = require('express')
 let path = require("path")
 let bodyParser = require('body-parser')
 let controllers = require('./controllers')
-let errorHandlers = require('./helpers/errorHandlers.js')
+let errorMiddleware = require('./middleware/errors.js')
 
 
 
@@ -20,7 +20,7 @@ for (var key in controllers) {
   }
 }
 
-app.use(errorHandlers)
+app.use(errorMiddleware)
 
 
 app.get('/', function (req, res) {
