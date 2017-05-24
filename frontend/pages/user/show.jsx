@@ -24,8 +24,13 @@ class UserShow extends React.Component {
       match
     } = this.props
 
+    if(!user.get('token')){
+      return <Redirect to='/signin'/>
+    }
+
     return (
       <main className="grid-wrap around top">
+
         <section className="col-3 col-sm-4 col-xs-12">
           <ul id="user-options" className="box">
             <h4>Mis Pedidos</h4>
@@ -46,7 +51,7 @@ class UserShow extends React.Component {
               <Link to={`${match.url}/codes`}>Códigos de Descuento</Link>
             </li>
 
-            {user.get('isAdmin') &&
+            {user.get('admin') &&
               <li>
                 <Link to="/backoffice/orders">Backoffice</Link>
               </li>
@@ -60,10 +65,10 @@ class UserShow extends React.Component {
         </section>
 
         <Redirect from={`${match.url}/`} to={`${match.url}/details`}/>
-        <Route path={`${match.url}/details`} component={UserDetails}/>
-        <Route path={`${match.url}/orders`} component={UserOrders}/>
-        <Route path={`${match.url}/addresses/`} component={UserAddresses}/>
-        <Route path={`${match.url}/codes`} component={UserCodes}/>
+        <Route path={`${match.path}/details`} component={UserDetails}/>
+        <Route path={`${match.path}/orders`} component={UserOrders}/>
+        <Route path={`${match.path}/addresses/`} component={UserAddresses}/>
+        <Route path={`${match.path}/codes`} component={UserCodes}/>
       </main>
     )
   }

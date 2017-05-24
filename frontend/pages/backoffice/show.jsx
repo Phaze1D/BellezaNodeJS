@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Route, Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import BackofficeOrders from 'pages/backoffice/orders'
 import BackofficeMails from 'pages/backoffice/mails'
 import ProductsIndex from 'pages/product/index'
@@ -12,12 +13,21 @@ import BannersNew from 'pages/banner/new'
 import BannersEdit from 'pages/banner/edit'
 
 
-
+@connect( store => {
+  return {
+    user: store.user,
+  }
+})
 export default class BackofficeShow extends React.Component {
   render() {
     const {
+      user,
       match
     } = this.props
+
+    if( !(user.get('token') && user.get('admin')) ){
+      return <Redirect to='/home'/>
+    }
 
     return (
       <main>
@@ -43,7 +53,7 @@ export default class BackofficeShow extends React.Component {
           </li>
         </ul>
 
-        <Redirect from={`${match.url}/`} to={`${match.url}/mailing`}/>
+        <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>
         <Route path={`${match.url}/orders`} component={BackofficeOrders}/>
         <Route path={`${match.url}/products`} component={ProductsIndex}/>
         <Route path={`${match.url}/product/new`} component={ProductsNew}/>
@@ -58,5 +68,3 @@ export default class BackofficeShow extends React.Component {
     )
   }
 }
-
-// <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>

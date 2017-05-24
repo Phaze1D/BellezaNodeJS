@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { resetErrors } from 'actions/errors'
 import {
@@ -97,6 +97,10 @@ export default class Signin extends React.Component {
       errors
     } = this.props
 
+    if(user.get('token')){
+      return <Redirect to={`/user/${user.get('id')}`}/>
+    }
+
     return (
       <main>
         <h3>Iniciar Sesión o Crea Nuevo Usuario</h3>
@@ -129,10 +133,9 @@ const LoginFrom = props => {
         <label htmlFor="email">Email</label>
         {props.errors.get('login') && <div className="error-div">{props.errors.get('login')}</div>}
         <input type="text" name="login"
-          onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 
-        <label htmlFor="password">Contraseña <Link to="/reset" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
+        <label htmlFor="password">Contraseña <Link to="/passwordreset" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
         <input type="password" name="password"/>
 
         <input className="submit full" type="submit" value="Ingresar"/>

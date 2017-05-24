@@ -42,7 +42,6 @@ export default class Layout extends React.Component {
     }
   }
 
-  /******* REMEMBER ALL POST COULD HAVE ERRORS *******/
 
   render() {
     return (
@@ -63,15 +62,14 @@ export default class Layout extends React.Component {
         <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
-        {/* Missing Redirect if user is not logged in */}
+        <Route exact path="/user/:id/order/:order_id" component={OrderShow}/>
         <Route path="/user/:id" component={UserShow}/>
         <Route path="/checkout" component={CheckoutDirections}/>
         <Route path="/confirmation" component={CheckoutConfirmation}/>
         <Route path="/successful" component={CheckoutSuccessful}/>
 
-        {/* Missing Redirect if user is not logged in and user is not admin*/}
         <Route path="/backoffice" component={BackofficeShow}/>
-        <Route path="/order/:id" component={OrderShow}/>
+
 
         {/******* REMOVE THIS SECTION IN PRODUCTION *******
         <Route path="/quienSomos" component={QuienSomos}/>

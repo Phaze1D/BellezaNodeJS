@@ -35,6 +35,10 @@ class CheckoutSuccessful extends React.Component {
       payment,
     } = this.props
 
+    if(!user.get('token')){
+      return <Redirect to='/home'/>
+    }
+
     return (
       <main>
         <h2 className="col-8 col-xs-12" style={{color: '#1eab30'}}>Procesado su Pedido</h2>

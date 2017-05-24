@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
@@ -60,6 +60,10 @@ export default class CheckoutDirections extends React.Component {
       <DetailItem key={index} detail={detail}/>
     )
 
+    if(!user.get('token')){
+      return <Redirect to='/signin'/>
+    }
+
     return (
       <main>
         <h2>Información del Contacto</h2>
@@ -73,7 +77,9 @@ export default class CheckoutDirections extends React.Component {
                 selectActionType={CART_SHIPPING_ADDRESS}
                 addresses={user.get('addresses')}
                 errors={errors}
-                dispatch={dispatch}/>
+                dispatch={dispatch}
+                userId={user.get('id')}
+                token={user.get('token')}/>
 
               <h5 className="h-underline">Instrucciones de envío (Opcional)</h5>
 
@@ -97,7 +103,9 @@ export default class CheckoutDirections extends React.Component {
                 selectActionType={CART_INVOICE_ADDRESS}
                 addresses={user.get('addresses')}
                 errors={errors}
-                dispatch={dispatch}/>
+                dispatch={dispatch}
+                userId={user.get('id')}
+                token={user.get('token')}/>
 
               <form className="main-form" onSubmit={event => event.preventDefault()}>
                 <label htmlFor="rfc">RFC</label>
@@ -135,7 +143,7 @@ const DetailItem = props => (
       <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
         Cantidad: {props.detail.get('quantity')} <br/>
-        Subtotal: ${props.detail.get('subTotal')}
+        Subtotal: ${props.detail.get('sub_total')}
       </p>
     </div>
   </li>
