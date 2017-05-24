@@ -76,13 +76,13 @@ export default class ProductShow extends React.Component {
         price: product.get('price'),
         iva: product.get('iva'),
         discount: product.get('discount'),
-        subTotal: product.get('price') * quantity,
+        sub_total: product.get('price') * quantity,
         stock: product.get('stock'),
         quantity: quantity,
         mediumImg: product.get('mediumImg'),
         smallImg: product.get('smallImg'),
       }
-      detail.subTotal -= detail.subTotal * (detail.discount/100)
+      detail.sub_total -= detail.sub_total * (detail.discount/100)
       this.props.dispatch(addDetail(detail))
     }
   }

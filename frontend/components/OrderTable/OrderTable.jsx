@@ -51,19 +51,19 @@ class OrderTable extends React.Component {
         <tfoot className="order-table-foot">
           <tr>
             <td colSpan="5">Subtotal: </td>
-            <td className="foot-main">${order.get('subTotal').toFixed(2)}</td>
+            <td className="foot-main">${order.get('sub_total').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">IVA:</td>
-            <td className="foot-main">${order.get('ivaTotal').toFixed(2)}</td>
+            <td className="foot-main">${order.get('iva_total').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Discount:</td>
-            <td className="foot-main">${order.get('discountTotal').toFixed(2)}</td>
+            <td className="foot-main">${order.get('discount_total').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Costo de Envío: </td>
-            <td className="foot-main">${order.get('shippingTotal').toFixed(2)}</td>
+            <td className="foot-main">${order.get('shipping_total').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Total:</td>
@@ -104,7 +104,7 @@ const OrderRow = (props) => (
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Subtotal: </span>${props.details.get('subTotal')}
+        <span className="sub-text">Subtotal: </span>${props.details.get('sub_total')}
       </span>
     </td>
 
@@ -126,7 +126,7 @@ const OrderRow = (props) => (
     </td>
 
     <td className="sm-td">
-      ${props.details.get('subTotal')}
+      ${props.details.get('sub_total')}
     </td>
 
     <td>

@@ -5,7 +5,8 @@ import dateOptions from 'utils/date'
 class OrderItem extends React.PureComponent {
   render() {
     const {
-      order
+      order,
+      match
     } = this.props
 
     const detailList = order.get('details').map( (detail, index) =>
@@ -33,7 +34,7 @@ class OrderItem extends React.PureComponent {
           <p className="overflow-text">
             Referencia #{order.get('id')}
             <span>
-              <Link to="/order">Detalles</Link>
+              <Link to={`/user/${match.params.id}/order/${order.get('id')}`}>Detalles</Link>
             </span>
           </p>
         </div>
@@ -56,7 +57,7 @@ class Detail extends React.PureComponent {
         <div className="grow col-xxs-9">
           <p style={{fontWeight: 'bold', color: 'black'}} className="overflow-text">{detail.get('name')}</p>
           <p className="sub-text overflow-text">Precio: ${detail.get('price')} Cantidad: {detail.get('quantity')}</p>
-          <p className="sub-text primary">${detail.get('subTotal')}</p>
+          <p className="sub-text primary">${detail.get('sub_total')}</p>
         </div>
 
         <Link to="/product" className="secondary-button raise col-xxs-hide">
