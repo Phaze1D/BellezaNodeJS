@@ -8,6 +8,7 @@ export const errorsReducer = (state = INITIAL_ERRORS, action) => {
 
   if(action.type.includes('ERROR')){
     let res = action.payload.response.data
+    console.log(res);
     return state.withMutations(map => {
       res.forEach(error => map.set(error.path, error.message))
     })
