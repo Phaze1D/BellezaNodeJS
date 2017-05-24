@@ -92,8 +92,8 @@ export default class CategoryShow extends React.Component {
           <h2>{category.get('name')}</h2>
         </div>
         <Results
-          products={products.get('results')}
-          total={products.get('total')}
+          products={products.get('rows')}
+          total={products.get('count')}
           url={`${match.url}?`}
           dispatch={dispatch}/>
       </main>

@@ -62,8 +62,8 @@ class Search extends React.Component {
           "<i><span className="sub-text light">{parse.q}</span></i>"
         </p>
         <Results
-          products={products.get('results')}
-          total={products.get('total')}
+          products={products.get('rows')}
+          total={products.get('count')}
           url={`${match.url}?q=${parse.q}&`}
           dispatch={dispatch}/>
       </main>

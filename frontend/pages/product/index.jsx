@@ -79,7 +79,7 @@ export default class ProductsIndex extends React.Component {
       history
     } = this.props
 
-    const productList = products.get('results').map( (product, index) =>
+    const productList = products.get('rows').map( (product, index) =>
       <ProductItem
         key={index}
         product={product}
@@ -88,7 +88,7 @@ export default class ProductsIndex extends React.Component {
 
     const parse = queryString.parse(history.location.search)
     const links = []
-    for(let i = 0; i < Math.ceil(products.get('total')/this.state.prePage); i++ ){
+    for(let i = 0; i < Math.ceil(products.get('count')/this.state.prePage); i++ ){
       if(parse.query){
         links.push({value: `${match.url}?query=${parse.query}&page=${i}`, name: i+1})
       }else{
@@ -137,9 +137,9 @@ export default class ProductsIndex extends React.Component {
 
 const ProductItem = props => (
   <tr>
-    <td>{props.plu}</td>
-    <td>{props.name} {props.volumn}</td>
-    <td>{props.stock}</td>
+    <td>{props.product.get('plu')}</td>
+    <td>{props.product.get('name')} {props.product.get('volume')}</td>
+    <td>{props.product.get('stock')}</td>
     <td>
       <Link to={`product/edit`}>Update</Link>
     </td>
