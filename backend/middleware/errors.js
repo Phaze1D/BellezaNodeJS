@@ -5,7 +5,7 @@ const validationError = (res, err) => {
   res.status(422).json(err.errors)
 }
 
-const errorHandlers = (err, req, res, next) => {
+const errorMiddleware = (err, req, res, next) => {
   switch (err.name) {
     case "SequelizeValidationError":
       validationError(res, err)
@@ -16,4 +16,4 @@ const errorHandlers = (err, req, res, next) => {
 }
 
 
-module.exports = errorHandlers
+module.exports = errorMiddleware
