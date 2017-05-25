@@ -24,6 +24,7 @@ class CartShow extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   handleInputChange(index, newQuantity){
@@ -32,6 +33,10 @@ class CartShow extends React.Component {
 
   handleRemove(index){
     this.props.dispatch(removeDetail(index))
+  }
+
+  handleError(message){
+
   }
 
   render () {
@@ -53,6 +58,7 @@ class CartShow extends React.Component {
             order={this.props.cart}
             editable={true}
             onRequestInputChange={this.handleInputChange}
+            onRequestError={this.handleError}
             onRequestRemove={this.handleRemove}/>
         }
 
