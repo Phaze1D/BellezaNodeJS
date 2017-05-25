@@ -64,8 +64,8 @@ class UserShow extends React.Component {
           </ul>
         </section>
 
-        <Redirect from={`${match.url}/`} to={`${match.url}/details`}/>
-        <Route path={`${match.path}/details`} component={UserDetails}/>
+        <Route exact path={`${match.path}/`} component={UserDetails}/>
+        <Route exact path={`${match.path}/details`} component={UserDetails}/>
         <Route path={`${match.path}/orders`} component={UserOrders}/>
         <Route path={`${match.path}/addresses/`} component={UserAddresses}/>
         <Route path={`${match.path}/codes`} component={UserCodes}/>
