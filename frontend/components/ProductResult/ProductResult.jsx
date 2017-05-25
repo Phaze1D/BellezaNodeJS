@@ -23,15 +23,13 @@ export default class ProductResult extends React.PureComponent {
     if(quantity > 0 && quantity <= product.get('stock') ){
       let detail = {
         id: product.get('id'),
-        name: product.get('name'),
+        name: product.get('name') + product.get('volume'),
         price: product.get('price'),
         iva: product.get('iva'),
         discount: product.get('discount'),
         sub_total: product.get('price') * quantity,
         stock: product.get('stock'),
-        quantity: quantity,
-        mediumImg: product.get('mediumImg'),
-        smallImg: product.get('smallImg'),
+        quantity: quantity
       }
       detail.sub_total -= detail.sub_total * (detail.discount/100)
       this.props.dispatch(addDetail(detail))
@@ -48,7 +46,7 @@ export default class ProductResult extends React.PureComponent {
         <Link to={`/product/${product.get('id')}`}>
           <img src={product.get('mediumImg')} alt={product.get('name')}/>
           <h4 className="overflow-text">{product.get('name')}</h4>
-          <p>${product.get('price')}</p>
+          <p>${product.get('price').toFixed(2)}</p>
         </Link>
 
         {product.get('stock') > 0 ?
