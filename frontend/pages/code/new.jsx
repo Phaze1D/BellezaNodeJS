@@ -31,11 +31,12 @@ class CodesNew extends React.Component {
 
     this.handleError = this.handleError.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSuccess = this.handleSuccess.bind(this)
   }
 
   componentDidMount() {
     let id = this.props.match.params.user_id
-    this.props.dispatch(getClient(id, thie.props.user.get('token')))
+    this.props.dispatch(getClient(id, this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }
@@ -47,15 +48,22 @@ class CodesNew extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.dispatch(resetErrors())
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('code', elements.code.value)
-    formData.append('amount', elements.amount.value)
-    formData.append('type', elements.type.checked)
-    formData.append('expires', elements.expires.value)
+    formData.append('discount', Number(elements.discount.value))
+    formData.append('is_percentage', elements.is_percentage.checked)
+    formData.append('expires_date', elements.expires_date.value)
     this.props.dispatch(codeNew(formData, this.props.client.get('id'), this.props.user.get('token')))
-    .then()
+    .then(this.handleSuccess)
     .catch(this.handleError)
+  }
+
+  handleSuccess(response){
+    this.props.history.push({
+      pathname: `/user/${this.props.client.get('id')}/codes`,
+    })
   }
 
   handleError(response) {
@@ -71,8 +79,8 @@ class CodesNew extends React.Component {
 
     return (
       <div>
-        <h2>Discount Code For: {client.get('first_name')} {client.get('last_name')}</h2>
-        <h4>Email: {client.get('email')}</h4>
+        <h2><span className="sub-text">Discount Code For:</span> {client.get('first_name')} {client.get('last_name')}</h2>
+        <h4><span className="sub-text">Email:</span> {client.get('email')}</h4>
 
         <form className="main-form grid-wrap center" onSubmit={this.handleSubmit}>
           <div className="col-6">
@@ -84,21 +92,21 @@ class CodesNew extends React.Component {
 
           <div className="col-4">
             <label>Discount Amount</label>
-            {errors.get('amount') && <div className="error-div">{errors.get('amount')}</div>}
-            <input type="text" name="amount"/>
+            {errors.get('discount') && <div className="error-div">{errors.get('discount')}</div>}
+            <input type="number" name="discount" min='0'/>
           </div>
 
           <div className="col-2">
             <label>Percentage</label>
-            {errors.get('type') && <div className="error-div">{errors.get('type')}</div>}
-            <input type="checkbox" name="type"/>
+            {errors.get('is_percentage') && <div className="error-div">{errors.get('is_percentage')}</div>}
+            <input type="checkbox" name="is_percentage"/>
           </div>
 
           <div className="col-6"></div>
           <div className="col-6">
             <label>Expires</label>
-            {errors.get('expires') && <div className="error-div">{errors.get('expires')}</div>}
-            <input type="date" name="expires"/>
+            {errors.get('expires_date') && <div className="error-div">{errors.get('expires_date')}</div>}
+            <input type="date" name="expires_date"/>
           </div>
 
           <div className="col-6"></div>
