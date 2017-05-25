@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
-import dateOptions from 'utils/date'
+import {dateOptions} from 'utils/date'
 
 class OrderItem extends React.PureComponent {
   render() {
@@ -56,8 +56,8 @@ class Detail extends React.PureComponent {
         <img src={detail.get('pimg')} className="col-2 col-xxs-3"/>
         <div className="grow col-xxs-9">
           <p style={{fontWeight: 'bold', color: 'black'}} className="overflow-text">{detail.get('name')}</p>
-          <p className="sub-text overflow-text">Precio: ${detail.get('price')} Cantidad: {detail.get('quantity')}</p>
-          <p className="sub-text primary">${detail.get('sub_total')}</p>
+          <p className="sub-text overflow-text">Precio: ${detail.get('price').toFixed(2)} Cantidad: {detail.get('quantity')}</p>
+          <p className="sub-text primary">${detail.get('sub_total').toFixed(2)}</p>
         </div>
 
         <Link to="/product" className="secondary-button raise col-xxs-hide">
