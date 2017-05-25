@@ -24,6 +24,7 @@ class AddressForm extends React.Component {
   handleSubmit(event){
     event.preventDefault()
     let id = this.props.address.get('id')
+    let index = this.props.address.get('index')
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('first_name', elements.first_name.value)
@@ -36,12 +37,12 @@ class AddressForm extends React.Component {
     formData.append('telephone', elements.telephone.value)
 
     if(id){
-      this.props.dispatch(addressUpdate(formData, id, this.props.userId, this.props.token))
-      .then()
+      this.props.dispatch(addressUpdate(index, formData, id, this.props.userId, this.props.token))
+      .then(this.props.onRequestCancel)
       .catch(this.handleError)
     }else{
       this.props.dispatch(addressNew(formData, this.props.userId, this.props.token))
-      .then()
+      .then(this.props.onRequestCancel)
       .catch(this.handleError)
     }
   }
