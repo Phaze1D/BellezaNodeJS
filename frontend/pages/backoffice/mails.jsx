@@ -68,7 +68,8 @@ class BackofficeMails extends React.Component {
 
     const emailList = mailing.get('rows').map((mail, index) =>
       <tr key={index}>
-        <td>{mail.email}</td>
+        <td>{mail.get('active') ? 'Yes' : 'No'}</td>
+        <td>{mail.get('email')}</td>
       </tr>
     )
 
@@ -87,6 +88,7 @@ class BackofficeMails extends React.Component {
         <table className="backoffice-table">
           <thead>
             <tr>
+              <th>Active</th>
               <th>Email</th>
             </tr>
           </thead>
