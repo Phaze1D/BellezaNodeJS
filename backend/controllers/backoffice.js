@@ -20,7 +20,6 @@ let bannerFields = [
   'end_date'
 ]
 
-/** REQUIRES ADMIN VALIDATION */
 router.get('/banners', isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
   Banner.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
@@ -28,21 +27,18 @@ router.get('/banners', isLogin, isAdmin, function (req, res, next) {
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.get('/banner/:id', isLogin, isAdmin, function (req, res, next) {
   Banner.findById(req.params.id).then(banner => {
     res.json(banner)
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.post('/banner', isLogin, isAdmin, upload.none(), function (req, res, next) {
   Banner.create(req.body, {fields: bannerFields}).then(banner => {
     res.json(banner)
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, next) {
   Banner.findById(req.params.id).then(banner => {
     return banner.update(req.body, {fields: bannerFields})
@@ -51,7 +47,6 @@ router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, n
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.get('/mailing', isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
   Mailing.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
@@ -59,12 +54,22 @@ router.get('/mailing', isLogin, isAdmin, function (req, res, next) {
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.get('/clients',isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
   User.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
     res.json(results)
   }).catch(next)
+})
+
+router.get('/client/:client_id',isLogin, isAdmin, function (req, res, next) {
+  User.findOne({where: {id: req.params.client_id}, attributes: ['first_name', 'last_name', 'id', 'email']})
+  .then(client => {
+    if(client){
+      res.json(client)
+    }else{
+      res.sendStatus(401)
+    }
+  })
 })
 
 module.exports = router
