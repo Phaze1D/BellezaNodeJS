@@ -59,9 +59,14 @@ class ProductForm extends React.Component {
       errors
     } = this.props
 
-    const catList = categories.map( (category, index) =>
-      <option key={category.get('id')} value={category.get('id')}>{category.get('name')}</option>
-    )
+
+    const catList = categories.map( (category, index) => {
+      return category.get('subs').map( (subc, index) => {
+        return subc.get('subs').map( (subd, index) =>
+          <option key={subd.get('id')} value={subd.get('id')}>{subd.get('name')}</option>
+        )
+      })
+    })
 
     const scatList = this.state.selectedCats.map( (category, index) =>
       <div className="grid top" key={category.id}>
@@ -96,14 +101,14 @@ class ProductForm extends React.Component {
 
           <div className="col-4">
             <label>Volumen</label>
-            {errors.get('volumn') && <div className="error-div">{errors.get('volumn')}</div>}
-            <input type="text" name="volumn" className="input" defaultValue={product.get('volumn')}/>
+            {errors.get('volume') && <div className="error-div">{errors.get('volume')}</div>}
+            <input type="text" name="volume" className="input" defaultValue={product.get('volume')}/>
           </div>
 
           <div className="col-3">
             <label>Price</label>
             {errors.get('price') && <div className="error-div">{errors.get('price')}</div>}
-            <input type="number" min="0" step="any" name="price" className="input input-quantity" defaultValue={product.get('price')}/>
+            <input type="number" min="0" step="any" name="price" className="input input-quantity" defaultValue={product.get('price').toFixed(2)}/>
           </div>
 
           <div className="col-3">
