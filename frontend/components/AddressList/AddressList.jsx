@@ -68,13 +68,15 @@ export default class AddressList extends React.Component {
     } = this.props
 
     const addrList = addresses.map( (address, index) =>
-      <div key={index} className="col-4 col-md-6 col-sm-12">
+      <div key={address.get('id')} className="col-4 col-md-6 col-sm-12">
         <Address
-          address={address}
+          address={address.set('index', index)}
           selectable={selectable}
           selectActionType={selectActionType}
           dispatch={dispatch}
-          onRequestEdit={this.handleShow.bind(this, address)}
+          userId={userId}
+          token={token}
+          onRequestEdit={this.handleShow.bind(this, address.set('index', index))}
           onRequestSelect={this.handleAddressSelect}/>
       </div>
     )
@@ -133,7 +135,11 @@ class Address extends React.PureComponent {
 
   handleDelete(event){
     event.preventDefault()
-    this.props.dispatch(addressDelete(this.props.address.get('id')))
+    let index = this.props.address.get('index')
+    let id = this.props.address.get('id')
+    let userId = this.props.userId
+    let token = this.props.token
+    this.props.dispatch(addressDelete(index, id, userId, token))
     .then()
     .catch(this.handleError)
   }
