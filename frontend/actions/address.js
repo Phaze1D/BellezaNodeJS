@@ -10,12 +10,13 @@ export const addressNew = (formData, user_id, token) => {
   }
 }
 
-export const addressUpdate = (formData, id, user_id, token) => {
+export const addressUpdate = (index, formData, id, user_id, token) => {
   return {
     type: types.ADDRESS_UPDATE,
     payload: axios.put(`/user/${user_id}/address/${id}`, formData, {
       headers: {'Authorization': `Bearer ${token}`}
-    })
+    }),
+    meta: {index: index}
   }
 }
 
@@ -29,11 +30,12 @@ export const validateAddress = (fieldData, token) => {
   }
 }
 
-export const addressDelete = (id, user_id, token) => {
+export const addressDelete = (index, id, user_id, token) => {
   return {
     type: types.ADDRESS_DELETE,
     payload: axios.delete(`/user/${user_id}/address/${id}`, {
       headers: {'Authorization': `Bearer ${token}`}
-    })
+    }),
+    meta: {index: index}
   }
 }
