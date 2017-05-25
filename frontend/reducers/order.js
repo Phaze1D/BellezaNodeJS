@@ -34,7 +34,6 @@ export const getOrdersReducer = (state = INITIAL_ORDERS, action) => {
 
     default: return state
   }
-  return state
 }
 
 
@@ -56,7 +55,6 @@ export const getOrderReducer = (state = INITIAL_ORDER, action) => {
 
     default: return state
   }
-  return state
 }
 
 

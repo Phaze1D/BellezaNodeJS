@@ -6,9 +6,8 @@ const INITIAL_ERRORS = Map()
 
 export const errorsReducer = (state = INITIAL_ERRORS, action) => {
 
-  if(action.type.includes('ERROR')){
+  if(action.type.includes('ERROR') && action.payload.response.status == 422){
     let res = action.payload.response.data
-    console.log(res);
     return state.withMutations(map => {
       res.forEach(error => map.set(error.path, error.message))
     })

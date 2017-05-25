@@ -23,7 +23,8 @@ import {
   removeDetailReducer,
   addCartAddressReducer,
   addCartExtraReducer,
-  resetCartReducer
+  resetCartReducer,
+  checkUserCodeReducer
  } from 'reducers/cart'
 
 import {
@@ -40,6 +41,7 @@ import {
   validateContactReducer,
   getBannersReducer,
   resetBannersReducer,
+  getBannerReducer,
   newBannerReducer,
   editBannerReducer,
   getMailingReducer,
@@ -63,7 +65,6 @@ import {
 import {
   getUserCodesReducer,
   resetCodesReducer,
-  checkUserCodeReducer,
   codeNewReducer
 } from 'reducers/discountcode'
 
@@ -101,7 +102,6 @@ const paymentReducers = reduceReducers(
 const codesReducers = reduceReducers(
   getUserCodesReducer,
   resetCodesReducer,
-  checkUserCodeReducer,
   codeNewReducer
 )
 
@@ -120,6 +120,7 @@ const othersReducer = reduceReducers(
   validateContactReducer,
   getBannersReducer,
   resetBannersReducer,
+  getBannerReducer,
   newBannerReducer,
   editBannerReducer,
   getMailingReducer,
@@ -162,7 +163,8 @@ const cartReducer = reduceReducers(
   removeDetailReducer,
   addCartAddressReducer,
   addCartExtraReducer,
-  resetCartReducer
+  resetCartReducer,
+  checkUserCodeReducer
 )
 
 const StateRecord = Immutable.Record({
