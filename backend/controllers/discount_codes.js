@@ -1,10 +1,12 @@
 'use strict'
 let express = require('express')
 let models = require('../models')
-let DiscountCode = models.DiscountCode
-let User = models.User
+let Sequelize = require('sequelize');
 let multer = require('multer')
 let middware = require('../middleware/user.js')
+
+let DiscountCode = models.DiscountCode
+let User = models.User
 
 let isLogin = middware.isLogin
 let isAdmin = middware.isAdmin
@@ -21,26 +23,25 @@ let codeFields = [
 ]
 
 
-/** REQUIRES ADMIN OR USER VALIDATION */
 router.get('/user/:user_id/codes', isLogin, isAdmin, function (req, res, next) {
   DiscountCode.findAll({where: {user_id: req.params.user_id}}).then( codes => {
     res.json(codes)
   }).catch(next)
 })
 
-/** REQUIRES USER VALIDATION */
 router.get('/user/:user_id/check-code', isLogin, isUser, function (req, res, next) {
-  DiscountCode.findOne({where: {code: req.query.code, user_id: req.params.user_id}})
+  DiscountCode.findOne({where: {code: req.query.code, user_id: req.params.user_id, expires_date: {$gt: new Date()}}})
   .then( discountCode => {
     if(discountCode){
       res.json(discountCode)
     }else{
-      res.sendStatus(401)
+      let err = new Sequelize.ValidationError('Codigo Invalido')
+      err.errors.push({path: 'code', message: 'Codigo Invalido'})
+      next(err)
     }
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.post('/user/:client_id/code', isLogin, isAdmin, upload.none(), function (req, res, next) {
   let formData = req.body
   formData.user_id = req.params.client_id
