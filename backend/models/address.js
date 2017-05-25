@@ -70,13 +70,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     street2: {
       type: DataTypes.STRING(255),
-      allowNull: true,
-      validate: {
-        len: {
-          args: [1, 255],
-          msg: valmsg.len(1, 255)
-        },
-      }
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING(60),
@@ -107,12 +101,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     zipcode: {
-      type: DataTypes.STRING(60),
+      type: DataTypes.STRING(45),
       allowNull: false,
       validate: {
         len: {
-          args: [1, 60],
-          msg: valmsg.len(1, 60)
+          args: [1, 45],
+          msg: valmsg.len(1, 45)
         },
         notEmpty: {
           args: true,
