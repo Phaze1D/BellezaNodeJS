@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import queryString from 'query-string'
 import { resetErrors } from 'actions/errors'
 import {
   userSignUp,
@@ -94,8 +95,14 @@ export default class Signin extends React.Component {
   render () {
     const {
       user,
-      errors
+      errors,
+      history
     } = this.props
+
+    const parse = queryString.parse(history.location.search)
+    if(parse.redirect && user.get('token')){
+      return <Redirect to={`/${parse.redirect}`}/>
+    }
 
     if(user.get('token')){
       return <Redirect to={`/user/${user.get('id')}`}/>
