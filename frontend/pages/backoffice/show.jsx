@@ -49,11 +49,11 @@ export default class BackofficeShow extends React.Component {
           </li>
 
           <li>
-            <Link to={`${match.url}/mails`}>Mailing List</Link>
+            <Link to={`${match.url}/mailing`}>Mailing List</Link>
           </li>
         </ul>
 
-        <Redirect from={`${match.url}/`} to={`${match.url}/orders?status=pagado&page=0`}/>
+        <Route exact path={`${match.url}/`} component={BackofficeOrders}/>
         <Route path={`${match.url}/orders`} component={BackofficeOrders}/>
         <Route path={`${match.url}/products`} component={ProductsIndex}/>
         <Route path={`${match.url}/product/new`} component={ProductsNew}/>
