@@ -63,6 +63,10 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
+    code_used: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
     notes: {
       type: DataTypes.TEXT,
       allowNull: true
