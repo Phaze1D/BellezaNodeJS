@@ -12,15 +12,24 @@ module.exports = function(sequelize, DataTypes) {
     code: {
       type: DataTypes.STRING(255),
       allowNull: false,
+      unique: {
+        args: true,
+        message: 'Codigo Invalido'
+      },
       validate: {
         notEmpty: {
           args: true,
           msg: valmsg.required
         },
-        unique: {
-          args: true,
-          message: valmsg.email_unique
-        },
+        isUnique: (value, next) => {
+          DiscountCode.findOne({where: {code: value}})
+          .then( (discountCode) => {
+            if(discountCode){
+              throw new Error('Codigo Invalido')
+            }
+            return next();
+          }).catch(next);
+        }
       }
     },
     expires_date: {
@@ -31,6 +40,7 @@ module.exports = function(sequelize, DataTypes) {
           args: true,
           msg: valmsg.required
         },
+        isDate: true
       }
     },
     discount: {
@@ -42,8 +52,8 @@ module.exports = function(sequelize, DataTypes) {
           msg: valmsg.required
         },
         min: {
-          args: 0,
-          msg: valmsg.min(0)
+          args: 1,
+          msg: valmsg.min(1)
         },
       }
     },
