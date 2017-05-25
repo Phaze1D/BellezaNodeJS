@@ -8,8 +8,14 @@ class OrderTable extends React.Component {
 
   }
 
-  handleInputChange(index, event) {
-    this.props.onRequestInputChange(index, Number(event.target.value))
+  handleInputChange(index, stock, event) {
+    let quantity = Number(event.target.value)
+    if(quantity <= stock){
+      this.props.onRequestInputChange(index, quantity)
+    }else{
+      let pur = stock > 1 ? 'disponibles' : 'disponible'
+      this.props.onRequestError(`Sólo ${stock} ${pur}`)
+    }
   }
 
   handleRemove(index, event){
@@ -27,7 +33,7 @@ class OrderTable extends React.Component {
         key={index}
         detail={detail}
         editable={editable}
-        onRequestChange={this.handleInputChange.bind(this, index)}
+        onRequestChange={this.handleInputChange.bind(this, index, detail.get('stock'))}
         onRequestRemove={this.handleRemove.bind(this, index)}/>
     )
 
@@ -58,12 +64,12 @@ class OrderTable extends React.Component {
             <td className="foot-main">${order.get('iva_total').toFixed(2)}</td>
           </tr>
           <tr>
-            <td colSpan="5">Discount:</td>
-            <td className="foot-main">${order.get('discount_total').toFixed(2)}</td>
-          </tr>
-          <tr>
             <td colSpan="5">Costo de Envío: </td>
             <td className="foot-main">${order.get('shipping_total').toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td colSpan="5">Discount:</td>
+            <td className="foot-main">${order.get('discount_total').toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Total:</td>
@@ -83,50 +89,50 @@ export default OrderTable;
 const OrderRow = (props) => (
   <tr>
     <td>
-      <img src={props.details.get('pimg')}/>
+      <img src={props.detail.get('pimg')}/>
     </td>
 
     <td className="xs-td" colSpan="4">
       <span className="xs-span">
-        {props.details.get('name')}
+        {props.detail.get('name')}
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Precio: </span>${props.details.get('price')}
+        <span className="sub-text">Precio: </span>${props.detail.get('price').toFixed(2)}
       </span>
 
       <span className="xs-span">
         {props.editable ?
-          <input type="number" max="10" min="0" value={props.details.get('quantity')} onChange={props.onRequestChange}/>
+          <input type="number" max={props.detail.get('stock')} min="0" value={props.detail.get('quantity')} onChange={props.onRequestChange}/>
           :
-          props.details.get('quantity')
+          props.detail.get('quantity')
         }
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Subtotal: </span>${props.details.get('sub_total')}
+        <span className="sub-text">Subtotal: </span>${props.detail.get('sub_total').toFixed(2)}
       </span>
     </td>
 
 
     <td className="sm-td">
-      {props.details.get('name')}
+      {props.detail.get('name')}
     </td>
 
     <td className="sm-td">
-      ${props.details.get('price')}
+      ${props.detail.get('price').toFixed(2)}
     </td>
 
     <td className="sm-td">
       {props.editable ?
-        <input type="number" max="10" min="0" value={props.details.get('quantity')} onChange={props.onRequestChange}/>
+        <input type="number" max={props.detail.get('stock')} min="0" value={props.detail.get('quantity')} onChange={props.onRequestChange}/>
         :
-        props.details.get('quantity')
+        props.detail.get('quantity')
       }
     </td>
 
     <td className="sm-td">
-      ${props.details.get('sub_total')}
+      ${props.detail.get('sub_total').toFixed(2)}
     </td>
 
     <td>
