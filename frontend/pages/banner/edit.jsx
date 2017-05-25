@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import BannerForm from 'components/BannerForm/BannerForm'
 import { connect } from 'react-redux'
 import { editBanner, resetBanner, getBanner } from 'actions/others'
+import { resetErrors } from 'actions/errors'
 
 
 /**
@@ -28,6 +29,8 @@ class BannersEdit extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.handleSucces = this.handleSucces.bind(this)
+
   }
 
   componentDidMount() {
@@ -39,10 +42,27 @@ class BannersEdit extends React.Component {
 
   componentWillUnmount() {
     this.props.dispatch(resetBanner())
+    this.props.dispatch(resetErrors())
   }
 
   handleSubmit(event) {
+    this.props.dispatch(resetErrors())
     event.preventDefault()
+    var formData = new FormData()
+    var elements = event.target.elements
+    formData.append('manual_active', elements.manual_active.checked)
+    formData.append('start_date', elements.start_date.value)
+    formData.append('end_date', elements.end_date.value)
+    formData.append('link_to', elements.link_to.value)
+    this.props.dispatch(editBanner(formData, this.props.banner.get('id'), this.props.user.get('token')))
+    .then(this.handleSucces)
+    .catch(this.handleError)
+  }
+
+  handleSucces(response){
+    this.props.history.push({
+      pathname: '/backoffice/banners'
+    })
   }
 
   handleError(response) {
@@ -54,6 +74,10 @@ class BannersEdit extends React.Component {
       banner,
       errors
     } = this.props
+
+    if(banner.get('loading')){
+      return null
+    }
 
     return (
       <BannerForm
