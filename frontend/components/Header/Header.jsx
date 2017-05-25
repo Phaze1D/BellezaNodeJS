@@ -40,7 +40,7 @@ export default class Header extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if( nextProps.cart.get('show') && !this.props.cart.get('show') ) {
-      setTimeout( () => {this.dispatch(hideCart())}, 4000)
+      setTimeout( () => {this.props.dispatch(hideCart())}, 2000)
     }
   }
 
