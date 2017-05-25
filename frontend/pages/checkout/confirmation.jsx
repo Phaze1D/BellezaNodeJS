@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OrderTable from 'components/OrderTable/OrderTable'
 import { checkUserCode } from 'actions/discountcode'
+import { resetErrors } from 'actions/errors'
 import { cashPayment, cardPayment } from 'actions/payment'
 
 /**
@@ -26,7 +27,6 @@ import { cashPayment, cardPayment } from 'actions/payment'
   return {
     cart: store.cart,
     user: store.user,
-    codes: store.codes,
     payment: store.payment,
     errors: store.errors
   }
@@ -40,6 +40,10 @@ export default class CheckoutConfirmation extends React.Component {
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
     this.handleSubmitCash = this.handleSubmitCash.bind(this)
     this.handleError = this.handleError.bind(this)
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleRadio(event){
@@ -92,7 +96,6 @@ export default class CheckoutConfirmation extends React.Component {
     const {
       cart,
       user,
-      codes,
       payment,
       errors
     } = this.props
@@ -111,17 +114,22 @@ export default class CheckoutConfirmation extends React.Component {
               order={cart}
               editable={false}/>
 
-            <form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
-              <div className="col-8">
-                <label htmlFor="code">Codigo De Descuento</label>
-                {errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
-                <input name="code" type="text" className="input"/>
-              </div>
+            {cart.get('code_used') ?
+              <div className="success-box">Descuento Aplicado</div>
+            :
+              <form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
+                <div className="col-8">
+                  <label htmlFor="code">Codigo De Descuento</label>
+                  {errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
+                  <input name="code" type="text" className="input"
+                    onFocus={(event) => this.props.dispatch(resetErrors('code'))}/>
+                </div>
 
-              <div className="col-4">
-                <input type="submit" value="Aplicar" className="submit full"/>
-              </div>
-            </form>
+                <div className="col-4">
+                  <input type="submit" value="Aplicar" className="submit full"/>
+                </div>
+              </form>
+            }
 
             <h2>Forma de Pago</h2>
 
@@ -153,7 +161,6 @@ export default class CheckoutConfirmation extends React.Component {
                   <div className="grid center">
                     <label className="col-4 col-md-5" htmlFor="card-date">Fecha de Caducidad: </label>
                     <select name="card-month">
-                      <option value="" disabled selected>Mes</option>
                       <option value='01'>Enero (1)</option>
           						<option value='02'>Febrero (2)</option>
           						<option value='03'>Marzo (3)</option>
@@ -169,7 +176,6 @@ export default class CheckoutConfirmation extends React.Component {
                     </select>
 
                     <select name="card-year">
-                      <option value="" disabled selected>Año</option>
                       <option value="2017">2017</option>
                       <option value="2018">2018</option>
                       <option value="2019">2019</option>
@@ -232,7 +238,9 @@ export default class CheckoutConfirmation extends React.Component {
 
           <section className="col-4 col-sm-12 first-sm">
             <Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
-            <Address address={cart.get('invoiceAddress')} title="Facturacion"/>
+            {!cart.get('invoiceAddress').isEmpty() &&
+              <Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')}/>
+            }
           </section>
         </div>
       </main>
@@ -243,7 +251,8 @@ export default class CheckoutConfirmation extends React.Component {
 
 export const Address = props => (
   <div className="box overflow-text sub-text">
-    <p>{props.address.get('title')}</p>
+    <p>{props.title}</p>
+    <p>{props.rfc}</p>
     <hr></hr>
     <p className="overflow-text">
       {props.address.get('first_name')} {props.address.get('last_name')}
