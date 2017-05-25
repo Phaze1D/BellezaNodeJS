@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
 import { addCartAddress, addCartExtra } from 'actions/cart'
-import { CART_SHIPPING_ADDRESS, CART_INVOICE_ADDRESS } from 'actions/types'
 
 
 
@@ -30,22 +29,38 @@ export default class CheckoutDirections extends React.Component {
 
     this.handleFactura = this.handleFactura.bind(this)
     this.handleContinue = this.handleContinue.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   handleFactura(event) {
     this.refs.facturaBox.classList.toggle('hide-f')
     if(this.refs.facturaBox.classList.contains('hide-f')){
-      this.props.dispatch(addCartAddress({}, CART_INVOICE_ADDRESS))
+      this.props.dispatch(addCartAddress({}, 'invoiceAddress'))
     }
   }
 
   handleContinue(event) {
-    let extraData = new FormData()
-    extraData.append('note', this.refs.noteInput.value)
+    let rfc = this.refs.rfcInput.value
+    let extraData = {}
+    extraData.notes = this.refs.noteInput.value
     if(!this.refs.facturaBox.classList.contains('hide-f')){
-      extraData.append('rfc', this.refs.rfcInput.value)
+      if(rfc){
+        extraData.rfc = rfc
+      }else{
+        event.preventDefault()
+        this.handleError('RFC es Necesario')
+      }
     }
     this.props.dispatch(addCartExtra(extraData))
+
+    if(this.props.cart.get('shippingAddress').isEmpty()){
+      event.preventDefault()
+      this.handleError('Seleccione una dirección de envío')
+    }
+  }
+
+  handleError(message){
+
   }
 
   render () {
@@ -61,7 +76,7 @@ export default class CheckoutDirections extends React.Component {
     )
 
     if(!user.get('token')){
-      return <Redirect to='/signin'/>
+      return <Redirect to='/signin?redirect=checkout'/>
     }
 
     return (
@@ -74,7 +89,7 @@ export default class CheckoutDirections extends React.Component {
 
               <AddressList
                 selectable={true}
-                selectActionType={CART_SHIPPING_ADDRESS}
+                selectActionType={'shippingAddress'}
                 addresses={user.get('addresses')}
                 errors={errors}
                 dispatch={dispatch}
@@ -100,7 +115,7 @@ export default class CheckoutDirections extends React.Component {
 
               <AddressList
                 selectable={true}
-                selectActionType={CART_INVOICE_ADDRESS}
+                selectActionType={'invoiceAddress'}
                 addresses={user.get('addresses')}
                 errors={errors}
                 dispatch={dispatch}
@@ -143,7 +158,7 @@ const DetailItem = props => (
       <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
         Cantidad: {props.detail.get('quantity')} <br/>
-        Subtotal: ${props.detail.get('sub_total')}
+        Subtotal: ${props.detail.get('sub_total').toFixed(2)}
       </p>
     </div>
   </li>
