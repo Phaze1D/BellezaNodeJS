@@ -29,6 +29,7 @@ class ProductsNew extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.handleSuccess = this.handleSuccess.bind(this)
   }
 
   componentWillUnmount() {
@@ -36,8 +37,13 @@ class ProductsNew extends React.Component {
   }
 
   handleSubmit(event){
+    this.props.dispatch(resetErrors())
     event.preventDefault()
     let elements = event.target.elements
+  }
+
+  handleSuccess(response) {
+
   }
 
   handleError(response) {

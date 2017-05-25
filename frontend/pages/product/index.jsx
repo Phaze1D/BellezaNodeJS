@@ -141,7 +141,7 @@ const ProductItem = props => (
     <td>{props.product.get('name')} {props.product.get('volume')}</td>
     <td>{props.product.get('stock')}</td>
     <td>
-      <Link to={`product/edit`}>Update</Link>
+      <Link to={`product/edit/${props.product.get('id')}`}>Update</Link>
     </td>
   </tr>
 )

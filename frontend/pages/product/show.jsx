@@ -72,7 +72,7 @@ export default class ProductShow extends React.Component {
     if(quantity > 0 && quantity <= product.get('stock') ){
       let detail = {
         id: product.get('id'),
-        name: product.get('name'),
+        name: product.get('name') + product.get('volume'),
         price: product.get('price'),
         iva: product.get('iva'),
         discount: product.get('discount'),

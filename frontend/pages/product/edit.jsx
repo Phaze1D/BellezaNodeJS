@@ -34,6 +34,7 @@ class ProductsEdit extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleError = this.handleError.bind(this)
+    this.handleSuccess = this.handleSuccess.bind(this)
   }
 
   componentDidMount() {
@@ -45,11 +46,17 @@ class ProductsEdit extends React.Component {
 
   componentWillUnmount() {
     this.props.dispatch(resetErrors())
+    this.props.dispatch(resetProduct())
   }
 
   handleSubmit(event) {
+    this.props.dispatch(resetErrors())
     event.preventDefault()
     let elements = event.target.elements
+  }
+
+  handleSuccess(response) {
+
   }
 
   handleError(response) {
@@ -63,6 +70,10 @@ class ProductsEdit extends React.Component {
       user,
       errors
     } = this.props
+
+    if(product.get('loading')){
+      return null
+    }
 
     return (
       <ProductForm
