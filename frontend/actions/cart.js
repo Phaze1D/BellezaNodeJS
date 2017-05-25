@@ -31,7 +31,7 @@ export const hideCart = () => {
 
 export const addCartAddress = (address, type) => {
   return {
-    type: type,
+    type: types.CART_ADDRESS,
     payload: {
       address: address,
       type: type
