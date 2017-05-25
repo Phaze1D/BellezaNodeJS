@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Pagination from 'components/Pagination/Pagination'
-import dateOptions from 'utils/date'
+import { dateOptions } from 'utils/date'
 import queryString from 'query-string'
 import { getBanners, resetBanners } from 'actions/others'
 
@@ -83,7 +83,7 @@ class BannersIndex extends React.Component {
     return (
       <div>
         <div className="protop">
-          <Link to ="/backoffice/banners/new" className="secondary-button">Add Banner</Link>
+          <Link to ="/backoffice/banner/new" className="secondary-button">Add Banner</Link>
         </div>
 
         <table className="backoffice-table">
@@ -125,16 +125,16 @@ export default BannersIndex;
 const BannerItem = props => (
   <tr>
     <td>
-      <img className="banner-sm" src={props.img}/>
+      <img className="banner-sm" src={props.banner.get('img')}/>
     </td>
     <td>
-      <Link to={props.link}>Link</Link>
+      <Link to={props.banner.get('link_to')}>Link</Link>
     </td>
-    <td>{props.active ? "Yes": "No"}</td>
-    <td>{props.start.toLocaleString('en-us', dateOptions)}</td>
-    <td>{props.end.toLocaleString('en-us', dateOptions)}</td>
+    <td>{props.banner.get('manual_active') ? "Yes": "No"}</td>
+    <td>{new Date(props.banner.get('start_date')).toLocaleString('en-us', dateOptions)}</td>
+    <td>{new Date(props.banner.get('end_date')).toLocaleString('en-us', dateOptions)}</td>
     <td>
-      <Link to='/backoffice/banners/edit'>Update</Link>
+      <Link to={`/backoffice/banner/${props.banner.get('id')}/edit`}>Update</Link>
     </td>
   </tr>
 )

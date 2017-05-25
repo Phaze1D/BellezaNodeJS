@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
-import dateOptions from 'utils/date'
+import { dateOptions } from 'utils/date'
 import { connect } from 'react-redux'
 import { resetOrders, getAllOrders } from 'actions/order'
 import queryString from 'query-string'

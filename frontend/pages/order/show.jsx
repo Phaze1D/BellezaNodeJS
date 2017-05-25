@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import OrderTable from 'components/OrderTable/OrderTable'
 import { Address } from 'pages/checkout/confirmation'
-import dateOptions from 'utils/date'
+import { dateOptions } from 'utils/date'
 import { connect } from 'react-redux'
 import { getOrder, resetOrder } from 'actions/order'
 
