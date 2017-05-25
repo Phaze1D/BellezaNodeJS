@@ -19,11 +19,17 @@ module.exports = function(sequelize, DataTypes) {
     },
     start_date: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isDate: true
+      }
     },
     end_date: {
       type: DataTypes.DATE,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isDate: true
+      }
     }
   }, {
     tableName: 'banners'
