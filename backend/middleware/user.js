@@ -19,7 +19,7 @@ const isLogin = function (req, res, next) {
 }
 
 const isAdmin = function (req, res, next) {
-  if(req.jwtUser && (req.jwtUser.isAdmin || req.jwtUser.userId === req.params.user_id)){
+  if(req.jwtUser && (req.jwtUser.isAdmin || req.jwtUser.userId == req.params.user_id)){
     next()
   }else{
     res.sendStatus(401)
@@ -27,7 +27,7 @@ const isAdmin = function (req, res, next) {
 }
 
 const isUser = function (req, res, next) {
-  if(req.jwtUser && req.jwtUser.userId === req.params.user_id){
+  if(req.jwtUser && req.jwtUser.userId == req.params.user_id){
     next()
   }else{
     res.sendStatus(401)
