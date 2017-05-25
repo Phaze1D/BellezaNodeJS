@@ -33,14 +33,12 @@ let addressFieldsUpdate = [
   'country'
 ]
 
-/** REQUIRES USER VALIDATION */
 router.get('/user/:user_id/addresses', isLogin, isUser, function (req, res, next) {
   Address.findAll({where: {user_id: req.params.user_id}}).then(addresses => {
     res.json(addresses)
   }).catch(next)
 })
 
-/** REQUIRES USER VALIDATION */
 router.post('/user/:user_id/address', isLogin, isUser, upload.none(), function (req, res, next) {
   let formData = req.body
   formData.user_id = req.params.user_id
@@ -49,7 +47,6 @@ router.post('/user/:user_id/address', isLogin, isUser, upload.none(), function (
   }).catch(next)
 })
 
-/** REQUIRES USER VALIDATION */
 router.put('/user/:user_id/address/:id', isLogin, isUser, upload.none(), function (req, res, next) {
   Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}})
   .then( address => {
@@ -63,7 +60,6 @@ router.put('/user/:user_id/address/:id', isLogin, isUser, upload.none(), functio
   }).catch(next)
 })
 
-/** REQUIRES LOGIN VALIDATION */
 router.get('/validate-address', isLogin, function (req, res, next) {
   let address = Address.build(req.query, {fields: [Object.keys(req.query)[0]]})
   address.validate({fields: [Object.keys(req.query)[0]]}).then((err) => {
@@ -75,7 +71,6 @@ router.get('/validate-address', isLogin, function (req, res, next) {
   }).catch(next)
 })
 
-/** REQUIRES USER VALIDATION */
 router.delete('/user/:user_id/address/:id', isLogin, isUser, function (req, res, next) {
   Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}})
   .then( address => {
