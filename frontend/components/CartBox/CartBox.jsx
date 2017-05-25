@@ -60,7 +60,7 @@ const CartItem = props => (
     <div>
       <p className="overflow-text">{props.detail.get('name')}</p>
       <p><span className="sub-text">Cantidad:</span> {props.detail.get('quantity')}</p>
-      <p><span className="sub-text">Precio:</span> ${props.detail.get('price')} </p>
+      <p><span className="sub-text">Precio:</span> ${props.detail.get('sub_total').toFixed(2)} </p>
     </div>
   </li>
 )
