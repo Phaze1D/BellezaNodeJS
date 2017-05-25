@@ -95,6 +95,6 @@ export const getMailing = (page, token) => {
 
 export const resetMailing = () => {
   return {
-    type: RESET_MAILING
+    type: types.RESET_MAILING
   }
 }
