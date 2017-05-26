@@ -34,12 +34,17 @@ import { cashPayment, cardPayment } from 'actions/payment'
 export default class CheckoutConfirmation extends React.Component {
   constructor(props){
     super(props)
+    this.state = {cterrors: {}}
 
     this.handleRadio = this.handleRadio.bind(this)
     this.handleSubmitCode = this.handleSubmitCode.bind(this)
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
     this.handleSubmitCash = this.handleSubmitCash.bind(this)
     this.handleError = this.handleError.bind(this)
+
+    this.successfullToken = this.successfullToken.bind(this)
+    this.errorToken = this.errorToken.bind(this)
+
   }
 
   componentWillUnmount() {
@@ -63,18 +68,37 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleSubmitCard(event){
+    this.setState({cterrors: {}})
     event.preventDefault()
     let elements = event.target.elements
-    let formData = new FormData()
-    formData.append('card-holder', elements['card-holder'].value)
-    formData.append('card-number', elements['card-number'].value)
-    formData.append('card-secret', elements['card-secret'].value)
-    formData.append('card-month', elements['card-month'].value)
-    formData.append('card-year', elements['card-year'].value)
+    let data = {
+      "card": {
+        "number": elements.number.value,
+        "name": elements.holder.value,
+        "exp_year": elements.year.value,
+        "exp_month": elements.month.value,
+        "cvc": elements.secret.value
+      }
+    };
 
-    this.props.dispatch(cardPayment(formData))
-    .then()
-    .catch(this.handleError)
+    elements.submit.disabled = true
+    window.Conekta.Token.create(data, this.successfullToken, this.errorToken)
+
+  }
+
+  successfullToken(token){
+    let formData = this.props.cart.toJS()
+    formData.payment_source = {
+      token: token,
+      type: 'card'
+    }
+    document.getElementById('card-form').elements.submit.disabled = false
+    this.props.dispatch(cardPayment(formData, this.props.user.get('token')))
+  }
+
+  errorToken(err){
+    this.setState({cterrors: {card_token: err.message_to_purchaser}})
+    document.getElementById('card-form').elements.submit.disabled = false
   }
 
   handleSubmitCash(event){
@@ -114,7 +138,7 @@ export default class CheckoutConfirmation extends React.Component {
               order={cart}
               editable={false}/>
 
-            {cart.get('code_used') ?
+            {cart.get('discount_code_id') ?
               <div className="success-box">Descuento Aplicado</div>
             :
               <form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
@@ -147,20 +171,20 @@ export default class CheckoutConfirmation extends React.Component {
                     onChange={this.handleRadio}/>
                 </div>
 
-                <form className="payment-form" onSubmit={this.handleSubmitCard}>
+                <form id="card-form" className="payment-form" onSubmit={this.handleSubmitCard}>
                   <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="card-holder">Nombre: </label>
-                    <input className="col-8 col-md-7" name="card-holder" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="holder">Nombre: </label>
+                    <input className="col-8 col-md-7" name="holder" type="text"/>
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="card-number">Numero de Tarjeta: </label>
-                    <input className="col-8 col-md-7" name="card-number" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="number">Numero de Tarjeta: </label>
+                    <input className="col-8 col-md-7" name="number" type="text"/>
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="card-date">Fecha de Caducidad: </label>
-                    <select name="card-month">
+                    <label className="col-4 col-md-5" htmlFor="month">Fecha de Caducidad: </label>
+                    <select name="month">
                       <option value='01'>Enero (1)</option>
           						<option value='02'>Febrero (2)</option>
           						<option value='03'>Marzo (3)</option>
@@ -175,12 +199,12 @@ export default class CheckoutConfirmation extends React.Component {
           						<option value='12'>Diciembre (12)</option>
                     </select>
 
-                    <select name="card-year">
+                    <select name="year">
                       <option value="2017">2017</option>
                       <option value="2018">2018</option>
                       <option value="2019">2019</option>
-                      <option value="2019">2019</option>
-                      <option value="2021">2019</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
                       <option value="2024">2024</option>
@@ -199,12 +223,13 @@ export default class CheckoutConfirmation extends React.Component {
                   </div>
 
                   <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="card-secret">Codigo de Seguridad: </label>
-                    <input className="col-3 col-md-7" name="card-secret" type="text"/>
+                    <label className="col-4 col-md-5" htmlFor="secret">Codigo de Seguridad: </label>
+                    <input className="col-3 col-md-7" name="secret" type="text"/>
                   </div>
 
-                  <input type="submit" value="Pagar" className="submit full"/>
+                  <input type="submit" value="Pagar" name="submit" className="submit full"/>
                   {errors.get('card') && <div className="error-div">{errors.get('card')}</div>}
+                  {this.state.cterrors.card_token && <div className="error-div">{this.state.cterrors.card_token}</div>}
                 </form>
               </div>
 
@@ -220,7 +245,7 @@ export default class CheckoutConfirmation extends React.Component {
                     onChange={this.handleRadio}/>
                 </div>
 
-                <form className="payment-form" onSubmit={this.handleSubmitCash}>
+                <form id="cash-form" className="payment-form" onSubmit={this.handleSubmitCash}>
                   <div className="grid center">
                     <label className="col-4" htmlFor="card-date">Tipo: </label>
                     <select name="type">
