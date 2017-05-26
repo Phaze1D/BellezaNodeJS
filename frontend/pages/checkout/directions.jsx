@@ -41,11 +41,13 @@ export default class CheckoutDirections extends React.Component {
 
   handleContinue(event) {
     let rfc = this.refs.rfcInput.value
+    let razon_social = this.refs.razonInput.value
     let extraData = {}
     extraData.notes = this.refs.noteInput.value
     if(!this.refs.facturaBox.classList.contains('hide-f')){
-      if(rfc){
+      if(rfc && razon_social){
         extraData.rfc = rfc
+        extraData.razon_social = razon_social
       }else{
         event.preventDefault()
         this.handleError('RFC es Necesario')
@@ -125,6 +127,9 @@ export default class CheckoutDirections extends React.Component {
               <form className="main-form" onSubmit={event => event.preventDefault()}>
                 <label htmlFor="rfc">RFC</label>
                 <input name="rfc" type="text" ref="rfcInput"/>
+
+                <label htmlFor="razon_social">Razon Social</label>
+                <input name="razon_social" type="text" ref="razonInput"/>
               </form>
             </article>
 
