@@ -117,7 +117,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'products'
   });
 
-  Product.allOptions = function (querys) {
+  Product.allOptions = function (querys, active) {
     let search = querys.search
     let category = querys.category
     let sort = querys.sort ? querys.sort : 0
@@ -127,12 +127,11 @@ module.exports = function(sequelize, DataTypes) {
     let options = {
       subquery: false,
       attributes: { exclude: ['description', 'ingredients', 'benefits'] },
-      where: {active: true},
       offset: 20 * page,
       limit: 20,
       order: [sortOptions[sort]]
     }
-
+    options.where = active ? {active: true}: {}
     if(search){
       options.where.$or = [
         {plu: {$like: `${search}%`}},
@@ -173,7 +172,10 @@ module.exports = function(sequelize, DataTypes) {
     let options = {
       limit: 4,
       attributes: { exclude: ['description', 'ingredients', 'benefits'] },
-      include: [{
+    }
+
+    if(category_id){
+      options.include = [{
         model: sequelize.model('Category'),
         as: 'categories',
         where: {id: category_id},
