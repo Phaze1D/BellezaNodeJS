@@ -51,8 +51,15 @@ export const validateUserReducer = (state = INITIAL_USER, action) => {
 export const userUpdateReducer = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case `${types.USER_UPDATE}_LOADING`:
+      return state
 
     case `${types.USER_UPDATE}_SUCCESS`:
+      let user = action.payload.data
+      return state.withMutations(map => {
+        map.set('first_name', user.first_name)
+           .set('last_name', user.last_name)
+           .set('telephone', user.telephone)
+      })
 
     case `${types.USER_UPDATE}_ERROR`:
 
@@ -62,7 +69,7 @@ export const userUpdateReducer = (state = INITIAL_USER, action) => {
 
 export const userPreferenceReducer = (state = INITIAL_USER, action) => {
   if(action.type === `${types.ADD_MAILER}_SUCCESS` && action.meta.isUser){
-
+    return state.set('preferences', action.payload.data.active)
   }
   return state
 }
