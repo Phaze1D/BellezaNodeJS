@@ -1,10 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { addMailer } from 'actions/others'
+import { resetErrors } from 'actions/errors'
+import { connect } from 'react-redux'
 
-
+@connect( store => {
+  return {}
+})
 export default class Footer extends React.Component {
   constructor(props) {
     super(props)
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleError = this.handleError.bind(this)
+  }
+
+  handleSubmit(event){
+    this.props.dispatch(resetErrors())
+    event.preventDefault()
+    let formData = new FormData()
+    formData.append('email', event.target.elements.email.value)
+    formData.append('active', true)
+
+    this.props.dispatch(addMailer(formData, false))
+    .then()
+    .catch(this.handleError)
+  }
+
+  handleError(response){
+    this.props.dispatch(resetErrors())
   }
 
   render(){
@@ -13,8 +37,9 @@ export default class Footer extends React.Component {
       <footer>
         <div id="footer-divider" className="grid center around cover-image" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
           <h4 className="col-xs-hide grow">Registrate y reciba información, ofertas y tips directo a su correo</h4>
-          <form >
-            <input type="text" placeholder="Email y Presione Entre"/>
+          <form onSubmit={this.handleSubmit}>
+            <input type="submit" style={{display: 'none'}}/>
+            <input type="text" name="email" placeholder="Email y Presione Entre"/>
           </form>
         </div>
 
