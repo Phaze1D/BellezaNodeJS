@@ -14,7 +14,7 @@ const INITIAL_CART = fromJS({
   invoiceAddress: {},
   rfc: '',
   razon_social: '',
-  code_used: '',
+  discount_code_id: null,
   show: false,
 })
 
@@ -25,7 +25,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
     let found = false
     cart.sub_total = 0
     cart.iva_total = 0
-    cart.code_used = ''
+    cart.discount_code_id = null
     cart.discount_total = 0
 
     cart.details.forEach(detail => {
@@ -33,8 +33,8 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
         found = true
         if(detail.quantity + newDet.quantity <= detail.stock){
           detail.quantity += newDet.quantity
-          detail.sub_total = detail.price * detail.quantity
-          detail.sub_total -= detail.sub_total * (detail.discount/100)
+          let price = Math.round( ( detail.price * (1 - detail.discount/100) * 100) )/100
+          detail.sub_total =  price * detail.quantity
         }
       }
       cart.sub_total += detail.sub_total
@@ -66,8 +66,8 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
 
     let oldDetail = state.getIn(['details', action.payload.index])
     let newDetail = oldDetail.withMutations(map => {
-      let sub_total = map.get('price') * quantity
-      sub_total -= sub_total * (map.get('discount')/100)
+      let price = Math.round( map.get('price') * (1 - map.get('discount')/100) * 100)/100
+      let sub_total = price * quantity
       map.set('quantity', quantity).set('sub_total', sub_total)
     })
 
@@ -87,7 +87,7 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
          .set('shipping_total', shipping_total)
          .set('total', total)
          .set('discount_total', 0)
-         .set('code_used', '')
+         .set('discount_code_id', null)
     })
 
   }
@@ -113,7 +113,7 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
          .set('shipping_total', shipping_total)
          .set('total', total)
          .set('discount_total', 0)
-         .set('code_used', '')
+         .set('discount_code_id', null)
     })
   }
   return state
@@ -139,6 +139,7 @@ export const addCartExtraReducer = (state = INITIAL_CART, action) => {
     return state.withMutations(map => {
       map.set('notes', action.payload.notes)
          .set('rfc', action.payload.rfc)
+         .set('razon_social', action.payload.razon_social)
     })
   }
   return state
@@ -158,7 +159,7 @@ export const checkUserCodeReducer = (state = INITIAL_CART, action) => {
 
         map.set('discount_total', discount_total)
            .set('total', total + discount_total) // Adding because discount_total is negative value
-           .set('code_used', code.code)
+           .set('discount_code_id', code.id)
       })
 
     case `${types.CHECK_USER_CODE}_ERROR`:
