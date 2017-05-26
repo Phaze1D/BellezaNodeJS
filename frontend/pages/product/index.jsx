@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link, Route } from 'react-router-dom'
 import Pagination from 'components/Pagination/Pagination'
 import { connect } from 'react-redux'
-import { getProducts, resetProducts } from 'actions/product'
+import { getBackofficeProducts, resetProducts } from 'actions/product'
 import queryString from 'query-string'
 
 
@@ -46,7 +46,7 @@ export default class ProductsIndex extends React.Component {
     if(this.props.match.url === location.pathname){
       const parse = queryString.parse(location.search)
 
-      this.props.dispatch(getProducts(parse.query, undefined, parse.page))
+      this.props.dispatch(getBackofficeProducts(parse.query, parse.page, 0 , this.props.user.get('token')))
       .then()
       .catch(this.handleError)
     }

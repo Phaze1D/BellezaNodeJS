@@ -145,7 +145,7 @@ export default class ProductShow extends React.Component {
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               <div dangerouslySetInnerHTML={{__html: product.get('description')}}>
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('description')}}>
                </div>
              </TabPanel>
 
@@ -153,7 +153,7 @@ export default class ProductShow extends React.Component {
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               <div dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
                </div>
              </TabPanel>
 
@@ -161,7 +161,7 @@ export default class ProductShow extends React.Component {
                className="tab-panel"
                onMouseEnter={(event) => document.body.style.overflow = "hidden"}
                onMouseLeave={(event) => document.body.style.overflow = ""}>
-               <div dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
                </div>
              </TabPanel>
            </Tabs>
