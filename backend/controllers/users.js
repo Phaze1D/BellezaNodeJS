@@ -16,7 +16,7 @@ router.post('/user', upload.none(), function (req, res, next) {
   User.create(req.body, {fields: ['first_name', 'last_name', 'email', 'password']})
   .then(user => {
     let ru = user.toJSON()
-    let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, 'SECRET');
+    let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
     delete ru.password
     ru.addresses = []
     ru.token = token
@@ -31,7 +31,7 @@ router.post('/login', upload.none(), function (req, res, next) {
       bcrypt.compare(req.body.password, user.password).then((correct) => {
         if(correct){
           let ru = user.toJSON()
-          let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, 'SECRET');
+          let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
           delete ru.password
           ru.token = token
           res.json(ru)

@@ -7,7 +7,7 @@ const isLogin = function (req, res, next) {
   if(authHeader){
     let split = authHeader.split(' ')
     try {
-      var decoded = jwt.verify(split[1], 'SECRET');
+      var decoded = jwt.verify(split[1], req.app.get('SECRET'));
       req.jwtUser = decoded
       next()
     } catch (e) {

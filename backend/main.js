@@ -4,11 +4,10 @@ let path = require("path")
 let bodyParser = require('body-parser')
 let controllers = require('./controllers')
 let errorMiddleware = require('./middleware/errors.js')
-
-
-
 let app = express()
 
+app.set('SECRET', 'shhhh')
+app.set('CONEKTA', 'key_oF4vKY43ZW7romYgdv5wNw')
 
 app.use(express.static('build'))
 app.use(bodyParser.json())
