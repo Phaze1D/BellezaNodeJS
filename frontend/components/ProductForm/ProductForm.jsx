@@ -13,7 +13,8 @@ class ProductForm extends React.Component {
   componentDidMount() {
     if(window.tinymce){
       tinymce.init({
-        selector: 'textarea'
+        selector: 'textarea',
+        body_class: 'tinymce-default'
       })
     }
   }
@@ -70,7 +71,7 @@ class ProductForm extends React.Component {
 
     const scatList = this.state.selectedCats.map( (category, index) =>
       <div className="grid top" key={category.id}>
-        <input type="text" name="categories[]" disabled="true" value={category.name} className="col-9"/>
+        <input type="text" name="categories[]" disabled="true" value={category.name} className="col-9" data-id={category.id}/>
         <button
           className="cancel col-3 margin-button"
           style={{marginTop: '0'}}
@@ -155,19 +156,19 @@ class ProductForm extends React.Component {
           <div className="col-12">
             <label>Description</label>
             {errors.get('description') && <div className="error-div">{errors.get('description')}</div>}
-            <textarea name="description" defaultValue={product.get('description')}></textarea>
+            <textarea id="description" name="description" defaultValue={product.get('description')}></textarea>
           </div>
 
           <div className="col-12">
             <label>Benefits</label>
             {errors.get('benefits') && <div className="error-div">{errors.get('benefits')}</div>}
-            <textarea name="benefits" defaultValue={product.get('benefits')}></textarea>
+            <textarea id="benefits" name="benefits" defaultValue={product.get('benefits')}></textarea>
           </div>
 
           <div className="col-12">
             <label>Ingredients</label>
             {errors.get('ingredients') && <div className="error-div">{errors.get('ingredients')}</div>}
-            <textarea name="ingredients" defaultValue={product.get('ingredients')}></textarea>
+            <textarea id="ingredients" name="ingredients" defaultValue={product.get('ingredients')}></textarea>
           </div>
 
           <input className="submit full" type="submit" value="Save"/>
