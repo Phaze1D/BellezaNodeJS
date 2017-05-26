@@ -30,14 +30,14 @@ let productFields = [
 
 
 router.get('/products', function (req, res, next) {
-  Product.findAndCountAll(Product.allOptions(req.query)).then( results => {
+  Product.findAndCountAll(Product.allOptions(req.query, true)).then( results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/product/:id', function (req, res, next) {
   Product.findOne(Product.singleOptions(req.params.id)).then(product => {
-    let category_id = product.categories[0].id
+    let category_id = product.categories.length > 0 ? product.categories[0].id : undefined
     Product.findAll(Product.relatedOptions(category_id)).then(related => {
       let pro = product.toJSON();
       pro.related = related
@@ -45,6 +45,12 @@ router.get('/product/:id', function (req, res, next) {
     }).catch(next)
   }).catch(next)
 
+})
+
+router.get('/backoffice/products', isLogin, isAdmin, function (req, res, next) {
+  Product.findAndCountAll(Product.allOptions(req.query)).then( results => {
+    res.json(results)
+  }).catch(next)
 })
 
 /** REQUIRES ADMIN VALIDATION */
@@ -57,7 +63,9 @@ router.post('/product', isLogin, isAdmin, upload.none(), function (req, res, nex
 /** REQUIRES ADMIN VALIDATION */
 router.put('/product/:id', isLogin, isAdmin, upload.none(), function (req, res, next) {
   Product.findById(req.params.id).then(product => {
-    return product.update(req.body, {fields: productFields})
+    return product.update(req.body, {fields: productFields.slice(1)})
+  }).then(product => {
+    return product.setCategories(req.body.categories)
   }).then(product => {
     res.json(product)
   }).catch(next)
