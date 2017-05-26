@@ -63,10 +63,6 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    code_used: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
     notes: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -110,7 +106,15 @@ module.exports = function(sequelize, DataTypes) {
         model: 'Address',
         key: 'id'
       }
-    }
+    },
+    discount_code_id: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+      references: {
+        model: 'DiscountCode',
+        key: 'id'
+      }
+    },
   }, {
     tableName: 'orders'
   });

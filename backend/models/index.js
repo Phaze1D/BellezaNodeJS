@@ -46,10 +46,12 @@ db.Detail.belongsTo(db.Order, {as: 'order'});
 db.Detail.belongsTo(db.Product, {as: 'product'});
 
 db.DiscountCode.belongsTo(db.User, {as: 'user'});
+db.DiscountCode.hasMany(db.Order, {as: 'orders'});
 
 db.Order.belongsTo(db.User, {as: 'user'});
 db.Order.belongsTo(db.Address, {as: 'shippingAddress', foreignKey: 'shipping_address_id'});
 db.Order.belongsTo(db.Address, {as: 'invoiceAddress', foreignKey: 'invoice_address_id'});
+db.Order.belongsTo(db.DiscountCode, {as: 'discountCode'});
 db.Order.hasMany(db.Detail, {as: 'details'})
 
 db.Product.hasMany(db.Detail, {as: 'details'})
