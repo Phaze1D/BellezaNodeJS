@@ -70,16 +70,16 @@ class UserDetails extends React.Component {
     formData.append('telephone', elements.telephone.value)
     formData.append('first_name', elements.first_name.value)
     formData.append('last_name', elements.last_name.value)
-    let id = this.props.match.params.id
+    let id = this.props.user.get('id')
 
     this.props.dispatch(userUpdate(formData, id, this.props.user.get('token')))
-    .then()
+    .then(this.handleCancel)
     .catch(this.handleError)
   }
 
   handleInputBlur(event){
-    let fieldData = new FormData()
-    fieldData.append(event.target.name, event.target.value)
+    let fieldData = {}
+    fieldData[event.target.name] = event.target.value
 
     this.props.dispatch(validateUser(fieldData))
     .then()
@@ -91,7 +91,7 @@ class UserDetails extends React.Component {
   }
 
   handlePreference(event){
-    const value = event.target.value === 'true' ? false : true
+    const value = event.target.value == 'true' ? false : true
     const email = this.props.user.get('email')
     let formData = new FormData()
     formData.append('email', email)
