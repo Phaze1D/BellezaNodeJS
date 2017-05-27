@@ -18,17 +18,17 @@ class OrderItem extends React.PureComponent {
         <div className="grid order-item-top">
           <p className="overflow-text col-xxs-hide">
             Fecha Realizado
-            <span>{order.get('date').toLocaleString('en-us', dateOptions)}</span>
+            <span>{new Date(order.get('created_at')).toLocaleString('en-us', dateOptions)}</span>
           </p>
 
           <p className="overflow-text col-xxs-hide">
             Total
-            <span>${order.get('total')}</span>
+            <span>${(order.get('total')/100).toFixed(2)}</span>
           </p>
 
           <p className="overflow-text">
             Status
-            <span style={{color: '#1eab30'}}>order.get('status')</span>
+            <span className={`status-${order.get('status')}`}>{order.get('status')}</span>
           </p>
 
           <p className="overflow-text">
@@ -56,11 +56,11 @@ class Detail extends React.PureComponent {
         <img src={detail.get('pimg')} className="col-2 col-xxs-3"/>
         <div className="grow col-xxs-9">
           <p style={{fontWeight: 'bold', color: 'black'}} className="overflow-text">{detail.get('name')}</p>
-          <p className="sub-text overflow-text">Precio: ${detail.get('price').toFixed(2)} Cantidad: {detail.get('quantity')}</p>
-          <p className="sub-text primary">${detail.get('sub_total').toFixed(2)}</p>
+          <p className="sub-text overflow-text">Precio: ${(detail.get('price')/100).toFixed(2)} Cantidad: {detail.get('quantity')}</p>
+          <p className="sub-text primary">${(detail.get('sub_total')/100).toFixed(2)}</p>
         </div>
 
-        <Link to="/product" className="secondary-button raise col-xxs-hide">
+        <Link to={`/product/${detail.get('product_id')}`} className="secondary-button raise col-xxs-hide">
           <span className="col-sm-hide">Comparar de Nuevo</span>
           <span className="col-hide col-sm-show">Comparar</span>
         </Link>
