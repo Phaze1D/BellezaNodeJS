@@ -71,7 +71,7 @@ export default class ProductShow extends React.Component {
 
     if(quantity > 0 && quantity <= product.get('stock') ){
       let detail = {
-        id: product.get('id'),
+        product_id: product.get('id'),
         name: product.get('name') + product.get('volume'),
         price: product.get('price'),
         iva: product.get('iva'),
@@ -96,7 +96,7 @@ export default class ProductShow extends React.Component {
       product
     } = this.props
 
-    const price = product.get('price') ? product.get('price').toFixed(2) : 0
+    const price = product.get('price') ? (product.get('price')/100).toFixed(2) : 0
 
     const relatList = product.get('related').map( (rproduct, index) =>
       <ProductResult key={index} product={rproduct}/>

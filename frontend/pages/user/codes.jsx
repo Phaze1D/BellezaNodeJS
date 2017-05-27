@@ -106,7 +106,7 @@ const CodeItem = props => (
     {props.code.get('is_percentage') ?
       <p>Descuento: <span>{props.code.get('discount')}% </span></p>
       :
-      <p>Descuento: <span>${props.code.get('discount').toFixed(2)} </span></p>
+      <p>Descuento: <span>${(props.code.get('discount')/100).toFixed(2)} </span></p>
     }
 
     <p>Fecha de Caducidad: <span>{new Date(props.code.get('expires_date')).toLocaleString('en-us', dateOptions)}</span></p>

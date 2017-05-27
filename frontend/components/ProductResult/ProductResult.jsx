@@ -22,7 +22,7 @@ export default class ProductResult extends React.PureComponent {
 
     if(quantity > 0 && quantity <= product.get('stock') ){
       let detail = {
-        id: product.get('id'),
+        product_id: product.get('id'),
         name: product.get('name') + product.get('volume'),
         price: product.get('price'),
         iva: product.get('iva'),
@@ -46,7 +46,7 @@ export default class ProductResult extends React.PureComponent {
         <Link to={`/product/${product.get('id')}`}>
           <img src={product.get('mediumImg')} alt={product.get('name')}/>
           <h4 className="overflow-text">{product.get('name')}</h4>
-          <p>${product.get('price').toFixed(2)}</p>
+          <p>${(product.get('price')/100).toFixed(2)}</p>
         </Link>
 
         {product.get('stock') > 0 ?
