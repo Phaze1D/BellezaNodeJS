@@ -77,7 +77,7 @@ export default class UserOrders extends React.Component {
     } = this.props
 
     const orderList = orders.get('rows').map( (order, index) =>
-      <OrderItem key={index} order={order}/>
+      <OrderItem key={index} order={order} match={match}/>
     )
 
     const links = []
