@@ -53,7 +53,9 @@ class CheckoutSuccessful extends React.Component {
 
         <div className="col-8 col-xs-12">
           <Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
-          <Address address={cart.get('invoiceAddress')} title="Facturacion"/>
+          {!cart.get('invoiceAddress').isEmpty() &&
+            <Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')} razonSocial={cart.get('razon_social')}/>
+          }
           <OrderTable
             order={cart}
             editable={false}/>

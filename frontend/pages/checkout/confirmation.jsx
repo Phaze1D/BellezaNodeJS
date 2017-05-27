@@ -47,6 +47,12 @@ export default class CheckoutConfirmation extends React.Component {
 
   }
 
+  componentDidMount() {
+    if(window.Conekta){
+      window.Conekta.setPublicKey('key_AaqMzJxRutqdky7ECgp8jAw')
+    }
+  }
+
   componentWillUnmount() {
     this.props.dispatch(resetErrors())
   }
@@ -68,16 +74,27 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleSubmitCard(event){
+    console.log(window.Conekta.getPublicKey());
     this.setState({cterrors: {}})
     event.preventDefault()
     let elements = event.target.elements
+    // let data = {
+    //   "card": {
+    //     "number": elements.number.value,
+    //     "name": elements.holder.value,
+    //     "exp_year": elements.year.value,
+    //     "exp_month": elements.month.value,
+    //     "cvc": elements.secret.value
+    //   }
+    // };
+
     let data = {
       "card": {
-        "number": elements.number.value,
-        "name": elements.holder.value,
-        "exp_year": elements.year.value,
-        "exp_month": elements.month.value,
-        "cvc": elements.secret.value
+        "number": '4242424242424242',
+        "name": 'davd',
+        "exp_year": '2018',
+        "exp_month": '01',
+        "cvc": 202
       }
     };
 
@@ -264,7 +281,7 @@ export default class CheckoutConfirmation extends React.Component {
           <section className="col-4 col-sm-12 first-sm">
             <Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
             {!cart.get('invoiceAddress').isEmpty() &&
-              <Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')}/>
+              <Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')} razonSocial={cart.get('razon_social')}/>
             }
           </section>
         </div>
@@ -278,6 +295,7 @@ export const Address = props => (
   <div className="box overflow-text sub-text">
     <p>{props.title}</p>
     <p>{props.rfc}</p>
+    <p>{props.razonSocial}</p>
     <hr></hr>
     <p className="overflow-text">
       {props.address.get('first_name')} {props.address.get('last_name')}

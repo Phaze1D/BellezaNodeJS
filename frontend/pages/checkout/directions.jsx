@@ -32,6 +32,10 @@ export default class CheckoutDirections extends React.Component {
     this.handleError = this.handleError.bind(this)
   }
 
+  componentDidMount() {
+    this.props.dispatch(addCartAddress({}, 'invoiceAddress'))
+  }
+
   handleFactura(event) {
     this.refs.facturaBox.classList.toggle('hide-f')
     if(this.refs.facturaBox.classList.contains('hide-f')){
@@ -45,7 +49,7 @@ export default class CheckoutDirections extends React.Component {
     let extraData = {}
     extraData.notes = this.refs.noteInput.value
     if(!this.refs.facturaBox.classList.contains('hide-f')){
-      if(rfc && razon_social){
+      if(rfc && razon_social && !this.props.cart.get('invoiceAddress').isEmpty()){
         extraData.rfc = rfc
         extraData.razon_social = razon_social
       }else{
@@ -59,6 +63,7 @@ export default class CheckoutDirections extends React.Component {
       event.preventDefault()
       this.handleError('Seleccione una dirección de envío')
     }
+
   }
 
   handleError(message){
@@ -163,7 +168,7 @@ const DetailItem = props => (
       <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
         Cantidad: {props.detail.get('quantity')} <br/>
-        Subtotal: ${props.detail.get('sub_total').toFixed(2)}
+      Subtotal: ${(props.detail.get('sub_total')/100).toFixed(2)}
       </p>
     </div>
   </li>
