@@ -20,52 +20,55 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER(25).UNSIGNED,
       allowNull: false,
       validate: {
-        min: {
-          args: 0,
-          msg: valmsg.min(0)
-        },notEmpty: {
+        min: 0,
+        notEmpty: {
           args: true,
           msg: valmsg.required
         },
+      }
+    },
+    discount: {
+      type: DataTypes.INTEGER(10).UNSIGNED,
+      allowNull: false,
+      defaultValue: '0',
+      validate:{
+        max: {
+          args: 100,
+          msg: valmsg.max(100)
+        }
       }
     },
     quantity: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: false,
       validate: {
-        min: {
-          args: 1,
-          msg: valmsg.min(1)
-        },notEmpty: {
+        min: 0,
+        notEmpty: {
           args: true,
           msg: valmsg.required
         },
       }
     },
-    iva_total: {
-      type: DataTypes.DECIMAL,
+    iva: {
+      type: DataTypes.INTEGER(25).UNSIGNED,
       allowNull: false,
       validate: {
-        min: {
-          args: 0,
-          msg: valmsg.min(0)
-        },notEmpty: {
+        min: 0,
+        notEmpty: {
           args: true,
           msg: valmsg.required
         },
       }
     },
     sub_total: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER(25).UNSIGNED,
       allowNull: false,
       validate: {
-        min: {
-          args: 0,
-          msg: valmsg.min(0)
-        },notEmpty: {
+        min: 0,
+        notEmpty: {
           args: true,
           msg: valmsg.required
         },
