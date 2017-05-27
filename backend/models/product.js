@@ -69,7 +69,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.INTEGER(25).UNSIGNED,
       allowNull: false,
       validate: {
         notEmpty: {
