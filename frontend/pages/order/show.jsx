@@ -52,7 +52,7 @@ class OrderShow extends React.Component {
       match
     } = this.props
 
-    if( !(user.get('token') && user.get('id') === match.params.id) ){
+    if( !( user.get('token') && (user.get('id') == match.params.id || user.get('admin')) ) ){
       return <Redirect to='/home'/>
     }
 
@@ -61,7 +61,7 @@ class OrderShow extends React.Component {
         <h2 className={`status-${order.get('status')}`}>Status: {order.get('status')}</h2>
         <h4 className="sub-text">Referencia: #{order.get('id')}</h4>
         <h4 className="sub-text">
-          Fecha Realizado: {order.get('date').toLocaleString('en-us', dateOptions)}
+          Fecha Realizado: {new Date(order.get('created_at')).toLocaleString('en-us', dateOptions)}
         </h4>
         <div className="grid-wrap">
           <div className="col-9 col-md-8 col-sm-12">
@@ -73,7 +73,9 @@ class OrderShow extends React.Component {
 
           <div className="col-3 col-md-4 col-sm-12">
             <Address address={order.get('shippingAddress')} title="Dirección de Envío"/>
-            <Address address={order.get('invoiceAddress')} title="Facturacion"/>
+            {order.get('invoiceAddress') != null && !order.get('invoiceAddress').isEmpty() &&
+              <Address address={order.get('invoiceAddress')} title="Facturacion" rfc={order.get('rfc')} razonSocial={order.get('razon_social')}/>
+            }
           </div>
         </div>
       </main>
