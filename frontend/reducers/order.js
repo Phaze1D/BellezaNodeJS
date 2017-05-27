@@ -28,6 +28,7 @@ export const getOrdersReducer = (state = INITIAL_ORDERS, action) => {
       return state
 
     case `${types.GET_ORDERS}_SUCCESS`:
+
       return fromJS(action.payload.data)
 
     case `${types.GET_ORDERS}_ERROR`:
@@ -48,8 +49,11 @@ export const resetOrdersReducer = (state = INITIAL_ORDERS, action) => {
 export const getOrderReducer = (state = INITIAL_ORDER, action) => {
   switch (action.type) {
     case `${types.GET_ORDER}_LOADING`:
+      return state
 
     case `${types.GET_ORDER}_SUCCESS`:
+      return fromJS(action.payload.data)
+
 
     case `${types.GET_ORDER}_ERROR`:
 
