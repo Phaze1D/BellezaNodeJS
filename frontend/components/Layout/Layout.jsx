@@ -62,8 +62,11 @@ export default class Layout extends React.Component {
         <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
-        <Route exact path="/user/:id/order/:order_id" component={OrderShow}/>
-        <Route path="/user/:id" component={UserShow}/>
+        <Switch>
+          <Route exact path="/user/:id/order/:order_id" component={OrderShow}/>
+          <Route path="/user/:id" component={UserShow}/>
+        </Switch>
+
         <Route path="/checkout" component={CheckoutDirections}/>
         <Route path="/confirmation" component={CheckoutConfirmation}/>
         <Route path="/successful" component={CheckoutSuccessful}/>

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Route, Link, Redirect } from 'react-router-dom'
+import { Route, Link, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import UserDetails from 'pages/user/details'
 import UserOrders from 'pages/user/orders'
@@ -28,7 +28,7 @@ class UserShow extends React.Component {
       return <Redirect to='/signin'/>
     }
 
-    return (
+    return (      
       <main className="grid-wrap around top">
 
         <section className="col-3 col-sm-4 col-xs-12">
