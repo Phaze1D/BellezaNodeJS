@@ -57,23 +57,23 @@ class OrderTable extends React.Component {
         <tfoot className="order-table-foot">
           <tr>
             <td colSpan="5">Subtotal: </td>
-            <td className="foot-main">${order.get('sub_total').toFixed(2)}</td>
+            <td className="foot-main">${(order.get('sub_total')/100).toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">IVA:</td>
-            <td className="foot-main">${order.get('iva_total').toFixed(2)}</td>
+            <td className="foot-main">${(order.get('iva_total')/100).toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Costo de Envío: </td>
-            <td className="foot-main">${order.get('shipping_total').toFixed(2)}</td>
+            <td className="foot-main">${(order.get('shipping_total')/100).toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Discount:</td>
-            <td className="foot-main">${order.get('discount_total').toFixed(2)}</td>
+            <td className="foot-main">${(order.get('discount_total')/100).toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Total:</td>
-            <td className="foot-main">${order.get('total').toFixed(2)}</td>
+            <td className="foot-main">${(order.get('total')/100).toFixed(2)}</td>
           </tr>
 
         </tfoot>
@@ -98,7 +98,7 @@ const OrderRow = (props) => (
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Precio: </span>${props.detail.get('price').toFixed(2)}
+        <span className="sub-text">Precio: </span>${(props.detail.get('price')/100).toFixed(2)}
       </span>
 
       <span className="xs-span">
@@ -110,7 +110,7 @@ const OrderRow = (props) => (
       </span>
 
       <span className="xs-span">
-        <span className="sub-text">Subtotal: </span>${props.detail.get('sub_total').toFixed(2)}
+        <span className="sub-text">Subtotal: </span>${(props.detail.get('sub_total')/100).toFixed(2)}
       </span>
     </td>
 
@@ -120,7 +120,7 @@ const OrderRow = (props) => (
     </td>
 
     <td className="sm-td">
-      ${props.detail.get('price').toFixed(2)}
+      ${(props.detail.get('price')/100).toFixed(2)}
     </td>
 
     <td className="sm-td">
@@ -132,7 +132,7 @@ const OrderRow = (props) => (
     </td>
 
     <td className="sm-td">
-      ${props.detail.get('sub_total').toFixed(2)}
+      ${(props.detail.get('sub_total')/100).toFixed(2)}
     </td>
 
     <td>
