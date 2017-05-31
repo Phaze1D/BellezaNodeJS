@@ -85,7 +85,7 @@ class BackofficeOrders extends React.Component {
 
         <ul className="backorders-nav">
           <li>
-            <Link to={`${match.url}?status=procesando&page=0`}>Procesando</Link>
+            <Link to={`${match.url}?status=pendiente&page=0`}>Pendiente</Link>
           </li>
           <li>
             <Link to={`${match.url}?status=pagado&page=0`}>Pagado</Link>
@@ -132,7 +132,7 @@ export default BackofficeOrders;
 const OrderRow = props => (
   <tr>
     <td>{props.order.get('id')}</td>
-    <td>{props.order.get('date').toLocaleString('en-us', dateOptions)}</td>
+    <td>{new Date(props.order.get('created_at')).toLocaleString('en-us', dateOptions)}</td>
     <td>{props.order.get('user').get('first_name')} {props.order.get('user').get('last_name')}</td>
     <td>${props.order.get('total')}</td>
     <td>
