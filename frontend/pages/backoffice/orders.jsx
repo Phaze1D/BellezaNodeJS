@@ -134,7 +134,7 @@ const OrderRow = props => (
     <td>{props.order.get('id')}</td>
     <td>{new Date(props.order.get('created_at')).toLocaleString('en-us', dateOptions)}</td>
     <td>{props.order.get('user').get('first_name')} {props.order.get('user').get('last_name')}</td>
-    <td>${props.order.get('total')}</td>
+    <td>${(props.order.get('total')/100).toFixed(2)}</td>
     <td>
       <Link to={`/user/${props.order.get('user').get('id')}/order/${props.order.get('id')}`}>Details</Link>
     </td>
