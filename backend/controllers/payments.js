@@ -6,6 +6,11 @@ let models = require('../models')
 let Order = models.Order
 let router = express.Router()
 
+const paymentStatus = {
+  paid: 'pagado',
+  pending_payment: 'pendiente'
+}
+
 
 // NEED TO DECREMENT STOCK
 router.post('/payment/card', isLogin, function (req, res, next) {
@@ -13,7 +18,7 @@ router.post('/payment/card', isLogin, function (req, res, next) {
     let order = req.body
     conektaOrder = conektaOrder.toObject()
     order.conekta_id = conektaOrder.id
-    order.status = conektaOrder.payment_status
+    order.status = paymentStatus[conektaOrder.payment_status]
     order.user_id = req.jwtUser.userId
     delete order.shipping_address_id
     delete order.invoice_address_id
@@ -25,13 +30,30 @@ router.post('/payment/card', isLogin, function (req, res, next) {
     res.sendStatus(200)
   }).catch(err => {
     console.log(err);
-    res.sendStatus(401)
+    res.sendStatus(500)
   })
 
 })
 
 router.post('/payment/cash', isLogin, function (req, res, next) {
-
+  conektaHelper.cashPaymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
+    let order = req.body
+    conektaOrder = conektaOrder.toObject()
+    order.conekta_id = conektaOrder.id
+    order.status = paymentStatus[conektaOrder.payment_status]
+    order.user_id = req.jwtUser.userId
+    delete order.shipping_address_id
+    delete order.invoice_address_id
+    if(Object.keys(order.invoiceAddress).length === 0){
+      delete order.invoiceAddress
+    }
+    return Order.create(order, Order.createOptions())
+  }).then(order => {
+    res.sendStatus(200)
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500)
+  })
 })
 
 module.exports = router

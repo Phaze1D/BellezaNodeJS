@@ -50,7 +50,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
       cart.iva_total += Math.round(newDet.sub_total * (newDet.iva/100))
     }
 
-    cart.shipping_total = cart.sub_total < 1000 ? 150 : 0
+    cart.shipping_total = cart.sub_total < 100000 ? 15000 : 0
 
     cart.total = cart.sub_total + cart.iva_total + cart.shipping_total
     cart.show = true
@@ -79,7 +79,7 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
     return state.withMutations(map => {
       let sub_total = map.get('sub_total') + difSub
       let iva_total = map.get('iva_total') + difIva
-      let shipping_total = sub_total < 1000 ? 150 : 0
+      let shipping_total = sub_total < 100000 ? 15000 : 0
       let total = sub_total + iva_total + shipping_total
 
       let f = quantity > 0 ? 'setIn' : 'deleteIn'
@@ -106,7 +106,7 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
     return state.withMutations(map => {
       let sub_total = map.get('sub_total') - oldDetail.get('sub_total')
       let iva_total = map.get('iva_total') - Math.round(oldDetail.get('sub_total') * oldDetail.get('iva')/100)
-      let shipping_total = sub_total < 1000 ? 150 : 0
+      let shipping_total = sub_total < 100000 ? 15000 : 0
       let total = sub_total + iva_total  + shipping_total
 
       map.deleteIn(['details', action.payload.index])
