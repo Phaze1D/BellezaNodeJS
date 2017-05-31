@@ -28,7 +28,7 @@ class UserShow extends React.Component {
       return <Redirect to='/signin'/>
     }
 
-    return (      
+    return (
       <main className="grid-wrap around top">
 
         <section className="col-3 col-sm-4 col-xs-12">
@@ -53,7 +53,7 @@ class UserShow extends React.Component {
 
             {user.get('admin') &&
               <li>
-                <Link to="/backoffice/orders">Backoffice</Link>
+                <Link to="/backoffice/orders?status=pendiente&page=0">Backoffice</Link>
               </li>
             }
 
