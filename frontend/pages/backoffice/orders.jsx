@@ -85,13 +85,19 @@ class BackofficeOrders extends React.Component {
 
         <ul className="backorders-nav">
           <li>
-            <Link to={`${match.url}?status=pendiente&page=0`}>Pendiente</Link>
+            <Link
+              className={parse.status === 'pendiente' ? 'active' : ''}
+              to={`${match.url}?status=pendiente&page=0`}>Pendiente</Link>
           </li>
           <li>
-            <Link to={`${match.url}?status=pagado&page=0`}>Pagado</Link>
+            <Link
+              className={parse.status === 'pagado' ? 'active' : ''}
+              to={`${match.url}?status=pagado&page=0`}>Pagado</Link>
           </li>
           <li>
-            <Link to={`${match.url}?status=cancelado&page=0`}>Cancelado</Link>
+            <Link
+              className={parse.status === 'cancelado' ? 'active' : ''}
+              to={`${match.url}?status=cancelado&page=0`}>Cancelado</Link>
           </li>
         </ul>
 
