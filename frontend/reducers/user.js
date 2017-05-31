@@ -76,7 +76,7 @@ export const userPreferenceReducer = (state = INITIAL_USER, action) => {
 
 export const userLogoutReducer = (state = INITIAL_USER, action) => {
   if(action.type === types.USER_LOGOUT){
-
+    return INITIAL_USER
   }
   return state
 }
