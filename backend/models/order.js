@@ -143,6 +143,7 @@ module.exports = function(sequelize, DataTypes) {
       ],
       offset: 20 * page,
       limit: 20,
+      order: [['created_at', 'DESC']],
       include: [{
         model: sequelize.model('Detail'),
         as: 'details',
@@ -164,6 +165,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       offset: 20 * page,
       limit: 20,
+      order: [['created_at', 'DESC']],
       include: [{
         model: sequelize.model('User'),
         as: 'user',
