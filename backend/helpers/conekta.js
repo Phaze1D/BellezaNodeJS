@@ -25,7 +25,7 @@ let prodAtt = [
   'stock'
 ]
 
-const VERIFICATION_ERROR = {error: 401, message: 'verification error'}
+let VERIFICATION_ERROR = {error: 401, message: 'verification error'}
 
 const cardPaymentFlow = (cart, userId) => {
   return verifyCart(cart, userId)
@@ -52,6 +52,39 @@ const cardPaymentFlow = (cart, userId) => {
         type: 'card',
         token_id: 'tok_test_visa_4242',
       },
+      amount: cart.total
+    }]
+    return conekta.Order.create(formatted)
+  })
+}
+
+const cashPaymentFlow = (cart, userId) => {
+  return verifyCart(cart, userId)
+  .then(products => {
+    return User.findOne({where: {id: userId}, attributes: userAtt})
+  })
+  .then(user => {
+    if(user.conekta_id){
+      return user
+    }else{
+      return conekta.Customer.create({
+        name: `${user.first_name} ${user.last_name}`,
+        email: user.email,
+        phone: user.telephone,
+      }).then(conCust => {
+        return user.update({conekta_id: conCust.toObject().id})
+      })
+    }
+  })
+  .then(user => {
+    let expiresDate = new Date()
+    expiresDate.setDate(expiresDate.getDate() + 3)
+    let formatted = formatOrder(cart, user.conekta_id)
+    formatted.charges = [{
+      payment_method: {
+        type: cart.payment_source.type,
+      },
+      expires_at: expiresDate.getTime(),
       amount: cart.total
     }]
     return conekta.Order.create(formatted)
@@ -88,7 +121,7 @@ const verifyCart = (cart, userId) => {
         iva_total += Math.round(pPrice * oDetails[product.id].quantity * (product.iva/100))
       })
 
-      shipping_total = sub_total < 1000 ? 150 : 0
+      shipping_total = sub_total < 100000 ? 15000 : 0
 
 
       if( !(sub_total == cart.sub_total && iva_total == cart.iva_total && shipping_total == cart.shipping_total) ){
@@ -184,5 +217,6 @@ const formatOrder = (cart, customer_id) => {
 
 
 module.exports = {
-  cardPaymentFlow: cardPaymentFlow
+  cardPaymentFlow: cardPaymentFlow,
+  cashPaymentFlow: cashPaymentFlow
 }
