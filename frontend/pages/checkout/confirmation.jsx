@@ -121,10 +121,12 @@ export default class CheckoutConfirmation extends React.Component {
   handleSubmitCash(event){
     event.preventDefault()
     let elements = event.target.elements
-    let formData = new FormData()
-    formData.append('type', elements['type'].value)
+    let formData = this.props.cart.toJS()
+    formData.payment_source = {
+      type: elements['payment_type'].value
+    }
 
-    this.props.dispatch(cashPayment(formData))
+    this.props.dispatch(cashPayment(formData, this.props.user.get('token')))
     .then()
     .catch(this.handleError)
   }
@@ -265,9 +267,9 @@ export default class CheckoutConfirmation extends React.Component {
                 <form id="cash-form" className="payment-form" onSubmit={this.handleSubmitCash}>
                   <div className="grid center">
                     <label className="col-4" htmlFor="card-date">Tipo: </label>
-                    <select name="type">
-                      <option value="oxxo">OXXO</option>
-                      <option value="bank">Bank</option>
+                    <select name="payment_type">
+                      <option value="oxxo_cash">OXXO</option>
+                      <option value="spei">Transferencia Bancaria</option>
                     </select>
                   </div>
 
