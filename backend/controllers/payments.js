@@ -24,9 +24,11 @@ router.post('/payment/card', isLogin, function (req, res, next) {
     if(Object.keys(order.invoiceAddress).length === 0){
       delete order.invoiceAddress
     }
-    return Order.create(order, Order.createOptions())
-  }).then(order => {
-    res.json(order)
+    return Order.create(order, Order.createOptions()).then(order => {
+      let jorder = order.toJSON()
+      jorder.charges = conektaOrder.charges.data[0]
+      res.json(jsorder)
+    })
   }).catch(err => {
     console.log(err);
     res.sendStatus(500)
@@ -46,9 +48,11 @@ router.post('/payment/cash', isLogin, function (req, res, next) {
     if(Object.keys(order.invoiceAddress).length === 0){
       delete order.invoiceAddress
     }
-    return Order.create(order, Order.createOptions())
-  }).then(order => {
-    res.json(order)
+    return Order.create(order, Order.createOptions()).then(order => {
+      let jorder = order.toJSON()
+      jorder.charges = conektaOrder.charges.data[0]
+      res.json(jsorder)
+    })
   }).catch(err => {
     console.log(err);
     res.sendStatus(500)
