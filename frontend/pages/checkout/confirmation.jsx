@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OrderTable from 'components/OrderTable/OrderTable'
 import { checkUserCode } from 'actions/discountcode'
@@ -27,7 +27,6 @@ import { cashPayment, cardPayment } from 'actions/payment'
   return {
     cart: store.cart,
     user: store.user,
-    payment: store.payment,
     errors: store.errors
   }
 })
@@ -149,7 +148,6 @@ export default class CheckoutConfirmation extends React.Component {
     const {
       cart,
       user,
-      payment,
       errors
     } = this.props
 
