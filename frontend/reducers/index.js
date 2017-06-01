@@ -94,11 +94,6 @@ const clientsReducers = reduceReducers(
   resetClientsReducer,
 )
 
-const paymentReducers = reduceReducers(
-  cashPaymentReducer,
-  cardPaymentReducer
-)
-
 const codesReducers = reduceReducers(
   getUserCodesReducer,
   resetCodesReducer,
@@ -164,7 +159,9 @@ const cartReducer = reduceReducers(
   addCartAddressReducer,
   addCartExtraReducer,
   resetCartReducer,
-  checkUserCodeReducer
+  checkUserCodeReducer,
+  cashPaymentReducer,
+  cardPaymentReducer
 )
 
 const StateRecord = Immutable.Record({
@@ -176,7 +173,6 @@ const StateRecord = Immutable.Record({
   others: undefined,
   orders: undefined,
   codes: undefined,
-  payment: undefined,
   order: undefined,
   clients: undefined,
   client: undefined,
@@ -192,7 +188,6 @@ export default combineReducers({
   others: othersReducer,
   orders: ordersReducer,
   codes: codesReducers,
-  payment: paymentReducers,
   order: orderReducer,
   clients: clientsReducers,
   client: clientReducers,

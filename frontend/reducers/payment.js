@@ -1,16 +1,15 @@
 import * as types from 'actions/types'
 import { fromJS, Map } from 'immutable'
+import { INITIAL_CART } from './cart'
 
-const INITIAL_PAYMENT = Map()
-
-export const cashPaymentReducer = (state = INITIAL_PAYMENT, action) => {
+export const cashPaymentReducer = (state = INITIAL_CART, action) => {
   switch (action.type) {
     case `${types.CASH_PAYMENT}_LOADING`:
       return state
 
     case `${types.CASH_PAYMENT}_SUCCESS`:
       console.log(action.payload.data);
-      return state
+      return state.set('charges', fromJS(action.payload.data.charges))
 
     case `${types.CASH_PAYMENT}_ERROR`:
 
@@ -18,14 +17,14 @@ export const cashPaymentReducer = (state = INITIAL_PAYMENT, action) => {
   }
 }
 
-export const cardPaymentReducer = (state = INITIAL_PAYMENT, action) => {
+export const cardPaymentReducer = (state = INITIAL_CART, action) => {
   switch (action.type) {
     case `${types.CARD_PAYMENT}_LOADING`:
       return state
 
     case `${types.CARD_PAYMENT}_SUCCESS`:
       console.log(action.payload.data);
-      return state;
+      return state.set('charges', fromJS(action.payload.data.charges))
 
     case `${types.CARD_PAYMENT}_ERROR`:
 

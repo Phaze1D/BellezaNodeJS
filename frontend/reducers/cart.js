@@ -2,7 +2,7 @@ import * as types from 'actions/types'
 import { fromJS } from 'immutable'
 
 
-const INITIAL_CART = fromJS({
+export const INITIAL_CART = fromJS({
   details: [],
   sub_total: 0,
   iva_total: 0,
