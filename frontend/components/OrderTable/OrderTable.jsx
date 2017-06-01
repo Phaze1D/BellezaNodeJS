@@ -69,7 +69,7 @@ class OrderTable extends React.Component {
           </tr>
           <tr>
             <td colSpan="5">Discount:</td>
-            <td className="foot-main">${(order.get('discount_total')/100 * -1).toFixed(2)}</td>
+            <td className="foot-main">-${(order.get('discount_total')/100 ).toFixed(2)}</td>
           </tr>
           <tr>
             <td colSpan="5">Total:</td>
