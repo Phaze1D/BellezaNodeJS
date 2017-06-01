@@ -12,7 +12,6 @@ const paymentStatus = {
 }
 
 
-// NEED TO DECREMENT STOCK
 router.post('/payment/card', isLogin, function (req, res, next) {
   conektaHelper.cardPaymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
     let order = req.body
@@ -27,7 +26,7 @@ router.post('/payment/card', isLogin, function (req, res, next) {
     }
     return Order.create(order, Order.createOptions())
   }).then(order => {
-    res.sendStatus(200)
+    res.json(order)
   }).catch(err => {
     console.log(err);
     res.sendStatus(500)
@@ -49,7 +48,7 @@ router.post('/payment/cash', isLogin, function (req, res, next) {
     }
     return Order.create(order, Order.createOptions())
   }).then(order => {
-    res.sendStatus(200)
+    res.json(order)
   }).catch(err => {
     console.log(err);
     res.sendStatus(500)

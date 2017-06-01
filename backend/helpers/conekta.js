@@ -103,29 +103,34 @@ const verifyCart = (cart, userId) => {
       let sub_total = 0
       let iva_total = 0
       let shipping_total = 0
-      products.forEach(product => {
-        product = product.toJSON()
 
-        if( !(oDetails[product.id] && oDetails[product.id].quantity <= product.stock) ){
-          throw VERIFICATION_ERROR.info = {car: oDetails[product.id].quantity, ser: product.stock}
+      for (var i = 0; i < products.length; i++) {
+        let product = products[i]
+        let pjson = product.toJSON()
+
+        if( !(oDetails[pjson.id] && oDetails[pjson.id].quantity <= pjson.stock) ){
+          VERIFICATION_ERROR.info = {car: oDetails[pjson.id].quantity, ser: pjson.stock}
+          return Promise.reject(VERIFICATION_ERROR)
         }
 
-        let pPrice = Math.round(product.price * (1 - product.discount/100))
-        let dPrice = Math.round(oDetails[product.id].price * (1 - oDetails[product.id].discount/100))
+        let pPrice = Math.round(pjson.price * (1 - pjson.discount/100))
+        let dPrice = Math.round(oDetails[pjson.id].price * (1 - oDetails[pjson.id].discount/100))
 
         if( dPrice != pPrice){
-          throw VERIFICATION_ERROR.info = {dPrice: dPrice, pPrice: pPrice}
+          VERIFICATION_ERROR.info = {dPrice: dPrice, pPrice: pPrice}
+          return Promise.reject(VERIFICATION_ERROR)
         }
 
-        sub_total += pPrice * oDetails[product.id].quantity
-        iva_total += Math.round(pPrice * oDetails[product.id].quantity * (product.iva/100))
-      })
+        sub_total += pPrice * oDetails[pjson.id].quantity
+        iva_total += Math.round(pPrice * oDetails[pjson.id].quantity * (pjson.iva/100))
+        product.update({stock: pjson.stock - oDetails[pjson.id].quantity})
+      }
 
       shipping_total = sub_total < 100000 ? 15000 : 0
 
 
       if( !(sub_total == cart.sub_total && iva_total == cart.iva_total && shipping_total == cart.shipping_total) ){
-        throw VERIFICATION_ERROR.info = {
+        VERIFICATION_ERROR.info = {
           subt: sub_total,
           csubt: cart.sub_total,
           ivat: iva_total,
@@ -133,6 +138,7 @@ const verifyCart = (cart, userId) => {
           ship: shipping_total,
           cship: cart.shipping_total
         }
+        return Promise.reject(VERIFICATION_ERROR)
       }
 
       let total = sub_total + iva_total + shipping_total
@@ -142,20 +148,22 @@ const verifyCart = (cart, userId) => {
           let discount_total = discount_code.is_percentage ? Math.round(total * (discount_code.discount/100)) : discount_code.discount
           total -= discount_total
         }else{
-          throw VERIFICATION_ERROR.info = {
+          VERIFICATION_ERROR.info = {
             cdis: cart.discount_code_id,
             dis: discount_code.id,
             disU: discount_code.user_id,
             u: userId
           }
+          return Promise.reject(VERIFICATION_ERROR)
         }
       }
 
       if(total != cart.total){
-        throw VERIFICATION_ERROR.info = {
+        VERIFICATION_ERROR.info = {
           tot: total,
           ctot: cart.totaln
         }
+        return Promise.reject(VERIFICATION_ERROR)
       }
 
       return products
