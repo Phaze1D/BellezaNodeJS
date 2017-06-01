@@ -27,7 +27,7 @@ router.post('/payment/card', isLogin, function (req, res, next) {
     return Order.create(order, Order.createOptions()).then(order => {
       let jorder = order.toJSON()
       jorder.charges = conektaOrder.charges.data[0]
-      res.json(jsorder)
+      res.json(jorder)
     })
   }).catch(err => {
     console.log(err);
@@ -51,7 +51,7 @@ router.post('/payment/cash', isLogin, function (req, res, next) {
     return Order.create(order, Order.createOptions()).then(order => {
       let jorder = order.toJSON()
       jorder.charges = conektaOrder.charges.data[0]
-      res.json(jsorder)
+      res.json(jorder)
     })
   }).catch(err => {
     console.log(err);
