@@ -8,7 +8,6 @@ export const cashPaymentReducer = (state = INITIAL_CART, action) => {
       return state
 
     case `${types.CASH_PAYMENT}_SUCCESS`:
-      console.log(action.payload.data);
       return state.set('charges', fromJS(action.payload.data.charges))
 
     case `${types.CASH_PAYMENT}_ERROR`:
@@ -23,7 +22,6 @@ export const cardPaymentReducer = (state = INITIAL_CART, action) => {
       return state
 
     case `${types.CARD_PAYMENT}_SUCCESS`:
-      console.log(action.payload.data);
       return state.set('charges', fromJS(action.payload.data.charges))
 
     case `${types.CARD_PAYMENT}_ERROR`:
