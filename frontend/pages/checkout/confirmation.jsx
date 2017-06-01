@@ -40,6 +40,7 @@ export default class CheckoutConfirmation extends React.Component {
     this.handleSubmitCode = this.handleSubmitCode.bind(this)
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
     this.handleSubmitCash = this.handleSubmitCash.bind(this)
+    this.handleSucces = this.handleSucces.bind(this)
     this.handleError = this.handleError.bind(this)
 
     this.successfullToken = this.successfullToken.bind(this)
@@ -74,7 +75,6 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleSubmitCard(event){
-    console.log(window.Conekta.getPublicKey());
     this.setState({cterrors: {}})
     event.preventDefault()
     let elements = event.target.elements
@@ -109,8 +109,9 @@ export default class CheckoutConfirmation extends React.Component {
       token: token,
       type: 'card'
     }
-    document.getElementById('card-form').elements.submit.disabled = false
     this.props.dispatch(cardPayment(formData, this.props.user.get('token')))
+    .then(this.handleSucces)
+    .catch(this.handleError)
   }
 
   errorToken(err){
@@ -121,17 +122,26 @@ export default class CheckoutConfirmation extends React.Component {
   handleSubmitCash(event){
     event.preventDefault()
     let elements = event.target.elements
+    elements.submit.disabled = true
     let formData = this.props.cart.toJS()
     formData.payment_source = {
       type: elements['payment_type'].value
     }
 
     this.props.dispatch(cashPayment(formData, this.props.user.get('token')))
-    .then()
+    .then(this.handleSucces)
     .catch(this.handleError)
   }
 
+  handleSucces(respones){
+    document.getElementById('card-form').elements.submit.disabled = false
+    this.props.history.push({
+      pathname: '/successful',
+    })
+  }
+
   handleError(response){
+    document.getElementById('card-form').elements.submit.disabled = false
 
   }
 
@@ -273,7 +283,7 @@ export default class CheckoutConfirmation extends React.Component {
                     </select>
                   </div>
 
-                  <input type="submit" value="Pagar" className="submit full"/>
+                  <input type="submit" value="Pagar" name="submit" className="submit full"/>
                   {errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
                 </form>
               </div>
