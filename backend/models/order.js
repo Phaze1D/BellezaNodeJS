@@ -150,7 +150,7 @@ module.exports = function(sequelize, DataTypes) {
         include: [{
           model: sequelize.model('Product'),
           as: 'product',
-          attributes: ['id']
+          attributes: ['id', 'plu']
         }]
       }]
     }
