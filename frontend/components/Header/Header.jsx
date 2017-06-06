@@ -40,7 +40,10 @@ export default class Header extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if( nextProps.cart.get('show') && !this.props.cart.get('show') ) {
-      setTimeout( () => {this.props.dispatch(hideCart())}, 2000)
+      setTimeout( () => {
+        document.body.style.overflow = ""
+        this.props.dispatch(hideCart())
+      }, 2000)
     }
   }
 
@@ -106,7 +109,7 @@ export default class Header extends React.Component {
 
         <div className="grid center">
           <Link className="grid center overflow-text col-8 col-sm-11" to="/home" title="Neals Yard Remedies Mexico">
-            <img id="logo-img" src="http://placehold.it/200" alt="logo"/>
+            <img id="logo-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/nyr_logo.jpg" alt="logo"/>
 
             <h1 id="web-title" className="overflow-text">
               Neal's Yard Remedies México
@@ -153,7 +156,7 @@ export default class Header extends React.Component {
           <ul ref="side" id="nav-ul" className="grid">
 
             <li className="nav-item col-sm-show col-hide">
-              <Link to="/user" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
+              <Link to="/signin" className="nav-link" onClick={this.handleToggleSide}>Mi Cuenta</Link>
             </li>
             <li className="nav-item col-sm-show col-hide">
               <Link className="dark-a grid center" to="/cart" onClick={this.handleToggleSide}>
