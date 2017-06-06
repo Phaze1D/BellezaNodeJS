@@ -89,7 +89,12 @@ export default OrderTable;
 const OrderRow = (props) => (
   <tr>
     <td>
-      <img src={props.detail.get('pimg')}/>
+      <picture>
+        <source
+          srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${props.detail.get('plu')}.jpg`}
+          media="(max-width: 712px)"/>
+        <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${props.detail.get('plu')}.jpg`}/>
+      </picture>
     </td>
 
     <td className="xs-td" colSpan="4">
