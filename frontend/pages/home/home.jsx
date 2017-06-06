@@ -1,6 +1,9 @@
 import React from 'react'
 import Carousel from 'components/Carousel/Carousel'
 import Favorites from 'components/Favorites/Favorites'
+import { connect } from 'react-redux'
+import { getCarousel, resetBanners } from 'actions/others'
+
 
 /**
 * HTTP - GET
@@ -8,6 +11,11 @@ import Favorites from 'components/Favorites/Favorites'
 * @param {array} favorites - An array of product objects to display on the favorites
 */
 
+@connect(store => {
+  return {
+    banners: store.others.get('banners')
+  }
+})
 export default class Home extends React.Component {
   constructor(props){
     super(props)
@@ -16,6 +24,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    this.props.dispatch(getCarousel())
+
     if(window.innerWidth > 828){
       if(window.FB){
         window.FB.XFBML.parse()
@@ -33,9 +43,13 @@ export default class Home extends React.Component {
 
 
   render() {
+    const {
+      banners
+    } = this.props
+
     return (
       <main>
-        <Carousel/>
+        <Carousel banners={banners}/>
         <Favorites/>
 
         <div className="grid col-sm-hide">

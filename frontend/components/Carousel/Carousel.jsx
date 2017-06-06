@@ -2,13 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 
-const imgs = [
-  {src: 'http://placehold.it/1200x400', to: '#'},
-  {src: 'http://placehold.it/1200x400', to: '#'},
-  {src: 'http://placehold.it/1200x400', to: '#'},
-  {src: 'http://placehold.it/1200x400', to: '#'},
-  {src: 'http://placehold.it/1200x400', to: '#'}
-]
 
 export default class Carousel extends React.Component {
   constructor(props){
@@ -16,11 +9,18 @@ export default class Carousel extends React.Component {
   }
 
   render(){
+    const {
+      banners
+    } = this.props
 
-    const carList = imgs.map( (img, index) =>
-    <Link key={index} to={img.to} className="carousel-item">
-      <img className="carousel-img" src={img.src} alt=""/>
-    </Link>
+    if(banners.get('rows').size == 0){
+      return null
+    }
+
+    const carList = banners.get('rows').map( (img, index) =>
+      <Link key={index} to={img.get('link_to')} className="carousel-item">
+        <img className="carousel-img" src='http://placehold.it/540x300' alt=""/>
+      </Link>
     )
 
     var settings = {
