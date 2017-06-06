@@ -72,15 +72,14 @@ export default class ProductShow extends React.Component {
     if(quantity > 0 && quantity <= product.get('stock') ){
       let detail = {
         product_id: product.get('id'),
-        name: product.get('name') + product.get('volume'),
+        plu: product.get('plu'),
+        name: product.get('name') + " " +  product.get('volume'),
         price: product.get('price'),
         iva: product.get('iva'),
         discount: product.get('discount'),
         sub_total: product.get('price') * quantity,
         stock: product.get('stock'),
         quantity: quantity,
-        mediumImg: product.get('mediumImg'),
-        smallImg: product.get('smallImg'),
       }
       detail.sub_total -= detail.sub_total * (detail.discount/100)
       this.props.dispatch(addDetail(detail))
@@ -89,6 +88,16 @@ export default class ProductShow extends React.Component {
 
   handleGlobalError(response) {
 
+  }
+
+  handleShowSec(event){
+    document.getElementById('product-main').style.display="none"
+    document.getElementById('product-sec').style.display=""
+  }
+
+  handleHideSec(event){
+    document.getElementById('product-main').style.display=""
+    document.getElementById('product-sec').style.display="none"
   }
 
   render() {
@@ -106,11 +115,34 @@ export default class ProductShow extends React.Component {
       <main>
         <section className="grid-wrap top around">
           <div id="product-mini" className="col-1 col-xs-2 col-xxs-3">
-            <img src={product.get('image')}/>
-            <img src={product.get('image')}/>
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`}/>
+            <img
+              src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}_2.jpg`}
+              onMouseEnter={this.handleShowSec}
+              onMouseLeave={this.handleHideSec}/>
           </div>
 
-          <img className="col-5 col-md-4 col-sm-6 col-xxs-8" src={product.get('imagelg')}/>
+          <picture id="product-main" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main">
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}.jpg`}
+              media="(max-width: 463px)"/>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}.jpg`}
+              media="(max-width: 942px)"/>
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}.jpg`}/>
+          </picture>
+
+
+          <picture id="product-sec" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main" style={{display: 'none'}}>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}_2.jpg`}
+              media="(max-width: 463px)"/>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}_2.jpg`}
+              media="(max-width: 942px)"/>
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}_2.jpg`}/>
+          </picture>
+
 
           <div className="col-5 col-md-6 col-sm-12">
             <h2>{product.get('name')}</h2>
