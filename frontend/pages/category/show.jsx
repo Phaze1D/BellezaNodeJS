@@ -88,7 +88,7 @@ export default class CategoryShow extends React.Component {
 
     return (
       <main>
-        <div className="category-cover"  style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
+        <div className="category-cover"  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
           <h2>{category.get('name')}</h2>
         </div>
         <Results

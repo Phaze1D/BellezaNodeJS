@@ -45,7 +45,10 @@ export default class CategoryIndex extends React.Component {
 
     const gridList = category.get('subs').map( (sub, index) =>
       <div className="col-4 col-sm-6 col-xxs-12" key={index}>
-        <Link to={`${to}${index}`} className="category-item" style={{backgroundImage: 'url(http://placehold.it/300x125)'}}>
+        <Link
+          to={`${to}${index}`}
+          className="category-item"
+          style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${sub.get('id')}.jpg)`}}>
           <h3 className="highlight">{sub.get('name')}</h3>
         </Link>
       </div>
@@ -61,7 +64,9 @@ export default class CategoryIndex extends React.Component {
         </section>
 
         <section className="col-9 col-xs-12">
-          <div className="category-cover" style={{backgroundImage: 'url(http://placehold.it/852x300)'}}>
+          <div
+            className="category-cover"
+            style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
             <h2>{category.get('name')}</h2>
           </div>
 
