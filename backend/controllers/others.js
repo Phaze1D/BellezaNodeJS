@@ -1,10 +1,18 @@
 'use strict'
 let express = require('express')
 let multer = require('multer')
-let Mailing = require('../models').Mailing
+let models = require('../models')
+let Mailing = models.Mailing
+let Banner = models.Banner
 
 let upload = multer()
 let router = express.Router()
+
+router.get('/carousel', function (req, res, next) {
+  Banner.findAndCountAll(Banner.carouselImages()).then(banners => {
+    res.json(banners)
+  }).catch(next)
+})
 
 
 router.post('/contact', upload.none(), function (req, res, next) {

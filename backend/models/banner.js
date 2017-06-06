@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Banner', {
+  let Banner = sequelize.define('Banner', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -34,4 +34,18 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'banners'
   });
+
+  Banner.carouselImages = function () {
+    return {
+      where: {
+        manual_active: true,
+        $or : {
+          start_date: {$lt: new Date()},
+          end_date: {$gt: new Date()}
+        }
+      }
+    }
+  }
+
+  return Banner
 };
