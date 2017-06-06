@@ -52,9 +52,9 @@ class Detail extends React.PureComponent {
     } = this.props
 
     return (
-      <div className="grid-wrap center">
-        <img src={detail.get('pimg')} className="col-2 col-xxs-3"/>
-        <div className="grow col-xxs-9">
+      <div className="grid center">
+        <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${detail.getIn(['product', 'plu'])}.jpg`} className="col-2 col-xxs-3"/>
+        <div className="grow col-xxs-9 order-item-info">
           <p style={{fontWeight: 'bold', color: 'black'}} className="overflow-text">{detail.get('name')}</p>
           <p className="sub-text overflow-text">Precio: ${(detail.get('price')/100).toFixed(2)} Cantidad: {detail.get('quantity')}</p>
           <p className="sub-text primary">${(detail.get('sub_total')/100).toFixed(2)}</p>
