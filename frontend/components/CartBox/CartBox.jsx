@@ -56,7 +56,7 @@ export default class CartBox extends React.PureComponent {
 
 const CartItem = props => (
   <li className="cart-item">
-    <img src={props.detail.get('pimg')}/>
+    <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
     <div>
       <p className="overflow-text">{props.detail.get('name')}</p>
       <p><span className="sub-text">Cantidad:</span> {props.detail.get('quantity')}</p>
