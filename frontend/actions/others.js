@@ -42,6 +42,17 @@ export const getBanners = (page, token) => {
   }
 }
 
+export const getCarousel = (page, token) => {
+  return {
+    type: types.GET_BANNERS,
+    payload: axios.get('/carousel', {
+      params: {
+        page: 0
+      },
+    })
+  }
+}
+
 export const resetBanners = () => {
   return {
     type: types.RESET_BANNERS
