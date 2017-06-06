@@ -42,6 +42,15 @@ export const getBanners = (page, token) => {
   }
 }
 
+export const deleteBanner = (id, token) => {
+  return {
+    type: types.DELETE_BANNER,
+    payload: axios.delete(`/banner/${id}`, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
+  }
+}
+
 export const getCarousel = (page, token) => {
   return {
     type: types.GET_BANNERS,
