@@ -163,7 +163,7 @@ export default class CheckoutDirections extends React.Component {
 
 const DetailItem = props => (
   <li className="grid center col-12 col-xs-6">
-    <img className="col-4" src={props.detail.get('pimg')}/>
+    <img className="col-4" src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
     <div className="col-8">
       <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
