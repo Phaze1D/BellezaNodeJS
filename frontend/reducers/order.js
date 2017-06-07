@@ -52,7 +52,12 @@ export const getOrderReducer = (state = INITIAL_ORDER, action) => {
       return state
 
     case `${types.GET_ORDER}_SUCCESS`:
-      return fromJS(action.payload.data)
+      let order = action.payload.data
+      order.details = order.details.map(detail => {
+        detail.plu = detail.product.plu
+        return detail
+      })
+      return fromJS(order)
 
 
     case `${types.GET_ORDER}_ERROR`:
