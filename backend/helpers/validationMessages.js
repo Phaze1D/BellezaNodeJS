@@ -34,7 +34,45 @@ const valmsg = {
 
       return values
     })
+  },
+  productImage: (img1, img2) => {
 
+    if(!(img1 && img2)){
+      let err = new Sequelize.ValidationError('')
+      err.errors.push({path: 'main_image', message: 'Missing main or second image'})
+      return Promise.reject(err)
+    }
+
+
+    return Promise.all([gm(img1).sizeAsync(), gm(img2).sizeAsync()]).then( values => {
+      if( !(values[0].width == 830 && values[0].height == 969) ){
+        let err = new Sequelize.ValidationError('')
+        err.errors.push({path: 'main_image', message: 'Image must be 830 by 969'})
+        return Promise.reject(err)
+      }
+
+      if( !(values[1].width == 830 && values[1].height == 969) ){
+        let err = new Sequelize.ValidationError('')
+        err.errors.push({path: 'second_image', message: 'Image must be 830 by 969'})
+        return Promise.reject(err)
+      }
+
+      let commands = [
+        gm(img1).strip().quality('65').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img1).strip().quality('70').resize('696').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img1).strip().quality('75').resize('498').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img1).strip().quality('80').resize('256').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img1).strip().quality('85').resize('164').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+
+        gm(img2).strip().quality('65').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img2).strip().quality('70').resize('696').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img2).strip().quality('75').resize('498').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img2).strip().quality('80').resize('256').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+        gm(img2).strip().quality('85').resize('164').interlace('Plane').samplingFactor('4:2:0').colorspace('RGB').toBufferAsync('jpeg'),
+      ]
+
+      return Promise.all(commands)
+    })
   }
 }
 
