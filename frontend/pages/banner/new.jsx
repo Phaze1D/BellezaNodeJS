@@ -46,6 +46,8 @@ class BannersNew extends React.Component {
     formData.append('start_date', elements.start_date.value)
     formData.append('end_date', elements.end_date.value)
     formData.append('link_to', elements.link_to.value)
+    formData.append('imagelg', elements.imagelg.files[0])
+    formData.append('imagesm', elements.imagesm.files[0])
     this.props.dispatch(newBanner(formData, this.props.user.get('token')))
     .then(this.handleSucces)
     .catch(this.handleError)
