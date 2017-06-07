@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Pagination from 'components/Pagination/Pagination'
 import { dateOptions } from 'utils/date'
 import queryString from 'query-string'
-import { getBanners, resetBanners } from 'actions/others'
+import { getBanners, resetBanners, deleteBanner } from 'actions/others'
 
 
 
@@ -58,6 +58,15 @@ class BannersIndex extends React.Component {
     this.setState({page: index})
   }
 
+  handleDelete(id, event){
+    event.preventDefault()
+    this.props.dispatch(deleteBanner(id, this.props.user.get('token')))
+    .then( res => {
+      this.handleUrlChanged(this.props.history.location, this.props.history.action)
+    })
+    .catch(this.handleError)
+  }
+
   handleError(response) {
 
   }
@@ -71,7 +80,10 @@ class BannersIndex extends React.Component {
     } = this.props
 
     const bannerList = banners.get('rows').map( (banner, index) =>
-      <BannerItem key={index} banner={banner} />
+      <BannerItem
+        key={banner.get('id')}
+        banner={banner}
+        onRequestDelete={this.handleDelete.bind(this, banner.get('id'))}/>
     )
 
     const parse = queryString.parse(history.location.search)
@@ -95,6 +107,7 @@ class BannersIndex extends React.Component {
               <th>Start Date</th>
               <th>End Date</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
 
@@ -104,7 +117,7 @@ class BannersIndex extends React.Component {
 
           <tfoot>
             <tr>
-              <td colSpan="6">
+              <td colSpan="7">
                 <Pagination
                   links={links}
                   page={this.state.page}
@@ -125,7 +138,7 @@ export default BannersIndex;
 const BannerItem = props => (
   <tr>
     <td>
-      <img className="banner-sm" src={props.banner.get('img')}/>
+      <img className="banner-sm" src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${props.banner.get('id')}_lg.jpg`}/>
     </td>
     <td>
       <Link to={props.banner.get('link_to')}>Link</Link>
@@ -135,6 +148,10 @@ const BannerItem = props => (
     <td>{new Date(props.banner.get('end_date')).toLocaleString('en-us', dateOptions)}</td>
     <td>
       <Link to={`/backoffice/banner/${props.banner.get('id')}/edit`}>Update</Link>
+    </td>
+
+    <td>
+      <Link to='#' onClick={props.onRequestDelete}>Delete</Link>
     </td>
   </tr>
 )
