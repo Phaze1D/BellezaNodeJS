@@ -4,10 +4,10 @@ let router = express.Router()
 let Sequelize = require('sequelize')
 let multer = require('multer')
 let models = require('../models')
-let middware = require('../middleware/user.js')
+let middleware = require('../middleware/user.js')
 
-let isLogin = middware.isLogin
-let isAdmin = middware.isAdmin
+let isLogin = middleware.isLogin
+let isAdmin = middleware.isAdmin
 const Product = models.Product
 const Category = models.Category
 let upload = multer()
