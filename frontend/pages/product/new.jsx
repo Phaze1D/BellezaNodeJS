@@ -55,7 +55,7 @@ class ProductsNew extends React.Component {
 
     if(elements['categories[]'] && elements['categories[]'].length){
       elements['categories[]'].forEach(input => formData.append('categories[]', input.getAttribute('data-id')))
-    }else{
+    }else if(elements['categories[]']){
       formData.append('categories[]', elements['categories[]'].getAttribute('data-id'))
     }
 
