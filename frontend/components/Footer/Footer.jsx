@@ -35,7 +35,8 @@ export default class Footer extends React.Component {
 
     return (
       <footer>
-        <div id="footer-divider" className="grid center around cover-image" style={{backgroundImage: 'url(http://placehold.it/1200x128)'}}>
+        <div id="footer-divider" className="grid center around cover-image"
+          style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/footer.jpg)'}}>
           <h4 className="col-xs-hide grow">Registrate y reciba información, ofertas y tips directo a su correo</h4>
           <form onSubmit={this.handleSubmit}>
             <input type="submit" style={{display: 'none'}}/>
