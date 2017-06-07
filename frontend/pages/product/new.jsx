@@ -42,6 +42,7 @@ class ProductsNew extends React.Component {
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('active', elements.active.checked)
+    formData.append('fav', elements.fav.checked)
     formData.append('plu', elements.plu.value)
     formData.append('name', elements.name.value)
     formData.append('volume', elements.volume.value)
