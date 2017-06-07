@@ -50,13 +50,13 @@ class ProductsNew extends React.Component {
     formData.append('discount', elements.discount.value)
     formData.append('stock', elements.stock.value)
     formData.append('iva', elements.iva.value)
+    formData.append('main_image', elements.main_image.files[0])
+    formData.append('second_image', elements.second_image.files[0])
 
-    if(elements['categories[]']){
-      if(elements['categories[]'].length){
-        elements['categories[]'].forEach(input => formData.append('categories[]', input.getAttribute('data-id')))
-      }else{
-        formData.append('categories[]', elements['categories[]'].getAttribute('data-id'))
-      }
+    if(elements['categories[]'] && elements['categories[]'].length){
+      elements['categories[]'].forEach(input => formData.append('categories[]', input.getAttribute('data-id')))
+    }else{
+      formData.append('categories[]', elements['categories[]'].getAttribute('data-id'))
     }
 
     formData.append('description', window.tinymce.get('description').getContent())
