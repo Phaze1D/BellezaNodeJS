@@ -60,14 +60,12 @@ router.get('/backoffice/products', isLogin, isAdmin, function (req, res, next) {
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.post('/product', isLogin, isAdmin, upload.none(), function (req, res, next) {
   Product.create(req.body, {fields: productFields}).then(product => {
     res.json(product)
   }).catch(next)
 })
 
-/** REQUIRES ADMIN VALIDATION */
 router.put('/product/:id', isLogin, isAdmin, upload.none(), function (req, res, next) {
   Product.findById(req.params.id).then(product => {
     return product.update(req.body, {fields: productFields.slice(1)})
