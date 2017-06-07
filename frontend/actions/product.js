@@ -16,6 +16,13 @@ export const getProducts = (search, category, page, sort=0) => {
   }
 }
 
+export const getFavs = () => {
+  return {
+    type: types.GET_PRODUCTS,
+    payload: axios.get('/favProducts')
+  }
+}
+
 export const getBackofficeProducts = (search, page, sort=0, token) => {
   return {
     type: types.GET_PRODUCTS,

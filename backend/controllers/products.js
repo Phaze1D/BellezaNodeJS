@@ -25,12 +25,19 @@ let productFields = [
   'discount',
   'iva',
   'stock',
-  'active'
+  'active',
+  'fav'
 ]
 
 
 router.get('/products', function (req, res, next) {
   Product.findAndCountAll(Product.allOptions(req.query, true)).then( results => {
+    res.json(results)
+  }).catch(next)
+})
+
+router.get('/favProducts', function (req, res, next) {
+  Product.findAndCountAll({where: {fav: true, active: true}}).then( results => {
     res.json(results)
   }).catch(next)
 })
