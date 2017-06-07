@@ -3,25 +3,15 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 
 
-const imgs = [
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name Really Long Product Name That Should Fill The How Page'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'},
-  {src: 'http://placehold.it/200x125', to: '#', name: 'Product Name'}
-]
-
-
 export default class Favorites extends React.Component {
   constructor(props){
     super(props)
   }
 
   render(){
+    const {
+      products
+    } = this.props
 
     const settings = {
       infinite: true,
@@ -54,11 +44,14 @@ export default class Favorites extends React.Component {
       }]
     };
 
-    const favList = imgs.map( (item, index) =>
+    if(products.get('rows').size == 0){
+      return null
+    }
+    const favList = products.get('rows').map( (product, index) =>
       <div key={index} className="fav-item" draggable="false">
-        <Link to={item.to} draggable="false">
-          <img src={item.src} alt={item.name} draggable="false"/>
-          <p className="overflow-text">{item.name}</p>
+        <Link to={`/product/${product.get('id')}`} draggable="false">
+          <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable="false"/>
+          <p className="overflow-text">{product.get('name')}</p>
         </Link>
       </div>
     )
