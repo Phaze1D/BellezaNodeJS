@@ -82,10 +82,16 @@ class ProductForm extends React.Component {
     return (
       <div>
         <form className="main-form grid-wrap" onSubmit={onRequestSubmit}>
-          <div className="col-12">
+          <div className="col-6">
             <label>Activo</label>
             {errors.get('active') && <div className="error-div">{errors.get('active')}</div>}
             <input type="checkbox" name="active" defaultChecked={product.get('active')}/>
+          </div>
+
+          <div className="col-6">
+            <label>Favorito</label>
+            {errors.get('fav') && <div className="error-div">{errors.get('fav')}</div>}
+            <input type="checkbox" name="fav" defaultChecked={product.get('fav')}/>
           </div>
 
           <div className="col-4">
