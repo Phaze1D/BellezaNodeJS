@@ -108,6 +108,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '0'
     },
+    fav: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: false,
+      defaultValue: '0'
+    },
     active: {
       type: DataTypes.BOOLEAN(),
       allowNull: false,
