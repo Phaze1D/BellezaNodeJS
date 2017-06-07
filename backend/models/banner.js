@@ -38,11 +38,12 @@ module.exports = function(sequelize, DataTypes) {
   Banner.carouselImages = function () {
     return {
       where: {
-        manual_active: true,
-        $or : {
-          start_date: {$lt: new Date()},
-          end_date: {$gt: new Date()}
-        }
+        $or : [{
+          manual_active: true,
+        }, {
+          start_date: {$lt: Date.now()},
+          end_date: {$gt: Date.now()},
+        }]
       }
     }
   }
