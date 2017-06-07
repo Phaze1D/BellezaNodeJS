@@ -106,7 +106,13 @@ module.exports = function(sequelize, DataTypes) {
     stock: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      defaultValue: '0'
+      defaultValue: '0',
+      validate:{
+        notEmpty: {
+          args: true,
+          msg: valmsg.required
+        },
+      }
     },
     fav: {
       type: DataTypes.BOOLEAN(),
