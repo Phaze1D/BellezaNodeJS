@@ -3,6 +3,7 @@ import Carousel from 'components/Carousel/Carousel'
 import Favorites from 'components/Favorites/Favorites'
 import { connect } from 'react-redux'
 import { getCarousel, resetBanners } from 'actions/others'
+import { getFavs, resetProducts } from 'actions/product'
 
 
 /**
@@ -13,7 +14,8 @@ import { getCarousel, resetBanners } from 'actions/others'
 
 @connect(store => {
   return {
-    banners: store.others.get('banners')
+    banners: store.others.get('banners'),
+    products: store.products
   }
 })
 export default class Home extends React.Component {
@@ -25,6 +27,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getCarousel())
+    this.props.dispatch(getFavs())
 
     if(window.innerWidth > 828){
       if(window.FB){
@@ -41,16 +44,21 @@ export default class Home extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(resetProducts())
+  }
+
 
   render() {
     const {
-      banners
+      banners,
+      products
     } = this.props
 
     return (
       <main>
         <Carousel banners={banners}/>
-        <Favorites/>
+        <Favorites products={products}/>
 
         <div className="grid col-sm-hide">
           <div className="col-4 social-feed">
