@@ -17,9 +17,16 @@ export default class Carousel extends React.Component {
       return null
     }
 
-    const carList = banners.get('rows').map( (img, index) =>
-      <Link key={index} to={img.get('link_to')} className="carousel-item">
-        <img className="carousel-img" src='http://placehold.it/540x300' alt=""/>
+    const carList = banners.get('rows').map( (banner, index) =>
+      <Link key={index} to={banner.get('link_to')} className="carousel-item">
+        <picture>
+          <source
+            srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_sm.jpg`}
+            media="(max-width: 463px)"/>
+          <img className="carousel-img"
+            src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_lg.jpg`}
+            alt=""/>
+        </picture>
       </Link>
     )
 
