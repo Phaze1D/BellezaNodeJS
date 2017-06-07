@@ -51,8 +51,8 @@ router.post('/banner', isLogin, isAdmin, upload.fields(bannerImagesFields), func
       accessKeyId: req.app.get('S3_ID'),
       secretAccessKey: req.app.get('S3_SECRET_KEY'),
     })
-    let plg = s3.upload(awsHelper.uploadBanner(req.files.imagelg[0].buffer, `${banner.id}_lg.jpg`))
-    let psm = s3.upload(awsHelper.uploadBanner(req.files.imagesm[0].buffer, `${banner.id}_sm.jpg`))
+    let plg = s3.upload(awsHelper.uploadS3(req.files.imagelg[0].buffer, `banners/${banner.id}_lg.jpg`))
+    let psm = s3.upload(awsHelper.uploadS3(req.files.imagesm[0].buffer, `banners/${banner.id}_sm.jpg`))
     return Promise.all([plg.promise(), psm.promise()])
   }).then(data => {
     res.sendStatus(200)
