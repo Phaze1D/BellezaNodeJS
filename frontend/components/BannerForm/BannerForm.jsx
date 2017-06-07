@@ -22,7 +22,25 @@ class BannerForm extends React.Component {
     end_date = `${end_date.getFullYear()}-${emonth}-${eday}`
 
     return (
-        <form className="main-form grid-wrap" onSubmit={onRequestSubmit}>
+        <form className="main-form grid-wrap" onSubmit={onRequestSubmit} encType="multipart/form-data">
+
+          {banner.get('id') &&
+            <div className="col-6">
+              <label>Large</label>
+              <img
+                src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_lg.jpg`}
+                style={{width: '100%'}}/>
+            </div>
+          }
+
+          {banner.get('id') &&
+            <div className="col-4">
+              <label>Small</label>
+              <img
+                src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_sm.jpg`}
+                style={{width: '100%'}}/>
+            </div>
+          }
 
           <div className="col-12">
             <label>Activo</label>
@@ -45,12 +63,21 @@ class BannerForm extends React.Component {
           </div>
 
 
-          <div className="col-3">
-            <label>Image</label>
-            {errors.get('image') && <div className="error-div">{errors.get('image')}</div>}
-            <input type="file" name="image"/>
-          </div>
+          {!banner.get('id') &&
+            <div className="col-3">
+              <label>Image Large 940x300</label>
+              {errors.get('imagelg') && <div className="error-div">{errors.get('imagelg')}</div>}
+              <input type="file" name="imagelg"/>
+            </div>
+          }
 
+          {!banner.get('id') &&
+            <div className="col-3">
+              <label>Image Small 540x300</label>
+              {errors.get('imagesm') && <div className="error-div">{errors.get('imagesm')}</div>}
+              <input type="file" name="imagesm"/>
+            </div>
+          }
 
           <div className="col-3">
             <label>Link To</label>
