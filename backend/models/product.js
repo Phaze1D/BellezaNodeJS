@@ -145,8 +145,8 @@ module.exports = function(sequelize, DataTypes) {
     options.where = active ? {active: true}: {}
     if(search){
       options.where.$or = [
-        {plu: {$like: `${search}%`}},
-        {name: {$like: `${search}%`}}
+        {plu: {$like: `%${search}%`}},
+        {name: {$like: `%${search}%`}}
       ]
     }
 
