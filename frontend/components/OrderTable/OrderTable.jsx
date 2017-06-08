@@ -42,7 +42,7 @@ class OrderTable extends React.Component {
         <thead>
           <tr className="col-xs-hide">
             <th>Producto</th>
-            <th>Descripcion</th>
+            <th>Descripción</th>
             <th>Precio</th>
             <th>Cantidad</th>
             <th className="overflow-text">Subtotal <span className="sub-text">Sin IVA</span></th>
