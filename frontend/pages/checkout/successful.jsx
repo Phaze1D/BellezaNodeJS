@@ -165,12 +165,10 @@ const BankSuccess = (props) => (
       <h3>Instrucciones</h3>
 
       <ol>
-        <ol>
-					<li>Accede a tu banca en línea.</li>
-					<li>Da de alta la CLABE en esta ficha. <strong>El banco deberá de ser STP</strong>.</li>
-					<li>Realiza la transferencia correspondiente por la cantidad exacta en esta ficha, <strong>de lo contrario se rechazará el cargo</strong>.</li>
-					<li>Al confirmar tu pago, el portal de tu banco generará un comprobante digital. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
-				</ol>
+				<li>Accede a tu banca en línea.</li>
+				<li>Da de alta la CLABE en esta ficha. <strong>El banco deberá de ser STP</strong>.</li>
+				<li>Realiza la transferencia correspondiente por la cantidad exacta en esta ficha, <strong>de lo contrario se rechazará el cargo</strong>.</li>
+				<li>Al confirmar tu pago, el portal de tu banco generará un comprobante digital. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
       </ol>
     </div>
   </div>
