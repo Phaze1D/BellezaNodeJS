@@ -34,12 +34,14 @@
     #header-title {
       display: inline-block;
       font-size: 1.3em;
+      color: #091f5d;
     }
 
     #header-title span {
       display: block;
       font-size: 0.75em;
       font-weight: normal;
+      color: #091f5d;
     }
 
     #header-table {
@@ -66,6 +68,7 @@
       font-size: 0.9em;
       max-width: 616px;
       text-align: left;
+      color: #091f5d;
     }
     .oxxo-sub h3 {
       color: #9e9e9e;
@@ -76,11 +79,13 @@
     }
     .oxxo-sub li {
       margin: 10px 0;
+      color: #091f5d;
     }
 
     .opps-info {
       display: table;
       margin-bottom: 10px;
+      color: #091f5d;
     }
 
     .opps-amount {
@@ -88,6 +93,7 @@
       vertical-align: middle;
       width: 60%;
       margin-left: auto;
+      color: #091f5d;
     }
 
     .opps-brand {
@@ -108,6 +114,7 @@
       will-change: height;
       background: rgb(224,224,224);
       margin: 8px 0;
+      color: #091f5d;
     }
 
     .add-box {
@@ -133,11 +140,13 @@
       border-collapse: collapse;
       text-align: left;
       background-color: white;
+      color: #091f5d;
     }
     .order-table td {
       border-bottom: 1px solid #e0e0e0;
       text-align: center;
       padding: 0 8px;
+      color: #091f5d;
     }
     .order-table td img {
       width: 100%;
@@ -194,6 +203,7 @@
     .xs-td {
       display: table-cell;
       width: 65%;
+      color: #091f5d;
     }
 
     .xs-span {
@@ -201,6 +211,7 @@
       text-align: left;
       padding: 8px 0;
       white-space: normal;
+      color: #091f5d;
     }
 
     .sm-td {
@@ -213,25 +224,25 @@
 
     </style>
   </head>
-  <body>
+  <body style="font-family: 'Lora', serif;font-size: 15px;color: #091f5d;background-color: white;margin: 0;">
 
-    <table id="header-table">
+    <table id="header-table" style="width: 100%;max-width: 100%;table-layout: fixed;background-color: white;">
       <tbody>
         <tr>
-          <td id="logo-td">
-            <img id="logo" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/nyr_logo.jpg" alt="Neals Yard Mexico">
+          <td id="logo-td" style="width: 80px;">
+            <img id="logo" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/nyr_logo.jpg" alt="Neals Yard Mexico" style="width: 64px;border-radius: 50px;margin: 0 8px;">
           </td>
           <td>
-            <h1 id="header-title">
+            <h1 id="header-title" style="display: inline-block;font-size: 1.3em;color: #091f5d;">
               Neal's Yard Remedies México
-              <span>  Salud y Belleza Orgánica </span>
+              <span style="display: block;font-size: 0.75em;font-weight: normal;color: #091f5d;">  Salud y Belleza Orgánica </span>
             </h1>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <div id="main">
+    <div id="main" style="padding: 5px;box-sizing: border-box;">
       <h3 style="color: #FFC107;">En Espera de Pago</h3>
       <p style="font-weight: bold">
         Hola {{user.first_name}} {{user.last_name}},
@@ -239,28 +250,28 @@
         Gracias por comprar nuestros productos. Cuando recibamos su pago, su pedido será enviado
       </p>
 
-      <div class="oxxo-sub">
-        <div class="opps-info">
-          <div class="opps-brand"><img src="https://raw.githubusercontent.com/conekta-examples/spei-payment-stub/master/demo/spei_brand.png" alt="SPEI"/></div>
-          <div class="opps-amount">
-            <h3>Monto a pagar</h3>
+      <div class="oxxo-sub" style="border: 1px solid #e0e0e0;border-radius: 2px;background-color: white;padding: 16px;font-family: sans-serif;color: #091f5d;margin-top: 20px;font-size: 0.9em;max-width: 616px;text-align: left;">
+        <div class="opps-info" style="display: table;margin-bottom: 10px;color: #091f5d;">
+          <div class="opps-brand" style="display: table-cell;vertical-align: middle;width: 35%;padding-right: 16px;"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/spei.png" alt="SPEI" style="width: 100%;"></div>
+          <div class="opps-amount" style="display: table-cell;vertical-align: middle;width: 60%;margin-left: auto;color: #091f5d;">
+            <h3 style="color: #9e9e9e;">Monto a pagar</h3>
             <h2>${{formatNumber order.total}} MXN</h2>
-            <p class="sub-text">Esto expira en 3 días</p>
+            <p class="sub-text" style="color: #757575;font-size: 0.9em;">Esto expira en 3 días</p>
           </div>
         </div>
 
         <div>
-          <h3>Clabe</h3>
-          <h2 class="box ref-box">{{order.charges.payment_method.clabe}}</h2>
+          <h3 style="color: #9e9e9e;">Clabe</h3>
+          <h2 class="box ref-box" style="padding: 8px;border-radius: 2px;border: 1px solid #e0e0e0;overflow: hidden;will-change: height;background: rgb(224,224,224);margin: 8px 0;color: #091f5d;">{{order.charges.payment_method.clabe}}</h2>
         </div>
 
-        <h3>Instrucciones</h3>
+        <h3 style="color: #9e9e9e;">Instrucciones</h3>
 
-        <ol>
-					<li>Accede a tu banca en línea.</li>
-					<li>Da de alta la CLABE en esta ficha. <strong>El banco deberá de ser STP</strong>.</li>
-					<li>Realiza la transferencia correspondiente por la cantidad exacta en esta ficha, <strong>de lo contrario se rechazará el cargo</strong>.</li>
-					<li>Al confirmar tu pago, el portal de tu banco generará un comprobante digital. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
+        <ol style="list-style: decimal;margin-left: 20px;">
+					<li style="margin: 10px 0;color: #091f5d;">Accede a tu banca en línea.</li>
+					<li style="margin: 10px 0;color: #091f5d;">Da de alta la CLABE en esta ficha. <strong>El banco deberá de ser STP</strong>.</li>
+					<li style="margin: 10px 0;color: #091f5d;">Realiza la transferencia correspondiente por la cantidad exacta en esta ficha, <strong>de lo contrario se rechazará el cargo</strong>.</li>
+					<li style="margin: 10px 0;color: #091f5d;">Al confirmar tu pago, el portal de tu banco generará un comprobante digital. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
         </ol>
       </div>
 
@@ -268,39 +279,39 @@
 
       </div>
 
-      <table class='order-table'>
+      <table class="order-table" style="margin-top: 20px;width: 100%;max-width: 650px;border: 1px solid #e0e0e0;border-radius: 3px;border-collapse: collapse;text-align: left;background-color: white;color: #091f5d;">
         <thead>
-          <tr class="col-xs-hide">
-            <th>Producto</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th class="overflow-text">Subtotal <span class="sub-text">Sin IVA</span></th>
+          <tr class="col-xs-hide" style="display: none;">
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;">Producto</th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;">Descripción</th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;">Precio</th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;">Cantidad</th>
+            <th class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;border-bottom: 1px solid #e0e0e0;padding: 16px 8px;font-size: 0.9em;text-align: center;padding-right: 16px;">Subtotal <span class="sub-text" style="color: #757575;font-size: 0.9em;">Sin IVA</span></th>
           </tr>
         </thead>
 
         <tbody>
           {{#each order.details}}
           <tr>
-            <td>
-              <img src="{{formatImageLink this.plu}}">
+            <td style="border-bottom: 1px solid #e0e0e0;text-align: center;padding: 0 8px;color: #091f5d;">
+              <img src="{{formatImageLink this.plu}}" style="width: 100%;max-width: 112px;min-width: 10px;">
             </td>
 
-            <td class="xs-td" colSpan="4">
-              <span class="xs-span">
+            <td class="xs-td" colspan="4" style="display: table-cell;width: 65%;color: #091f5d;border-bottom: 1px solid #e0e0e0;text-align: left;padding: 0;">
+              <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
                 {{this.name}}
               </span>
 
-              <span class="xs-span">
-                <span class="sub-text">Precio: </span>${{formatNumber this.price}}
+              <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
+                <span class="sub-text" style="color: #757575;font-size: 0.9em;">Precio: </span>${{formatNumber this.price}}
               </span>
 
-              <span class="xs-span">
+              <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
                 {{this.quantity}}
               </span>
 
-              <span class="xs-span">
-                <span class="sub-text">Subtotal: </span>${{formatNumber this.sub_total}}
+              <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
+                <span class="sub-text" style="color: #757575;font-size: 0.9em;">Subtotal: </span>${{formatNumber this.sub_total}}
               </span>
             </td>
           </tr>
@@ -308,84 +319,84 @@
         </tbody>
       </table>
 
-      <table class='order-table' style="margin-top: 0;">
+      <table class="order-table" style="margin-top: 20px;width: 100%;max-width: 650px;border: 1px solid #e0e0e0;border-radius: 3px;border-collapse: collapse;text-align: left;background-color: white;color: #091f5d;">
         <thead>
-          <tr class="col-xs-hide">
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="overflow-text"></th>
+          <tr class="col-xs-hide" style="display: none;">
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;"></th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;"></th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;"></th>
+            <th style="border-bottom: 1px solid #e0e0e0;padding: 16px 8px;white-space: nowrap;font-size: 0.9em;text-align: center;"></th>
+            <th class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;border-bottom: 1px solid #e0e0e0;padding: 16px 8px;font-size: 0.9em;text-align: center;padding-right: 16px;"></th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td style="border: none; padding: 0"></td>
-            <td style="border: none; padding: 0"></td>
-            <td style="border: none; padding: 0"></td>
-            <td style="border: none; padding: 0"></td>
-            <td style="border: none; padding: 0"></td>
+            <td style="border: none;padding: 0 8px;border-bottom: 1px solid #e0e0e0;text-align: center;color: #091f5d;"></td>
+            <td style="border: none;padding: 0 8px;border-bottom: 1px solid #e0e0e0;text-align: center;color: #091f5d;"></td>
+            <td style="border: none;padding: 0 8px;border-bottom: 1px solid #e0e0e0;text-align: center;color: #091f5d;"></td>
+            <td style="border: none;padding: 0 8px;border-bottom: 1px solid #e0e0e0;text-align: center;color: #091f5d;"></td>
+            <td style="border: none;padding: 0;border-bottom: 1px solid #e0e0e0;text-align: center;color: #091f5d;"></td>
           </tr>
         </tbody>
 
         <tfoot class="order-table-foot">
           <tr>
-            <td colSpan="4">Subtotal: </td>
-            <td class="foot-main">${{formatNumber order.sub_total }}</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Subtotal: </td>
+            <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">${{formatNumber order.sub_total }}</td>
           </tr>
           <tr>
-            <td colSpan="4">IVA:</td>
-            <td class="foot-main">${{formatNumber order.iva_total }}</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">IVA:</td>
+            <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">${{formatNumber order.iva_total }}</td>
           </tr>
           <tr>
-            <td colSpan="4">Costo de Envío: </td>
-            <td class="foot-main">${{formatNumber order.shipping_total }}</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Costo de Envío: </td>
+            <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">${{formatNumber order.shipping_total }}</td>
           </tr>
           <tr>
-            <td colSpan="4">Discount:</td>
-            <td class="foot-main">-${{formatNumber order.discount_total }}</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Discount:</td>
+            <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">-${{formatNumber order.discount_total }}</td>
           </tr>
           <tr>
-            <td colSpan="4">Total:</td>
-            <td class="foot-main">${{formatNumber order.total }}</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Total:</td>
+            <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">${{formatNumber order.total }}</td>
           </tr>
         </tfoot>
       </table>
 
-      <div class="add-box overflow-text sub-text">
+      <div class="add-box overflow-text sub-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding: 16px;border-radius: 2px;border: 1px solid #e0e0e0;will-change: height;margin: 8px 0;max-width: 616px;color: #757575;font-size: 0.9em;">
         <p>Dirección de Envío</p>
         <hr>
-        <p class="overflow-text">
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
           {{order.shippingAddress.first_name}} {{order.shippingAddress.last_name}}
         </p>
-        <p class="overflow-text">{{order.shippingAddress.telephone}}</p>
-        <p class="overflow-text">{{order.shippingAddress.street}}</p>
-        <p class="overflow-text">{{order.shippingAddress.street2}}</p>
-        <p class="overflow-text">
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.shippingAddress.telephone}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.shippingAddress.street}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.shippingAddress.street2}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
           {{order.shippingAddress.city}}, {{order.shippingAddress.state}}
         </p>
-        <p class="overflow-text">{{order.shippingAddress.zipcode}}</p>
-        <p class="overflow-text">{{order.shippingAddress.country}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.shippingAddress.zipcode}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.shippingAddress.country}}</p>
       </div>
 
       {{#if order.invoiceAddress}}
-      <div class="add-box overflow-text sub-text">
+      <div class="add-box overflow-text sub-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding: 16px;border-radius: 2px;border: 1px solid #e0e0e0;will-change: height;margin: 8px 0;max-width: 616px;color: #757575;font-size: 0.9em;">
         <p>Facturación</p>
         <p>{{order.razon_social}}</p>
         <p>{{order.rfc}}</p>
         <hr>
-        <p class="overflow-text">
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
           {{order.invoiceAddress.first_name}} {{order.invoiceAddress.last_name}}
         </p>
-        <p class="overflow-text">{{order.invoiceAddress.telephone}}</p>
-        <p class="overflow-text">{{order.invoiceAddress.street}}</p>
-        <p class="overflow-text">{{order.invoiceAddress.street2}}</p>
-        <p class="overflow-text">
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.invoiceAddress.telephone}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.invoiceAddress.street}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.invoiceAddress.street2}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
           {{order.invoiceAddress.city}}, {{order.invoiceAddress.state}}
         </p>
-        <p class="overflow-text">{{order.invoiceAddress.zipcode}}</p>
-        <p class="overflow-text">{{order.invoiceAddress.country}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.invoiceAddress.zipcode}}</p>
+        <p class="overflow-text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{order.invoiceAddress.country}}</p>
       </div>
       {{/if}}
 
