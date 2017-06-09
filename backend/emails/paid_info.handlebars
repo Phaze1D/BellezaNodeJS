@@ -250,6 +250,19 @@
         Hemos recibido su pago y enviaremos su pedido lo mas pronto posible
       </p>
 
+      <p style="font-weight: bold">
+        <span class="sub-text" style="color: #757575;font-size: 0.9em;">Tipo De Pago:</span> {{order.charges.payment_method.type}} <br>
+        {{#checkType order.charges.payment_method.type "credit"}}
+        <span class="sub-text" style="color: #757575;font-size: 0.9em;">Nombre: </span>{{order.charges.payment_method.name}} <br>
+				<span class="sub-text" style="color: #757575;font-size: 0.9em;">Código de Autenticación: </span>{{order.charges.payment_method.auth_code}} <br>
+				<span class="sub-text" style="color: #757575;font-size: 0.9em;">Últimos 4 Dígitos:</span> {{order.charges.payment_method.last4}}
+        {{/checkType}}
+
+        {{#checkType order.charges.payment_method.type "spei"}}
+        <span class="sub-text" style="color: #757575;font-size: 0.9em;">Número de Referencia: </span>{{order.charges.payment_method.reference_number}} <br>
+        {{/checkType}}
+      </p>
+
       <table class="order-table" style="margin-top: 20px;width: 100%;max-width: 650px;border: 1px solid #e0e0e0;border-radius: 3px;border-collapse: collapse;text-align: left;background-color: white;color: #091f5d;">
         <thead>
           <tr class="col-xs-hide" style="display: none;">
