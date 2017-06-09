@@ -42,15 +42,6 @@ export const getBanners = (page, token) => {
   }
 }
 
-export const deleteBanner = (id, token) => {
-  return {
-    type: types.DELETE_BANNER,
-    payload: axios.delete(`/banner/${id}`, {
-      headers: {'Authorization': `Bearer ${token}`}
-    })
-  }
-}
-
 export const getCarousel = (page, token) => {
   return {
     type: types.GET_BANNERS,
@@ -98,6 +89,15 @@ export const editBanner = (formData, id, token) => {
   return {
     type: types.EDIT_BANNER,
     payload: axios.put(`/banner/${id}`, formData, {
+      headers: {'Authorization': `Bearer ${token}`}
+    })
+  }
+}
+
+export const deleteBanner = (id, token) => {
+  return {
+    type: types.DELETE_BANNER,
+    payload: axios.delete(`/banner/${id}`, {
       headers: {'Authorization': `Bearer ${token}`}
     })
   }
