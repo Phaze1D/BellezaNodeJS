@@ -122,7 +122,32 @@ module.exports = function(sequelize, DataTypes) {
         as: 'invoiceAddress',
       }]
     }
+    return options
+  }
 
+  Order.singleConektaOption = function(conekta_id) {
+    let options = {
+      where: {conekta_id: conekta_id},
+      include: [{
+        model: sequelize.model('Detail'),
+        as: 'details',
+        include: [{
+          model: sequelize.model('Product'),
+          as: 'product',
+          attributes: ['id', 'plu']
+        }]
+      },{
+        model: sequelize.model('Address'),
+        as: 'shippingAddress',
+      },{
+        model: sequelize.model('Address'),
+        as: 'invoiceAddress',
+      },{
+        model: sequelize.model('User'),
+        as: 'user',
+        attributes: ['first_name', 'last_name', 'email']
+      }]
+    }
     return options
   }
 
