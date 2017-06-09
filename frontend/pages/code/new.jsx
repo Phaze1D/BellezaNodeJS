@@ -53,7 +53,6 @@ class CodesNew extends React.Component {
     let formData = new FormData()
     formData.append('code', elements.code.value)
     formData.append('discount', Number(elements.discount.value))
-    formData.append('is_percentage', elements.is_percentage.checked)
     formData.append('expires_date', elements.expires_date.value)
     this.props.dispatch(codeNew(formData, this.props.client.get('id'), this.props.user.get('token')))
     .then(this.handleSuccess)
@@ -93,13 +92,7 @@ class CodesNew extends React.Component {
           <div className="col-4">
             <label>Discount Amount</label>
             {errors.get('discount') && <div className="error-div">{errors.get('discount')}</div>}
-            <input type="number" name="discount" min='0'/>
-          </div>
-
-          <div className="col-2">
-            <label>Percentage</label>
-            {errors.get('is_percentage') && <div className="error-div">{errors.get('is_percentage')}</div>}
-            <input type="checkbox" name="is_percentage"/>
+            <input type="number" name="discount" min='0' max='90'/>
           </div>
 
           <div className="col-6"></div>

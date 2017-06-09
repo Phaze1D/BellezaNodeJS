@@ -145,7 +145,8 @@ const verifyCart = (cart, userId) => {
 
       if(cart.discount_code_id){
         if(cart.discount_code_id == discount_code.id && discount_code.user_id == userId){
-          let discount_total = discount_code.is_percentage ? Math.round(total * (discount_code.discount/100)) : discount_code.discount
+          let discount_total = 0
+          discount_total = Math.round(total * (discount_code.discount/100))
           total -= discount_total
         }else{
           VERIFICATION_ERROR.info = {

@@ -55,12 +55,11 @@ module.exports = function(sequelize, DataTypes) {
           args: 1,
           msg: valmsg.min(1)
         },
+        max: {
+          args: 90,
+          msg: valmsg.max(90)
+        }
       }
-    },
-    is_percentage: {
-      type: DataTypes.BOOLEAN(),
-      allowNull: false,
-      defaultValue: '1'
     },
     user_id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
@@ -74,6 +73,5 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'discount_codes'
   });
 
-  // DiscountCode.belongsTo('User', {as: 'user'});
   return DiscountCode
 };

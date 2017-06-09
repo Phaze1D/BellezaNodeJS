@@ -156,7 +156,9 @@ export const checkUserCodeReducer = (state = INITIAL_CART, action) => {
       let code = action.payload.data
       return state.withMutations(map => {
         let total = map.get('total') + map.get('discount_total')
-        let discount_total = code.is_percentage ? Math.round(total * (code.discount/100)) : code.discount
+        let discount_total = 0
+
+        discount_total = Math.round(total * (code.discount/100))
 
         map.set('discount_total', discount_total)
            .set('total', total - discount_total)
