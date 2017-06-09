@@ -284,6 +284,8 @@ export default class CheckoutConfirmation extends React.Component {
                   <input type="submit" value="Pagar" name="submit" className="submit full"/>
                   {errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
                 </form>
+
+                <p className="sub-text" style={{fontStyle: 'italic'}}>Los pagos en efectivo no se pueden devolver</p>
               </div>
             </radioGroup>
           </section>
