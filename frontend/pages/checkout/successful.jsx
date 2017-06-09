@@ -106,7 +106,7 @@ const OxxoSuccess = (props) => (
 
     <div className="oxxo-sub">
       <div className="opps-info">
-        <div className="opps-brand"><img src="https://raw.githubusercontent.com/conekta-examples/oxxopay-payment-stub/master/demo/oxxopay_brand.png" alt="OXXOPay"/></div>
+        <div className="opps-brand"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxopay.png" alt="OXXOPay"/></div>
         <div className="opps-amount">
           <h3>Monto a pagar</h3>
           <h2>${(props.total/100).toFixed(2)}<sup>MXN</sup></h2>
@@ -149,7 +149,7 @@ const BankSuccess = (props) => (
 
     <div className="oxxo-sub">
       <div className="opps-info">
-        <div className="opps-brand"><img src="https://raw.githubusercontent.com/conekta-examples/spei-payment-stub/master/demo/spei_brand.png" alt="SPEI"/></div>
+        <div className="opps-brand"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/spei.png" alt="SPEI"/></div>
         <div className="opps-amount">
           <h3>Monto a pagar</h3>
           <h2>${(props.total/100).toFixed(2)}<sup>MXN</sup></h2>
