@@ -62,7 +62,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     conekta_id: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: true,
+      unique: true
     },
     tracking_id: {
       type: DataTypes.STRING(255),
