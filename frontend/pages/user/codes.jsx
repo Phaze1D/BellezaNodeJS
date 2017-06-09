@@ -103,12 +103,7 @@ export default class UserCodes extends React.Component {
 const CodeItem = props => (
   <div className="code-item sub-text">
     <p >Codigo: <span>{props.code.get('code')}</span></p>
-    {props.code.get('is_percentage') ?
-      <p>Descuento: <span>{props.code.get('discount')}% </span></p>
-      :
-      <p>Descuento: <span>${(props.code.get('discount')/100).toFixed(2)} </span></p>
-    }
-
+    <p>Descuento: <span>{props.code.get('discount')}% </span></p>
     <p>Fecha de Caducidad: <span>{new Date(props.code.get('expires_date')).toLocaleString('en-us', dateOptions)}</span></p>
   </div>
 )
