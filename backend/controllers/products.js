@@ -53,11 +53,11 @@ router.get('/favProducts', function (req, res, next) {
 router.get('/product/:id', function (req, res, next) {
   Product.findOne(Product.singleOptions(req.params.id)).then(product => {
     let category_id = product.categories.length > 0 ? product.categories[0].id : undefined
-    Product.findAll(Product.relatedOptions(category_id)).then(related => {
+    return Product.findAll(Product.relatedOptions(category_id)).then(related => {
       let pro = product.toJSON();
       pro.related = related
       res.json(pro)
-    }).catch(next)
+    })
   }).catch(next)
 
 })
@@ -103,7 +103,7 @@ router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), functi
   let mainimg = req.files.main_image ? req.files.main_image[0].buffer : null
   let secimg = req.files.second_image ? req.files.second_image[0].buffer : null
   let realProduct = null
-  Product.findById(req.params.id).then(product => {
+  Product.findById(req.params.id, {rejectOnEmpty: true}).then(product => {
     realProduct = product
     return product.update(req.body, {fields: productFields.slice(1)})
   }).then(product => {
@@ -137,7 +137,6 @@ router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), functi
     }
     return procates
   }).then(data => {
-    console.log(data);
     res.sendStatus(200)
   }).catch(next)
 })

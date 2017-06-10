@@ -37,7 +37,7 @@ router.get('/banners', isLogin, isAdmin, function (req, res, next) {
 })
 
 router.get('/banner/:id', isLogin, isAdmin, function (req, res, next) {
-  Banner.findById(req.params.id).then(banner => {
+  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
     res.json(banner)
   }).catch(next)
 })
@@ -61,7 +61,7 @@ router.post('/banner', isLogin, isAdmin, upload.fields(bannerImagesFields), func
 
 
 router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, next) {
-  Banner.findById(req.params.id).then(banner => {
+  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
     return banner.update(req.body, {fields: bannerFields})
   }).then(banner => {
     res.json(banner)
@@ -69,12 +69,8 @@ router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, n
 })
 
 router.delete('/banner/:id', isLogin, isAdmin, function (req, res, next) {
-  Banner.findById(req.params.id).then(banner => {
-    if(banner){
-      return banner.destroy({ force: true })
-    }else{
-      res.sendStatus(401)
-    }
+  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
+    return banner.destroy({ force: true })
   }).then(banner => {
     res.json(banner)
   }).catch(next)
@@ -95,14 +91,10 @@ router.get('/clients',isLogin, isAdmin, function (req, res, next) {
 })
 
 router.get('/client/:client_id',isLogin, isAdmin, function (req, res, next) {
-  User.findOne({where: {id: req.params.client_id}, attributes: ['first_name', 'last_name', 'id', 'email']})
+  User.findOne({where: {id: req.params.client_id}, attributes: ['first_name', 'last_name', 'id', 'email'], rejectOnEmpty: true})
   .then(client => {
-    if(client){
-      res.json(client)
-    }else{
-      res.sendStatus(401)
-    }
-  })
+    res.json(client)
+  }).catch(next)
 })
 
 module.exports = router

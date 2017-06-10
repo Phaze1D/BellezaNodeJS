@@ -24,11 +24,7 @@ router.get('/user/:user_id/orders', isLogin, isAdmin, function (req, res, next) 
 router.get('/user/:user_id/order/:id', isLogin, isAdmin, function (req, res, next) {
   Order.findOne(Order.singleOption(req.params))
   .then(order => {
-    if(order){
-      res.json(order)
-    }else{
-      res.sendStatus(401)
-    }
+    res.json(order)
   }).catch(next)
 })
 

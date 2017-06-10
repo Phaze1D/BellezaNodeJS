@@ -140,7 +140,7 @@ module.exports = function(sequelize, DataTypes) {
       attributes: { exclude: ['description', 'ingredients', 'benefits'] },
       offset: 20 * page,
       limit: 20,
-      order: [sortOptions[sort]]
+      order: [sortOptions[sort]],
     }
     options.where = active ? {active: true}: {}
     if(search){
@@ -174,7 +174,8 @@ module.exports = function(sequelize, DataTypes) {
         through: {
           where: {products_id: id}
         }
-      }]
+      }],
+      rejectOnEmpty: true
     }
     return options
   }

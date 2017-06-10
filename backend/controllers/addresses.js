@@ -48,13 +48,9 @@ router.post('/user/:user_id/address', isLogin, isUser, upload.none(), function (
 })
 
 router.put('/user/:user_id/address/:id', isLogin, isUser, upload.none(), function (req, res, next) {
-  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}})
+  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}, rejectOnEmpty: true})
   .then( address => {
-    if(address){
-      return address.update(req.body, {fields: addressFieldsUpdate})
-    }else{
-      res.sendStatus(401)
-    }
+    return address.update(req.body, {fields: addressFieldsUpdate})
   }).then(address => {
     res.json(address)
   }).catch(next)
@@ -72,13 +68,9 @@ router.get('/validate-address', isLogin, function (req, res, next) {
 })
 
 router.delete('/user/:user_id/address/:id', isLogin, isUser, function (req, res, next) {
-  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}})
+  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}, rejectOnEmpty: true})
   .then( address => {
-    if(address){
-      return address.destroy({ force: true })
-    }else{
-      res.sendStatus(401)
-    }
+    return address.destroy({ force: true })
   }).then( () => {
     res.sendStatus(200)
   }).catch(next)

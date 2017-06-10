@@ -120,7 +120,8 @@ module.exports = function(sequelize, DataTypes) {
       },{
         model: sequelize.model('Address'),
         as: 'invoiceAddress',
-      }]
+      }],
+      rejectOnEmpty: true
     }
     return options
   }
@@ -146,7 +147,8 @@ module.exports = function(sequelize, DataTypes) {
         model: sequelize.model('User'),
         as: 'user',
         attributes: ['first_name', 'last_name', 'email']
-      }]
+      }],
+      rejectOnEmpty: true
     }
     return options
   }
@@ -178,7 +180,7 @@ module.exports = function(sequelize, DataTypes) {
           as: 'product',
           attributes: ['id', 'plu']
         }]
-      }]
+      }],
     }
     return options
   }
@@ -196,7 +198,7 @@ module.exports = function(sequelize, DataTypes) {
         model: sequelize.model('User'),
         as: 'user',
         attributes: ['id', 'first_name', 'last_name']
-      }]
+      }],
     }
     return options
   }

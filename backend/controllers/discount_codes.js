@@ -18,7 +18,6 @@ let codeFields = [
   'code',
   'expires_date',
   'discount',
-  'is_percentage',
   'user_id'
 ]
 
@@ -37,7 +36,7 @@ router.get('/user/:user_id/check-code', isLogin, isUser, function (req, res, nex
     }else{
       let err = new Sequelize.ValidationError('Codigo Invalido')
       err.errors.push({path: 'code', message: 'Codigo Invalido'})
-      next(err)
+      return Promise.reject(err)
     }
   }).catch(next)
 })
@@ -45,12 +44,8 @@ router.get('/user/:user_id/check-code', isLogin, isUser, function (req, res, nex
 router.post('/user/:client_id/code', isLogin, isAdmin, upload.none(), function (req, res, next) {
   let formData = req.body
   formData.user_id = req.params.client_id
-  User.findOne({where: {id: req.params.client_id}}).then(user => {
-    if(user){
-      return DiscountCode.create(formData, {fields: codeFields})
-    }else{
-      res.sendStatus(401)
-    }
+  User.findOne({where: {id: req.params.client_id}, rejectOnEmpty: true}).then(user => {
+    return DiscountCode.create(formData, {fields: codeFields})
   }).then(code => {
     res.json(code)
   }).catch(next)

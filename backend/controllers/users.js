@@ -63,10 +63,9 @@ router.get('/validate-user', function (req, res, next) {
 
 /** REQUIRES USER VALIDATION */
 router.put('/user/:user_id', isLogin, isUser, upload.none(), function (req, res, next) {
-  User.findById(req.params.user_id).then(user => {
+  User.findById(req.params.user_id, {rejectOnEmpty: true}).then(user => {
     return user.update(req.body, {fields: ['first_name', 'last_name', 'telephone']})
   }).then((user) => {
-    // MISSING JWT TOKEN
     let ru = user.toJSON()
     delete ru.password
     ru.addresses = []

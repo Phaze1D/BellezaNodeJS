@@ -18,7 +18,8 @@ router.get('/categories', function (req, res) {
           as: 'subs',
           where: { id: Sequelize.col('subs.parent_id') }
         }]
-    }]
+    }],
+    rejectOnEmpty: true
   }).then(categories => {
     res.json(categories)
   })
