@@ -1,10 +1,18 @@
 import * as types from 'actions/types'
 import { fromJS, Map } from 'immutable'
 
-const INITIAL_ERRORS = Map()
+const INITIAL_ERRORS = fromJS({
+  global: {
+    status: "",
+    message: ""
+  }
+})
 
 
 export const errorsReducer = (state = INITIAL_ERRORS, action) => {
+  if(action.type.includes('ERROR')){
+    console.log(action.payload.response);
+  }
 
   if(action.type.includes('ERROR') && action.payload.response.status == 422){
     let res = action.payload.response.data
@@ -17,7 +25,7 @@ export const errorsReducer = (state = INITIAL_ERRORS, action) => {
     if(action.payload.key){
       return state.delete(action.payload.key)
     }else{
-      return state.clear()
+      return INITIAL_ERRORS
     }
   }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
+import GlobalError from 'components/GlobalError/GlobalError'
 import Home from 'pages/home/home'
 import CategoryIndex from 'pages/category/index'
 import CategoryShow from 'pages/category/show'
@@ -46,6 +47,7 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div id='layout'>
+        <GlobalError/>
         <Header history={this.props.history}/>
 
         <Redirect from='/' to='/home'/>
