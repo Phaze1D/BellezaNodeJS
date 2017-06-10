@@ -30,7 +30,7 @@ let VERIFICATION_ERROR = {error: 401, message: 'verification error'}
 const cardPaymentFlow = (cart, userId) => {
   return verifyCart(cart, userId)
   .then(products => {
-    return User.findOne({where: {id: userId}, attributes: userAtt})
+    return User.findOne({where: {id: userId}, attributes: userAtt, rejectOnEmpty: true})
   })
   .then(user => {
     if(user.conekta_id){
@@ -61,7 +61,7 @@ const cardPaymentFlow = (cart, userId) => {
 const cashPaymentFlow = (cart, userId) => {
   return verifyCart(cart, userId)
   .then(products => {
-    return User.findOne({where: {id: userId}, attributes: userAtt})
+    return User.findOne({where: {id: userId}, attributes: userAtt, rejectOnEmpty: true})
   })
   .then(user => {
     if(user.conekta_id){
@@ -98,7 +98,7 @@ const verifyCart = (cart, userId) => {
 
   return DiscountCode.findById(cart.discount_code_id).then(discount_code => {
     discount_code = discount_code ? discount_code.toJSON() : null
-    return Product.findAll({where: {id: {$in: pin }}, attributes: prodAtt})
+    return Product.findAll({where: {id: {$in: pin }}, attributes: prodAtt, rejectOnEmpty: true})
     .then(products => {
       let sub_total = 0
       let iva_total = 0
@@ -127,7 +127,6 @@ const verifyCart = (cart, userId) => {
       }
 
       shipping_total = sub_total < 100000 ? 15000 : 0
-
 
       if( !(sub_total == cart.sub_total && iva_total == cart.iva_total && shipping_total == cart.shipping_total) ){
         VERIFICATION_ERROR.info = {
