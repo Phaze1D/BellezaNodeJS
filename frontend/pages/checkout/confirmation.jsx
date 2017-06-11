@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OrderTable from 'components/OrderTable/OrderTable'
 import { checkUserCode } from 'actions/discountcode'
-import { resetErrors } from 'actions/errors'
+import { resetErrors, setError } from 'actions/errors'
 import { cashPayment, cardPayment } from 'actions/payment'
 
 /**
@@ -33,8 +33,6 @@ import { cashPayment, cardPayment } from 'actions/payment'
 export default class CheckoutConfirmation extends React.Component {
   constructor(props){
     super(props)
-    this.state = {cterrors: {}}
-
     this.handleRadio = this.handleRadio.bind(this)
     this.handleSubmitCode = this.handleSubmitCode.bind(this)
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
@@ -74,29 +72,18 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleSubmitCard(event){
-    this.setState({cterrors: {}})
+    this.props.dispatch(resetErrors('card_token'))
     event.preventDefault()
     let elements = event.target.elements
-    // let data = {
-    //   "card": {
-    //     "number": elements.number.value,
-    //     "name": elements.holder.value,
-    //     "exp_year": elements.year.value,
-    //     "exp_month": elements.month.value,
-    //     "cvc": elements.secret.value
-    //   }
-    // };
-
     let data = {
       "card": {
-        "number": '4242424242424242',
-        "name": 'davd',
-        "exp_year": '2018',
-        "exp_month": '01',
-        "cvc": 202
+        "number": elements.number.value,
+        "name": elements.holder.value,
+        "exp_year": elements.year.value,
+        "exp_month": elements.month.value,
+        "cvc": elements.secret.value
       }
     };
-
     elements.submit.disabled = true
     window.Conekta.Token.create(data, this.successfullToken, this.errorToken)
 
@@ -114,7 +101,7 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   errorToken(err){
-    this.setState({cterrors: {card_token: err.message_to_purchaser}})
+    this.props.dispatch(setError('card_token', err.message_to_purchaser))
     document.getElementById('card-form').elements.submit.disabled = false
   }
 
@@ -243,8 +230,7 @@ export default class CheckoutConfirmation extends React.Component {
                   </div>
 
                   <input type="submit" value="Pagar" name="submit" className="submit full"/>
-                  {errors.get('card') && <div className="error-div">{errors.get('card')}</div>}
-                  {this.state.cterrors.card_token && <div className="error-div">{this.state.cterrors.card_token}</div>}
+                  {errors.get('card_token') && <div className="error-div">{errors.get('card_token')}</div>}
                 </form>
               </div>
 

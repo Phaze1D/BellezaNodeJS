@@ -8,3 +8,10 @@ export const resetErrors = (key) => {
     payload: {key: key}
   }
 }
+
+export const setError = (key, value) => {
+  return {
+    type: types.SET_ERR,
+    payload: {key: key, value: value}
+  }
+}

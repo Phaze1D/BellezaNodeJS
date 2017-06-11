@@ -29,5 +29,11 @@ export const errorsReducer = (state = INITIAL_ERRORS, action) => {
     }
   }
 
+
+  if(action.type === types.SET_ERR){
+    return state.set(action.payload.key, action.payload.value)
+  }
+
+
   return state
 }
