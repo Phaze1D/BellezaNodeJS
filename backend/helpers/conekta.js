@@ -27,40 +27,11 @@ let prodAtt = [
 
 let VERIFICATION_ERROR = {name: "VerificationError", error: 401, message: 'verification error'}
 
-const cardPaymentFlow = (cart, userId) => {
+const paymentFlow = (cart, userId) => {
+  let toPro = []
   return verifyCart(cart, userId)
   .then(products => {
-    return User.findOne({where: {id: userId}, attributes: userAtt, rejectOnEmpty: true})
-  })
-  .then(user => {
-    if(user.conekta_id){
-      return user
-    }else{
-      return conekta.Customer.create({
-        name: `${user.first_name} ${user.last_name}`,
-        email: user.email,
-        phone: user.telephone,
-      }).then(conCust => {
-        return user.update({conekta_id: conCust.toObject().id})
-      })
-    }
-  })
-  .then(user => {
-    let formatted = formatOrder(cart, user.conekta_id)
-    formatted.charges = [{
-      payment_method: {
-        type: cart.payment_source.type,
-        token_id: cart.payment_source.token,
-      },
-      amount: cart.total
-    }]
-    return conekta.Order.create(formatted)
-  })
-}
-
-const cashPaymentFlow = (cart, userId) => {
-  return verifyCart(cart, userId)
-  .then(products => {
+    toPro = products
     return User.findOne({where: {id: userId}, attributes: userAtt, rejectOnEmpty: true})
   })
   .then(user => {
@@ -80,14 +51,19 @@ const cashPaymentFlow = (cart, userId) => {
     let expiresDate = new Date()
     expiresDate.setDate(expiresDate.getDate() + 3)
     let formatted = formatOrder(cart, user.conekta_id)
+    let payment_method = {type: cart.payment_source.type}
+    if(payment_method.type === "card"){
+      payment_method.token_id = "tok_test_visa_4242"
+    }
     formatted.charges = [{
-      payment_method: {
-        type: cart.payment_source.type,
-      },
+      payment_method: payment_method,
       expires_at: expiresDate.getTime(),
       amount: cart.total
     }]
     return conekta.Order.create(formatted)
+  }).then(conektaOrder => {
+    toPro.forEach(product => product.save())
+    return conektaOrder
   })
 }
 
@@ -123,7 +99,7 @@ const verifyCart = (cart, userId) => {
 
         sub_total += pPrice * oDetails[pjson.id].quantity
         iva_total += Math.round(pPrice * oDetails[pjson.id].quantity * (pjson.iva/100))
-        product.update({stock: pjson.stock - oDetails[pjson.id].quantity})
+        product.stock = pjson.stock - oDetails[pjson.id].quantity
       }
 
       shipping_total = sub_total < 100000 ? 15000 : 0
@@ -225,6 +201,5 @@ const formatOrder = (cart, customer_id) => {
 
 
 module.exports = {
-  cardPaymentFlow: cardPaymentFlow,
-  cashPaymentFlow: cashPaymentFlow
+  paymentFlow: paymentFlow
 }

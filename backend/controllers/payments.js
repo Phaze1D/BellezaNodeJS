@@ -17,7 +17,7 @@ const paymentStatus = {
 
 
 router.post('/payment/card', isLogin, function (req, res, next) {
-  conektaHelper.cardPaymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
+  conektaHelper.paymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
     let order = req.body
     conektaOrder = conektaOrder.toObject()
     order.conekta_id = conektaOrder.id
@@ -68,7 +68,7 @@ router.post('/payment/card', isLogin, function (req, res, next) {
 })
 
 router.post('/payment/cash', isLogin, function (req, res, next) {
-  conektaHelper.cashPaymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
+  conektaHelper.paymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
     let order = req.body
     conektaOrder = conektaOrder.toObject()
     order.conekta_id = conektaOrder.id
