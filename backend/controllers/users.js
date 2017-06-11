@@ -36,13 +36,13 @@ router.post('/login', upload.none(), function (req, res, next) {
           ru.token = token
           res.json(ru)
         }else{
-          let err = new Sequelize.ValidationError('El correo y la contraseña que has introducido no coinciden.')
+          let err = new Sequelize.ValidationError('')
           err.errors.push({path: 'login', message: 'El correo y la contraseña que has introducido no coinciden.'})
           next(err)
         }
       })
     }else{
-      let err = new Sequelize.ValidationError('El correo y la contraseña que has introducido no coinciden.')
+      let err = new Sequelize.ValidationError('')
       err.errors.push({path: 'login', message: 'El correo y la contraseña que has introducido no coinciden.'})
       next(err)
     }
