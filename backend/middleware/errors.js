@@ -1,19 +1,28 @@
 'use strict'
+let Sequelize = require('sequelize')
+
 
 
 const errorMiddleware = (err, req, res, next) => {
-  switch (err.name) {
-    case "SequelizeValidationError":
-      res.status(422).json(err.errors)
-      break;
-
-    case "SequelizeEmptyResultError":
-      res.status(404).json(err)
-      break;
-
-    default:
-      next(err)
+  if(err.type === "processing_error"){
+    let cerr = new Sequelize.ValidationError('')
+    cerr.errors.push({path: 'card_token', message: err.details[0].message})
+    res.status(422).json(cerr.errors)
   }
+
+  if(err.name === "SequelizeValidationError"){
+    res.status(422).json(err.errors)
+  }
+
+  if(err.name === "SequelizeEmptyResultError"){
+    res.status(404).json(err.errors)
+  }
+
+  if(err.name === "VerificationError"){
+    res.sendStatus(401)
+  }
+
+  next(err)
 }
 
 
