@@ -5,8 +5,8 @@ import classnames from 'classnames'
 import { Map } from 'immutable'
 import { addressDelete } from 'actions/address'
 import { addCartAddress } from 'actions/cart'
+import { resetErrors } from 'actions/errors'
 
-// REMEMBER TO RESET ERRORS ON CANCEL
 
 
 export default class AddressList extends React.Component {
@@ -129,6 +129,7 @@ class Address extends React.PureComponent {
   handleSelect(event) {
     this.props.onRequestSelect(event)
     if(this.props.selectable){
+      this.props.dispatch(resetErrors(this.props.selectActionType))
       this.props.dispatch(addCartAddress(this.props.address.toJS(), this.props.selectActionType))
     }
   }

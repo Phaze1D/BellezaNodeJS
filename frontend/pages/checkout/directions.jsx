@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import AddressForm from 'components/AddressForm/AddressForm'
 import AddressList from 'components/AddressList/AddressList'
 import { addCartAddress, addCartExtra } from 'actions/cart'
+import { resetErrors, setError } from 'actions/errors'
+
 
 
 
@@ -34,6 +36,11 @@ export default class CheckoutDirections extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(addCartAddress({}, 'invoiceAddress'))
+    this.props.dispatch(addCartAddress({}, 'shippingAddress'))
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(resetErrors())
   }
 
   handleFactura(event) {
@@ -49,20 +56,32 @@ export default class CheckoutDirections extends React.Component {
     let extraData = {}
     extraData.notes = this.refs.noteInput.value
     if(!this.refs.facturaBox.classList.contains('hide-f')){
-      if(rfc && razon_social && !this.props.cart.get('invoiceAddress').isEmpty()){
-        extraData.rfc = rfc
-        extraData.razon_social = razon_social
-      }else{
+
+      if(this.props.cart.get('invoiceAddress').isEmpty()) {
         event.preventDefault()
-        this.handleError('RFC es Necesario')
+        this.props.dispatch(setError('invoiceAddress', 'Porfavor seleccione una dirección de facturación'))
       }
+
+      if(!rfc) {
+        event.preventDefault()
+        this.props.dispatch(setError('rfc', 'RFC es Necesario'))
+      }
+
+      if(!razon_social){
+        event.preventDefault()
+        this.props.dispatch(setError('razon_social', 'Razon Social es Necesario'))
+      }
+
+      extraData.rfc = rfc
+      extraData.razon_social = razon_social
     }
-    this.props.dispatch(addCartExtra(extraData))
 
     if(this.props.cart.get('shippingAddress').isEmpty()){
       event.preventDefault()
-      this.handleError('Seleccione una dirección de envío')
+      this.props.dispatch(setError('shippingAddress', 'Porfavor seleccione una dirección de envío'))
     }
+
+    this.props.dispatch(addCartExtra(extraData))
 
   }
 
@@ -131,9 +150,11 @@ export default class CheckoutDirections extends React.Component {
 
               <form className="main-form" onSubmit={event => event.preventDefault()}>
                 <label htmlFor="rfc">RFC</label>
+                {errors.get('rfc') && <div className="error-div">{errors.get('rfc')}</div>}
                 <input name="rfc" type="text" ref="rfcInput"/>
 
                 <label htmlFor="razon_social">Razon Social</label>
+                {errors.get('razon_social') && <div className="error-div">{errors.get('razon_social')}</div>}
                 <input name="razon_social" type="text" ref="razonInput"/>
               </form>
             </article>
@@ -143,6 +164,8 @@ export default class CheckoutDirections extends React.Component {
               onClick={this.handleContinue}>
               Continuar
             </Link>
+            {errors.get('shippingAddress') && <div className="error-div">{errors.get('shippingAddress')}</div>}
+            {errors.get('invoiceAddress') && <div className="error-div">{errors.get('invoiceAddress')}</div>}
           </section>
 
           <section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs col-xxs-hide">
@@ -168,7 +191,7 @@ const DetailItem = props => (
       <p className="sub-text primary">{props.detail.get('name')}</p>
       <p className="sub-text">
         Cantidad: {props.detail.get('quantity')} <br/>
-      Subtotal: ${(props.detail.get('sub_total')/100).toFixed(2)}
+        Subtotal: ${(props.detail.get('sub_total')/100).toFixed(2)}
       </p>
     </div>
   </li>
