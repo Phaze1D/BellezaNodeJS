@@ -25,7 +25,7 @@ let prodAtt = [
   'stock'
 ]
 
-let VERIFICATION_ERROR = {error: 401, message: 'verification error'}
+let VERIFICATION_ERROR = {name: "VerificationError", error: 401, message: 'verification error'}
 
 const cardPaymentFlow = (cart, userId) => {
   return verifyCart(cart, userId)
