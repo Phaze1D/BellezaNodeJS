@@ -47,6 +47,7 @@ export default class CheckoutDirections extends React.Component {
     this.refs.facturaBox.classList.toggle('hide-f')
     if(this.refs.facturaBox.classList.contains('hide-f')){
       this.props.dispatch(addCartAddress({}, 'invoiceAddress'))
+      this.props.dispatch(resetErrors('invoiceAddress'))
     }
   }
 
@@ -151,11 +152,13 @@ export default class CheckoutDirections extends React.Component {
               <form className="main-form" onSubmit={event => event.preventDefault()}>
                 <label htmlFor="rfc">RFC</label>
                 {errors.get('rfc') && <div className="error-div">{errors.get('rfc')}</div>}
-                <input name="rfc" type="text" ref="rfcInput"/>
+                <input name="rfc" type="text" ref="rfcInput"
+                  onFocus={(event) => this.props.dispatch(resetErrors('rfc'))}/>
 
                 <label htmlFor="razon_social">Razon Social</label>
                 {errors.get('razon_social') && <div className="error-div">{errors.get('razon_social')}</div>}
-                <input name="razon_social" type="text" ref="razonInput"/>
+                <input name="razon_social" type="text" ref="razonInput"
+                  onFocus={(event) => this.props.dispatch(resetErrors('razon_social'))}/>
               </form>
             </article>
 
