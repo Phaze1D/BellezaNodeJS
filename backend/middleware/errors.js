@@ -19,7 +19,7 @@ const errorMiddleware = (err, req, res, next) => {
   }
 
   if(err.name === "VerificationError"){
-    res.sendStatus(401)
+    res.status(401).json(err)
   }
 
   next(err)
