@@ -174,25 +174,19 @@ export default class ProductShow extends React.Component {
              </TabList>
 
              <TabPanel
-               className="tab-panel"
-               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
-               onMouseLeave={(event) => document.body.style.overflow = ""}>
+               className="tab-panel">
                <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('description')}}>
                </div>
              </TabPanel>
 
              <TabPanel
-               className="tab-panel"
-               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
-               onMouseLeave={(event) => document.body.style.overflow = ""}>
+               className="tab-panel">
                <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
                </div>
              </TabPanel>
 
              <TabPanel
-               className="tab-panel"
-               onMouseEnter={(event) => document.body.style.overflow = "hidden"}
-               onMouseLeave={(event) => document.body.style.overflow = ""}>
+               className="tab-panel">
                <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
                </div>
              </TabPanel>
