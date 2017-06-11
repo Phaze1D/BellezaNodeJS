@@ -74,7 +74,9 @@ import {
 } from 'reducers/payment'
 
 import {
-  errorsReducer
+  errorsResponseReducer,
+  resetErrorsReducer,
+  setErrorReducer
 } from 'reducers/errors'
 
 import {
@@ -83,6 +85,12 @@ import {
   getClientReducer,
   resetClientReducer
 } from 'reducers/clients'
+
+const errorsReducer = reduceReducers(
+  errorsResponseReducer,
+  resetErrorsReducer,
+  setErrorReducer
+)
 
 const clientReducers = reduceReducers(
     getClientReducer,
