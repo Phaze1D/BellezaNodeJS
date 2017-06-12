@@ -121,14 +121,15 @@ export default class CheckoutConfirmation extends React.Component {
 
   handleSuccess(respones){
     document.getElementById('card-form').elements.submit.disabled = false
+    document.getElementById('cash-form').elements.submit.disabled = false
     this.props.history.push({
       pathname: '/successful',
     })
   }
 
   handleError(response){
-    console.log(response);
     document.getElementById('card-form').elements.submit.disabled = false
+    document.getElementById('cash-form').elements.submit.disabled = false
 
   }
 
