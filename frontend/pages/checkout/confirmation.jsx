@@ -37,7 +37,7 @@ export default class CheckoutConfirmation extends React.Component {
     this.handleSubmitCode = this.handleSubmitCode.bind(this)
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
     this.handleSubmitCash = this.handleSubmitCash.bind(this)
-    this.handleSucces = this.handleSucces.bind(this)
+    this.handleSuccess = this.handleSuccess.bind(this)
     this.handleError = this.handleError.bind(this)
 
     this.successfullToken = this.successfullToken.bind(this)
@@ -96,7 +96,7 @@ export default class CheckoutConfirmation extends React.Component {
       type: 'card'
     }
     this.props.dispatch(cardPayment(formData, this.props.user.get('token')))
-    .then(this.handleSucces)
+    .then(this.handleSuccess)
     .catch(this.handleError)
   }
 
@@ -115,11 +115,11 @@ export default class CheckoutConfirmation extends React.Component {
     }
 
     this.props.dispatch(cashPayment(formData, this.props.user.get('token')))
-    .then(this.handleSucces)
+    .then(this.handleSuccess)
     .catch(this.handleError)
   }
 
-  handleSucces(respones){
+  handleSuccess(respones){
     document.getElementById('card-form').elements.submit.disabled = false
     this.props.history.push({
       pathname: '/successful',
@@ -127,6 +127,7 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleError(response){
+    console.log(response);
     document.getElementById('card-form').elements.submit.disabled = false
 
   }
