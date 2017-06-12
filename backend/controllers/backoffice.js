@@ -43,8 +43,10 @@ router.get('/banner/:id', isLogin, isAdmin, function (req, res, next) {
 })
 
 router.post('/banner', isLogin, isAdmin, upload.fields(bannerImagesFields), function (req, res, next) {
-  bannerImage(req.files.imagelg[0].buffer, req.files.imagesm[0].buffer)
-  .then(values => {
+  let mainimg = req.files.imagelg ? req.files.imagelg[0].buffer : null
+  let secimg = req.files.imagesm ? req.files.imagesm[0].buffer : null
+
+  bannerImage(mainimg, secimg).then(values => {
     return Banner.create(req.body, {fields: bannerFields})
   }).then(banner => {
     let s3 = new aws.S3({

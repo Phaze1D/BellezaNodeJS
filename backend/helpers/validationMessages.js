@@ -19,6 +19,12 @@ const valmsg = {
     }
   },
   bannerImage: (lg, sm) => {
+    if(!(lg && sm)){
+      let err = new Sequelize.ValidationError('')
+      err.errors.push({path: 'imagelg', message: 'Missing main or second image'})
+      return Promise.reject(err)
+    }
+
     return Promise.all([gm(lg).sizeAsync(), gm(sm).sizeAsync()]).then( values => {
       if( !(values[0].width == 940 && values[0].height == 300) ){
         let err = new Sequelize.ValidationError('')
