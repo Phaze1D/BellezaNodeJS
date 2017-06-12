@@ -14,7 +14,6 @@ export default class DropDown extends React.Component {
   componentDidMount() {
     this.menu = new MDCSimpleMenu(this.refs.dom_menu)
     this.refs.dom_menu.addEventListener('MDCSimpleMenu:selected', this.handleItemSelect)
-
   }
 
   handleToggle(event) {
