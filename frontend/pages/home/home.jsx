@@ -4,6 +4,8 @@ import Favorites from 'components/Favorites/Favorites'
 import { connect } from 'react-redux'
 import { getCarousel, resetBanners } from 'actions/others'
 import { getFavs, resetProducts } from 'actions/product'
+import Loader from 'components/Loader/Loader'
+
 
 
 /**
@@ -57,8 +59,13 @@ export default class Home extends React.Component {
 
     return (
       <main>
-        <Carousel banners={banners}/>
-        <Favorites products={products}/>
+        <Loader>
+          <div>
+            <Carousel banners={banners}/>
+            <Favorites products={products}/>
+          </div>
+        </Loader>
+
 
         <div className="grid col-sm-hide">
           <div className="col-4 social-feed">

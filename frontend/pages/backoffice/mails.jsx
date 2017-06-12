@@ -4,6 +4,8 @@ import Pagination from 'components/Pagination/Pagination'
 import { connect } from 'react-redux'
 import { resetMailing, getMailing } from 'actions/others'
 import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
+
 
 
 /**
@@ -85,29 +87,32 @@ class BackofficeMails extends React.Component {
           <Link to ="#" className="white-button">Download</Link>
         </div>
 
-        <table className="backoffice-table">
-          <thead>
-            <tr>
-              <th>Active</th>
-              <th>Email</th>
-            </tr>
-          </thead>
+        <Loader>
+          <table className="backoffice-table">
+            <thead>
+              <tr>
+                <th>Active</th>
+                <th>Email</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {emailList}
-          </tbody>
+            <tbody>
+              {emailList}
+            </tbody>
 
-          <tfoot>
-            <tr>
-              <td colSpan="1">
-                <Pagination
-                  links={links}
-                  page={this.state.page}
-                  onRequestClick={this.handlePageClick}/>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            <tfoot>
+              <tr>
+                <td colSpan="1">
+                  <Pagination
+                    links={links}
+                    page={this.state.page}
+                    onRequestClick={this.handlePageClick}/>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </Loader>
+
       </div>
     )
   }

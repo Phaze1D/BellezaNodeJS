@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import DropDown from 'components/DropDown/DropDown'
 import Pagination from 'components/Pagination/Pagination'
 import ProductResult from 'components/ProductResult/ProductResult'
+import Loader from 'components/Loader/Loader'
+
 
 
 export default class Results extends React.Component {
@@ -59,10 +61,12 @@ export default class Results extends React.Component {
             onRequestClick={this.handlePageClick}/>
         </div>
 
-        <div className="grid-wrap">
-          {prodList}
-        </div>
-
+        <Loader>
+          <div className="grid-wrap">
+            {prodList}
+          </div>
+        </Loader>
+        
         {links.length > 1 &&
           <div className="grid between results-options center end">
             <Pagination

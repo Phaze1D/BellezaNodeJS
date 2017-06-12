@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { dateOptions } from 'utils/date'
 import { userLogout } from 'actions/user'
 import { getUserCodes, resetCodes } from 'actions/discountcode'
+import Loader from 'components/Loader/Loader'
+
 
 
 
@@ -73,28 +75,30 @@ export default class UserCodes extends React.Component {
             onClick={this.handleLogout}>Salir</Link>
         </h2>
 
-        <div className="grid-wrap top around">
+        <Loader>
+          <div className="grid-wrap top around">
 
-          {codes.get('active').size > 0 &&
-            <article className="col-5 col-sm-12 box active">
-              <div className="code-top">Activados</div>
-              {aList}
-            </article>
-          }
+            {codes.get('active').size > 0 &&
+              <article className="col-5 col-sm-12 box active">
+                <div className="code-top">Activados</div>
+                {aList}
+              </article>
+            }
 
-          {codes.get('deactive').size > 0 &&
-            <article className="col-5 col-sm-12 box deactive">
-              <div className="code-top">Desactivados</div>
-              {dList}
-            </article>
-          }
+            {codes.get('deactive').size > 0 &&
+              <article className="col-5 col-sm-12 box deactive">
+                <div className="code-top">Desactivados</div>
+                {dList}
+              </article>
+            }
 
-          {codes.get('active').size == 0 && codes.get('deactive').size == 0 &&
-            <h4 className="sub-text">Cero Códigos Encontrados</h4>
-          }
+            {codes.get('active').size == 0 && codes.get('deactive').size == 0 &&
+              <h4 className="sub-text">Cero Códigos Encontrados</h4>
+            }
 
-        </div>
-
+          </div>
+        </Loader>
+        
       </section>
     )
   }

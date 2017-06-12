@@ -86,6 +86,8 @@ import {
   resetClientReducer
 } from 'reducers/clients'
 
+import { fetchingReducer } from 'reducers/fetching'
+
 const errorsReducer = reduceReducers(
   errorsResponseReducer,
   resetErrorsReducer,
@@ -184,7 +186,8 @@ const StateRecord = Immutable.Record({
   order: undefined,
   clients: undefined,
   client: undefined,
-  errors: undefined
+  errors: undefined,
+  fetching: undefined
 });
 
 export default combineReducers({
@@ -199,5 +202,6 @@ export default combineReducers({
   order: orderReducer,
   clients: clientsReducers,
   client: clientReducers,
-  errors: errorsReducer
+  errors: errorsReducer,
+  fetching: fetchingReducer
 }, StateRecord)

@@ -4,6 +4,8 @@ import Pagination from 'components/Pagination/Pagination'
 import { connect } from 'react-redux'
 import { getClients, resetClients } from 'actions/clients'
 import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
+
 
 
 
@@ -98,41 +100,37 @@ export default class UsersIndex extends React.Component {
 
     return (
       <div>
-        <div className="protop">
-          <form onSubmit={this.handleSearch}>
-            <input type="text" name="query"/>
-            <input type="submit" style={{display: 'none'}}/>
-          </form>
-        </div>
+        <Loader>
+          <table className="backoffice-table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Total Amount</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
 
-        <table className="backoffice-table">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Total Amount</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+            <tbody>
+              {userList}
+            </tbody>
 
-          <tbody>
-            {userList}
-          </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan="7">
+                  <Pagination
+                    links={links}
+                    page={this.state.page}
+                    onRequestClick={this.handlePageClick}/>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </Loader>
 
-          <tfoot>
-            <tr>
-              <td colSpan="7">
-                <Pagination
-                  links={links}
-                  page={this.state.page}
-                  onRequestClick={this.handlePageClick}/>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
       </div>
     )
   }

@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { userLogout } from 'actions/user'
 import { resetOrders, getOrders } from 'actions/order'
 import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
+
 
 
 /**
@@ -93,7 +95,12 @@ export default class UserOrders extends React.Component {
             onClick={this.handleLogout}>Salir</Link>
         </h2>
 
-        {orderList}
+        <Loader>
+          <div>
+            {orderList}
+          </div>
+        </Loader>
+
         <Pagination
           links={links}
           page={this.state.page}

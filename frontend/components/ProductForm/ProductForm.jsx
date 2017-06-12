@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
+import Loader from 'components/Loader/Loader'
+
 
 
 class ProductForm extends React.Component {
@@ -177,8 +179,13 @@ class ProductForm extends React.Component {
             <textarea id="ingredients" name="ingredients" defaultValue={product.get('ingredients')}></textarea>
           </div>
 
-          <input className="submit full" type="submit" value="Save"/>
-          <Link className="cancel full" to="/backoffice/products">Cancel</Link>
+          <Loader>
+            <div className="col-12">
+              <input className="submit full" type="submit" value="Save"/>
+              <Link className="cancel full" to="/backoffice/products">Cancel</Link>
+            </div>
+          </Loader>
+
         </form>
       </div>
     )

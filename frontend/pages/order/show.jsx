@@ -5,6 +5,7 @@ import { Address } from 'pages/checkout/confirmation'
 import { dateOptions } from 'utils/date'
 import { connect } from 'react-redux'
 import { getOrder, resetOrder } from 'actions/order'
+import Loader from 'components/Loader/Loader'
 
 
 
@@ -57,28 +58,30 @@ class OrderShow extends React.Component {
     }
 
     return (
-      <main>
-        <h2 className={`status-${order.get('status')}`}>Status: {order.get('status')}</h2>
-        <h4 className="sub-text">Referencia: #{order.get('id')}</h4>
-        <h4 className="sub-text">
-          Fecha Realizado: {new Date(order.get('created_at')).toLocaleString('en-us', dateOptions)}
-        </h4>
-        <div className="grid-wrap">
-          <div className="col-9 col-md-8 col-sm-12">
-            <OrderTable
-              order={order}
-              editable={false}/>
-          </div>
+      <Loader>
+        <main>
+          <h2 className={`status-${order.get('status')}`}>Status: {order.get('status')}</h2>
+          <h4 className="sub-text">Referencia: #{order.get('id')}</h4>
+          <h4 className="sub-text">
+            Fecha Realizado: {new Date(order.get('created_at')).toLocaleString('en-us', dateOptions)}
+          </h4>
+          <div className="grid-wrap">
+            <div className="col-9 col-md-8 col-sm-12">
+              <OrderTable
+                order={order}
+                editable={false}/>
+            </div>
 
 
-          <div className="col-3 col-md-4 col-sm-12">
-            <Address address={order.get('shippingAddress')} title="Dirección de Envío"/>
-            {order.get('invoiceAddress') != null && !order.get('invoiceAddress').isEmpty() &&
-              <Address address={order.get('invoiceAddress')} title="Facturacion" rfc={order.get('rfc')} razonSocial={order.get('razon_social')}/>
-            }
+            <div className="col-3 col-md-4 col-sm-12">
+              <Address address={order.get('shippingAddress')} title="Dirección de Envío"/>
+              {order.get('invoiceAddress') != null && !order.get('invoiceAddress').isEmpty() &&
+                <Address address={order.get('invoiceAddress')} title="Facturacion" rfc={order.get('rfc')} razonSocial={order.get('razon_social')}/>
+              }
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </Loader>
     )
   }
 }

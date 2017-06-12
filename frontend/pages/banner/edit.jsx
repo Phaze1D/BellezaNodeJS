@@ -3,6 +3,7 @@ import BannerForm from 'components/BannerForm/BannerForm'
 import { connect } from 'react-redux'
 import { editBanner, resetBanner, getBanner } from 'actions/others'
 import { resetErrors } from 'actions/errors'
+import Loader from 'components/Loader/Loader'
 
 
 /**
@@ -76,7 +77,7 @@ class BannersEdit extends React.Component {
     } = this.props
 
     if(banner.get('loading')){
-      return null
+      return <Loader></Loader>
     }
 
     return (

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getClient, resetClient } from 'actions/clients'
 import { codeNew } from 'actions/discountcode'
 import { resetErrors } from 'actions/errors'
+import Loader from 'components/Loader/Loader'
 
 
 
@@ -76,6 +77,10 @@ class CodesNew extends React.Component {
       errors
     } = this.props
 
+    if(!client.get('email')){
+      return <Loader></Loader>
+    }
+
     return (
       <div>
         <h2><span className="sub-text">Discount Code For:</span> {client.get('first_name')} {client.get('last_name')}</h2>
@@ -103,9 +108,13 @@ class CodesNew extends React.Component {
           </div>
 
           <div className="col-6"></div>
-          <input className="submit col-6" type="submit" value="Send"/>
-          <div className="col-6"></div>
-          <Link className="cancel col-6" to="/backoffice/users">Cancel</Link>
+          <Loader>
+            <div className="col-6">
+              <input className="submit full" type="submit" value="Send"/>
+              <Link className="cancel full" to="/backoffice/users">Cancel</Link>
+            </div>
+          </Loader>
+
         </form>
       </div>
     )

@@ -5,6 +5,7 @@ import OrderTable from 'components/OrderTable/OrderTable'
 import { checkUserCode } from 'actions/discountcode'
 import { resetErrors, setError } from 'actions/errors'
 import { cashPayment, cardPayment } from 'actions/payment'
+import Loader from 'components/Loader/Loader'
 
 /**
 * LOCAL - GET
@@ -178,91 +179,94 @@ export default class CheckoutConfirmation extends React.Component {
 
             <h2>Forma de Pago</h2>
 
-            <radioGroup>
-              <div className="box" ref="boxCard">
-                <div className="grid center">
-                  Tarjeta de Crédito:
-        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
-        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png"/>
-        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png"/>
-        					<input
-                    style={{marginLeft: 'auto'}}
-                    name="active" type="radio"
-                    defaultChecked={true}
-                    onChange={this.handleRadio}/>
+            <Loader>
+              <radioGroup>
+                <div className="box" ref="boxCard">
+                  <div className="grid center">
+                    Tarjeta de Crédito:
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png"/>
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png"/>
+          					<input
+                      style={{marginLeft: 'auto'}}
+                      name="active" type="radio"
+                      defaultChecked={true}
+                      onChange={this.handleRadio}/>
+                  </div>
+
+                  <form id="card-form" className="payment-form" onSubmit={this.handleSubmitCard}>
+                    <div className="grid center">
+                      <label className="col-4 col-md-5" htmlFor="holder">Nombre: </label>
+                      <input className="col-8 col-md-7" name="holder" type="text"/>
+                    </div>
+
+                    <div className="grid center">
+                      <label className="col-4 col-md-5" htmlFor="number">Numero de Tarjeta: </label>
+                      <input className="col-8 col-md-7" name="number" type="text"/>
+                    </div>
+
+                    <div className="grid center">
+                      <label className="col-4 col-md-5" htmlFor="month">Fecha de Caducidad: </label>
+                      <select name="month">
+                        <option value='01'>Enero (1)</option>
+            						<option value='02'>Febrero (2)</option>
+            						<option value='03'>Marzo (3)</option>
+            						<option value='04'>Abril (4)</option>
+            						<option value='05'>Mayo (5)</option>
+            						<option value='06'>Junio (6)</option>
+            						<option value='07'>Julio (7)</option>
+            						<option value='08'>Agosto (8)</option>
+            						<option value='09'>Septiembre (9)</option>
+            						<option value='10'>Octubre (10)</option>
+            						<option value='11'>Noviembre (11)</option>
+            						<option value='12'>Diciembre (12)</option>
+                      </select>
+
+                      <select name="year">
+                        {years}
+                      </select>
+                    </div>
+
+                    <div className="grid center">
+                      <label className="col-4 col-md-5" htmlFor="secret">Codigo de Seguridad: </label>
+                      <input className="col-3 col-md-7" name="secret" type="text"/>
+                    </div>
+
+                    <input type="submit" value="Pagar" name="submit" className="submit full"/>
+                    {errors.get('card_token') && <div className="error-div">{errors.get('card_token')}</div>}
+                  </form>
                 </div>
 
-                <form id="card-form" className="payment-form" onSubmit={this.handleSubmitCard}>
+                <div className="box hide-pay" ref="boxCash">
                   <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="holder">Nombre: </label>
-                    <input className="col-8 col-md-7" name="holder" type="text"/>
+                    Pagar en Efectivo
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"/>
+                    <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png"/>
+          					<input
+                      style={{marginLeft: 'auto'}}
+                      name="active" type="radio"
+                      defaultChecked={false}
+                      onChange={this.handleRadio}/>
                   </div>
 
-                  <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="number">Numero de Tarjeta: </label>
-                    <input className="col-8 col-md-7" name="number" type="text"/>
-                  </div>
+                  <form id="cash-form" className="payment-form" onSubmit={this.handleSubmitCash}>
+                    <div className="grid center">
+                      <label className="col-4" htmlFor="card-date">Tipo: </label>
+                      <select name="payment_type">
+                        <option value="oxxo_cash">OXXO</option>
+                        <option value="spei">Transferencia Bancaria</option>
+                      </select>
+                    </div>
 
-                  <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="month">Fecha de Caducidad: </label>
-                    <select name="month">
-                      <option value='01'>Enero (1)</option>
-          						<option value='02'>Febrero (2)</option>
-          						<option value='03'>Marzo (3)</option>
-          						<option value='04'>Abril (4)</option>
-          						<option value='05'>Mayo (5)</option>
-          						<option value='06'>Junio (6)</option>
-          						<option value='07'>Julio (7)</option>
-          						<option value='08'>Agosto (8)</option>
-          						<option value='09'>Septiembre (9)</option>
-          						<option value='10'>Octubre (10)</option>
-          						<option value='11'>Noviembre (11)</option>
-          						<option value='12'>Diciembre (12)</option>
-                    </select>
+                    <input type="submit" value="Pagar" name="submit" className="submit full"/>
+                    {errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
+                  </form>
 
-                    <select name="year">
-                      {years}
-                    </select>
-                  </div>
-
-                  <div className="grid center">
-                    <label className="col-4 col-md-5" htmlFor="secret">Codigo de Seguridad: </label>
-                    <input className="col-3 col-md-7" name="secret" type="text"/>
-                  </div>
-
-                  <input type="submit" value="Pagar" name="submit" className="submit full"/>
-                  {errors.get('card_token') && <div className="error-div">{errors.get('card_token')}</div>}
-                </form>
-              </div>
-
-              <div className="box hide-pay" ref="boxCash">
-                <div className="grid center">
-                  Pagar en Efectivo
-        					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"/>
-                  <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png"/>
-        					<input
-                    style={{marginLeft: 'auto'}}
-                    name="active" type="radio"
-                    defaultChecked={false}
-                    onChange={this.handleRadio}/>
+                  <p className="sub-text" style={{fontStyle: 'italic'}}>Los pagos en efectivo no se pueden devolver</p>
                 </div>
+              </radioGroup>
+            </Loader>
 
-                <form id="cash-form" className="payment-form" onSubmit={this.handleSubmitCash}>
-                  <div className="grid center">
-                    <label className="col-4" htmlFor="card-date">Tipo: </label>
-                    <select name="payment_type">
-                      <option value="oxxo_cash">OXXO</option>
-                      <option value="spei">Transferencia Bancaria</option>
-                    </select>
-                  </div>
-
-                  <input type="submit" value="Pagar" name="submit" className="submit full"/>
-                  {errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
-                </form>
-
-                <p className="sub-text" style={{fontStyle: 'italic'}}>Los pagos en efectivo no se pueden devolver</p>
-              </div>
-            </radioGroup>
           </section>
 
           <section className="col-4 col-sm-12 first-sm">

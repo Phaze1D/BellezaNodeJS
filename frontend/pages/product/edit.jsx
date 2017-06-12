@@ -3,6 +3,8 @@ import ProductForm from 'components/ProductForm/ProductForm'
 import { connect } from 'react-redux'
 import { getProduct, resetProduct, editProduct } from 'actions/product'
 import { resetErrors } from 'actions/errors'
+import Loader from 'components/Loader/Loader'
+
 
 
 
@@ -101,7 +103,7 @@ class ProductsEdit extends React.Component {
     } = this.props
 
     if(product.get('loading')){
-      return null
+      return <Loader></Loader>
     }
 
     return (

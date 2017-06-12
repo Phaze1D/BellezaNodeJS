@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import { inputDate } from 'utils/date'
+import Loader from 'components/Loader/Loader'
+
 
 class BannerForm extends React.Component {
   render () {
@@ -85,9 +87,15 @@ class BannerForm extends React.Component {
             <input type="text" name="link_to" defaultValue={banner.get('link_to')}/>
           </div>
 
+          <div className="col-12"></div>
 
-          <input className="submit full" type="submit" value="Save"/>
-          <Link className="cancel full" to="/backoffice/banners">Cancel</Link>
+          <Loader>
+            <div className="col-12">
+              <input className="submit full" type="submit" value="Save"/>
+              <Link className="cancel full" to="/backoffice/banners">Cancel</Link>
+            </div>
+          </Loader>
+
         </form>
     )
   }

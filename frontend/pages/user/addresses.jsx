@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import AddressList from 'components/AddressList/AddressList'
 import { userLogout } from 'actions/user'
 
-// REMEMBER TO RESET ERRORS ON CANCEL
 
 @connect( store => {
   return {

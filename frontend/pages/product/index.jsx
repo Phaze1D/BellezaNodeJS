@@ -4,6 +4,8 @@ import Pagination from 'components/Pagination/Pagination'
 import { connect } from 'react-redux'
 import { getBackofficeProducts, resetProducts } from 'actions/product'
 import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
+
 
 
 /**
@@ -105,31 +107,34 @@ export default class ProductsIndex extends React.Component {
             <input type="submit" style={{display: 'none'}}/>
           </form>
         </div>
-        <table className="backoffice-table">
-          <thead>
-            <tr>
-              <th>PLU</th>
-              <th>Name</th>
-              <th>Stock</th>
-              <th>Update</th>
-            </tr>
-          </thead>
+        <Loader>
+          <table className="backoffice-table">
+            <thead>
+              <tr>
+                <th>PLU</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Update</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {productList}
-          </tbody>
+            <tbody>
+              {productList}
+            </tbody>
 
-          <tfoot>
-            <tr>
-              <td colSpan="4">
-                <Pagination
-                  links={links}
-                  page={this.state.page}
-                  onRequestClick={this.handlePageClick}/>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            <tfoot>
+              <tr>
+                <td colSpan="4">
+                  <Pagination
+                    links={links}
+                    page={this.state.page}
+                    onRequestClick={this.handlePageClick}/>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </Loader>
+
       </div>
     )
   }

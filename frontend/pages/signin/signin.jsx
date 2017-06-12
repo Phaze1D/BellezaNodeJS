@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Loader from 'components/Loader/Loader'
 import queryString from 'query-string'
 import { resetErrors } from 'actions/errors'
 import {
@@ -145,7 +146,9 @@ const LoginFrom = props => {
         <label htmlFor="password">Contraseña <Link to="/passwordreset" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
         <input type="password" name="password"/>
 
-        <input className="submit full" type="submit" value="Ingresar"/>
+        <Loader>
+          <input className="submit full" type="submit" value="Ingresar"/>
+        </Loader>
       </form>
     </section>
   )
@@ -185,7 +188,10 @@ const SignUpForm = props => {
           onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 
-        <input className="submit full" type="submit" value="Crear"/>
+        <Loader>
+          <input className="submit full" type="submit" value="Crear"/>
+        </Loader>
+
       </form>
     </section>
   )

@@ -5,6 +5,8 @@ import { dateOptions } from 'utils/date'
 import { connect } from 'react-redux'
 import { resetOrders, getAllOrders } from 'actions/order'
 import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
+
 
 
 
@@ -82,7 +84,6 @@ class BackofficeOrders extends React.Component {
 
     return (
       <div>
-
         <ul className="backorders-nav">
           <li>
             <Link
@@ -101,32 +102,35 @@ class BackofficeOrders extends React.Component {
           </li>
         </ul>
 
-        <table className="backoffice-table">
-          <thead>
-            <tr>
-              <th>Referencia</th>
-              <th>Fecha</th>
-              <th>Cliente</th>
-              <th>Total</th>
-              <th>Details</th>
-            </tr>
-          </thead>
+        <Loader>
+          <table className="backoffice-table">
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Details</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {orderList}
-          </tbody>
+            <tbody>
+              {orderList}
+            </tbody>
 
-          <tfoot>
-            <tr>
-              <td colSpan="5">
-                <Pagination
-                  links={links}
-                  page={this.state.page}
-                  onRequestClick={this.handlePageClick}/>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            <tfoot>
+              <tr>
+                <td colSpan="5">
+                  <Pagination
+                    links={links}
+                    page={this.state.page}
+                    onRequestClick={this.handlePageClick}/>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </Loader>
+
       </div>
     )
   }

@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination/Pagination'
 import { dateOptions } from 'utils/date'
 import queryString from 'query-string'
 import { getBanners, resetBanners, deleteBanner } from 'actions/others'
+import Loader from 'components/Loader/Loader'
 
 
 
@@ -98,35 +99,36 @@ class BannersIndex extends React.Component {
           <Link to ="/backoffice/banner/new" className="secondary-button">Add Banner</Link>
         </div>
 
-        <table className="backoffice-table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Link To</th>
-              <th>Active</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
+        <Loader>
+          <table className="backoffice-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Link To</th>
+                <th>Active</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {bannerList}
-          </tbody>
+            <tbody>
+              {bannerList}
+            </tbody>
 
-          <tfoot>
-            <tr>
-              <td colSpan="7">
-                <Pagination
-                  links={links}
-                  page={this.state.page}
-                  onRequestClick={this.handlePageClick}/>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-
+            <tfoot>
+              <tr>
+                <td colSpan="7">
+                  <Pagination
+                    links={links}
+                    page={this.state.page}
+                    onRequestClick={this.handlePageClick}/>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </Loader>
       </div>
     )
   }
