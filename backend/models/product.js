@@ -138,8 +138,8 @@ module.exports = function(sequelize, DataTypes) {
     let options = {
       subquery: false,
       attributes: { exclude: ['description', 'ingredients', 'benefits'] },
-      offset: 20 * page,
-      limit: 20,
+      offset: 16 * page,
+      limit: 16,
       order: [sortOptions[sort]],
     }
     options.where = active ? {active: true}: {}

@@ -10,7 +10,7 @@ import Loader from 'components/Loader/Loader'
 export default class Results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {page: 0, prePage: 20, sortIndex: 0}
+    this.state = {page: 0, prePage: 16, sortIndex: 0}
 
     this.handlePageClick = this.handlePageClick.bind(this);
     this.handleSort = this.handleSort.bind(this);
@@ -66,7 +66,7 @@ export default class Results extends React.Component {
             {prodList}
           </div>
         </Loader>
-        
+
         {links.length > 1 &&
           <div className="grid between results-options center end">
             <Pagination
