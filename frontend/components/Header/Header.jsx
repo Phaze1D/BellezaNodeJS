@@ -29,13 +29,13 @@ export default class Header extends React.Component {
     this.handleToggleSide = this.handleToggleSide.bind(this)
     this.handleNavClick = this.handleNavClick.bind(this)
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
-    this.handleGlobalError = this.handleGlobalError.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   componentDidMount() {
     this.props.dispatch(getCategories())
     .then()
-    .catch(this.handleGlobalError)
+    .catch(this.handleError)
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -76,7 +76,7 @@ export default class Header extends React.Component {
     input.value = ''
   }
 
-  handleGlobalError(response) {
+  handleError(response) {
 
   }
 

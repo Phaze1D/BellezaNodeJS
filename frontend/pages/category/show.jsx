@@ -30,7 +30,7 @@ export default class CategoryShow extends React.Component {
     super(props)
 
     this.handleUrlChanged = this.handleUrlChanged.bind(this)
-    this.handleGlobalError = this.handleGlobalError.bind(this)
+    this.handleError = this.handleError.bind(this)
     this.unlisten = null
   }
 
@@ -63,11 +63,11 @@ export default class CategoryShow extends React.Component {
       const parse = queryString.parse(location.search)
       this.props.dispatch(getProducts(undefined, category.get('id'), parse.page, parse.sort))
       .then()
-      .catch(this.handleGlobalError)
+      .catch(this.handleError)
     }
   }
 
-  handleGlobalError(response) {
+  handleError(response) {
 
   }
 

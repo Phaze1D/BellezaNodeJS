@@ -30,7 +30,7 @@ export default class ProductShow extends React.Component {
     super(props)
 
     this.handleUrlChanged = this.handleUrlChanged.bind(this)
-    this.handleGlobalError = this.handleGlobalError.bind(this)
+    this.handleError = this.handleError.bind(this)
     this.handleAddDetail = this.handleAddDetail.bind(this)
     this.unlisten = null
     Tabs.setUseDefaultStyles(false);
@@ -61,7 +61,7 @@ export default class ProductShow extends React.Component {
       const id = this.props.match.params.id
       this.props.dispatch(getProduct(id))
       .then()
-      .catch(this.handleGlobalError)
+      .catch(this.handleError)
     }
   }
 
@@ -87,7 +87,7 @@ export default class ProductShow extends React.Component {
     }
   }
 
-  handleGlobalError(response) {
+  handleError(response) {
 
   }
 

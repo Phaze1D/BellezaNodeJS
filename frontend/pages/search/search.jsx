@@ -20,7 +20,7 @@ class Search extends React.Component {
     super(props)
 
     this.handleUrlChanged = this.handleUrlChanged.bind(this)
-    this.handleGlobalError = this.handleGlobalError.bind(this)
+    this.handleError = this.handleError.bind(this)
     this.unlisten = null
   }
 
@@ -39,11 +39,11 @@ class Search extends React.Component {
       const parse = queryString.parse(location.search)
       this.props.dispatch(getProducts(parse.q, undefined, parse.page, parse.sort))
       .then()
-      .catch(this.handleGlobalError)
+      .catch(this.handleError)
     }
   }
 
-  handleGlobalError(response) {
+  handleError(response) {
 
   }
 
