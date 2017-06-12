@@ -130,7 +130,6 @@ export default class CheckoutConfirmation extends React.Component {
   handleError(response){
     document.getElementById('card-form').elements.submit.disabled = false
     document.getElementById('cash-form').elements.submit.disabled = false
-
   }
 
   render () {
