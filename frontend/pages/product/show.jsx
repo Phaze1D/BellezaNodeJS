@@ -88,7 +88,9 @@ export default class ProductShow extends React.Component {
   }
 
   handleError(response) {
-
+    this.props.history.push({
+      pathname: '/home',
+    })
   }
 
   handleShowSec(event){
