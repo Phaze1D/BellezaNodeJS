@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { addDetail } from 'actions/cart'
+import QuantityDrop from 'components/QuantityDrop/QuantityDrop'
 
 
 
@@ -54,8 +55,8 @@ export default class ProductResult extends React.PureComponent {
 
         {product.get('stock') > 0 ?
           <form onSubmit={this.handleAddDetail}>
-            <input className="secondary-button" type="submit" value="Agregar al Carrito"/>
-            <input name="quantity" type="number" min="0" max={product.get('stock')} defaultValue="1"/>
+            <input className="secondary-button" type="submit" value="Agregar al Carrito" style={{marginRight: '5px'}}/>
+            <QuantityDrop stock={product.get('stock')}/>
           </form>
           :
           <input className="secondary-button" type="submit" value="Agotado" disabled/>

@@ -5,14 +5,30 @@
   font-family: 'Lora', serif !important
   color: $primary
 
+  &.quantity
+    height: 32px
+
+
 .drop-button
   @extend .grid
   font-size: 0.9em
-  padding: 5px 5px 5px 16px
-  color: $grey-500
+  padding: 5px 5px 5px 10px
+  color: $primary
   margin: 0
+
+  &.quantity
+    font-size: 0.9em
+    padding: 7px 4px 7px 8px
+
+    i
+      color: $grey-500
+      margin: -1px 0 -1px 5px
+      font-size: 16px
+
+
   i
-    margin-left: 20px
+    margin-left: 10px
+    font-size: 20px
 
 .mdc-menu-anchor
   display: inline-block

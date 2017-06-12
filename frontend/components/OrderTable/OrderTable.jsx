@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
+import QuantityDrop from 'components/QuantityDrop/QuantityDrop'
+
 
 
 class OrderTable extends React.Component {
@@ -8,14 +10,8 @@ class OrderTable extends React.Component {
 
   }
 
-  handleInputChange(index, stock, event) {
-    let quantity = Number(event.target.value)
-    if(quantity <= stock){
-      this.props.onRequestInputChange(index, quantity)
-    }else{
-      let pur = stock > 1 ? 'disponibles' : 'disponible'
-      this.props.onRequestError(`Sólo ${stock} ${pur}`)
-    }
+  handleInputChange(index, value) {
+    this.props.onRequestInputChange(index, value)
   }
 
   handleRemove(index, event){
@@ -33,7 +29,7 @@ class OrderTable extends React.Component {
         key={index}
         detail={detail}
         editable={editable}
-        onRequestChange={this.handleInputChange.bind(this, index, detail.get('stock'))}
+        onRequestChange={this.handleInputChange.bind(this, index)}
         onRequestRemove={this.handleRemove.bind(this, index)}/>
     )
 
@@ -108,7 +104,10 @@ const OrderRow = (props) => (
 
       <span className="xs-span">
         {props.editable ?
-          <input type="number" max={props.detail.get('stock')} min="0" value={props.detail.get('quantity')} onChange={props.onRequestChange}/>
+          <QuantityDrop
+            stock={props.detail.get('stock')}
+            defaultValue={props.detail.get('quantity')}
+            onRequestChange={props.onRequestChange}/>
           :
           props.detail.get('quantity')
         }
@@ -130,7 +129,10 @@ const OrderRow = (props) => (
 
     <td className="sm-td">
       {props.editable ?
-        <input type="number" max={props.detail.get('stock')} min="0" value={props.detail.get('quantity')} onChange={props.onRequestChange}/>
+        <QuantityDrop
+          stock={props.detail.get('stock')}
+          defaultValue={props.detail.get('quantity')}
+          onRequestChange={props.onRequestChange}/>
         :
         props.detail.get('quantity')
       }

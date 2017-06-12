@@ -6,8 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { getProduct, resetProduct } from 'actions/product'
 import { addDetail } from 'actions/cart'
 import Loader from 'components/Loader/Loader'
-
-
+import QuantityDrop from 'components/QuantityDrop/QuantityDrop'
 
 
 /**
@@ -160,8 +159,8 @@ export default class ProductShow extends React.Component {
 
                 {product.get('stock') > 0 ?
                   <form className="col-4 col-xxs-12 grid end" onSubmit={this.handleAddDetail}>
-                    <input className="secondary-button raise grow" type="submit" value="Agregar"/>
-                    <input name="quantity" type="number" min="0" max={product.get('stock')} defaultValue="1"/>
+                    <input className="secondary-button raise grow" type="submit" value="Agregar" style={{marginRight: '5px'}}/>
+                    <QuantityDrop stock={product.get('stock')}/>
                   </form>
                   :
                   <input className="secondary-button" type="submit" value="Agotado" disabled/>
