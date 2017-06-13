@@ -53,7 +53,7 @@ const paymentFlow = (cart, userId) => {
     let formatted = formatOrder(cart, user.conekta_id)
     let payment_method = {type: cart.payment_source.type}
     if(payment_method.type === "card"){
-      payment_method.token_id = "tok_test_visa_4242"
+      payment_method.token_id = cart.payment_source.token
     }
     formatted.charges = [{
       payment_method: payment_method,
