@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MDCSimpleMenu, MDCSimpleMenuFoundation } from '@material/menu/dist/mdc.menu.js'
-import '@material/menu/dist/mdc.menu.css'
 
 
 export default class QuantityDrop extends React.Component {
