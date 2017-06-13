@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { passwordReset } from 'actions/others'
 import { resetErrors } from 'actions/errors'
+import Loader from 'components/Loader/Loader'
 
 /**
 * HTTP - POST
@@ -17,9 +18,11 @@ import { resetErrors } from 'actions/errors'
 class PasswordReset extends React.Component {
   constructor(props){
     super(props)
+    this.state = {showSuccess: false}
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputFocus = this.handleInputFocus.bind(this)
+    this.handleSuccess = this.handleSuccess.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
@@ -32,14 +35,19 @@ class PasswordReset extends React.Component {
     let elements = event.target.elements
     let formData = new FormData()
     formData.append('email', elements.email.value)
+    this.email = elements.email.value
 
     this.props.dispatch(passwordReset(formData))
-    .then()
+    .then(this.handleSuccess)
     .catch(this.handleError)
   }
 
   handleInputFocus(event){
     this.props.dispatch(resetErrors(event.target.name))
+  }
+
+  handleSuccess(response){
+    this.setState({showSuccess: true})
   }
 
   handleError(response){
@@ -56,12 +64,22 @@ class PasswordReset extends React.Component {
 					Proporcione a su cuenta de correo electrónico para recibir un correo electrónico para restablecer su contraseña
 				</p>
 
-        <form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email</label>
-          {errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
-          <input name="email" type="text" onFocus={this.handleInputFocus}/>
-          <input  className="submit full"  type="submit" value="Enviar"/>
-        </form>
+        {this.state.showSuccess ?
+          <h3 style={{color: "#1eab30"}}>
+            Le hemos enviado un correo electrónico a
+            <span className="sub-text primary"> {this.email} </span>
+            con las instrucciones de cómo restablecer su contraseña
+          </h3>
+        :
+        <Loader>
+          <form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
+            <label htmlFor="email">Email</label>
+            {errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
+            <input name="email" type="text" onFocus={this.handleInputFocus}/>
+            <input  className="submit full"  type="submit" value="Enviar"/>
+          </form>
+        </Loader>
+        }
       </main>
     )
   }
