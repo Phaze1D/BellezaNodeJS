@@ -83,9 +83,11 @@ export default class Footer extends React.Component {
       					<Link to="/terminosCondiciones"> Términos y condiciones</Link>
       				</li>
 
+              {/*
       				<li>
       					<Link to="/contact"> Contacto</Link>
       				</li>
+              */}
 
               <li>
       					<a href="http://www.nealsyardremedies.com/store-finder#international" target="_blank">Tiendas Internacionales</a>
