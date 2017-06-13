@@ -60,7 +60,7 @@ export default class Layout extends React.Component {
         <Route path="/search" component={Search}/>
         <Route path="/cart" component={CartShow}/>
         <Route path="/signin" component={Signin}/>
-        <Route path="/contact" component={Contact}/>
+        {/*<Route path="/contact" component={Contact}/>*/}
         <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
