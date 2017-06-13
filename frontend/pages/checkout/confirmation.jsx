@@ -34,6 +34,8 @@ import Loader from 'components/Loader/Loader'
 export default class CheckoutConfirmation extends React.Component {
   constructor(props){
     super(props)
+    this.state = {radio: true}
+
     this.handleRadio = this.handleRadio.bind(this)
     this.handleSubmitCode = this.handleSubmitCode.bind(this)
     this.handleSubmitCard = this.handleSubmitCard.bind(this)
@@ -57,8 +59,7 @@ export default class CheckoutConfirmation extends React.Component {
   }
 
   handleRadio(event){
-    this.refs.boxCard.classList.toggle('hide-pay')
-    this.refs.boxCash.classList.toggle('hide-pay')
+    this.setState({radio: !this.state.radio})
   }
 
   handleSubmitCode(event){
@@ -181,7 +182,7 @@ export default class CheckoutConfirmation extends React.Component {
 
             <Loader>
               <radioGroup>
-                <div className="box" ref="boxCard">
+                <div className={'box ' + (!this.state.radio ? 'hide-pay' : '')}>
                   <div className="grid center">
                     Tarjeta de Crédito:
           					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
@@ -190,7 +191,7 @@ export default class CheckoutConfirmation extends React.Component {
           					<input
                       style={{marginLeft: 'auto'}}
                       name="active" type="radio"
-                      defaultChecked={true}
+                      checked={this.state.radio}
                       onChange={this.handleRadio}/>
                   </div>
 
@@ -237,7 +238,7 @@ export default class CheckoutConfirmation extends React.Component {
                   </form>
                 </div>
 
-                <div className="box hide-pay" ref="boxCash">
+                <div className={'box ' + (this.state.radio ? 'hide-pay' : '')}>
                   <div className="grid center">
                     Pagar en Efectivo
           					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"/>
@@ -245,7 +246,7 @@ export default class CheckoutConfirmation extends React.Component {
           					<input
                       style={{marginLeft: 'auto'}}
                       name="active" type="radio"
-                      defaultChecked={false}
+                      checked={!this.state.radio}
                       onChange={this.handleRadio}/>
                   </div>
 
