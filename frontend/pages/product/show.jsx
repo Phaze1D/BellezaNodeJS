@@ -105,13 +105,14 @@ export default class ProductShow extends React.Component {
 
   render() {
     const {
-      product
+      product,
+      dispatch
     } = this.props
 
     const price = product.get('price') ? (product.get('price')/100).toFixed(2) : 0
 
     const relatList = product.get('related').map( (rproduct, index) =>
-      <ProductResult key={index} product={rproduct}/>
+      <ProductResult key={index} product={rproduct} dispatch={dispatch}/>
     )
 
     return (
