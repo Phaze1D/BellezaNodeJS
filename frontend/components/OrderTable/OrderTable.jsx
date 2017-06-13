@@ -26,7 +26,7 @@ class OrderTable extends React.Component {
 
     const detList = order.get('details').map( (detail, index) =>
       <OrderRow
-        key={index}
+        key={detail.get('product_id')}
         detail={detail}
         editable={editable}
         onRequestChange={this.handleInputChange.bind(this, index)}
