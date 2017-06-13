@@ -4,7 +4,7 @@ import axios from "axios"
 export const cashPayment = (formData, token) => {
   return {
     type: types.CASH_PAYMENT,
-    payload: axios.post('api/payment/cash', formData, {
+    payload: axios.post('/api/payment/cash', formData, {
       headers: {'Authorization': `Bearer ${token}`}
     })
   }
@@ -13,7 +13,7 @@ export const cashPayment = (formData, token) => {
 export const cardPayment = (formData, token) => {
   return {
     type: types.CARD_PAYMENT,
-    payload: axios.post('api/payment/card', formData, {
+    payload: axios.post('/api/payment/card', formData, {
       headers: {'Authorization': `Bearer ${token}`}
     })
   }

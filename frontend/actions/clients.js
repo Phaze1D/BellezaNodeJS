@@ -4,7 +4,7 @@ import axios from "axios"
 export const getClients = (query, page, token) => {
   return {
     type: types.GET_CLIENTS,
-    payload: axios.get('api/clients', {
+    payload: axios.get('/api/clients', {
       params: {
         search: query,
         page: page
@@ -24,7 +24,7 @@ export const resetClients = () => {
 export const getClient = (id, token) => {
   return {
     type: types.GET_CLIENT,
-    payload: axios.get(`api/client/${id}`, {
+    payload: axios.get(`/api/client/${id}`, {
       headers: {'Authorization': `Bearer ${token}`}
     })
   }
