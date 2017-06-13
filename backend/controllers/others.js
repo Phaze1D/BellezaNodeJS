@@ -14,17 +14,6 @@ router.get('/carousel', function (req, res, next) {
   }).catch(next)
 })
 
-
-router.post('/contact', upload.none(), function (req, res, next) {
-  res.sendStatus(500)
-})
-
-
-router.get('/validate-contact', function (req, res, next) {
-  res.sendStatus(500)
-})
-
-
 router.post('/addmailer', upload.none(), function (req, res, next) {
   Mailing.findOne({where: {email: req.body.email}}).then(mailer => {
     if(mailer){
