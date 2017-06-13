@@ -34,47 +34,41 @@ class OrderTable extends React.Component {
     )
 
     return (
-      <table className='order-table'>
-        <thead>
-          <tr className="col-xs-hide">
-            <th>Producto</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th className="overflow-text">Subtotal <span className="sub-text">Sin IVA</span></th>
-            <th></th>
-          </tr>
-        </thead>
+      <div style={{width: "100%"}}>
+        <table className='order-table'>
+          <thead>
+            <tr className="col-xs-hide">
+              <th>Producto</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th className="overflow-text">Subtotal <span className="sub-text" style={{fontSize: '0.7em'}}>Sin IVA</span></th>
+              {this.props.editable && <th></th> }
+            </tr>
+          </thead>
 
-        <tbody>
-          {detList}
-        </tbody>
+          <tbody>
+            {detList}
+          </tbody>
+        </table>
 
-        <tfoot className="order-table-foot">
-          <tr>
-            <td colSpan="5">Subtotal: </td>
-            <td className="foot-main">${(order.get('sub_total')/100).toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td colSpan="5">IVA:</td>
-            <td className="foot-main">${(order.get('iva_total')/100).toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td colSpan="5">Costo de Envío: </td>
-            <td className="foot-main">${(order.get('shipping_total')/100).toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td colSpan="5">Discount:</td>
-            <td className="foot-main">-${(order.get('discount_total')/100 ).toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td colSpan="5">Total:</td>
-            <td className="foot-main">${(order.get('total')/100).toFixed(2)}</td>
-          </tr>
-
-        </tfoot>
-
-      </table>
+        <div className="order-table-foot">
+          <div className="sub-titles">
+            <span>Subtotal:</span>
+            <span>IVA:</span>
+            <span>Costo de Envío: </span>
+            <span>Discount:</span>
+            <span>Total:</span>
+          </div>
+          <div>
+            <span className="foot-main">${(order.get('sub_total')/100).toFixed(2)}</span>
+            <span className="foot-main">${(order.get('iva_total')/100).toFixed(2)}</span>
+            <span className="foot-main">${(order.get('shipping_total')/100).toFixed(2)}</span>
+            <span className="foot-main">-${(order.get('discount_total')/100 ).toFixed(2)}</span>
+            <span className="foot-main">${(order.get('total')/100).toFixed(2)}</span>
+          </div>
+        </div>
+      </div>
     )
   }
 }
@@ -142,10 +136,10 @@ const OrderRow = (props) => (
       ${(props.detail.get('sub_total')/100).toFixed(2)}
     </td>
 
-    <td>
-      {props.editable &&
-        <i className="material-icons" onClick={props.onRequestRemove}>clear</i>
-      }
-    </td>
+    {props.editable &&
+      <td>
+          <i className="material-icons" onClick={props.onRequestRemove}>clear</i>
+      </td>
+    }
   </tr>
 )

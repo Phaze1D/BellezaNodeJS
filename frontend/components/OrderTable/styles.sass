@@ -1,8 +1,11 @@
 .order-table
   width: 100%
   border: 1px solid $grey-300
-  border-radius: 3px
+  border-radius: $border-radius $border-radius 0 0
   border-collapse: separate
+  table-layout: fixed
+  border-bottom: none
+
 
   td
     border-bottom: 1px solid $grey-300
@@ -27,18 +30,28 @@
 
 
 .order-table-foot
-  td
+  display: flex
+  border: 1px solid $grey-300
+  border-radius: 0 0 $border-radius $border-radius
+  border-top: none
+
+  .sub-titles
+    flex-grow: 1
+
+  span
+    display: block
     border: none
     text-align: right
-    padding: 5px 5px
-    font-size: 0.9em
+    padding: 5px 2px 5px 5px
+    font-size: 1em
     color: $grey-700
+
   .foot-main
     font-size: 1em
     color: $primary
     text-align: right
-    width: 50px
-    white-space: nowrap 
+    white-space: nowrap
+    padding: 5px 5px 5px 2px
 
 .xs-td
   display: none
