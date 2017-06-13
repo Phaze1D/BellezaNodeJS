@@ -56,29 +56,3 @@ export const resetProductReducer = (state = INITIAL_PRODUCT, action) => {
   }
   return state
 }
-
-
-export const newProductReducer = (state = INITIAL_PRODUCT, action) => {
-  switch (action.type) {
-    case `${types.NEW_PRODUCT}_LOADING`:
-
-    case `${types.NEW_PRODUCT}_SUCCESS`:
-
-    case `${types.NEW_PRODUCT}_ERROR`:
-
-    default: return state
-  }
-}
-
-
-export const editProductReducer = (state = INITIAL_PRODUCT, action) => {
-  switch (action.type) {
-    case `${types.EDIT_PRODUCT}_LOADING`:
-
-    case `${types.EDIT_PRODUCT}_SUCCESS`:
-
-    case `${types.EDIT_PRODUCT}_ERROR`:
-
-    default: return state
-  }
-}

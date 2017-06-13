@@ -41,17 +41,3 @@ export const resetCodesReducer = (state = INITIAL_CODES, action) => {
   }
   return state
 }
-
-export const codeNewReducer = (state = INITIAL_CODES, action) => {
-  switch (action.type) {
-    case `${types.CODE_NEW}_LOADING`:
-      return state
-
-    case `${types.CODE_NEW}_SUCCESS`:
-      return state
-
-    case `${types.CODE_NEW}_ERROR`:
-
-    default: return state
-  }
-}

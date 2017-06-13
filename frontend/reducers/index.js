@@ -11,9 +11,7 @@ import {
   getProductsReducer,
   resetProductsReducer,
   getProductReducer,
-  resetProductReducer,
-  newProductReducer,
-  editProductReducer
+  resetProductReducer
 } from 'reducers/product'
 
 import {
@@ -30,20 +28,15 @@ import {
 import {
   userSignUpReducer,
   userLoginReducer,
-  validateUserReducer,
   userUpdateReducer,
   userPreferenceReducer,
   userLogoutReducer
 } from 'reducers/user'
 
 import {
-  contactReducer,
-  validateContactReducer,
   getBannersReducer,
   resetBannersReducer,
   getBannerReducer,
-  newBannerReducer,
-  editBannerReducer,
   getMailingReducer,
   resetMailingReducer
 } from 'reducers/others'
@@ -51,7 +44,6 @@ import {
 import {
   addressNewReducer,
   addressUpdateReducer,
-  validateAddressReducer,
   addressDeleteReducer
 } from 'reducers/address'
 
@@ -64,8 +56,7 @@ import {
 
 import {
   getUserCodesReducer,
-  resetCodesReducer,
-  codeNewReducer
+  resetCodesReducer
 } from 'reducers/discountcode'
 
 import {
@@ -106,8 +97,7 @@ const clientsReducers = reduceReducers(
 
 const codesReducers = reduceReducers(
   getUserCodesReducer,
-  resetCodesReducer,
-  codeNewReducer
+  resetCodesReducer
 )
 
 const ordersReducer = reduceReducers(
@@ -121,13 +111,9 @@ const orderReducer = reduceReducers(
 )
 
 const othersReducer = reduceReducers(
-  contactReducer,
-  validateContactReducer,
   getBannersReducer,
   resetBannersReducer,
   getBannerReducer,
-  newBannerReducer,
-  editBannerReducer,
   getMailingReducer,
   resetMailingReducer
 )
@@ -135,13 +121,11 @@ const othersReducer = reduceReducers(
 const userReducer = reduceReducers(
   userSignUpReducer,
   userLoginReducer,
-  validateUserReducer,
   userUpdateReducer,
   userPreferenceReducer,
   userLogoutReducer,
   addressNewReducer,
   addressUpdateReducer,
-  validateAddressReducer,
   addressDeleteReducer
 )
 
@@ -156,9 +140,7 @@ const productsReducer = reduceReducers(
 
 const productReducer = reduceReducers(
   getProductReducer,
-  resetProductReducer,
-  newProductReducer,
-  editProductReducer
+  resetProductReducer
 )
 
 const cartReducer = reduceReducers(

@@ -32,18 +32,6 @@ export const addressUpdateReducer = (state = INITIAL_USER, action) => {
   }
 }
 
-export const validateAddressReducer = (state = INITIAL_USER, action) => {
-  switch (action.type) {
-    case `${types.ADDRESS_VALIDATE}_LOADING`:
-
-    case `${types.ADDRESS_VALIDATE}_SUCCESS`:
-
-    case `${types.ADDRESS_VALIDATE}_ERROR`:
-
-    default: return state
-  }
-}
-
 export const addressDeleteReducer = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case `${types.ADDRESS_DELETE}_LOADING`:
