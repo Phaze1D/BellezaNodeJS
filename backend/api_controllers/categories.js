@@ -6,21 +6,7 @@ let Category = require('../models').Category
 
 
 router.get('/categories', function (req, res) {
-  Category.findAll({
-    include: [{
-        model: Category,
-        as: 'subs',
-        where: {
-          id: Sequelize.col('subs.parent_id'),
-         },
-        include: [{
-          model: Category,
-          as: 'subs',
-          where: { id: Sequelize.col('subs.parent_id') }
-        }]
-    }],
-    rejectOnEmpty: true
-  }).then(categories => {
+  Category.formattedAll().then(categories => {
     res.json(categories)
   })
 })

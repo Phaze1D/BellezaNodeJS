@@ -50,7 +50,7 @@ router.post('/payment/card', isLogin, function (req, res, next) {
 
       User.findOne({where: {id: req.jwtUser.userId}, attributes: ['first_name', 'last_name', 'email']})
       .then( user => {
-        req.app.render('paid_info', {order: jorder, user: user.toJSON()}, function (err, html) {
+        req.app.render('emails/paid_info', {order: jorder, user: user.toJSON()}, function (err, html) {
           if(err) next(err);
           res.json(jorder)
 
@@ -101,7 +101,7 @@ router.post('/payment/cash', isLogin, function (req, res, next) {
       User.findOne({where: {id: req.jwtUser.userId}, attributes: ['first_name', 'last_name', 'email']})
       .then( user => {
         let type = jorder.charges.payment_method.type
-        req.app.render(`${type}_info`, {order: jorder, user: user.toJSON()}, function (err, html) {
+        req.app.render(`emails/${type}_info`, {order: jorder, user: user.toJSON()}, function (err, html) {
           if(err) next(err);
           res.json(jorder)
 
@@ -156,7 +156,7 @@ router.post('/payment/webhook', function (req, res, next) {
 
 
 const cashPaidHook = function (jorder, user, req) {
-  req.app.render(`paid_info`, {order: jorder, user: user}, function (err, html) {
+  req.app.render(`emails/paid_info`, {order: jorder, user: user}, function (err, html) {
     let sesConfig = {
       accessKeyId: req.app.get('SES_ID'),
       secretAccessKey: req.app.get('SES_SECRET_KEY'),

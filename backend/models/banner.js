@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Banner.carouselImages = function () {
-    return {
+    return this.findAndCountAll({
       where: {
         $or : [{
           manual_active: true,
@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
         }]
       },
       rejectOnEmpty: true
-    }
+    })
   }
 
   return Banner

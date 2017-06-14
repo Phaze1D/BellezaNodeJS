@@ -45,7 +45,7 @@ router.get('/products', function (req, res, next) {
 })
 
 router.get('/favProducts', function (req, res, next) {
-  Product.findAndCountAll({where: {fav: true, active: true}}).then( results => {
+  Product.favorites().then( results => {
     res.json(results)
   }).catch(next)
 })

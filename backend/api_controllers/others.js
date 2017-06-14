@@ -9,7 +9,7 @@ let upload = multer()
 let router = express.Router()
 
 router.get('/carousel', function (req, res, next) {
-  Banner.findAndCountAll(Banner.carouselImages()).then(banners => {
+  Banner.carouselImages().then(banners => {
     res.json(banners)
   }).catch(next)
 })

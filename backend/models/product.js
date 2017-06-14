@@ -201,5 +201,9 @@ module.exports = function(sequelize, DataTypes) {
     return options
   }
 
+  Product.favorites = function () {
+    return this.findAndCountAll({where: {fav: true, active: true}})
+  }
+
   return Product
 };

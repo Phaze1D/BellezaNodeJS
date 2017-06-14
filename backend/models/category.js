@@ -1,5 +1,6 @@
 'use strict'
 let valmsg =  require('../helpers/validationMessages.js')
+let Sequelize = require('sequelize')
 
 module.exports = function(sequelize, DataTypes) {
   const Category =  sequelize.define('Category', {
@@ -38,6 +39,24 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'categories'
   });
+
+  Category.formattedAll = function () {
+    return this.findAll({
+      include: [{
+          model: this,
+          as: 'subs',
+          where: {
+            id: Sequelize.col('subs.parent_id'),
+           },
+          include: [{
+            model: this,
+            as: 'subs',
+            where: { id: Sequelize.col('subs.parent_id') }
+          }]
+      }],
+      rejectOnEmpty: true
+    })
+  }
 
   return Category
 };
