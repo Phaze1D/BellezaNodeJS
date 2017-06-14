@@ -185,9 +185,9 @@ export default class CheckoutConfirmation extends React.Component {
                 <div className={'box ' + (!this.state.radio ? 'hide-pay' : '')}>
                   <div className="grid center">
                     Tarjeta de Crédito:
-          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png"/>
-          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png"/>
-          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png"/>
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png"/>
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png"/>
+          					<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png"/>
           					<input
                       style={{marginLeft: 'auto'}}
                       name="active" type="radio"
