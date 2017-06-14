@@ -39,21 +39,21 @@ let productFiles = [
 
 
 router.get('/products', function (req, res, next) {
-  Product.findAndCountAll(Product.allOptions(req.query, true)).then( results => {
+  Product.mFindAll(req.query, true).then( results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/favProducts', function (req, res, next) {
   Product.favorites().then( results => {
-    res.json(results)
+    res.set({ 'Cache-Control': 'max-age=350000'}).json(results)
   }).catch(next)
 })
 
 router.get('/product/:id', function (req, res, next) {
-  Product.findOne(Product.singleOptions(req.params.id)).then(product => {
+  Product.mFindOne(req.params.id).then(product => {
     let category_id = product.categories.length > 0 ? product.categories[0].id : undefined
-    return Product.findAll(Product.relatedOptions(category_id)).then(related => {
+    return Product.categoryProducts(category_id).then(related => {
       let pro = product.toJSON();
       pro.related = related
       res.json(pro)
@@ -63,7 +63,7 @@ router.get('/product/:id', function (req, res, next) {
 })
 
 router.get('/backoffice/products', isLogin, isAdmin, function (req, res, next) {
-  Product.findAndCountAll(Product.allOptions(req.query)).then( results => {
+  Product.mFindAll(req.query, false).then( results => {
     res.json(results)
   }).catch(next)
 })

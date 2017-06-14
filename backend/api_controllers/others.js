@@ -15,7 +15,7 @@ router.get('/carousel', function (req, res, next) {
 })
 
 router.post('/addmailer', upload.none(), function (req, res, next) {
-  Mailing.findOne({where: {email: req.body.email}}).then(mailer => {
+  Mailing.findByEmail(req.body.email).then(mailer => {
     if(mailer){
       let jsM = mailer.toJSON()
       return mailer.update({active: req.body.active}, {fields: ['active']})

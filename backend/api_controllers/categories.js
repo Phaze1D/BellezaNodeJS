@@ -7,7 +7,7 @@ let Category = require('../models').Category
 
 router.get('/categories', function (req, res) {
   Category.formattedAll().then(categories => {
-    res.json(categories)
+    res.set({ 'Cache-Control': 'max-age=350000'}).json(categories)
   })
 })
 

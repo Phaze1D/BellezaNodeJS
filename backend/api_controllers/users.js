@@ -26,7 +26,7 @@ router.post('/user', upload.none(), function (req, res, next) {
 
 
 router.post('/login', upload.none(), function (req, res, next) {
-  User.findOne(User.loginOptions(req.body.email)).then( user => {
+  User.findLogin(req.body.email).then( user => {
     if(user){
       bcrypt.compare(req.body.password, user.password).then((correct) => {
         if(correct){

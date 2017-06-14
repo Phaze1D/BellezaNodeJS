@@ -12,7 +12,7 @@ let router = express.Router()
 
 
 router.post('/passwordreset', upload.none(), function (req, res, next) {
-  User.findOne({where: {email: req.body.email}}).then(user => {
+  User.findByEmail(req.body.email).then(user => {
     if(user){
       let token = crypto.randomBytes(48).toString('hex');
       user.update({password_reset_token: token, password_reset_date: Date.now() + 3600000})

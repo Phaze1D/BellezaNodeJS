@@ -34,7 +34,7 @@ let addressFieldsUpdate = [
 ]
 
 router.get('/user/:user_id/addresses', isLogin, isUser, function (req, res, next) {
-  Address.findAll({where: {user_id: req.params.user_id}}).then(addresses => {
+  Address.userAddresses(req.params.user_id).then(addresses => {
     res.json(addresses)
   }).catch(next)
 })
@@ -48,8 +48,7 @@ router.post('/user/:user_id/address', isLogin, isUser, upload.none(), function (
 })
 
 router.put('/user/:user_id/address/:id', isLogin, isUser, upload.none(), function (req, res, next) {
-  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}, rejectOnEmpty: true})
-  .then( address => {
+  Address.userAddress(req.params.id, req.params.user_id).then( address => {
     return address.update(req.body, {fields: addressFieldsUpdate})
   }).then(address => {
     res.json(address)
@@ -68,8 +67,7 @@ router.get('/validate-address', isLogin, function (req, res, next) {
 })
 
 router.delete('/user/:user_id/address/:id', isLogin, isUser, function (req, res, next) {
-  Address.findOne({where: {id: req.params.id, user_id: req.params.user_id}, rejectOnEmpty: true})
-  .then( address => {
+  Address.userAddress(req.params.id, req.params.user_id).then( address => {
     return address.destroy({ force: true })
   }).then( () => {
     res.sendStatus(200)

@@ -9,21 +9,19 @@ let router = express.Router()
 
 
 router.get('/orders', isLogin, isAdmin, function (req, res, next) {
-  Order.findAndCountAll(Order.allOptions(req.query)).then(results => {
+  Order.backOfficeAll(req.query).then(results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/user/:user_id/orders', isLogin, isAdmin, function (req, res, next) {
-  Order.findAndCountAll(Order.userAllOptions(req.query, req.params.user_id))
-  .then(results => {
+  Order.userOrders(req.query, req.params.user_id).then(results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/user/:user_id/order/:id', isLogin, isAdmin, function (req, res, next) {
-  Order.findOne(Order.singleOption(req.params))
-  .then(order => {
+  Order.mFindOne(req.params).then(order => {
     res.json(order)
   }).catch(next)
 })

@@ -31,13 +31,13 @@ let bannerImagesFields = [
 
 router.get('/banners', isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
-  Banner.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
+  Banner.backOfficeAll(page, 20).then(results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/banner/:id', isLogin, isAdmin, function (req, res, next) {
-  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
+  Banner.mFindOne(req.params.id).then(banner => {
     res.json(banner)
   }).catch(next)
 })
@@ -63,7 +63,7 @@ router.post('/banner', isLogin, isAdmin, upload.fields(bannerImagesFields), func
 
 
 router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, next) {
-  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
+  Banner.mFindOne(req.params.id).then(banner => {
     return banner.update(req.body, {fields: bannerFields})
   }).then(banner => {
     res.json(banner)
@@ -71,7 +71,7 @@ router.put('/banner/:id', isLogin, isAdmin, upload.none(), function (req, res, n
 })
 
 router.delete('/banner/:id', isLogin, isAdmin, function (req, res, next) {
-  Banner.findById(req.params.id, {rejectOnEmpty: true}).then(banner => {
+  Banner.mFindOne(req.params.id).then(banner => {
     return banner.destroy({ force: true })
   }).then(banner => {
     res.json(banner)
@@ -80,21 +80,20 @@ router.delete('/banner/:id', isLogin, isAdmin, function (req, res, next) {
 
 router.get('/mailing', isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
-  Mailing.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
+  Mailing.backOfficeAll(page, 20).then(results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/clients',isLogin, isAdmin, function (req, res, next) {
   let page = req.query.page ? req.query.page : 0
-  User.findAndCountAll({offset: 20*page, limit: 20}).then(results => {
+  User.backOfficeAll(page, 20).then(results => {
     res.json(results)
   }).catch(next)
 })
 
 router.get('/client/:client_id',isLogin, isAdmin, function (req, res, next) {
-  User.findOne({where: {id: req.params.client_id}, attributes: ['first_name', 'last_name', 'id', 'email'], rejectOnEmpty: true})
-  .then(client => {
+  User.findClient(req.params.client_id).then(client => {
     res.json(client)
   }).catch(next)
 })
