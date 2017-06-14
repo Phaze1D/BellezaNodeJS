@@ -72,7 +72,7 @@ export default class Footer extends React.Component {
       				</li>
 
       				<li>
-      					<Link to="porqueOrganico"> ¿Porqué Orgánico?</Link>
+      					<Link to="/porqueOrganico"> ¿Porqué Orgánico?</Link>
       				</li>
 
       				<li>
