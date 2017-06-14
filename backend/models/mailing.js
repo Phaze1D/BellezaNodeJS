@@ -2,7 +2,7 @@
 let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Mailing', {
+  let Mailing = sequelize.define('Mailing', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -38,4 +38,14 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'mailing'
   });
+
+  Mailing.backOfficeAll = function (page, prePage) {
+    return this.findAndCountAll({offset: prePage*page, limit: prePage})
+  }
+
+  Mailing.findByEmail = function (email) {
+    return findOne({where: {email: email}})
+  }
+
+  return Mailing
 };

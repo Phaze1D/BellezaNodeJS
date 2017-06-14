@@ -103,7 +103,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'orders'
   });
 
-  Order.singleOption = function (params) {
+  Order.mFindOne = function (params, reject=true) {
     let options = {
       where: {id: params.id, user_id: params.user_id},
       include: [{
@@ -121,9 +121,9 @@ module.exports = function(sequelize, DataTypes) {
         model: sequelize.model('Address'),
         as: 'invoiceAddress',
       }],
-      rejectOnEmpty: true
+      rejectOnEmpty: reject
     }
-    return options
+    return this.findOne(options)
   }
 
   Order.singleConektaOption = function(conekta_id) {
@@ -153,7 +153,7 @@ module.exports = function(sequelize, DataTypes) {
     return options
   }
 
-  Order.userAllOptions = function (query, user_id) {
+  Order.userOrders = function (query, user_id) {
     let page = query.page ? query.page : 0
     let options = {
       where: {
@@ -182,10 +182,10 @@ module.exports = function(sequelize, DataTypes) {
         }]
       }],
     }
-    return options
+    return this.findAndCountAll(options)
   }
 
-  Order.allOptions = function (query) {
+  Order.backOfficeAll = function (query) {
     let page = query.page ? query.page : 0
     let options = {
       where: {
@@ -200,7 +200,7 @@ module.exports = function(sequelize, DataTypes) {
         attributes: ['id', 'first_name', 'last_name']
       }],
     }
-    return options
+    return this.findAndCountAll(options)
   }
 
   Order.createOptions = function () {

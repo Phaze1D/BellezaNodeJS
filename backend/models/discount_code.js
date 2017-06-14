@@ -73,5 +73,19 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'discount_codes'
   });
 
+  DiscountCode.userCodes = function (user_id) {
+    return this.findAll({where: {user_id: user_id}})
+  }
+
+  DiscountCode.checkCode = function (code, user_id) {
+    return this.findOne({
+      where: {
+        code: code,
+        user_id: user_id,
+        expires_date: {$gt: new Date()}
+      }
+    })
+  }
+
   return DiscountCode
 };

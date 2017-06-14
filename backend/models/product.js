@@ -128,7 +128,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'products'
   });
 
-  Product.allOptions = function (querys, active) {
+  Product.mFindAll = function (querys, active) {
     let search = querys.search
     let category = querys.category
     let sort = querys.sort ? querys.sort : 0
@@ -161,11 +161,11 @@ module.exports = function(sequelize, DataTypes) {
         }
       }]
     }
-    return options
+    return this.findAndCountAll(options)
   }
 
 
-  Product.singleOptions = function (id) {
+  Product.mFindOne = function (id) {
     let options = {
       where: {id: id},
       include: [{
@@ -177,10 +177,10 @@ module.exports = function(sequelize, DataTypes) {
       }],
       rejectOnEmpty: true
     }
-    return options
+    return this.findOne(options)
   }
 
-  Product.relatedOptions = function (category_id) {
+  Product.categoryProducts = function (category_id) {
     let options = {
       limit: 4,
       attributes: { exclude: ['description', 'ingredients', 'benefits'] },
@@ -198,7 +198,7 @@ module.exports = function(sequelize, DataTypes) {
       }]
     }
 
-    return options
+    return this.findAll(options)
   }
 
   Product.favorites = function () {

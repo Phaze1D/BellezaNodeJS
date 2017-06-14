@@ -143,16 +143,30 @@ module.exports = function(sequelize, DataTypes) {
     })
   });
 
-  User.loginOptions = function (email) {
-    return {
+  User.findLogin = function (email) {
+    return this.findOne({
       where: {email: email},
       include: [{
         model: sequelize.model('Address'),
         as: 'addresses',
       }]
-    }
+    })
   }
 
+  User.backOfficeAll = function (page, prePage) {
+    return this.findAndCountAll({offset: prePage*page, limit: prePage})
+  }
+
+  User.findClient = function (client_id, reject=true) {
+    return this.findOne(
+      {where: {id: client_id},
+      attributes: ['first_name', 'last_name', 'id', 'email'],
+      rejectOnEmpty: reject})
+  }
+
+  User.findByEmail = function (email) {
+    return this.findOne({where: {email: email}})
+  }
 
   return User
 };

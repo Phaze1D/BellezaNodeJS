@@ -131,5 +131,13 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'addresses'
   });
 
+  Address.userAddresses = function (user_id) {
+    return this.findAll({where: {user_id: user_id}})
+  }
+
+  Address.userAddress = function (id, user_id, reject=true) {
+    return this.findOne({where: {id: id, user_id: user_id}, rejectOnEmpty: reject})
+  }
+
   return Address
 };

@@ -45,8 +45,16 @@ module.exports = function(sequelize, DataTypes) {
           end_date: {$gt: Date.now()},
         }]
       },
-      rejectOnEmpty: true
+      rejectOnEmpty: false
     })
+  }
+
+  Banner.backOfficeAll = function (page, prePage) {
+    return this.findAndCountAll({offset: prePage*page, limit: prePage})
+  }
+
+  Banner.mFindOne = function (id, reject=true) {
+    return this.findById(id, {rejectOnEmpty: reject})
   }
 
   return Banner
