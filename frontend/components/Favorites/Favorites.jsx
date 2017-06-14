@@ -50,7 +50,7 @@ export default class Favorites extends React.Component {
     const favList = products.get('rows').map( (product, index) =>
       <div key={index} className="fav-item" draggable="false">
         <Link to={`/product/${product.get('id')}`} draggable="false">
-          <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable="false"/>
+          <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable="false"/>
           <p className="overflow-text">{product.get('name')}</p>
         </Link>
       </div>
