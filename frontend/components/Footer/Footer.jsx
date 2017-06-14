@@ -121,23 +121,23 @@ export default class Footer extends React.Component {
             <h3>Métodos de Pago</h3>
             <ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
               <li>
-                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/visa.png" alt="visa"/>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png" alt="visa"/>
               </li>
 
               <li>
-                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/mastercard.png" alt="mastercard"/>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png" alt="mastercard"/>
               </li>
 
               <li>
-                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/americanexpress.png" alt="americanexpress"/>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png" alt="americanexpress"/>
               </li>
 
               <li>
-                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/oxxo.png"  alt="oxxo"/>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png"  alt="oxxo"/>
               </li>
 
               <li>
-                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/bank.png" alt="bank transfer"/>
+                <img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png" alt="bank transfer"/>
               </li>
             </ul>
 
