@@ -41,7 +41,7 @@ export default class Carousel extends React.Component {
     }
 
     return (
-      <div className="carousel">
+      <div id="banners" className="carousel">
         <Slider {...settings}>
           {carList}
         </Slider>

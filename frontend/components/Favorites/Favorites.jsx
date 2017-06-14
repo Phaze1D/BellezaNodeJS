@@ -57,7 +57,7 @@ export default class Favorites extends React.Component {
     )
 
     return (
-      <div className="fav-wrapper">
+      <div id="favorites" className="fav-wrapper">
         <Slider {...settings}>
           {favList}
         </Slider>
