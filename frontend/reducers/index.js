@@ -23,7 +23,7 @@ import {
   addCartExtraReducer,
   resetCartReducer,
   checkUserCodeReducer
- } from 'reducers/cart'
+} from 'reducers/cart'
 
 import {
   userSignUpReducer,
@@ -172,18 +172,20 @@ const StateRecord = Immutable.Record({
   fetching: undefined
 });
 
-export default combineReducers({
-  categories: categoriesReducer,
-  cart: cartReducer,
-  products: productsReducer,
-  product: productReducer,
-  user: userReducer,
-  others: othersReducer,
-  orders: ordersReducer,
-  codes: codesReducers,
-  order: orderReducer,
-  clients: clientsReducers,
-  client: clientReducers,
-  errors: errorsReducer,
-  fetching: fetchingReducer
-}, StateRecord)
+export const getReducers = (preloadState=StateRecord) => {
+  return combineReducers({
+    categories: categoriesReducer,
+    cart: cartReducer,
+    products: productsReducer,
+    product: productReducer,
+    user: userReducer,
+    others: othersReducer,
+    orders: ordersReducer,
+    codes: codesReducers,
+    order: orderReducer,
+    clients: clientsReducers,
+    client: clientReducers,
+    errors: errorsReducer,
+    fetching: fetchingReducer
+  }, preloadState)
+}
