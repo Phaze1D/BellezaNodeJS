@@ -4,6 +4,7 @@ let Sequelize = require('sequelize')
 
 
 const errorMiddleware = (err, req, res, next) => {
+  console.log(err);
   if(err.type === "processing_error"){
     let cerr = new Sequelize.ValidationError('')
     cerr.errors.push({path: 'card_token', message: err.details[0].message})
