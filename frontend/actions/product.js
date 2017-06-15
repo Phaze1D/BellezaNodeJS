@@ -7,7 +7,7 @@ export const getProducts = (search, category, page, sort=0) => {
     type: types.GET_PRODUCTS,
     payload: axios.get('/api/products', {
       params: {
-        search: search,
+        q: search,
         category: category,
         page: page,
         sort: sort

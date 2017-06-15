@@ -129,7 +129,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Product.mFindAll = function (querys, active) {
-    let search = querys.search
+    let search = querys.q
     let category = querys.category
     let sort = querys.sort ? querys.sort : 0
     let page = querys.page ? querys.page : 0
