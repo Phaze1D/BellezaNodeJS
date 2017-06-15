@@ -146,6 +146,7 @@ module.exports = function(sequelize, DataTypes) {
   User.findLogin = function (email) {
     return this.findOne({
       where: {email: email},
+      attributes: {exclude :['conekta_id', 'password_reset_token', 'password_reset_date']},
       include: [{
         model: sequelize.model('Address'),
         as: 'addresses',
