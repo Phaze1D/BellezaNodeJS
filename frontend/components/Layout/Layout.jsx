@@ -1,5 +1,9 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
+import Async from 'react-code-splitting'
+import { connect } from 'react-redux'
+
+
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
 import GlobalError from 'components/GlobalError/GlobalError'
@@ -9,29 +13,49 @@ import CategoryShow from 'pages/category/show'
 import ProductShow from 'pages/product/show'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
-import UserShow from 'pages/user/show'
 import CartShow from 'pages/cart/show'
-import CheckoutDirections from 'pages/checkout/directions'
-import CheckoutConfirmation from 'pages/checkout/confirmation'
-import CheckoutSuccessful from 'pages/checkout/successful'
-import OrderShow from 'pages/order/show'
-
-/******* REMOVE THIS SECTION IN PRODUCTION *******/
-// import QuienSomos from 'pages/others/quien_somos'
-// import History from 'pages/others/history'
-// import NuestraPro from 'pages/others/nuestra_pro'
-// import PorqueOrganico from 'pages/others/porque_organico'
-// import Terms from 'pages/others/terms'
-// import Awards from 'pages/others/awards'
-/******* REMOVE THIS SECTION IN PRODUCTION *******/
-
-import Contact from 'pages/others/contact'
-import PasswordReset from 'pages/others/reset'
-import Stores from 'pages/store/stores'
-import BackofficeShow from 'pages/backoffice/show'
 
 
+let UserShow = null
+let CheckoutDirections = null
+let CheckoutConfirmation = null
+let CheckoutSuccessful = null
+let OrderShow = null
+let BackofficeShow = null
+require.ensure([], function (require) {
+  UserShow = require('pages/user/show').default
+  CheckoutDirections = require('pages/checkout/directions').default
+  CheckoutConfirmation = require('pages/checkout/confirmation').default
+  CheckoutSuccessful = require('pages/checkout/successful').default
+  OrderShow = require('pages/order/show').default
+  BackofficeShow = require('pages/backoffice/show').default
+})
 
+let QuienSomos = null
+let History = null
+let NuestraPro = null
+let PorqueOrganico = null
+let Terms = null
+let Awards = null
+let PasswordReset = null
+let Stores = null
+require.ensure([], function (require) {
+  QuienSomos = require('pages/others/quien_somos').default
+  History = require('pages/others/history').default
+  NuestraPro = require('pages/others/nuestra_pro').default
+  PorqueOrganico = require('pages/others/porque_organico').default
+  Terms = require('pages/others/terms').default
+  Awards = require('pages/others/awards').default
+  PasswordReset = require('pages/others/reset').default
+  Stores = require('pages/store/stores').default
+})
+
+
+@connect( store => {
+  return {
+    user: store.user,
+  }
+})
 export default class Layout extends React.Component {
   constructor(props) {
     super(props)
@@ -45,17 +69,21 @@ export default class Layout extends React.Component {
 
 
   render() {
+    const {
+      user
+    } = this.props
+
     return (
       <div id='layout'>
         <GlobalError/>
         <Header history={this.props.history}/>
 
-        <Redirect from='/' to='/home'/>
+        <Route exact path="/" component={Home}/>
         <Route path="/home" component={Home}/>
         <Route exact path="/categories/:index" component={CategoryIndex}/>
         <Route exact path="/categories/:index/:sub" component={CategoryIndex}/>
+        <Route exact path="/categories/:index/:sub/:show" component={CategoryShow}/>
 
-        <Route path="/category/:index/:sub/:show" component={CategoryShow}/>
         <Route path="/product/:id" component={ProductShow}/>
         <Route path="/search" component={Search}/>
         <Route path="/cart" component={CartShow}/>
@@ -64,26 +92,30 @@ export default class Layout extends React.Component {
         <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
-        <Switch>
-          <Route exact path="/user/:id/order/:order_id" component={OrderShow}/>
-          <Route path="/user/:id" component={UserShow}/>
-        </Switch>
+        {user.get('token') &&
+          <div>
+            <Switch>
+              <Route exact path="/user/:id/order/:order_id" render={props => <OrderShow user={user} {...props}/>}/>
+              <Route path="/user/:id" render={props => <UserShow user={user} {...props}/>}/>
+            </Switch>
 
-        <Route path="/checkout" component={CheckoutDirections}/>
-        <Route path="/confirmation" component={CheckoutConfirmation}/>
-        <Route path="/successful" component={CheckoutSuccessful}/>
+            <Route path="/checkout" render={props => <CheckoutDirections user={user} {...props}/>}/>
+            <Route path="/confirmation" render={props => <CheckoutConfirmation user={user} {...props}/>}/>
+            <Route path="/successful" render={props => <CheckoutSuccessful user={user} {...props}/>}/>
+          </div>
+        }
 
-        <Route path="/backoffice" component={BackofficeShow}/>
+        {user.get('token') && user.get('admin') &&
+          <Route path="/backoffice" component={BackofficeShow}/>
+        }
 
-
-        {/******* REMOVE THIS SECTION IN PRODUCTION *******
         <Route path="/quienSomos" component={QuienSomos}/>
         <Route path="/history" component={History}/>
         <Route path="/nuestraPromesa" component={NuestraPro}/>
         <Route path="/porqueOrganico" component={PorqueOrganico}/>
         <Route path="/terminosCondiciones" component={Terms}/>
         <Route path="/awards" component={Awards}/>
-        ******* REMOVE THIS SECTION IN PRODUCTION *******/}
+
 
         <Footer/>
       </div>
