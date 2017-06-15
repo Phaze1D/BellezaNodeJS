@@ -53,7 +53,7 @@ router.get('/favProducts', function (req, res, next) {
 router.get('/product/:id', function (req, res, next) {
   Product.mFindOne(req.params.id).then(product => {
     let category_id = product.categories.length > 0 ? product.categories[0].id : undefined
-    return Product.categoryProducts(category_id).then(related => {
+    Product.categoryProducts(category_id).then(related => {
       let pro = product.toJSON();
       pro.related = related
       res.json(pro)
