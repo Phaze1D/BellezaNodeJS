@@ -6,7 +6,7 @@ let Product = models.Product
 let DiscountCode = models.DiscountCode
 
 conekta.locale = 'es'
-conekta.api_key = 'key_iA6gW6UnTvwRkT4CwTm7YA'
+conekta.api_key = process.env.CONEKTA
 conekta.api_version = '2.0.0'
 
 let userAtt = [
