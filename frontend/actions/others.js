@@ -15,7 +15,7 @@ export const validateContact = (fieldData) => {
   }
 }
 
-export const passwordReset = (formData) => {
+export const passwordForgot = (formData) => {
   return {
     type: types.PASSWORD_RESET,
     payload: axios.post('/api/passwordreset', formData)

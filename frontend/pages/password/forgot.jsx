@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { passwordReset } from 'actions/others'
+import { passwordForgot } from 'actions/others'
 import { resetErrors } from 'actions/errors'
 import Loader from 'components/Loader/Loader'
 
 /**
 * HTTP - POST
-* @param {object} passwordReset - The password reset info
+* @param {object} passwordForgot - The password reset info
 */
 
 @connect( store => {
@@ -15,7 +15,7 @@ import Loader from 'components/Loader/Loader'
     errors: store.errors
   }
 })
-class PasswordReset extends React.Component {
+class PasswordForgot extends React.Component {
   constructor(props){
     super(props)
     this.state = {showSuccess: false}
@@ -37,7 +37,7 @@ class PasswordReset extends React.Component {
     formData.append('email', elements.email.value)
     this.email = elements.email.value
 
-    this.props.dispatch(passwordReset(formData))
+    this.props.dispatch(passwordForgot(formData))
     .then(this.handleSuccess)
     .catch(this.handleError)
   }
@@ -85,4 +85,4 @@ class PasswordReset extends React.Component {
   }
 }
 
-export default PasswordReset;
+export default PasswordForgot;

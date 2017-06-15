@@ -34,7 +34,7 @@ let NuestraPro = null
 let PorqueOrganico = null
 let Terms = null
 let Awards = null
-let PasswordReset = null
+let PasswordForgot = null
 let Stores = null
 require.ensure([], function (require) {
   QuienSomos = require('pages/others/quien_somos').default
@@ -43,7 +43,7 @@ require.ensure([], function (require) {
   PorqueOrganico = require('pages/others/porque_organico').default
   Terms = require('pages/others/terms').default
   Awards = require('pages/others/awards').default
-  PasswordReset = require('pages/password/forgot').default
+  PasswordForgot = require('pages/password/forgot').default
   Stores = require('pages/store/stores').default
 })
 
@@ -85,7 +85,7 @@ export default class Layout extends React.Component {
         <Route path="/cart" component={CartShow}/>
         <Route path="/signin" component={Signin}/>
         {/*<Route path="/contact" component={Contact}/>*/}
-        <Route path="/passwordreset" component={PasswordReset}/>
+        <Route path="/passwordreset" component={PasswordForgot}/>
         <Route path="/stores" component={Stores}/>
 
         <Switch>
