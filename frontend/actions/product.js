@@ -28,7 +28,7 @@ export const getBackofficeProducts = (search, page, sort=0, token) => {
     type: types.GET_PRODUCTS,
     payload: axios.get('/api/backoffice/products', {
       params: {
-        search: search,
+        q: search,
         page: page,
         sort: sort
       },
