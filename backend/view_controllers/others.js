@@ -55,6 +55,20 @@ router.get('/stores', function (req, res, next) {
   let promises = [
     Category.formattedAll(),
   ]
+  
+  reactRender(promises, {categories: 0}, req.url)
+  .then(viewOptions => {
+    res.render('index', viewOptions)
+  }).catch(err => {
+    res.redirect('/home');
+  })
+})
+
+
+router.get('/password/reset/:token', function (req, res, next) {
+  let promises = [
+    Category.formattedAll(),
+  ]
 
   reactRender(promises, {categories: 0}, req.url)
   .then(viewOptions => {
