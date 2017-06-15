@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <link rel="shortcut icon" href="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
 
     <script async defer src="/bundle.js"></script>
@@ -16,7 +15,7 @@
     <script async defer src="https://d36hc0p18k1aoc.cloudfront.net/public/js/modules/tintembed.js"></script>
     <script async src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByjXf_TKYNHIkFzN4oVOIuAwHGi8ZzXos"></script>
-    <script async defer type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.5.0/js/conekta.js"></script>
+    <script async defer type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.5.0/js/conekta.min.js"></script>
 
   </head>
   <body>
@@ -36,62 +35,81 @@
 
     <script type="text/javascript">
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-      window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
-        return t;
-      }(document, "script", "twitter-wjs"));
-
       var banners = document.getElementById('banners')
       var favorites = document.getElementById('favorites')
 
-      var bannerWidth = banners.clientWidth
-      var bslides = banners.getElementsByClassName('slick-slide')
-      for (var i = 0; i < bslides.length; i++) {
-        bslides[i].style.width = bannerWidth + "px"
+      if(banners && favorites){
+
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+          return t;
+        }(document, "script", "twitter-wjs"));
+
+        var bannerWidth = banners.clientWidth
+        var bslides = banners.getElementsByClassName('slick-slide')
+        for (var i = 0; i < bslides.length; i++) {
+          bslides[i].style.width = bannerWidth + "px"
+        }
+
+        var btracker = banners.getElementsByClassName('slick-track')[0]
+        btracker.style.width = bannerWidth * bslides.length+"px"
+        btracker.style.transform = "translate3d(-1060px, 0px, 0px)"
+
+        var reponsive = 5
+        if(window.innerWidth > 1012 ){
+          responsive = 5
+        }else if(window.innerWidth > 828 ){
+          responsive = 4
+        }else if(window.innerWidth > 600 ){
+          responsive = 3
+        }else if(window.innerWidth > 400 ){
+          responsive = 2
+        }else{
+          responsive = 1
+        }
+
+        var favWidth = favorites.clientWidth/responsive
+        var fslides = favorites.getElementsByClassName('slick-slide')
+        for (var i = 0; i < fslides.length; i++) {
+          fslides[i].style.width = favWidth + "px"
+        }
+        favorites.getElementsByClassName('slick-track')[0].style.width = favWidth * fslides.length+"px"
+
       }
 
-      var btracker = banners.getElementsByClassName('slick-track')[0]
-      btracker.style.width = bannerWidth * bslides.length+"px"
-      btracker.style.transform = "translate3d(-1060px, 0px, 0px)"
+    </script>
 
-      var reponsive = 5
-      if(window.innerWidth > 1012 ){
-        responsive = 5
-      }else if(window.innerWidth > 828 ){
-        responsive = 4
-      }else if(window.innerWidth > 600 ){
-        responsive = 3
-      }else if(window.innerWidth > 400 ){
-        responsive = 2
-      }else{
-        responsive = 1
-      }
+    <script type="text/javascript">
+       WebFontConfig = {
+         google: {
+           families: ['Lora']
+         }
+       };
 
-      var favWidth = favorites.clientWidth/responsive
-      var fslides = favorites.getElementsByClassName('slick-slide')
-      for (var i = 0; i < fslides.length; i++) {
-        fslides[i].style.width = favWidth + "px"
-      }
-      favorites.getElementsByClassName('slick-track')[0].style.width = favWidth * fslides.length+"px"
-
+       (function(d) {
+          var wf = d.createElement('script'), s = d.scripts[0];
+          wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+          wf.async = true;
+          s.parentNode.insertBefore(wf, s);
+       })(document);
     </script>
   </body>
 </html>
