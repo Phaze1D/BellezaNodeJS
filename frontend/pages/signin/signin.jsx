@@ -86,6 +86,7 @@ export default class Signin extends React.Component {
   }
 
   handleInputFocus(event){
+    event.target.value=""
     this.props.dispatch(resetErrors(event.target.name))
   }
 
@@ -143,7 +144,7 @@ const LoginFrom = props => {
         <input type="text" name="login"
           onFocus={props.onRequestFocus}/>
 
-        <label htmlFor="password">Contraseña <Link to="/passwordreset" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
+        <label htmlFor="password">Contraseña <Link to="/password/forgot" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
         <input type="password" name="password"/>
 
         <Loader>
@@ -163,7 +164,8 @@ const SignUpForm = props => {
 				Al crear una cuenta en nuestra tienda, usted será capaz de moverse a través del proceso
         de pago más rápido, guardar múltiples direcciones de envío.
       </h5>
-      <form className="main-form" onSubmit={props.onRequestSubmit}>
+      <form className="main-form" onSubmit={props.onRequestSubmit} autoComplete="dont you dare chrome">
+
         <label htmlFor="first_name">Nombre</label>
         {props.errors.get('first_name') && <div className="error-div">{props.errors.get('first_name')}</div>}
         <input type="text" name="first_name"
@@ -179,12 +181,16 @@ const SignUpForm = props => {
         <label htmlFor="email">Email</label>
         {props.errors.get('email') && <div className="error-div">{props.errors.get('email')}</div>}
         <input type="text" name="email"
+          autoComplete="dont you dare chrome"
+          defaultValue=" "
           onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 
         <label htmlFor="password">Contraseña </label>
         {props.errors.get('password') && <div className="error-div">{props.errors.get('password')}</div>}
         <input type="password" name="password"
+          autoComplete="dont you dare chrome"
+          defaultValue=""
           onBlur={props.onRequestBlur}
           onFocus={props.onRequestFocus}/>
 

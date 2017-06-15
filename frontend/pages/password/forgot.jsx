@@ -75,7 +75,7 @@ class PasswordForgot extends React.Component {
           <form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
             <label htmlFor="email">Email</label>
             {errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
-            <input name="email" type="text" onFocus={this.handleInputFocus}/>
+            <input name="email" type="text" onFocus={this.handleInputFocus} autoComplete="off"/>
             <input  className="submit full"  type="submit" value="Enviar"/>
           </form>
         </Loader>
