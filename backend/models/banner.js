@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
           end_date: {$gt: Date.now()},
         }]
       },
-      rejectOnEmpty: false
+      rejectOnEmpty: false,
     })
   }
 
