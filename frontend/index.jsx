@@ -11,6 +11,10 @@ import 'index.sass'
 import '@material/menu/dist/mdc.menu.css'
 
 
+require.ensure([], function (require) {
+  require('utils/conekta.js')
+})
+
 let middleware = null
 
 let preloadState = undefined
