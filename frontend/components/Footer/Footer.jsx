@@ -99,19 +99,19 @@ export default class Footer extends React.Component {
             <h3>Redes Sociales</h3>
             <ul className="grid center around footer-img-ul">
               <li className="col-2">
-                <a href="#" target="_blank" title="facebook page">
+                <a href="https://www.facebook.com/BellezaOrganicaCertificada/" target="_blank" title="facebook page">
                   <i className="fa fa-facebook-square" aria-hidden="true"></i>
                 </a>
               </li>
 
               <li className="col-2">
-                <a href="#" target="_blank" title="twitter page">
+                <a href="https://twitter.com/NealsYardMexico" target="_blank" title="twitter page">
                   <i className="fa fa-twitter-square" aria-hidden="true"></i>
                 </a>
               </li>
 
               <li className="col-2">
-                <a href="#" target="_blank" title="instagram page">
+                <a href="https://www.instagram.com/nyr_mexico/" target="_blank" title="instagram page">
                   <div className='instagram'>
                   </div>
                 </a>
