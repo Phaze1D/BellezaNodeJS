@@ -9,8 +9,10 @@ export const userSignUpReducer = (state = INITIAL_USER, action) => {
       return state
 
     case `${types.USER_SIGN_UP}_SUCCESS`:
-      let usr = action.payload.data
-      return fromJS(usr)
+      let user = action.payload.data
+      let token = action.payload.headers.authorization.split(' ')[1]
+      user.token = token
+      return fromJS(user)
 
     case `${types.USER_SIGN_UP}_ERROR`:
 
@@ -25,8 +27,10 @@ export const userLoginReducer = (state = INITIAL_USER, action) => {
       return state
 
     case `${types.USER_LOGIN}_SUCCESS`:
-      let usr = action.payload.data
-      return fromJS(usr)
+      let user = action.payload.data
+      let token = action.payload.headers.authorization.split(' ')[1]
+      user.token = token
+      return fromJS(user)
 
     case `${types.USER_LOGIN}_ERROR`:
 

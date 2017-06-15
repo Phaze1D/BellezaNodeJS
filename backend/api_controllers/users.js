@@ -19,7 +19,7 @@ router.post('/user', upload.none(), function (req, res, next) {
     let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
     delete ru.password
     ru.addresses = []
-    ru.token = token
+    res.append('Authorization', `Bearer ${token}`)
     res.json(ru);
   }).catch(next)
 })
@@ -33,7 +33,7 @@ router.post('/login', upload.none(), function (req, res, next) {
           let ru = user.toJSON()
           let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
           delete ru.password
-          ru.token = token
+          res.append('Authorization', `Bearer ${token}`)
           res.json(ru)
         }else{
           let err = new Sequelize.ValidationError('')
