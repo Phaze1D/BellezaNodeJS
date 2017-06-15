@@ -1,8 +1,6 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
-import Async from 'react-code-splitting'
 import { connect } from 'react-redux'
-
 
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
@@ -14,7 +12,6 @@ import ProductShow from 'pages/product/show'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
 import CartShow from 'pages/cart/show'
-
 
 let UserShow = null
 let CheckoutDirections = null
