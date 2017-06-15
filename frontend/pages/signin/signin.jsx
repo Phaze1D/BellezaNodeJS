@@ -102,7 +102,7 @@ export default class Signin extends React.Component {
 
     const parse = queryString.parse(history.location.search)
     if(parse.redirect && user.get('token')){
-      return <Redirect to={`/${parse.redirect}`}/>
+      return <Redirect to={`${parse.redirect}`}/>
     }
 
     if(user.get('token')){
