@@ -12,6 +12,7 @@ import ProductShow from 'pages/product/show'
 import Search from 'pages/search/search'
 import Signin from 'pages/signin/signin'
 import CartShow from 'pages/cart/show'
+import PasswordReset from 'pages/password/reset'
 
 let UserShow = null
 let CheckoutDirections = null
@@ -84,9 +85,6 @@ export default class Layout extends React.Component {
         <Route path="/search" component={Search}/>
         <Route path="/cart" component={CartShow}/>
         <Route path="/signin" component={Signin}/>
-        {/*<Route path="/contact" component={Contact}/>*/}
-        <Route path="/passwordreset" component={PasswordForgot}/>
-        <Route path="/stores" component={Stores}/>
 
         <Switch>
           <Route exact path="/user/:id/order/:order_id" render={props => signinRedirect(user, props, OrderShow)}/>
@@ -107,6 +105,10 @@ export default class Layout extends React.Component {
         <Route path="/porqueOrganico" component={PorqueOrganico}/>
         <Route path="/terminosCondiciones" component={Terms}/>
         <Route path="/awards" component={Awards}/>
+        {/*<Route path="/contact" component={Contact}/>*/}
+        <Route path="/password/forgot" component={PasswordForgot}/>
+        <Route path="/stores" component={Stores}/>
+        <Route path="/password/reset/:token" render={props => <PasswordReset {...props} user={user}/>}/>
 
         <Footer/>
       </div>
