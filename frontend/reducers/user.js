@@ -21,6 +21,25 @@ export const userSignUpReducer = (state = INITIAL_USER, action) => {
   return state
 }
 
+export const passwordResetReducer = (state = INITIAL_USER, action) => {
+  switch (action.type) {
+    case `${types.PASSWORD_RESET}_LOADING`:
+      return state
+
+    case `${types.PASSWORD_RESET}_SUCCESS`:
+      let user = action.payload.data
+      let token = action.payload.headers.authorization.split(' ')[1]
+      user.token = token
+      return fromJS(user)
+
+    case `${types.PASSWORD_RESET}_ERROR`:
+
+    default: return state
+  }
+  return state
+}
+
+
 export const userLoginReducer = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case `${types.USER_LOGIN}_LOADING`:

@@ -30,7 +30,8 @@ import {
   userLoginReducer,
   userUpdateReducer,
   userPreferenceReducer,
-  userLogoutReducer
+  userLogoutReducer,
+  passwordResetReducer
 } from 'reducers/user'
 
 import {
@@ -126,7 +127,8 @@ const userReducer = reduceReducers(
   userLogoutReducer,
   addressNewReducer,
   addressUpdateReducer,
-  addressDeleteReducer
+  addressDeleteReducer,
+  passwordResetReducer
 )
 
 const categoriesReducer = reduceReducers(
