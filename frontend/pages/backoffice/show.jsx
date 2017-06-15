@@ -13,12 +13,9 @@ import BannersNew from 'pages/banner/new'
 import BannersEdit from 'pages/banner/edit'
 
 
-@connect( store => {
-  return {
-    user: store.user,
-  }
-})
+
 export default class BackofficeShow extends React.Component {
+
   render() {
     const {
       user,

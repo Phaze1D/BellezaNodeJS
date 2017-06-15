@@ -21,7 +21,6 @@ import { resetErrors, setError } from 'actions/errors'
 @connect( store => {
   return {
     cart: store.cart,
-    user: store.user,
     errors: store.errors
   }
 })

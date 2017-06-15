@@ -27,7 +27,6 @@ import Loader from 'components/Loader/Loader'
 @connect( store => {
   return {
     cart: store.cart,
-    user: store.user,
     errors: store.errors
   }
 })

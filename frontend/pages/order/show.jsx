@@ -19,8 +19,7 @@ import Loader from 'components/Loader/Loader'
 
 @connect( store => {
   return {
-    order: store.order,
-    user: store.user,
+    order: store.order
   }
 })
 class OrderShow extends React.Component {

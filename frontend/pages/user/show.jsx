@@ -12,11 +12,7 @@ import UserCodes from 'pages/user/codes'
 * @param {object} user - The current logged in user
 */
 
-@connect( store => {
-  return {
-    user: store.user
-  }
-})
+
 class UserShow extends React.Component {
   render () {
     const {

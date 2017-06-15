@@ -19,7 +19,6 @@ import { resetCart } from 'actions/cart'
 @connect( store => {
   return {
     cart: store.cart,
-    user: store.user,
   }
 })
 class CheckoutSuccessful extends React.Component {
