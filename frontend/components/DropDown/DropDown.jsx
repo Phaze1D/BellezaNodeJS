@@ -7,12 +7,10 @@ export default class DropDown extends React.Component {
   constructor(props){
     super(props)
     this.handleToggle = this.handleToggle.bind(this)
-    this.handleItemSelect = this.handleItemSelect.bind(this)
   }
 
   componentDidMount() {
     this.menu = new MDCSimpleMenu(this.refs.dom_menu)
-    this.refs.dom_menu.addEventListener('MDCSimpleMenu:selected', this.handleItemSelect)
   }
 
   handleToggle(event) {
@@ -23,8 +21,8 @@ export default class DropDown extends React.Component {
     }
   }
 
-  handleItemSelect(event){
-    this.props.onRequestItem(event.detail.index)
+  handleItemSelect(index, event){
+    this.props.onRequestItem(index)
   }
 
   render(){
@@ -41,7 +39,10 @@ export default class DropDown extends React.Component {
     ]
 
     const optionList = options.map( (option, index) =>
-      <Link to={option.link} key={index} className="mdc-list-item" role="menuitem" tabIndex="0">
+      <Link
+        to={option.link} key={index}
+        onClick={this.handleItemSelect.bind(this, index)}
+        className="mdc-list-item" role="menuitem" tabIndex="0">
         {option.name}
       </Link>
     )
