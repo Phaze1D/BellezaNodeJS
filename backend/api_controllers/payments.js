@@ -1,20 +1,23 @@
 'use strict'
 let express = require('express')
+let crypto = require('crypto')
 let isLogin = require('../middleware/user.js').isLogin
 let conektaHelper = require('../helpers/conekta.js')
 let emailSender = require('../helpers/emailSender.js')
 let models = require('../models')
+let fs = require('fs')
 
 let Order = models.Order
 let User = models.User
 let router = express.Router()
+
+let pri = fs.readFileSync('./conekta.webhook.pem').toString()
 
 const paymentStatus = {
   paid: 'pagado',
   pending_payment: 'pendiente',
   refunded: 'cancelado'
 }
-
 
 router.post('/payment/card', isLogin, function (req, res, next) {
   conektaHelper.paymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
@@ -120,38 +123,40 @@ router.post('/payment/cash', isLogin, function (req, res, next) {
 // NEEDS SECURITY I CAN HACK THIS
 router.post('/payment/webhook', function (req, res, next) {
 
-  let object = req.body.data.object
+  if(req.headers['x-forwarded-for'] === '52.200.151.182'){
+    let object = req.body.data ? req.body.data.object : {}
 
-  if(object.status && object.payment_method && object.order_id){
-    let type = object.payment_method.type
-    let status = object.status
+    if(object.status && object.payment_method && object.order_id){
+      let type = object.payment_method.type
+      let status = object.status
 
-    Order.findOne(Order.singleConektaOption(object.order_id))
-    .then(order => {
-      if( (type === 'oxxo' || type === 'spei') && status === 'paid' && paymentStatus[status] !== order.status){
-        let jorder = order.toJSON()
-        jorder.details = jorder.details.map(detail => {
-          detail.plu = detail.product.plu
-          return detail
-        })
-        jorder.charges = {
-          payment_method: {
-            type: object.payment_method.type,
-            reference_number: object.payment_method.reference_number,
+      Order.findOne(Order.singleConektaOption(object.order_id))
+      .then(order => {
+        if( (type === 'oxxo' || type === 'spei') && status === 'paid' && paymentStatus[status] !== order.status){
+          let jorder = order.toJSON()
+          jorder.details = jorder.details.map(detail => {
+            detail.plu = detail.product.plu
+            return detail
+          })
+          jorder.charges = {
+            payment_method: {
+              type: object.payment_method.type,
+              reference_number: object.payment_method.reference_number,
+            }
           }
+          cashPaidHook(jorder, jorder.user, req)
+          order.update({status: paymentStatus[status]})
         }
-        cashPaidHook(jorder, jorder.user, req)
-        order.update({status: paymentStatus[status]})
-      }
 
-      if(type === 'credit' && status === 'refunded'){
-        order.update({status: paymentStatus[status]})
-      }
-
-    })
+        if(type === 'credit' && status === 'refunded'){
+          order.update({status: paymentStatus[status]})
+        }
+      })
+    }
+    res.sendStatus(200)
+  }else{
+    res.sendStatus(401)
   }
-
-  res.sendStatus(200)
 })
 
 
@@ -167,7 +172,3 @@ const cashPaidHook = function (jorder, user, req) {
 }
 
 module.exports = router
-
-// console.log(object.order_id);
-// console.log(object.status);
-// console.log(object.payment_method.type);
