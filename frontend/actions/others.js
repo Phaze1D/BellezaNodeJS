@@ -17,8 +17,15 @@ export const validateContact = (fieldData) => {
 
 export const passwordForgot = (formData) => {
   return {
+    type: types.PASSWORD_FORGOT,
+    payload: axios.post('/api/forgot', formData)
+  }
+}
+
+export const passwordReset = (formData, token) => {
+  return {
     type: types.PASSWORD_RESET,
-    payload: axios.post('/api/passwordreset', formData)
+    payload: axios.post(`/api/reset/${token}`, formData)
   }
 }
 
