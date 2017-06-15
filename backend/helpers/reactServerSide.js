@@ -37,7 +37,7 @@ module.exports = function (promises, map, url) {
       products: fromJS(results[map['products']]),
       product: fromJS(results[map['product']]),
       user: undefined,
-      others: fromJS({banners: results[map['banners']]}),
+      others: fromJS({banners: results[map['banners']], mailing: {rows: [], count: 0}}),
       orders: undefined,
       codes: undefined,
       order: undefined,
