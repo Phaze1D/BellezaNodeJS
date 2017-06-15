@@ -11,7 +11,8 @@ var config = {
   entry: './frontend/index.jsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/'
   },
   resolve: {
     modules: [
@@ -27,7 +28,7 @@ var config = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: [['es2015', {modules: false}], 'react', 'stage-3'],
+          presets: [['es2015', {modules: false}], 'react'],
           plugins: ["transform-decorators-legacy"]
         }
       }]
