@@ -6,7 +6,6 @@ let Product = models.Product
 let DiscountCode = models.DiscountCode
 
 conekta.locale = 'es'
-conekta.api_key = process.env.CONEKTA
 conekta.api_version = '2.0.0'
 
 let userAtt = [
@@ -28,6 +27,7 @@ let prodAtt = [
 let VERIFICATION_ERROR = {name: "VerificationError", error: 401, message: 'verification error'}
 
 const paymentFlow = (cart, userId) => {
+  conekta.api_key = process.env.CONEKTA
   let toPro = []
   return verifyCart(cart, userId)
   .then(products => {
