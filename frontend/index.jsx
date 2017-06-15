@@ -19,7 +19,7 @@ if(window.__PRELOADED_STATE__){
     categories: fromJS(window.__PRELOADED_STATE__.categories),
     cart: undefined,
     products: fromJS(window.__PRELOADED_STATE__.products),
-    product: undefined,
+    product: fromJS(window.__PRELOADED_STATE__.product),
     user: undefined,
     others: fromJS(window.__PRELOADED_STATE__.others),
     orders: undefined,
