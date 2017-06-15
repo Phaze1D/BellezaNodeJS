@@ -59,18 +59,13 @@ export default class Home extends React.Component {
 
     return (
       <main>
-        {banners.size > 0 && products.size > 0 ?
+        {banners && products && banners.size > 0 && products.size > 0 ?
           <div>
             <Carousel banners={banners}/>
             <Favorites products={products}/>
           </div>
           :
-          <Loader>
-            <div>
-              <Carousel banners={banners}/>
-              <Favorites products={products}/>
-            </div>
-          </Loader>
+          <Loader></Loader>
         }
 
         <div className="grid col-sm-hide">
