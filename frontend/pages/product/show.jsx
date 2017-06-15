@@ -47,6 +47,7 @@ export default class ProductShow extends React.Component {
     let newParams = this.props.match.params
 
     if(newParams.id !== oldParams.id){
+      this.props.dispatch(resetProduct())
       this.handleUrlChanged(this.props.history.location, this.props.history.action)
     }
   }
@@ -115,99 +116,101 @@ export default class ProductShow extends React.Component {
       <ProductResult key={index} product={rproduct} dispatch={dispatch}/>
     )
 
+    if(!product.get('plu')){
+      return <Loader></Loader>
+    }
+
     return (
-      <Loader>
-        <main>
-          <section className="grid-wrap top around">
-            <div id="product-mini" className="col-1 col-xs-2 col-xxs-3">
-              <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`}/>
-              <img
-                src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}_2.jpg`}
-                onMouseEnter={this.handleShowSec}
-                onMouseLeave={this.handleHideSec}/>
-            </div>
+      <main>
+        <section className="grid-wrap top around">
+          <div id="product-mini" className="col-1 col-xs-2 col-xxs-3">
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`}/>
+            <img
+              src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}_2.jpg`}
+              onMouseEnter={this.handleShowSec}
+              onMouseLeave={this.handleHideSec}/>
+          </div>
 
-            <picture id="product-main" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main">
-              <source
-                srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}.jpg`}
-                media="(max-width: 463px)"/>
-              <source
-                srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}.jpg`}
-                media="(max-width: 942px)"/>
-              <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}.jpg`}/>
-            </picture>
-
-
-            <picture id="product-sec" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main" style={{display: 'none'}}>
-              <source
-                srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}_2.jpg`}
-                media="(max-width: 463px)"/>
-              <source
-                srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}_2.jpg`}
-                media="(max-width: 942px)"/>
-              <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}_2.jpg`}/>
-            </picture>
+          <picture id="product-main" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main">
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}.jpg`}
+              media="(max-width: 463px)"/>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}.jpg`}
+              media="(max-width: 942px)"/>
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}.jpg`}/>
+          </picture>
 
 
-            <div className="col-5 col-md-6 col-sm-12">
-              <h2>{product.get('name')}</h2>
-              <div className="grid-wrap center around">
-                <div className="col-8 col-xxs-12">
-                  <p className="sub-text">PLU: {product.get('plu')} / Disponibles: {product.get('stock')}</p>
-                  <p className="sub-text primary">${price} / {product.get('volume')}</p>
-                  {product.get('discount') > 0 &&
-                    <p className="discount-text">Con {product.get('discount')}% de Descuento </p>
-                  }
-                </div>
+          <picture id="product-sec" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main" style={{display: 'none'}}>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${product.get('plu')}_2.jpg`}
+              media="(max-width: 463px)"/>
+            <source
+              srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/md/${product.get('plu')}_2.jpg`}
+              media="(max-width: 942px)"/>
+            <img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/lg/${product.get('plu')}_2.jpg`}/>
+          </picture>
 
-                {product.get('stock') > 0 ?
-                  <form className="col-4 col-xxs-12 grid end" onSubmit={this.handleAddDetail}>
-                    <input className="secondary-button raise grow" type="submit" value="Agregar" style={{marginRight: '5px'}}/>
-                    <QuantityDrop stock={product.get('stock')}/>
-                  </form>
-                  :
-                  <input className="secondary-button" type="submit" value="Agotado" disabled/>
+
+          <div className="col-5 col-md-6 col-sm-12">
+            <h2>{product.get('name')}</h2>
+            <div className="grid-wrap center around">
+              <div className="col-8 col-xxs-12">
+                <p className="sub-text">PLU: {product.get('plu')} / Disponibles: {product.get('stock')}</p>
+                <p className="sub-text primary">${price} / {product.get('volume')}</p>
+                {product.get('discount') > 0 &&
+                  <p className="discount-text">Con {product.get('discount')}% de Descuento </p>
                 }
               </div>
 
-              <Tabs className="tabs">
-
-               <TabList className="tablist">
-                 <Tab className="tab">Descripción</Tab>
-                 <Tab className="tab">Beneficios y Usos</Tab>
-                 <Tab className="tab">Ingredientes</Tab>
-               </TabList>
-
-               <TabPanel
-                 className="tab-panel">
-                 <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('description')}}>
-                 </div>
-               </TabPanel>
-
-               <TabPanel
-                 className="tab-panel">
-                 <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
-                 </div>
-               </TabPanel>
-
-               <TabPanel
-                 className="tab-panel">
-                 <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
-                 </div>
-               </TabPanel>
-             </Tabs>
-
+              {product.get('stock') > 0 ?
+                <form className="col-4 col-xxs-12 grid end" onSubmit={this.handleAddDetail}>
+                  <input className="secondary-button raise grow" type="submit" value="Agregar" style={{marginRight: '5px'}}/>
+                  <QuantityDrop stock={product.get('stock')}/>
+                </form>
+                :
+                <input className="secondary-button" type="submit" value="Agotado" disabled/>
+              }
             </div>
-          </section>
 
-          <section>
-            <h3 className="h-underline">Productos Relacionados</h3>
-            <div className="grid-wrap">
-              {relatList}
-            </div>
-          </section>
-        </main>
-      </Loader>
+            <Tabs className="tabs">
+
+             <TabList className="tablist">
+               <Tab className="tab">Descripción</Tab>
+               <Tab className="tab">Beneficios y Usos</Tab>
+               <Tab className="tab">Ingredientes</Tab>
+             </TabList>
+
+             <TabPanel
+               className="tab-panel">
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('description')}}>
+               </div>
+             </TabPanel>
+
+             <TabPanel
+               className="tab-panel">
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('benefits')}}>
+               </div>
+             </TabPanel>
+
+             <TabPanel
+               className="tab-panel">
+               <div className="tinymce-default" dangerouslySetInnerHTML={{__html: product.get('ingredients')}}>
+               </div>
+             </TabPanel>
+           </Tabs>
+
+          </div>
+        </section>
+
+        <section>
+          <h3 className="h-underline">Productos Relacionados</h3>
+          <div className="grid-wrap">
+            {relatList}
+          </div>
+        </section>
+      </main>
     )
   }
 }
