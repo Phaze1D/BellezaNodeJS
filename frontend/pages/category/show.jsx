@@ -76,16 +76,18 @@ export default class CategoryShow extends React.Component {
       products,
       categories,
       match,
-      dispatch
+      dispatch,
+      history
     } = this.props
 
     let category = categories.get(match.params.index)
-    if(!category) return (<Redirect to="/home"/>)
+    if(!category) return (<Redirect to="/"/>)
     category = category.getIn(['subs', match.params.sub])
-    if(!category) return (<Redirect to="/home"/>)
+    if(!category) return (<Redirect to="/"/>)
     category = category.getIn(['subs', match.params.show])
-    if(!category) return (<Redirect to="/home"/>)
+    if(!category) return (<Redirect to="/"/>)
 
+    const parse = queryString.parse(history.location.search)
     return (
       <main>
         <div className="category-cover"  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
@@ -95,6 +97,8 @@ export default class CategoryShow extends React.Component {
           products={products.get('rows')}
           total={products.get('count')}
           url={`${match.url}?`}
+          page={parse.page}
+          sort={parse.sort}
           dispatch={dispatch}/>
       </main>
     )

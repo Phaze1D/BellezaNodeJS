@@ -65,6 +65,8 @@ class Search extends React.Component {
           products={products.get('rows')}
           total={products.get('count')}
           url={`${match.url}?q=${parse.q}&`}
+          page={parse.page}
+          sort={parse.sort}
           dispatch={dispatch}/>
       </main>
     )

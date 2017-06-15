@@ -4,23 +4,36 @@ import DropDown from 'components/DropDown/DropDown'
 import Pagination from 'components/Pagination/Pagination'
 import ProductResult from 'components/ProductResult/ProductResult'
 import Loader from 'components/Loader/Loader'
+import { resetProducts } from 'actions/product'
+
 
 
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {page: 0, prePage: 16, sortIndex: 0}
+
+    this.state = {
+      page: props.page ? props.page : 0,
+      prePage: 16,
+      sortIndex: props.sort ? props.sort : 0
+    }
 
     this.handlePageClick = this.handlePageClick.bind(this);
     this.handleSort = this.handleSort.bind(this);
   }
 
   handlePageClick(index, event){
+    if(this.state.page != index){
+      this.props.dispatch(resetProducts())
+    }
     this.setState({page: index})
   }
 
   handleSort(index){
+    if(this.state.sortIndex != index){
+      this.props.dispatch(resetProducts())
+    }
     this.setState({sortIndex: index, page: 0})
   }
 
@@ -61,11 +74,13 @@ export default class Results extends React.Component {
             onRequestClick={this.handlePageClick}/>
         </div>
 
-        <Loader>
+        {prodList.size > 0 ?
           <div className="grid-wrap">
             {prodList}
           </div>
-        </Loader>
+          :
+          <Loader></Loader>
+        }
 
         {links.length > 1 &&
           <div className="grid between results-options center end">
