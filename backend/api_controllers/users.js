@@ -18,6 +18,9 @@ router.post('/user', upload.none(), function (req, res, next) {
     let ru = user.toJSON()
     let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
     delete ru.password
+    delete ru.conekta_id
+    delete ru.password_reset_token
+    delete ru.password_reset_date
     ru.addresses = []
     res.append('Authorization', `Bearer ${token}`)
     res.json(ru);
@@ -28,23 +31,26 @@ router.post('/user', upload.none(), function (req, res, next) {
 router.post('/login', upload.none(), function (req, res, next) {
   User.findLogin(req.body.email).then( user => {
     if(user){
-      bcrypt.compare(req.body.password, user.password).then((correct) => {
+      return bcrypt.compare(req.body.password, user.password).then((correct) => {
         if(correct){
           let ru = user.toJSON()
           let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'));
           delete ru.password
+          delete ru.conekta_id
+          delete ru.password_reset_token
+          delete ru.password_reset_date
           res.append('Authorization', `Bearer ${token}`)
           res.json(ru)
         }else{
           let err = new Sequelize.ValidationError('')
           err.errors.push({path: 'login', message: 'El correo y la contraseña que has introducido no coinciden.'})
-          next(err)
+          return Promise.reject(err)
         }
       })
     }else{
       let err = new Sequelize.ValidationError('')
       err.errors.push({path: 'login', message: 'El correo y la contraseña que has introducido no coinciden.'})
-      next(err)
+      return Promise.reject(err)
     }
   }).catch(next)
 })
@@ -54,7 +60,7 @@ router.get('/validate-user', function (req, res, next) {
   let user = User.build(req.query, {fields: [Object.keys(req.query)[0]]})
   user.validate({fields: [Object.keys(req.query)[0]]}).then((err) => {
     if(err){
-      next(err)
+      return Promise.reject(err)
     }else{
       res.sendStatus(200)
     }
@@ -68,6 +74,9 @@ router.put('/user/:user_id', isLogin, isUser, upload.none(), function (req, res,
   }).then((user) => {
     let ru = user.toJSON()
     delete ru.password
+    delete ru.conekta_id
+    delete ru.password_reset_token
+    delete ru.password_reset_date
     ru.addresses = []
     res.json(ru);
   }).catch(next)
