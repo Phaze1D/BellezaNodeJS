@@ -194,7 +194,7 @@ const MainList = (props) => {
 
     const subList = main.get('subs').map( (sub, sindex) =>
       <li key={sub.get('id')} title={sub.get('name')}>
-        <Link to={`/category/${props.index}/${mindex}/${sindex}`} className="sub-text">
+        <Link to={`/categories/${props.index}/${mindex}/${sindex}`} className="sub-text">
           {sub.get('name')}
         </Link>
       </li>

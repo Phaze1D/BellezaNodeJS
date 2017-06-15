@@ -26,13 +26,13 @@ export default class CategoryIndex extends React.Component {
     } = this.props
 
     let category = categories.get(match.params.index)
-    if(!category) return (<Redirect to="/home"/>)
+    if(!category) return (<Redirect to="/"/>)
     category = match.params.sub ? category.getIn(['subs', match.params.sub]) : category
-    if(!category) return (<Redirect to="/home"/>)
+    if(!category) return (<Redirect to="/"/>)
 
     let to = ''
     if(match.params.sub){
-      to = `/category/${match.params.index}/${match.params.sub}/`
+      to = `/categories/${match.params.index}/${match.params.sub}/`
     }else{
       to = `/categories/${match.params.index}/`
     }
