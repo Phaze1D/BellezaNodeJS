@@ -43,7 +43,7 @@ require.ensure([], function (require) {
   PorqueOrganico = require('pages/others/porque_organico').default
   Terms = require('pages/others/terms').default
   Awards = require('pages/others/awards').default
-  PasswordReset = require('pages/others/reset').default
+  PasswordReset = require('pages/password/forgot').default
   Stores = require('pages/store/stores').default
 })
 
@@ -63,7 +63,6 @@ export default class Layout extends React.Component {
       window.scrollTo(0, 0)
     }
   }
-
 
   render() {
     const {
@@ -89,21 +88,17 @@ export default class Layout extends React.Component {
         <Route path="/passwordreset" component={PasswordReset}/>
         <Route path="/stores" component={Stores}/>
 
-        {user.get('token') &&
-          <div>
-            <Switch>
-              <Route exact path="/user/:id/order/:order_id" render={props => <OrderShow user={user} {...props}/>}/>
-              <Route path="/user/:id" render={props => <UserShow user={user} {...props}/>}/>
-            </Switch>
+        <Switch>
+          <Route exact path="/user/:id/order/:order_id" render={props => signinRedirect(user, props, OrderShow)}/>
+          <Route path="/user/:id" render={props => signinRedirect(user, props, UserShow)}/>
+        </Switch>
 
-            <Route path="/checkout" render={props => <CheckoutDirections user={user} {...props}/>}/>
-            <Route path="/confirmation" render={props => <CheckoutConfirmation user={user} {...props}/>}/>
-            <Route path="/successful" render={props => <CheckoutSuccessful user={user} {...props}/>}/>
-          </div>
-        }
+        <Route path="/checkout" render={props => signinRedirect(user, props, CheckoutDirections)}/>
+        <Route path="/confirmation" render={props => signinRedirect(user, props, CheckoutConfirmation)}/>
+        <Route path="/successful" render={props => signinRedirect(user, props, CheckoutSuccessful)}/>
 
         {user.get('token') && user.get('admin') &&
-          <Route path="/backoffice" component={BackofficeShow}/>
+          <Route path="/backoffice" render={props => signinRedirect(user, props, BackofficeShow)}/>
         }
 
         <Route path="/quienSomos" component={QuienSomos}/>
@@ -113,9 +108,13 @@ export default class Layout extends React.Component {
         <Route path="/terminosCondiciones" component={Terms}/>
         <Route path="/awards" component={Awards}/>
 
-
         <Footer/>
       </div>
     )
   }
 }
+
+
+const signinRedirect = (user, props, Component) => (
+  user.get('token') ? <Component user={user} {...props}/> : <Redirect to={`/signin?redirect=${props.match.url}`}/>
+)
