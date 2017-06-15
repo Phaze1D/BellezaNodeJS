@@ -11,7 +11,7 @@ export default class Pagination extends React.PureComponent {
   }
 
   componentWillMount() {
-    if(window.innerWidth <= 712){
+    if(typeof window !== "undefined" && window.innerWidth <= 712){
       this.small = true
     }
   }
