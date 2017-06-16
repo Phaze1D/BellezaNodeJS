@@ -22,13 +22,13 @@ app.set('SES_ID', process.env.SES_ID)
 app.set('SES_SECRET_KEY', process.env.SES_SECRET_KEY)
 app.set('SES_REGION', process.env.SES_REGION)
 
-app.set('views', __dirname + '/views')
+app.set('views', path.resolve(__dirname, 'views'))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars')
 
 app.use(compression())
 app.use(helmet())
-app.use(express.static('build'))
+app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -48,6 +48,10 @@ app.get('/', function (req, res) {
   res.redirect('/home');
 })
 
+app.use(function(req, res, next) {
+  res.redirect('/home');
+});
+
 app.listen(8080, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port 8080!')
 })
