@@ -1,12 +1,14 @@
 'use strict'
-import React from 'react'
-import { Provider } from "react-redux"
-import { applyMiddleware, createStore } from "redux"
-import promise from "redux-promise-middleware"
-import Immutable, { fromJS } from 'immutable'
-import { renderToString } from 'react-dom/server'
-import { getReducers } from 'reducers'
-import { ServerRoutes } from 'utils/routes'
+let React = require('react')
+let Provider = require("react-redux").Provider
+let createStore = require("redux").createStore
+let applyMiddleware = require("redux").applyMiddleware
+let promise = require("redux-promise-middleware").default
+let fromJS = require('immutable').fromJS
+let Immutable = require('immutable')
+let renderToString = require('react-dom/server').renderToString
+let getReducers = require('reducers').getReducers
+let ServerRoutes = require('utils/routes').ServerRoutes
 
 
 module.exports = function (promises, map, url) {
