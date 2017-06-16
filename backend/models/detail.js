@@ -2,7 +2,7 @@
 let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-  const Detail =  sequelize.define('Detail', {
+  const Detail = sequelize.define('Detail', {
     id: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
