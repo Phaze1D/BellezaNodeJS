@@ -3,9 +3,8 @@
 let fs        = require('fs');
 let path      = require('path');
 let Sequelize = require('sequelize');
-let basename  = path.basename(module.filename);
 let env       = process.env.NODE_ENV || 'development';
-let config    = require(__dirname + '/../config/database.json')[env];
+let config    = require('../config/database.json')[env];
 let db        = {};
 let sequelize = {}
 
@@ -15,21 +14,17 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(function(file) {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(function(file) {
-    let model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
-  });
 
-Object.keys(db).forEach(function(modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+db['Address'] = require('./address')(sequelize, Sequelize.DataTypes)
+db['Banner'] = require('./banner')(sequelize, Sequelize.DataTypes)
+db['CategoriesProducts'] = require('./categories_products')(sequelize, Sequelize.DataTypes)
+db['Category'] = require('./category')(sequelize, Sequelize.DataTypes)
+db['Detail'] = require('./detail')(sequelize, Sequelize.DataTypes)
+db['DiscountCode'] = require('./discount_code')(sequelize, Sequelize.DataTypes)
+db['Mailing'] = require('./mailing')(sequelize, Sequelize.DataTypes)
+db['Order'] = require('./order')(sequelize, Sequelize.DataTypes)
+db['Product'] = require('./product')(sequelize, Sequelize.DataTypes)
+db['User'] = require('./user')(sequelize, Sequelize.DataTypes)
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
