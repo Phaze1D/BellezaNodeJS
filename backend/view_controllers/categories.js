@@ -1,7 +1,7 @@
 'use strict'
-import express from 'express'
-import models from '../models'
-import reactRender from '../helpers/reactServerSide'
+let express = require('express')
+let models = require('../models')
+let reactRender = require('../helpers/reactServerSide')
 
 let Banner = models.Banner
 let Category = models.Category

@@ -1,7 +1,7 @@
 'use strict'
-import express from 'express'
-import models from '../models'
-import reactRender from '../helpers/reactServerSide'
+let express = require('express')
+let models= require('../models')
+let reactRender = require('../helpers/reactServerSide')
 
 let Banner = models.Banner
 let Category = models.Category
@@ -20,7 +20,7 @@ router.get('/home', function (req, res, next) {
   .then(viewOptions => {
     res.render('index', viewOptions)
   }).catch(err => {
-    res.redirect('/home');
+    console.log(err);
   })
 })
 
@@ -55,7 +55,7 @@ router.get('/stores', function (req, res, next) {
   let promises = [
     Category.formattedAll(),
   ]
-  
+
   reactRender(promises, {categories: 0}, req.url)
   .then(viewOptions => {
     res.render('index', viewOptions)
