@@ -9,5 +9,16 @@
       "timestamps": true,
       "underscored": true
     }
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "bellezaNodeJS",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": true,
+      "underscored": true
+    }
   }
 }
