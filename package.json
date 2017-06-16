@@ -5,9 +5,10 @@
   "main": "frontend/js/index.jsx",
   "scripts": {
     "serve": "NODE_PATH=./frontend nodemon backend/main.js --exec babel-node --presets react,es2015 --plugins transform-decorators-legacy,transform-ensure-ignore",
+    "serve-build": "cross-env NODE_ENV=production webpack -p --config webpack.config.server.js",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js --display-modules",
     "dev": "webpack-dev-server --hot --inline",
-    "prebuild": "rimraf build",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js --display-modules"
+    "prebuild": "rimraf public"
   },
   "author": "David Villarreal",
   "license": "ISC",
@@ -43,7 +44,8 @@
     "uglifyjs-webpack-plugin": "^0.4.3",
     "webpack": "^2.4.1",
     "webpack-bundle-analyzer": "^2.7.0",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "@material/menu": "^0.2.4",
