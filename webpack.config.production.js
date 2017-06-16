@@ -11,7 +11,7 @@ var config = {
   entry: './frontend/index.jsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build/frontend'),
     publicPath: '/'
   },
   resolve: {
