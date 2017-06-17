@@ -1,6 +1,6 @@
 branch-defaults:
   production:
-    environment: null
+    environment: production
     group_suffix: null
 global:
   application_name: BellezaNodeJS
