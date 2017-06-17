@@ -11,8 +11,6 @@ let Order = models.Order
 let User = models.User
 let router = express.Router()
 
-let pri = fs.readFileSync('./conekta.webhook.pem').toString()
-
 const paymentStatus = {
   paid: 'pagado',
   pending_payment: 'pendiente',
