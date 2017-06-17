@@ -85,20 +85,25 @@ header
     height: 65px
     margin: 0 8px
 
+#web-title-div
+  @media screen and (max-width: $layout-md)
+    font-size: 0.9em
+
+  @media screen and (max-width: $layout-xxs)
+    font-size: 0.6em
+    white-space: normal
+
 #web-title
   display: inline-block
   color: $primary
-  span
-    display: block
-    font-size: 0.75em
-    font-weight: normal
+  margin-bottom: 0
 
-  @media screen and (max-width: $layout-md)
-    font-size: 1.8em
-
-  @media screen and (max-width: $layout-xxs)
-    font-size: 1.4em
-    white-space: normal
+#web-title-h2
+  display: block
+  color: $primary
+  // font-size: 0.75em
+  font-weight: normal
+  margin-top: 0
 
 #cart-link
   position: relative

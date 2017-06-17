@@ -111,10 +111,12 @@ export default class Header extends React.Component {
           <Link className="grid center overflow-text col-8 col-sm-11" to="/home" title="Neals Yard Remedies Mexico">
             <img id="logo-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/nyr_logo.jpg" alt="logo"/>
 
-            <h1 id="web-title" className="overflow-text">
-              Neal's Yard Remedies México
-              <span>  Salud y Belleza Orgánica </span>
-            </h1>
+            <div id="web-title-div" className="overflow-text">
+              <h1 id="web-title">
+                Neal's Yard Remedies México
+              </h1>
+              <h2 id="web-title-h2"> Salud y Belleza Orgánica</h2>
+            </div>
           </Link>
 
           <button id="menu-button" className="col-hide col-sm-show" onClick={this.handleToggleSide}>
