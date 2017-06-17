@@ -99,11 +99,11 @@ export default class Layout extends React.Component {
           <Route path="/backoffice" render={props => signinRedirect(user, props, BackofficeShow)}/>
         }
 
-        <Route path="/quienSomos" component={QuienSomos}/>
+        <Route path="/quiensomos" component={QuienSomos}/>
         <Route path="/history" component={History}/>
-        <Route path="/nuestraPromesa" component={NuestraPro}/>
-        <Route path="/porqueOrganico" component={PorqueOrganico}/>
-        <Route path="/terminosCondiciones" component={Terms}/>
+        <Route path="/nuestrapromesa" component={NuestraPro}/>
+        <Route path="/porqueorganico" component={PorqueOrganico}/>
+        <Route path="/terminoscondiciones" component={Terms}/>
         <Route path="/awards" component={Awards}/>
         {/*<Route path="/contact" component={Contact}/>*/}
         <Route path="/password/forgot" component={PasswordForgot}/>

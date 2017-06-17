@@ -60,7 +60,7 @@ export default class Footer extends React.Component {
             <h3>Acerca de</h3>
             <ul className="ul-dots">
       				<li>
-      					<Link to="/quienSomos"> Quienes Somos</Link>
+      					<Link to="/quiensomos"> Quienes Somos</Link>
       				</li>
 
       				<li>
@@ -68,11 +68,11 @@ export default class Footer extends React.Component {
       				</li>
 
       				<li>
-      					<Link to="/nuestraPromesa"> Nuestras Promesas</Link>
+      					<Link to="/nuestrapromesa"> Nuestras Promesas</Link>
       				</li>
 
       				<li>
-      					<Link to="/porqueOrganico"> ¿Porqué Orgánico?</Link>
+      					<Link to="/porqueorganico"> ¿Porqué Orgánico?</Link>
       				</li>
 
       				<li>
@@ -80,7 +80,7 @@ export default class Footer extends React.Component {
       				</li>
 
       				<li>
-      					<Link to="/terminosCondiciones"> Términos y condiciones</Link>
+      					<Link to="/terminoscondiciones"> Términos y condiciones</Link>
       				</li>
 
               {/*
