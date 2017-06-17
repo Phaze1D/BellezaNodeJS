@@ -2,6 +2,8 @@
 require('dotenv').config()
 let express = require('express')
 let path = require("path")
+var https = require('https')
+var http = require('http')
 let bodyParser = require('body-parser')
 let apiControllers = require('./api_controllers')
 let viewControllers = require('./view_controllers')
@@ -52,6 +54,5 @@ app.use(function(req, res, next) {
   res.redirect('/home');
 });
 
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080!')
-})
+http.createServer(app).listen(80);
+// https.createServer(options, app).listen(443);
