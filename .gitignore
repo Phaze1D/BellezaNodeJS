@@ -3,6 +3,9 @@ node_modules/
 *.env
 *.pem
 
+public/
+backend/build/
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
