@@ -1,0 +1,13 @@
+branch-defaults:
+  production:
+    environment: null
+    group_suffix: null
+global:
+  application_name: BellezaNodeJS
+  branch: null
+  default_ec2_keyname: ssh-bellezanode
+  default_platform: Node.js
+  default_region: us-west-1
+  profile: eb-cli
+  repository: null
+  sc: git
