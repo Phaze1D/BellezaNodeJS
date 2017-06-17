@@ -25,7 +25,7 @@ export default class Carousel extends React.Component {
             media="(max-width: 463px)"/>
           <img className="carousel-img"
             src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_lg.jpg`}
-            alt=""/>
+            alt="Banner Image"/>
         </picture>
       </Link>
     )
