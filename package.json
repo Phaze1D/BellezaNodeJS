@@ -4,11 +4,14 @@
   "description": "Website for Vida Flor",
   "main": "frontend/js/index.jsx",
   "scripts": {
-    "serve": "NODE_PATH=./frontend nodemon backend/main.js --exec babel-node --presets react,es2015 --plugins transform-decorators-legacy,transform-ensure-ignore",
     "server-build": "cross-env NODE_ENV=production webpack -p --config webpack.config.server.js",
+    "prebuild": "rimraf public",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js --display-modules",
+    "start": "node ./node_modules/.bin/pm2 start backend/build/bundle.js --name BellezaNodeJS",
+    "poststart":  "node ./node_modules/.bin/pm2 logs",
+
     "dev": "webpack-dev-server --hot --inline",
-    "prebuild": "rimraf public"
+    "serve-dev": "NODE_PATH=./frontend nodemon backend/main.js --exec babel-node --presets react,es2015 --plugins transform-decorators-legacy,transform-ensure-ignore"
   },
   "author": "David Villarreal",
   "license": "ISC",
@@ -71,6 +74,7 @@
     "mysql2": "^1.2.0",
     "nodemailer": "^4.0.1",
     "phone": "^1.0.10",
+    "pm2": "^2.5.0",
     "query-string": "^4.3.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
