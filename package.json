@@ -6,7 +6,7 @@
   "scripts": {
     "server-build": "cross-env NODE_ENV=production webpack -p --config webpack.config.server.js",
     "prebuild": "rimraf public",
-    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js --display-modules",
+    "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
     "start": "node ./node_modules/.bin/pm2 start backend/build/bundle.js --name BellezaNodeJS",
     "poststart":  "node ./node_modules/.bin/pm2 logs",
 
