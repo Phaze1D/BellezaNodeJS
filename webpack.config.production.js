@@ -53,7 +53,7 @@ var config = {
     }),
     new UglifyJSPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ],
 }
 
