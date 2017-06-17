@@ -109,8 +109,9 @@ router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), functi
   }).then(product => {
     if(req.body.categories){
       return product.setCategories(req.body.categories)
+    }else{
+      return product.setCategories([])
     }
-    return product
   }).then(procates => {
     if(mainimg && secimg){
       return productImage(mainimg, secimg).then(buffers => {
