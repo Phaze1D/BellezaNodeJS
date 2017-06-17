@@ -4,7 +4,7 @@ let fs        = require('fs');
 let path      = require('path');
 let Sequelize = require('sequelize');
 let env       = process.env.NODE_ENV || 'development';
-let config    = require('../config/database.json')[env];
+let config    = require('../config/database.js')[env];
 let db        = {};
 let sequelize = {}
 

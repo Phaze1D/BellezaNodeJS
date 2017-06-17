@@ -1,4 +1,5 @@
 'use strict'
+require('dotenv').config()
 let express = require('express')
 let path = require("path")
 let bodyParser = require('body-parser')
@@ -9,7 +10,6 @@ let exphbs  = require('express-handlebars');
 let hbsHelper = require('./helpers/handlebars.js')
 let compression = require('compression')
 let helmet = require('helmet')
-require('dotenv').config()
 
 let app = express()
 let hbs = exphbs.create(hbsHelper);
