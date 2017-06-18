@@ -23,15 +23,18 @@ import Loader from 'components/Loader/Loader'
 export default class Home extends React.Component {
   constructor(props){
     super(props)
-    facebookScript()
-    twitterScript()
+
+    if(typeof window !== 'undefined'){
+      facebookScript()
+      twitterScript()
+    }
   }
 
   componentDidMount() {
     this.props.dispatch(getCarousel())
     this.props.dispatch(getFavs())
 
-    if(window.innerWidth > 828){
+    if(typeof window !== 'undefined' && window.innerWidth > 828){
       if(window.FB){
         window.FB.XFBML.parse()
       }
@@ -98,33 +101,30 @@ export default class Home extends React.Component {
 
 
 const facebookScript = function () {
-  if(typeof window !== 'undefined'){
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  }
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 }
 
 const twitterScript = function () {
 
-  if(typeof window !== 'undefined'){
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-      return t;
-    }(document, "script", "twitter-wjs"));
-  }
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+    return t;
+  }(document, "script", "twitter-wjs"));
+
 }
