@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ArrowLeft, ArrowRight } from 'components/SVGIcons/Material'
 import classnames from 'classnames'
 
 
@@ -43,19 +44,19 @@ export default class Pagination extends React.PureComponent {
     )
 
     if(this.small){
-      const ar = classnames('white-button margin-button arrow-button', {'disable': page - 1 <= -1})
-      const al = classnames('white-button margin-button arrow-button', {'disable': page + 1 >= children.length})
+      const al = classnames('white-button margin-button arrow-button', {'disable': page - 1 <= -1})
+      const ar = classnames('white-button margin-button arrow-button', {'disable': page + 1 >= children.length})
 
       return (
         <div className="grid center">
-          <Link className={ar} to={(links.length > 0 && page > 0) ? links[page - 1].value : '#'}
+          <Link className={al} to={(links.length > 0 && page > 0) ? links[page - 1].value : '#'}
             onClick={this.handleClick.bind(this, page - 1)}>
-            <i className="material-icons">keyboard_arrow_left</i>
+            <ArrowLeft/>
           </Link>
           {children[page]}
-          <Link className={al} to={(links.length > 0 && page < links.length - 1) ? links[page + 1].value : '#'}
+          <Link className={ar} to={(links.length > 0 && page < links.length - 1) ? links[page + 1].value : '#'}
             onClick={this.handleClick.bind(this, page + 1)}>
-            <i className="material-icons">keyboard_arrow_right</i>
+            <ArrowRight/>
           </Link>
         </div>
       )

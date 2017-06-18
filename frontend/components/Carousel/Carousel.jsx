@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
+import { ArrowLeft, ArrowRight } from 'components/SVGIcons/Material'
 
 
 export default class Carousel extends React.Component {
@@ -53,7 +54,7 @@ export default class Carousel extends React.Component {
 const NextArrow = (props) => {
   return (
     <button onClick={props.onClick} className={props.className}>
-      <i className="material-icons">keyboard_arrow_right</i>
+      <ArrowRight/>
     </button>
   )
 }
@@ -61,7 +62,7 @@ const NextArrow = (props) => {
 const PreviousArrow = (props) => {
   return (
     <button onClick={props.onClick} className={props.className}>
-      <i className="material-icons">keyboard_arrow_left</i>
+      <ArrowLeft/>
     </button>
   )
 }

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Clear } from 'components/SVGIcons/Material'
 import { addMailer } from 'actions/others'
 import { resetErrors } from 'actions/errors'
 import {
@@ -213,7 +214,7 @@ const UserEdit = (props) => {
     <div className="box with-y">
       <h3>
         Editar Detalles
-        <i className="material-icons clear-icon" onClick={onRequestCancel}>clear</i>
+        <Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
       </h3>
       <form className="main-form" onSubmit={onRequestSubmit}>
         <label htmlFor="first_name">Nombre</label>

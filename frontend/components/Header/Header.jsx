@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import CartBox from 'components/CartBox/CartBox'
+import { Menu, ShoppingCart, Search } from 'components/SVGIcons/Material'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { getCategories } from 'actions/category'
@@ -120,7 +121,7 @@ export default class Header extends React.Component {
           </Link>
 
           <button id="menu-button" className="col-hide col-sm-show" onClick={this.handleToggleSide}>
-            <i className="material-icons">menu</i>
+            <Menu/>
           </button>
 
           <div className="col-4 col-sm-hide">
@@ -135,7 +136,7 @@ export default class Header extends React.Component {
                 onMouseEnter={(event) => {this.setState({showCart: true})} }>
                 <Link className="dark-a grid center" to="/cart">
                   Carrito
-                  <i className="material-icons">shopping_cart</i>
+                  <ShoppingCart/>
                 </Link>
               </div>
             </div>
@@ -143,7 +144,7 @@ export default class Header extends React.Component {
             <form className="search-form grid center" onSubmit={this.handleSearchSubmit}>
               <input type="search" name="query" autoComplete="off"/>
               <button type="submit">
-                <i className="material-icons">search</i>
+                <Search fill="#9e9e9e"/>
               </button>
             </form>
           </div>
@@ -165,7 +166,7 @@ export default class Header extends React.Component {
                 <span className="grow">
                   Carrito
                 </span>
-                <i className="material-icons">shopping_cart</i>
+                <ShoppingCart />
               </Link>
             </li>
             <li className="nav-item col-sm-show col-hide">
@@ -176,7 +177,7 @@ export default class Header extends React.Component {
               <form className="search-form grid center" onSubmit={this.handleSearchSubmit}>
                 <input type="search" name="query" autoComplete="off"/>
                 <button type="submit">
-                  <i className="material-icons">search</i>
+                  <Search fill="#9e9e9e"/>
                 </button>
               </form>
             </li>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ArrowDown } from 'components/SVGIcons/Material'
 import { MDCSimpleMenu, MDCSimpleMenuFoundation } from '@material/menu/dist/mdc.menu.js'
 
 
@@ -49,7 +50,7 @@ export default class QuantityDrop extends React.Component {
         <input name="quantity" type="hidden" value={this.state.focuson + 1}/>
         <button type="button" className="drop-button center quantity" onClick={this.handleToggle}>
           {this.state.focuson + 1}
-          <i className="material-icons">keyboard_arrow_down</i>
+          <ArrowDown/>
         </button>
         <div ref="dom_menu" className="mdc-simple-menu" tabIndex="-1">
           <ul className="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">

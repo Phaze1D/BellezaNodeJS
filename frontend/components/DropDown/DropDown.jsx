@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ArrowDown } from 'components/SVGIcons/Material'
 import { MDCSimpleMenu, MDCSimpleMenuFoundation } from '@material/menu/dist/mdc.menu.js'
 
 
@@ -51,7 +52,7 @@ export default class DropDown extends React.Component {
       <div className="mdc-menu-anchor">
         <button className="drop-button center" onClick={this.handleToggle}>
           {options[focuson].name}
-          <i className="material-icons">keyboard_arrow_down</i>
+          <ArrowDown/>
         </button>
         <div ref="dom_menu" className="mdc-simple-menu" tabIndex="-1">
           <ul className="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">

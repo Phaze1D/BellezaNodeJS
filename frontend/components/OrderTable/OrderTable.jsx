@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 import QuantityDrop from 'components/QuantityDrop/QuantityDrop'
+import { Clear } from 'components/SVGIcons/Material'
+
 
 
 
@@ -138,7 +140,7 @@ const OrderRow = (props) => (
 
     {props.editable &&
       <td>
-          <i className="material-icons" onClick={props.onRequestRemove}>clear</i>
+          <Clear fill="red" onClick={props.onRequestRemove}/>
       </td>
     }
   </tr>

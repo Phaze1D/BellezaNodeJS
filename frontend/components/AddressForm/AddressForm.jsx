@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Clear } from 'components/SVGIcons/Material'
 import { resetErrors } from 'actions/errors'
 import {
   addressNew,
@@ -74,7 +75,7 @@ class AddressForm extends React.Component {
       <div className="box with-y">
         <h3>
           Dirección
-          <i className="material-icons clear-icon" onClick={onRequestCancel}>clear</i>
+          <Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
         </h3>
         <form className="main-form" onSubmit={this.handleSubmit}>
           <label htmlFor="first_name">Nombre</label>
