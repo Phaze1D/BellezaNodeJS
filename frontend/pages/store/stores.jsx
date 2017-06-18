@@ -22,7 +22,7 @@ export default class Stores extends React.Component {
             Guadalajara <span className="sub-text" style={{fontSize: '0.6em'}}> Oficina Matriz </span>
           </h2>
           <div className="col-6 col-xs-9 col-xxs-12">
-            <div className="map-img cover-image" style={{backgroundImage: 'url(http://placehold.it/400x250)'}}></div>
+            <div className="map-img contain-image" style={{backgroundImage: 'url(http://placehold.it/400x250)'}}></div>
           </div>
 
           <div className="col-6 col-xs-9 col-xxs-12">
@@ -31,14 +31,14 @@ export default class Stores extends React.Component {
 
           <h2 className="col-12 h-underline">México DF</h2>
           <div className="col-6 col-xs-9 col-xxs-12">
-            <div className="map-img cover-image" style={{backgroundImage: 'url(http://placehold.it/400x250)'}}></div>
+            <div className="map-img contain-image" style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office2.jpg)'}}></div>
           </div>
 
           <div className="col-6 col-xs-9 col-xxs-12">
             <div id="df1-map" className="map-div"></div>
           </div>
           <div className="col-6 col-xs-9 col-xxs-12">
-            <div className="map-img cover-image" style={{backgroundImage: 'url(http://placehold.it/400x250)'}}></div>
+            <div className="map-img contain-image" style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office1.jpg)'}}></div>
           </div>
 
           <div className="col-6 col-xs-9 col-xxs-12">
@@ -64,69 +64,130 @@ const InfoWindow = () => {
   `
 }
 
+const InfoWindow1 = () => {
+  return `
+  <address class="info-window">
+    <p>Ejericito Nacional #769 Esq Moliere</p>
+    <p>Polanco</p>
+    <p>Granada</p>
+    <p>11520 Ciudad de México, CDMX</p>
+    <p>México</p>
+    <p>Tel. 01 55 5902 4720</p>
+  </address>
+  `
+}
+
+const InfoWindow2 = () => {
+  return `
+  <address class="info-window">
+    <p>Avenida Universidad</p>
+    <p>Xoco</p>
+    <p>Benito Juárez</p>
+    <p>03330, Ciudad de México</p>
+    <p>México</p>
+    <p>Tel. 044 55 2961 8419</p>
+  </address>
+  `
+}
+
 
 
 const loadGDL = function() {
-  let infowindow = new google.maps.InfoWindow({
-    content: InfoWindow()
-  });
-
   let uluru = {lat: 20.6948516, lng: -103.3833014};
   let map = new google.maps.Map(document.getElementById('guad-map'), {
     zoom: 17,
     center: uluru
   });
 
-  let marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  });
-  infowindow.open(map, marker);
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+  var service = new google.maps.places.PlacesService(map);
+  service.getDetails({
+      placeId: 'ChIJm7bUC0euKIQR16nDKgEc0cY'
+  }, function (result, status) {
+      map.setCenter(result.geometry.location)
+
+      var marker = new google.maps.Marker({
+          map: map,
+          place: {
+              placeId: 'ChIJm7bUC0euKIQR16nDKgEc0cY',
+              location: result.geometry.location
+          }
+      });
+
+      let infowindow = new google.maps.InfoWindow({
+        content: InfoWindow()
+      });
+
+      infowindow.open(map, marker);
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
   });
 }
 
 
 const loadMX1 = function() {
-  let infowindow = new google.maps.InfoWindow({
-    content: InfoWindow()
-  });
-
-  let uluru = {lat: 20.6948516, lng: -103.3833014};
+  let uluru = {lat: 19.4393079, lng: -99.2013657};
   let map = new google.maps.Map(document.getElementById('df1-map'), {
     zoom: 17,
     center: uluru
   });
 
-  let marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  });
-  infowindow.open(map, marker);
+  var service = new google.maps.places.PlacesService(map);
+  service.getDetails({
+      placeId: 'ChIJTykh1wQC0oURYjASDwnHhOE'
+  }, function (result, status) {
+      map.setCenter(result.geometry.location)
 
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+      var marker = new google.maps.Marker({
+          map: map,
+          place: {
+              placeId: 'ChIJTykh1wQC0oURYjASDwnHhOE',
+              location: result.geometry.location
+          }
+      });
+
+      let infowindow = new google.maps.InfoWindow({
+        content: InfoWindow1()
+      });
+
+      infowindow.open(map, marker);
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
   });
 }
 
 const loadMX2 = function() {
-  let infowindow = new google.maps.InfoWindow({
-    content: InfoWindow()
-  });
-
-  let uluru = {lat: 20.6948516, lng: -103.3833014};
+  let uluru = {lat: 19.3652849, lng: -99.1681033};
   let map = new google.maps.Map(document.getElementById('df2-map'), {
     zoom: 17,
     center: uluru
   });
 
-  let marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  });
-  infowindow.open(map, marker);
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+  var service = new google.maps.places.PlacesService(map);
+  service.getDetails({
+      placeId: 'ChIJVfqyHL7_0YURIG1KQZ7aMxA'
+  }, function (result, status) {
+      map.setCenter(result.geometry.location)
+
+      var marker = new google.maps.Marker({
+          map: map,
+          place: {
+              placeId: 'ChIJVfqyHL7_0YURIG1KQZ7aMxA',
+              location: result.geometry.location
+          }
+      });
+
+      let infowindow = new google.maps.InfoWindow({
+        content: InfoWindow2()
+      });
+
+      infowindow.open(map, marker);
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
   });
 }
