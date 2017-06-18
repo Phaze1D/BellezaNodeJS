@@ -25,9 +25,12 @@ export default class Pagination extends React.PureComponent {
   }
 
   render(){
-    const page = this.props.page
+    const {
+      links,
+      page
+    } = this.props
 
-    const children = this.props.links.map( (link, index) =>
+    const children = links.map( (link, index) =>
       <Link
         key={index}
         to={link.value}
@@ -44,12 +47,12 @@ export default class Pagination extends React.PureComponent {
 
       return (
         <div className="grid center">
-          <Link className={ar} to={page > 0 ? this.props.links[page - 1].value : '#'}
+          <Link className={ar} to={(links.size > 0 && page > 0) ? links[page - 1].value : '#'}
             onClick={this.handleClick.bind(this, page - 1)}>
             <i className="material-icons">keyboard_arrow_left</i>
           </Link>
           {children[page]}
-          <Link className={al} to={page < this.props.links.length - 1 ? this.props.links[page + 1].value : '#'}
+          <Link className={al} to={(links.size > 0 && page < links.length - 1) ? links[page + 1].value : '#'}
             onClick={this.handleClick.bind(this, page + 1)}>
             <i className="material-icons">keyboard_arrow_right</i>
           </Link>
