@@ -1,6 +1,7 @@
 import React from "react"
 import { Clear } from "components/SVGIcons/Material"
 import { resetErrors } from "actions/errors"
+import Loader from "components/Loader/Loader"
 import {
 	addressNew,
 	addressUpdate,
@@ -72,7 +73,7 @@ class AddressForm extends React.Component {
 		} = this.props
 
 		return (
-			<div className="box with-y">
+			<div className="box with-y" style={{minWidth: "400px"}}>
 				<h3>
           Dirección
 					<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
@@ -133,8 +134,9 @@ class AddressForm extends React.Component {
 						defaultValue={address.get("telephone")}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
-
-					<input className="submit" type="submit" value="Guardar"/>
+					<Loader>
+						<input className="submit" type="submit" value="Guardar"/>
+					</Loader>
 				</form>
 			</div>
 		)

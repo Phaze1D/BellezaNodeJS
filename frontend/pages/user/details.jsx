@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import { Clear } from "components/SVGIcons/Material"
+import Loader from "components/Loader/Loader"
 import { addMailer } from "actions/others"
 import { resetErrors } from "actions/errors"
 import {
@@ -211,7 +212,7 @@ const UserEdit = (props) => {
 
 
 	return (
-		<div className="box with-y">
+		<div className="box with-y" style={{minWidth: "400px"}}>
 			<h3>
         Editar Detalles
 				<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
@@ -240,8 +241,9 @@ const UserEdit = (props) => {
 					defaultValue={user.get("telephone")}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
-
-				<input className="submit" type="submit" value="Guardar"/>
+				<Loader>
+					<input className="submit full" type="submit" value="Guardar"/>
+				</Loader>
 			</form>
 		</div>
 	)
