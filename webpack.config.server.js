@@ -14,7 +14,7 @@ var config = {
   entry: './backend/main.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'backend/build'),
+    path: path.resolve(__dirname, 'build'),
     publicPath: '/'
   },
   resolve: {
