@@ -21,11 +21,10 @@ router.post('/forgot', upload.none(), function (req, res, next) {
       let token = crypto.randomBytes(32).toString('hex');
       user.update({password_reset_token: token, password_reset_date: Date.now() + 3600000})
       .then( user => {
-
         let info = {
           name: user.first_name + " " + user.last_name,
-          action_url: "http://localhost:3000/password/reset/"+token,
-          support_url: "http://localhost:3000"
+          action_url: "http://"+req.headers.host+"/password/reset/"+token,
+          support_url: "http://"+req.headers.host+""
         }
 
         req.app.render('emails/password_reset', info, function (err, html) {
