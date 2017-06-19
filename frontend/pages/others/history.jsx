@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react'
+import React from "react"
 
 const History = (props) => {
-  return (
-    <main>
-      <h1>Historia</h1>
-      <div className="grid top">
-        <p className="col-9">
+	return (
+		<main>
+			<h1>Historia</h1>
+			<div className="grid top">
+				<p className="col-9">
           Nuestras raíces Neal´s Yard Remedies nació en 1981 en Londres Inglaterra. Nos gusta pensar que somos pioneros.
           Hoy en día la conciencia y el interés en los remedios naturales, la piel y el cuidado del cuerpo van en aumento.
           Pero cuando abrimos nuestra primera tienda en Covent Garden en Londres, fuimos uno de muy pocos que estábamos
@@ -25,11 +25,11 @@ const History = (props) => {
           el uso de ingredientes orgánicos certificados en nuestros productos. Y si no lo has notado hemos invertido mucho en
           nuestro empaque. Las botellas de color azul, fueron diseñadas para proteger nuestros productos evitando el filtrado
           de la luz solar en un 95% manteniendo así nuestros productos por más tiempo.
-        </p>
-        <img className="col-3" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/historia.png" alt="historia"/>
-      </div>
-    </main>
-  )
+				</p>
+				<img className="col-3" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/historia.png" alt="historia"/>
+			</div>
+		</main>
+	)
 }
 
 export default History
