@@ -1,50 +1,50 @@
 .cart-box
-  +shadow-2dp()
-  display: none
-  position: fixed
-  width: 350px
-  max-height: 500px
-  background-color: $grey-100
-  z-index: 200
-  top: 42px
-  right: 132px
-  border-radius: $border-radius
-  flex-direction: column
-  text-align: center
-  overflow: hidden
+	+shadow-2dp()
+	display: none
+	position: fixed
+	width: 350px
+	max-height: 500px
+	background-color: $grey-100
+	z-index: 200
+	top: 42px
+	right: 132px
+	border-radius: $border-radius
+	flex-direction: column
+	text-align: center
+	overflow: hidden
 
-  @media screen and (max-width: $layout-xxs)
-    width: 315px
-    right: 2px
-    top: 42px
+	@media screen and (max-width: $layout-xxs)
+		width: 315px
+		right: 2px
+		top: 42px
 
-  &.show
-    display: flex
+	&.show
+		display: flex
 
 .cart-mid
-  flex-grow: 1
-  overflow-y: scroll
-  overflow-x: hidden
+	flex-grow: 1
+	overflow-y: scroll
+	overflow-x: hidden
 
 .cart-item
-  display: flex
-  border-bottom: 1px solid $grey-300
-  background-color: white
-  text-align: left
-  align-items: center
-  font-size: 0.9em
-  &:last-child
-    border: none
-  img
-    width: 82px
-  div
-    padding: 0 16px
-    min-width: 0
+	display: flex
+	border-bottom: 1px solid $grey-300
+	background-color: white
+	text-align: left
+	align-items: center
+	font-size: 0.9em
+	&:last-child
+		border: none
+	img
+		width: 82px
+	div
+		padding: 0 16px
+		min-width: 0
 
 .cart-bottom
-  background-color: white
-  border-top: 1px solid $grey-300
-  margin-top: auto
-  padding: 0 5px
-  flex-shrink: 0
-  padding: 8px
+	background-color: white
+	border-top: 1px solid $grey-300
+	margin-top: auto
+	padding: 0 5px
+	flex-shrink: 0
+	padding: 8px

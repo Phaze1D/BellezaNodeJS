@@ -1,24 +1,24 @@
 
 
 #error-box
-  +shadow-4dp()
-  position: fixed
-  top: 30px
-  right: -320px
-  border-radius: $border-radius 0 0 $border-radius
-  width: 320px
-  min-height: 100px
-  color: white
-  background-color: $mred
-  z-index: 1000
-  will-change: transform
-  padding: 16px
-  transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1)
-  transform: translate3d(0, 0, 0)
+	+shadow-4dp()
+	position: fixed
+	top: 30px
+	right: -320px
+	border-radius: $border-radius 0 0 $border-radius
+	width: 320px
+	min-height: 100px
+	color: white
+	background-color: $mred
+	z-index: 1000
+	will-change: transform
+	padding: 16px
+	transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1)
+	transform: translate3d(0, 0, 0)
 
-  &.show
-    transform: translate3d(-100%, 0, 0)
+	&.show
+		transform: translate3d(-100%, 0, 0)
 
 
-  h3
-    margin-top: 0
+	h3
+		margin-top: 0
