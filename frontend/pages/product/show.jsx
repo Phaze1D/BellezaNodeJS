@@ -127,7 +127,8 @@ export default class ProductShow extends React.Component {
 						<img
 							src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get("plu")}_2.jpg`}
 							onMouseEnter={this.handleShowSec}
-							onMouseLeave={this.handleHideSec}/>
+							onMouseLeave={this.handleHideSec}
+							onError={(event) => event.target.style.display = "none"}/>
 					</div>
 
 					<picture id="product-main" className="col-5 col-md-4 col-sm-6 col-xxs-8 product-main">
