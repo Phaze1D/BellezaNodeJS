@@ -22,7 +22,7 @@ export default class Stores extends React.Component {
             Guadalajara <span className="sub-text" style={{fontSize: "0.6em"}}> Oficina Matriz </span>
 					</h2>
 					<div className="col-6 col-xs-9 col-xxs-12">
-						<div className="map-img contain-image" style={{backgroundImage: "url(http://placehold.it/400x250)"}}></div>
+						<div className="map-img contain-image" style={{backgroundImage: "url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office.jpg)"}}></div>
 					</div>
 
 					<div className="col-6 col-xs-9 col-xxs-12">
