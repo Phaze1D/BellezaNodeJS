@@ -61,7 +61,7 @@ class ProductsEdit extends React.Component {
 		formData.append("plu", elements.plu.value)
 		formData.append("name", elements.name.value)
 		formData.append("volume", elements.volume.value)
-		formData.append("price", elements.price.value)
+		formData.append("price", Number(elements.price.value)*100)
 		formData.append("discount", elements.discount.value)
 		formData.append("stock", elements.stock.value)
 		formData.append("iva", elements.iva.value)
