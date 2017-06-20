@@ -1,4 +1,5 @@
 import React from "react"
+import ReactGA from "react-ga"
 import { Route, Redirect, Switch } from "react-router-dom"
 import { connect } from "react-redux"
 
@@ -13,6 +14,7 @@ import Search from "pages/search/search"
 import Signin from "pages/signin/signin"
 import CartShow from "pages/cart/show"
 import PasswordReset from "pages/password/reset"
+
 
 let UserShow = null
 let CheckoutDirections = null
@@ -59,6 +61,14 @@ require.ensure([], function (require) {
 export default class Layout extends React.Component {
 	constructor(props) {
 		super(props)
+
+		if(typeof window !== "undefined"){
+			ReactGA.initialize("UA-101407990-1")
+			props.history.listen((location, action) => {
+				ReactGA.set({ page: location.pathname })
+				ReactGA.pageview(location.pathname)
+			})
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -66,6 +76,9 @@ export default class Layout extends React.Component {
 			window.scrollTo(0, 0)
 		}
 	}
+
+
+
 
 	render() {
 		const {
