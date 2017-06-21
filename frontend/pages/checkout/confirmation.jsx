@@ -70,14 +70,16 @@ export default class CheckoutConfirmation extends React.Component {
 			}
 		}
 		elements.submit.disabled = true
+		console.log(window.Conekta.getPublicKey());
 		window.Conekta.Token.create(data, this.successfullToken, this.errorToken)
 
 	}
 
 	successfullToken(token){
+		console.log(token);
 		let formData = this.props.cart.toJS()
 		formData.payment_source = {
-			token: token,
+			token: token.id,
 			type: "card"
 		}
 		this.props.dispatch(cardPayment(formData, this.props.user.get("token")))
