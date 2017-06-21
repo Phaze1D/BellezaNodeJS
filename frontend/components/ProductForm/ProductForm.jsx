@@ -150,13 +150,13 @@ class ProductForm extends React.Component {
 					</div>
 
 					<div className="col-4">
-						<label>Main Image</label>
+						<label>Main Image (830x969)</label>
 						{errors.get("main_image") && <div className="error-div">{errors.get("main_image")}</div>}
 						<input type="file" name="main_image"/>
 					</div>
 
 					<div className="col-4">
-						<label>Second Image</label>
+						<label>Second Image (830x969)</label>
 						{errors.get("second_image") && <div className="error-div">{errors.get("second_image")}</div>}
 						<input type="file" name="second_image"/>
 					</div>
