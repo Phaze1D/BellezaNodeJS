@@ -56,6 +56,8 @@ require.ensure([], function (require) {
 @connect( store => {
 	return {
 		user: store.user,
+		categories: store.categories,
+		cart: store.cart
 	}
 })
 export default class Layout extends React.Component {
@@ -81,13 +83,15 @@ export default class Layout extends React.Component {
 		const {
 			user,
 			history,
-			dispatch
+			dispatch,
+			categories,
+			cart
 		} = this.props
 
 		return (
 			<div id='layout'>
 				<GlobalError/>
-				<Header history={history}/>
+				<Header history={history} cart={cart} categories={categories}/>
 
 				<Route exact path="/" component={Home}/>
 				<Route path="/home" component={Home}/>

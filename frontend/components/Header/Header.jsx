@@ -2,18 +2,10 @@ import React from "react"
 import { Link } from "react-router-dom"
 import CartBox from "components/CartBox/CartBox"
 import { Menu, ShoppingCart, Search } from "components/SVGIcons/Material"
-import { connect } from "react-redux"
 import { getCategories } from "actions/category"
 import { hideCart } from "actions/cart"
 
 
-
-@connect( store => {
-	return {
-		categories: store.categories,
-		cart: store.cart
-	}
-})
 export default class Header extends React.Component {
 	constructor(props) {
 		super(props)
