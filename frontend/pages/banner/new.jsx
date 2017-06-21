@@ -5,18 +5,6 @@ import { newBanner } from "actions/others"
 import { resetErrors } from "actions/errors"
 
 
-
-/**
-* HTTP - POST
-* @param {object} banner - The new banner to add
-*
-* LOCAL - POST
-* @param {string} resetOne - A string to reset one property of the error object
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
-*/
-
 @connect(store => {
 	return {
 		banner: store.others.get("banner"),

@@ -4,16 +4,6 @@ import { connect } from "react-redux"
 import { newProduct } from "actions/product"
 import { resetErrors } from "actions/errors"
 
-/**
-* HTTP - POST
-* @param {object} product - The new product to add
-*
-* LOCAL - POST
-* @param {string} resetOne - A string to reset one property of the error object
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
-*/
 
 @connect(store => {
 	return {

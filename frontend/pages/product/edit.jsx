@@ -6,22 +6,6 @@ import { resetErrors } from "actions/errors"
 import Loader from "components/Loader/Loader"
 
 
-
-
-/**
-* HTTP - GET
-* @param {object} product - The full product info to edit
-*
-* HTTP - POST
-* @param {object} product - The edited product to add
-*
-* LOCAL - POST
-* @param {string} resetOne - A string to reset one property of the error object
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
-*/
-
 @connect(store => {
 	return {
 		user: store.user,

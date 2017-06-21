@@ -8,17 +8,6 @@ import Loader from "components/Loader/Loader"
 import QuantityDrop from "components/QuantityDrop/QuantityDrop"
 
 
-/**
-* HTTP - GET
-* @param {object} product - Entire product object with summaries
-*
-* LOCAL - POST
-* @param {object} cartDetail - Adds a product to the cart
-*
-* LOCAL - POST (on unmount)
-* @param {object} reset - An empty object to reset product
-*/
-
 @connect( store => {
 	return {
 		product: store.product

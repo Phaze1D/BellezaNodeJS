@@ -6,17 +6,6 @@ import { addCartAddress, addCartExtra } from "actions/cart"
 import { resetErrors, setError } from "actions/errors"
 
 
-
-
-
-/**
-* LOCAL - GET
-* @param {object} user - The current logged in user
-*
-* LOCAL - GET
-* @param {object} cartOrder - The cart order
-*/
-
 @connect( store => {
 	return {
 		cart: store.cart,

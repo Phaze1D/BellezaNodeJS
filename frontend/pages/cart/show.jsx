@@ -5,14 +5,6 @@ import { connect } from "react-redux"
 import { changeQuantity, removeDetail } from "actions/cart"
 
 
-/**
-* LOCAL - GET
-* @param {object} cart - The current cart order
-*
-* LOCAL - POST
-* @param {object} cart - The new modified cart order
-*/
-
 @connect( store => {
 	return {
 		cart: store.cart

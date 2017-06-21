@@ -7,15 +7,6 @@ import queryString from "query-string"
 import Loader from "components/Loader/Loader"
 
 
-
-/**
-* HTTP - GET
-* @param {array} mails - An array of mails
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to mails array
-*/
-
 @connect(store => {
 	return {
 		mailing: store.others.get("mailing"),

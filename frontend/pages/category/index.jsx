@@ -3,12 +3,6 @@ import { Link, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 
 
-/**
-* LOCAL - GET
-* @param {object} category - A object with a category information and its sub categories
-*
-*/
-
 @connect( store => {
 	return {
 		categories: store.categories,

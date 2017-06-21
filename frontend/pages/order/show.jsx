@@ -8,15 +8,6 @@ import { getOrder, resetOrder } from "actions/order"
 import Loader from "components/Loader/Loader"
 
 
-
-/**
-* HTTP - GET
-* @param {object} order - Full order info
-*
-* LOCAL - POST
-* @param {object} reset - reset the order with empty object
-*/
-
 @connect( store => {
 	return {
 		order: store.order

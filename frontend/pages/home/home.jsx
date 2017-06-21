@@ -7,13 +7,6 @@ import { getFavs, resetProducts } from "actions/product"
 import Loader from "components/Loader/Loader"
 
 
-
-/**
-* HTTP - GET
-* @param {array} carouselImages - An array of the images to display on the carousel
-* @param {array} favorites - An array of product objects to display on the favorites
-*/
-
 @connect(store => {
 	return {
 		banners: store.others.get("banners"),

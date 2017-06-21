@@ -7,22 +7,6 @@ import { resetErrors, setError } from "actions/errors"
 import { cashPayment, cardPayment } from "actions/payment"
 import Loader from "components/Loader/Loader"
 
-/**
-* LOCAL - GET
-* @param {object} user - The current logged in user
-*
-* LOCAL - GET
-* @param {object} cartOrder - The current cart order
-*
-* HTTP - POST
-* @param {string} discountCode - The discount code to check
-*
-* HTTP - POST
-* @param {object} cardPayment - All the info to create a card payment including cartOrder
-*
-* HTTP - POST
-* @param {object} cashPayment - All the info to create a cash payment including cartOrder
-*/
 
 @connect( store => {
 	return {

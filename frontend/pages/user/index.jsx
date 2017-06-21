@@ -7,16 +7,6 @@ import queryString from "query-string"
 import Loader from "components/Loader/Loader"
 
 
-
-
-/**
-* HTTP - GET
-* @param {array} users - An array of users
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to reset users array
-*/
-
 @connect(store => {
 	return {
 		clients: store.clients,

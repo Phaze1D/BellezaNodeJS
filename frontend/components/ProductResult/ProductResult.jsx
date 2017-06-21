@@ -4,11 +4,6 @@ import { addDetail } from "actions/cart"
 import QuantityDrop from "components/QuantityDrop/QuantityDrop"
 
 
-
-/**
-* LOCAL - POST
-* @param {object} cartDetail - Adds a product to the cart
-*/
 export default class ProductResult extends React.PureComponent {
 	constructor(props) {
 		super(props)

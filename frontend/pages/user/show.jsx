@@ -6,12 +6,6 @@ import UserAddresses from "pages/user/addresses"
 import UserCodes from "pages/user/codes"
 
 
-/**
-* LOCAL - GET
-* @param {object} user - The current logged in user
-*/
-
-
 class UserShow extends React.Component {
 	render () {
 		const {

@@ -5,16 +5,6 @@ import OrderTable from "components/OrderTable/OrderTable"
 import { connect } from "react-redux"
 import { resetCart } from "actions/cart"
 
-/**
-* LOCAL - GET
-* @param {object} user - The current logged in user
-*
-* LOCAL - GET
-* @param {object} cartOrder - The current cart order
-*
-* LOCAL - POST (on unmount)
-* @param {object} reset - Reset the current cart order with empty object
-*/
 
 @connect( store => {
 	return {

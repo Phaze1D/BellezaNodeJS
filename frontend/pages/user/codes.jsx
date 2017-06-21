@@ -7,20 +7,6 @@ import { getUserCodes, resetCodes } from "actions/discountcode"
 import Loader from "components/Loader/Loader"
 
 
-
-
-
-/**
-* HTTP - GET
-* @param {array} codes - An array of discount codes that belong to current user
-*
-* LOCAL - POST
-* @param {object} resetLogout - Logouts the user by reseting it with empty object
-*
-* LOCAL - POST (on unmount)
-* @param {array} resetCodes - An empty array to reset the user codes
-*/
-
 @connect(store => {
 	return {
 		user: store.user,

@@ -12,16 +12,6 @@ import {
 } from "actions/user"
 
 
-
-
-/**
-* LOCAL - GET
-* @param {object} user - user info (telephone, addresses)
-*
-* LOCAL - POST
-* @param {object} resetLogout - Logouts the user by reseting it with empty object
-*/
-
 @connect( store => {
 	return {
 		user: store.user,

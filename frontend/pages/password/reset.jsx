@@ -5,10 +5,6 @@ import { passwordReset } from "actions/others"
 import { resetErrors } from "actions/errors"
 import Loader from "components/Loader/Loader"
 
-/**
-* HTTP - POST
-* @param {object} passwordReset - The password reset info
-*/
 
 @connect( store => {
 	return {

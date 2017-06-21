@@ -6,19 +6,6 @@ import { getProducts, resetProducts } from "actions/product"
 import queryString from "query-string"
 
 
-
-
-/**
-* LOCAL - GET
-* @param {object} category - A object with a category information
-*
-* HTTP - GET
-* @param {array} products - An array of products
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to reset products array
-*/
-
 @connect( store => {
 	return {
 		categories: store.categories,

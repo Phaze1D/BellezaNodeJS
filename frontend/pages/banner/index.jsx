@@ -9,15 +9,6 @@ import Loader from "components/Loader/Loader"
 
 
 
-
-/**
-* HTTP - GET
-* @param {array} banners - An array of banners
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to banners array
-*/
-
 @connect(store => {
 	return {
 		banners: store.others.get("banners"),

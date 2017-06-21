@@ -8,17 +8,6 @@ import queryString from "query-string"
 import Loader from "components/Loader/Loader"
 
 
-
-
-
-/**
-* HTTP - GET
-* @param {array} orders - An array of orders
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to reset orders array
-*/
-
 @connect(store => {
 	return {
 		orders: store.orders,

@@ -4,11 +4,6 @@ import { connect } from "react-redux"
 import { getProducts, resetProducts } from "actions/product"
 import queryString from "query-string"
 
-/**
-* HTTP - GET
-* @param {array} products - results of the search input
-*
-*/
 
 @connect( store => {
 	return {

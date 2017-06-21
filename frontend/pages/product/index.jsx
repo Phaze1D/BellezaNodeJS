@@ -7,15 +7,6 @@ import queryString from "query-string"
 import Loader from "components/Loader/Loader"
 
 
-
-/**
-* HTTP - GET
-* @param {array} products - An array of products
-*
-* LOCAL - POST (on unmount)
-* @param {array} reset - An empty array to reset products array
-*/
-
 @connect(store => {
 	return {
 		products: store.products,

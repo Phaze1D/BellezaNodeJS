@@ -24,12 +24,30 @@ The previous website was using a MySQL database with a simple e-commerce structu
 
 The previous version used three tables to structure the categories. I thought that this was a bit redundant, so I changed the tables into just one self-referencing table. This way I could use a simple select query to get all the categories at once without having to use joins.
 
-<div style="display: flex; justify-content: space-around; align-items: center;">
 <img src="./readme_images/before.png" height="160"/> -> <img src="./readme_images/after.png" height="160"/>
-</div>
 
 ### Frontend
 For the frontend code, I used what I like to call the **React Stack**, which is ReactJS, Redux, React Router, and ImmutableJS. Along with a bunch of great npm packages, I was able to quickly develop a user-friendly UI. I split my code into two spread parts, Pages, and Components. The main difference between a Page and a Component, with the exception of the Layout and Loader Components, is that a Component is unaware of Redux.
+
+Redux Store Structure:
+
+```
+{
+	categories: categoriesReducer,
+	cart: cartReducer,
+	products: productsReducer,
+	product: productReducer,
+	user: userReducer,
+	others: othersReducer,
+	orders: ordersReducer,
+	codes: codesReducers,
+	order: orderReducer,
+	clients: clientsReducers,
+	client: clientReducers,
+	errors: errorsReducer,
+	fetching: fetchingReducer
+}
+```
 
 
 ### Backend

@@ -10,22 +10,6 @@ import {
 	validateUser,
 } from "actions/user"
 
-/**
-* HTTP - POST
-* @param {object} loginInfo - The email and password to login the user
-*
-* HTTP - POST
-* @param {object} signupInfo - A new user's info
-*
-* HTTP - GET
-* @param {object} errors - An object of form errors
-*
-* LOCAL - POST
-* @param {string} resetOne - A string to reset one property of the error object
-*
-* LOCAL - POST (on unmount)
-* @param {object} resetAll - An empty object to reset errors
-*/
 
 @connect( store => {
 	return {

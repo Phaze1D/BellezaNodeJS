@@ -9,18 +9,6 @@ import queryString from "query-string"
 import Loader from "components/Loader/Loader"
 
 
-
-/**
-* HTTP - GET
-* @param {array} orders - An array of the current users orders
-*
-* LOCAL - POST
-* @param {object} resetLogout - Logouts the user by reseting it with empty object
-*
-* LOCAL - POST (on unmount)
-* @param {array} resetOrders - An empty array to reset the user orders
-*/
-
 @connect(store => {
 	return {
 		orders: store.orders,
