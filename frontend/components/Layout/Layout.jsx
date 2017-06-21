@@ -77,18 +77,17 @@ export default class Layout extends React.Component {
 		}
 	}
 
-
-
-
 	render() {
 		const {
-			user
+			user,
+			history,
+			dispatch
 		} = this.props
 
 		return (
 			<div id='layout'>
 				<GlobalError/>
-				<Header history={this.props.history}/>
+				<Header history={history}/>
 
 				<Route exact path="/" component={Home}/>
 				<Route path="/home" component={Home}/>
@@ -125,7 +124,7 @@ export default class Layout extends React.Component {
 				<Route path="/stores" component={Stores}/>
 				<Route path="/password/reset/:token" render={props => <PasswordReset {...props} user={user}/>}/>
 
-				<Footer/>
+				<Footer dispatch={dispatch}/>
 			</div>
 		)
 	}

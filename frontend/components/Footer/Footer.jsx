@@ -2,11 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { addMailer } from "actions/others"
 import { resetErrors } from "actions/errors"
-import { connect } from "react-redux"
 
-@connect( store => {
-	return {}
-})
 export default class Footer extends React.Component {
 	constructor(props) {
 		super(props)
