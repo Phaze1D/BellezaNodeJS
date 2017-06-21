@@ -7,13 +7,6 @@ import { getCategories } from "actions/category"
 import { hideCart } from "actions/cart"
 
 
-/**
-* LOCAL - GET
-* @param {object} cart - The Object the represent the current order (shopping cart)
-*
-* HTTP - GET
-* @param {array} categories - An array of all the categories
-*/
 
 @connect( store => {
 	return {
