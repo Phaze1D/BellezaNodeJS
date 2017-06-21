@@ -91,7 +91,7 @@ export default class Layout extends React.Component {
 		return (
 			<div id='layout'>
 				<GlobalError/>
-				<Header history={history} cart={cart} categories={categories}/>
+				<Header history={history} cart={cart} categories={categories} dispatch={dispatch}/>
 
 				<Route exact path="/" component={Home}/>
 				<Route path="/home" component={Home}/>
