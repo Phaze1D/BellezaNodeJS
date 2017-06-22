@@ -29,8 +29,8 @@ The previous version used three tables to structure the categories. I thought th
 ### Frontend
 For the frontend code, I used what I like to call the **React Stack**, which is ReactJS, Redux, React Router, and ImmutableJS. Along with a bunch of great npm packages, I was able to quickly develop a user-friendly UI. I split my code into two spread parts, Pages, and Components. The main difference between a Page and a Component, with the exception of the Layout and Loader Components, is that a Component is unaware of Redux.
 
-Redux Store Structure:
-
+#### Redux Store Structure
+I structured the redux store accordingly because each object represents either a single row from a table or a collection of rows from a table.  I organized it like this so that whenever I fetch for a collection of objects, I only have to load the necessary data and not the entire object. For example loading a list of products only loads the product's name, price, and SKU instead of all of the product data.
 ```
 {
 	categories: categoriesReducer,
@@ -39,8 +39,8 @@ Redux Store Structure:
 	product: productReducer,
 	user: userReducer,
 	others: othersReducer,
-	orders: ordersReducer,
 	codes: codesReducers,
+	orders: ordersReducer,
 	order: orderReducer,
 	clients: clientsReducers,
 	client: clientReducers,
