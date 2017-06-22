@@ -49,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
 					args: true,
 					msg: valmsg.required
 				},
-				phone(value){
+				phone: (value) => {
 					valmsg.phone(value)
 				}
 			}
@@ -129,6 +129,15 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	}, {
 		tableName: "addresses"
+	})
+
+	Address.beforeCreate((address, options) => {
+		address.telephone = valmsg.phone(address.telephone)
+
+	})
+
+	Address.beforeUpdate((address, options) => {
+		address.telephone = valmsg.phone(address.telephone)
 	})
 
 	Address.userAddresses = function (user_id) {

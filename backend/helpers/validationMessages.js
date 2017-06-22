@@ -14,9 +14,11 @@ const valmsg = {
 	plu_unique: "El plu ya esta registrado",
 	len: (min, max) => `Debe tener entre ${min} y ${max} caracteres`,
 	phone: (value) => {
-		if(phone(value, "MX").length == 0){
+		let ap = phone(value, "MX")
+		if(ap.length == 0){
 			throw new Error("Numero invalido")
 		}
+		return ap[0]
 	},
 	bannerImage: (lg, sm) => {
 		if(!(lg && sm)){
