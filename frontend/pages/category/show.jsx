@@ -31,6 +31,7 @@ export default class CategoryShow extends React.Component {
 		let newParams = this.props.match.params
 
 		if(newParams.index !== oldParams.index || newParams.sub !== oldParams.sub || newParams.show !== oldParams.show){
+			this.props.dispatch(resetProducts())
 			this.handleUrlChanged(this.props.history.location)
 		}
 	}
