@@ -55,6 +55,11 @@ class OrderShow extends React.Component {
 					<h4 className="sub-text">
             Fecha Realizado: {new Date(order.get("created_at")).toLocaleString("en-us", dateOptions)}
 					</h4>
+					{order.get("notes") &&
+						<h4 className="sub-text">
+							Notas: {order.get("notes")}
+						</h4>
+					}
 					<div className="grid-wrap">
 						<div className="col-9 col-md-8 col-sm-12">
 							<OrderTable

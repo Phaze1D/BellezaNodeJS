@@ -75,6 +75,11 @@ class BackofficeOrders extends React.Component {
 				<ul className="backorders-nav">
 					<li>
 						<Link
+							className={parse.status === "intencion" ? "active" : ""}
+							to={`${match.url}?status=intencion&page=0`}>Intención</Link>
+					</li>
+					<li>
+						<Link
 							className={parse.status === "pendiente" ? "active" : ""}
 							to={`${match.url}?status=pendiente&page=0`}>Pendiente</Link>
 					</li>

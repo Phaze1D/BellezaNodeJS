@@ -156,6 +156,7 @@ module.exports = function(sequelize, DataTypes) {
 		let options = {
 			where: {
 				user_id: user_id,
+				$not: {status: 'intencion'}
 			},
 			attributes: [
 				"id",
