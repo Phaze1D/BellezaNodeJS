@@ -146,6 +146,8 @@ router.post("/payment/cash", isLogin, function (req, res, next) {
 })
 
 router.post("/payment/webhook", function (req, res, next) {
+	console.log(req.body);
+	console.log(req.ips);
 	if(req.ips[0] === "52.200.151.182"){
 		let object = req.body.data ? req.body.data.object : {}
 

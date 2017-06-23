@@ -147,14 +147,16 @@ const BankSuccess = (props) => (
 			</div>
 
 			<div className="box ref-box">
-				<h3>Clabe</h3>
-				<h1>{props.clabe}</h1>
+				<h3>Banco Santander</h3>
+				<h1><span className="sub-text">Cuenta a Nombre De:</span> COMERCIALIZADORA VIDA FLOR S.A. DE C.V</h1>
+				<h1><span className="sub-text">Numero de Cuenta:</span> 92000400080</h1>
+				<h1><span className="sub-text">Clabe:</span> 014320920004000807</h1>
 			</div>
 
 			<h3>Instrucciones</h3>
 
 			<ol>
-				<li>Accede a tu banca en línea.</li>
+				<li>Accede a tu banca en línea o acude a cualquier sucursal de Banco Santander depositando directamente al número de cuenta anteriormente indicado</li>
 				<li>Da de alta la CLABE en esta ficha. <strong>El banco deberá de ser STP</strong>.</li>
 				<li>Realiza la transferencia correspondiente por la cantidad exacta en esta ficha, <strong>de lo contrario se rechazará el cargo</strong>.</li>
 				<li>Al confirmar tu pago, el portal de tu banco generará un comprobante digital. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
