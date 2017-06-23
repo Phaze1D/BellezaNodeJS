@@ -146,7 +146,8 @@ router.post("/payment/cash", isLogin, function (req, res, next) {
 })
 
 router.post("/payment/webhook", function (req, res, next) {
-
+	console.log(req.headers["x-forwarded-for"]);
+	console.log(req.body.data ? req.body.data.object : {});
 	if(req.headers["x-forwarded-for"] === "52.200.151.182"){
 		let object = req.body.data ? req.body.data.object : {}
 
