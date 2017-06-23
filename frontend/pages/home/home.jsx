@@ -20,6 +20,7 @@ export default class Home extends React.Component {
 		if(typeof window !== "undefined"){
 			facebookScript()
 			twitterScript()
+			tintScript()
 		}
 	}
 
@@ -28,6 +29,7 @@ export default class Home extends React.Component {
 		this.props.dispatch(getFavs())
 
 		if(typeof window !== "undefined" && window.innerWidth > 828){
+
 			if(window.FB){
 				window.FB.XFBML.parse()
 			}
@@ -92,6 +94,11 @@ export default class Home extends React.Component {
 	}
 }
 
+const tintScript = function () {
+	var script = document.createElement("script")
+	script.src = "https://d36hc0p18k1aoc.cloudfront.net/public/js/modules/tintembed.js"
+	document.getElementsByTagName("head")[0].appendChild(script)
+}
 
 const facebookScript = function () {
 	(function(d, s, id) {
