@@ -62,11 +62,6 @@
       if(banners && favorites){
 
         setTimeout(function () {
-
-          var script = document.createElement('script');
-          script.src = "https://d36hc0p18k1aoc.cloudfront.net/public/js/modules/tintembed.js";
-          document.getElementsByTagName('head')[0].appendChild(script);
-
           var script = document.createElement('script');
           script.src = "https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=ljjt7o328iyr93epeqkyqarnq9kplj14d2o03qacg8dru9pv";
           document.getElementsByTagName('head')[0].appendChild(script);
@@ -74,30 +69,6 @@
           var script = document.createElement('script');
           script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyByjXf_TKYNHIkFzN4oVOIuAwHGi8ZzXos&libraries=places";
           document.getElementsByTagName('head')[0].appendChild(script);
-
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-
-          window.twttr = (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0],
-              t = window.twttr || {};
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-            t._e = [];
-            t.ready = function(f) {
-              t._e.push(f);
-            };
-            return t;
-          }(document, "script", "twitter-wjs"));
-
         }, 5000)
 
 
