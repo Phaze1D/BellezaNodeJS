@@ -58,7 +58,7 @@ export default class CheckoutConfirmation extends React.Component {
 	}
 
 	handleSubmitCard(event){
-		this.props.dispatch(resetErrors("card_token"))
+		this.props.dispatch(resetErrors())
 		event.preventDefault()
 		let elements = event.target.elements
 		let data = {
@@ -93,6 +93,7 @@ export default class CheckoutConfirmation extends React.Component {
 
 	handleSubmitCash(event){
 		event.preventDefault()
+		this.props.dispatch(resetErrors())
 		let elements = event.target.elements
 		elements.submit.disabled = true
 		let formData = this.props.cart.toJS()
@@ -251,6 +252,8 @@ export default class CheckoutConfirmation extends React.Component {
 
 									<p className="sub-text" style={{fontStyle: "italic"}}>No aceptan devoluciones para pagos en efectivo</p>
 								</div>
+
+								{errors.get("parameter") && <div className="error-div">{errors.get("parameter")}</div>}
 							</radioGroup>
 						</Loader>
 
@@ -259,7 +262,7 @@ export default class CheckoutConfirmation extends React.Component {
 					<section className="col-4 col-sm-12 first-sm">
 						<Address address={cart.get("shippingAddress")} title="Dirección de Envío"/>
 						{!cart.get("invoiceAddress").isEmpty() &&
-														<Address address={cart.get("invoiceAddress")} title="Facturacion" rfc={cart.get("rfc")} razonSocial={cart.get("razon_social")}/>
+							<Address address={cart.get("invoiceAddress")} title="Facturacion" rfc={cart.get("rfc")} razonSocial={cart.get("razon_social")}/>
 						}
 					</section>
 				</div>
