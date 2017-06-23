@@ -25,6 +25,7 @@ app.set("SES_REGION", process.env.SES_REGION)
 app.set("views", path.resolve(__dirname, "views"))
 app.engine("handlebars", hbs.engine)
 app.set("view engine", "handlebars")
+app.enable("trust proxy")
 
 app.use(compression())
 app.use(helmet())
