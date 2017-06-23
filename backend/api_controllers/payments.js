@@ -146,16 +146,13 @@ router.post("/payment/cash", isLogin, function (req, res, next) {
 })
 
 router.post("/payment/webhook", function (req, res, next) {
-	console.log(req.body);
-	console.log(req.ips);
 	if(req.ips[0] === "52.200.151.182"){
 		let object = req.body.data ? req.body.data.object : {}
+		if(object.object === "order"){
+			let type = object.charges.data[0].payment_method.type
+			let status = object.payment_status
 
-		if(object.status && object.payment_method && object.order_id){
-			let type = object.payment_method.type
-			let status = object.status
-
-			Order.findOne(Order.singleConektaOption(object.order_id))
+			Order.findOne(Order.singleConektaOption(object.id))
 				.then(order => {
 					if( (type === "oxxo" || type === "spei") && status === "paid" && paymentStatus[status] !== order.status){
 						let jorder = order.toJSON()
@@ -165,8 +162,8 @@ router.post("/payment/webhook", function (req, res, next) {
 						})
 						jorder.charges = {
 							payment_method: {
-								type: object.payment_method.type,
-								reference_number: object.payment_method.reference_number,
+								type: type,
+								reference_number: object.charges.data[0].payment_method.reference_number,
 							}
 						}
 						cashPaidHook(jorder, jorder.user, req)
@@ -176,7 +173,7 @@ router.post("/payment/webhook", function (req, res, next) {
 					if(type === "credit" && status === "refunded"){
 						order.update({status: paymentStatus[status]})
 					}
-				}).catch(next)
+				})
 		}
 		res.sendStatus(200)
 	}else{

@@ -148,9 +148,9 @@ const BankSuccess = (props) => (
 
 			<div className="box ref-box">
 				<h3>Banco Santander</h3>
-				<h1><span className="sub-text">Cuenta a Nombre De:</span> COMERCIALIZADORA VIDA FLOR S.A. DE C.V</h1>
-				<h1><span className="sub-text">Numero de Cuenta:</span> 92000400080</h1>
-				<h1><span className="sub-text">Clabe:</span> 014320920004000807</h1>
+				<h3>Cuenta a Nombre De: <span className="sub-text">COMERCIALIZADORA VIDA FLOR S.A. DE C.V</span></h3>
+				<h3>Numero de Cuenta: <span className="sub-text">92000400080</span></h3>
+				<h3>Clabe: <span className="sub-text">014320920004000807</span></h3>
 			</div>
 
 			<h3>Instrucciones</h3>
