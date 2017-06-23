@@ -11,7 +11,8 @@ import Loader from "components/Loader/Loader"
 @connect( store => {
 	return {
 		cart: store.cart,
-		errors: store.errors
+		errors: store.errors,
+		fetching: store.fetching
 	}
 })
 export default class CheckoutConfirmation extends React.Component {
@@ -121,7 +122,8 @@ export default class CheckoutConfirmation extends React.Component {
 		const {
 			cart,
 			user,
-			errors
+			errors,
+			fetching
 		} = this.props
 
 		if(!user.get("token")){
@@ -162,6 +164,7 @@ export default class CheckoutConfirmation extends React.Component {
 						}
 
 						<h2>Forma de Pago</h2>
+						{fetching && <h4 className="sub-text">Favor espera mientras tu transacción esta siendo procesada</h4>}
 
 						<Loader>
 							<radioGroup>
@@ -246,7 +249,7 @@ export default class CheckoutConfirmation extends React.Component {
 										{errors.get("cash") && <div className="error-div">{errors.get("cash")}</div>}
 									</form>
 
-									<p className="sub-text" style={{fontStyle: "italic"}}>Los pagos en efectivo no se pueden devolver</p>
+									<p className="sub-text" style={{fontStyle: "italic"}}>No aceptan devoluciones para pagos en efectivo</p>
 								</div>
 							</radioGroup>
 						</Loader>
