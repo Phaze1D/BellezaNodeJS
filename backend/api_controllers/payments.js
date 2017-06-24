@@ -78,7 +78,6 @@ router.post("/payment/card", isLogin, function (req, res, next) {
 		order.status = "intencion"
 		order.notes = errNote
 		order.user_id = req.jwtUser.userId
-		// order.notes = err.toString()
 		delete order.shipping_address_id
 		delete order.invoice_address_id
 		delete order.shippingAddress.id
@@ -142,7 +141,34 @@ router.post("/payment/cash", isLogin, function (req, res, next) {
 					})
 				})
 		})
-	}).catch(next)
+	}).catch(err => {
+		let errNote = null
+		if(err.details.length > 0){
+			errNote = err.details[0].message
+		}else if(err.name === "VerificationError"){
+			errNote = err.name
+		}else{
+			errNote = err.message
+		}
+
+		let order = req.body
+		order.status = "intencion"
+		order.notes = errNote
+		order.user_id = req.jwtUser.userId
+		delete order.shipping_address_id
+		delete order.invoice_address_id
+		delete order.shippingAddress.id
+
+		if(Object.keys(order.invoiceAddress).length === 0){
+			delete order.invoiceAddress
+		}else {
+			delete order.invoiceAddress.id
+		}
+
+		Order.create(order, Order.createOptions())
+
+		next(err)
+	})
 })
 
 router.post("/payment/webhook", function (req, res, next) {
