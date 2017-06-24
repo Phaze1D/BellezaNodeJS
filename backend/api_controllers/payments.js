@@ -6,7 +6,6 @@ let emailSender = require("../helpers/emailSender.js")
 let models = require("../models")
 
 let Order = models.Order
-let User = models.User
 let router = express.Router()
 
 const paymentStatus = {
@@ -16,162 +15,14 @@ const paymentStatus = {
 }
 
 router.post("/payment/card", isLogin, function (req, res, next) {
-	conektaHelper.paymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
-		let order = req.body
-		conektaOrder = conektaOrder.toObject()
-		order.conekta_id = conektaOrder.id
-		order.status = paymentStatus[conektaOrder.payment_status]
-		order.user_id = req.jwtUser.userId
-		delete order.shipping_address_id
-		delete order.invoice_address_id
-		delete order.shippingAddress.id
-
-		if(Object.keys(order.invoiceAddress).length === 0){
-			delete order.invoiceAddress
-		}else {
-			delete order.invoiceAddress.id
-		}
-
-		return Order.create(order, Order.createOptions()).then(order => {
-			let jorder = order.toJSON()
-			jorder.charges = {
-				payment_method: {
-					type: conektaOrder.charges.data[0].payment_method.type,
-					reference: conektaOrder.charges.data[0].payment_method.reference,
-					clabe: conektaOrder.charges.data[0].payment_method.clabe,
-					auth_code: conektaOrder.charges.data[0].payment_method.auth_code,
-					last4: conektaOrder.charges.data[0].payment_method.last4,
-					name: conektaOrder.charges.data[0].payment_method.name,
-				}
-			}
-
-			jorder.details = req.body.details
-
-			User.findOne({where: {id: req.jwtUser.userId}, attributes: ["first_name", "last_name", "email"]})
-				.then( user => {
-					req.app.render("emails/paid_info", {order: jorder, user: user.toJSON()}, function (err, html) {
-						if(err) next(err)
-						res.json(jorder)
-
-						let sesConfig = {
-							accessKeyId: req.app.get("SES_ID"),
-							secretAccessKey: req.app.get("SES_SECRET_KEY"),
-							region: req.app.get("SES_REGION")
-						}
-						emailSender.sendEmail(user.toJSON().email, html, sesConfig)
-					})
-				})
-
-		})
-	}).catch(err => {
-
-		let errNote = null
-		if(err.details.length > 0){
-			errNote = err.details[0].message
-		}else if(err.name === "VerificationError"){
-			errNote = err.name
-		}else{
-			errNote = err.message
-		}
-
-		let order = req.body
-		order.status = "intencion"
-		order.notes = errNote
-		order.user_id = req.jwtUser.userId
-		delete order.shipping_address_id
-		delete order.invoice_address_id
-		delete order.shippingAddress.id
-
-		if(Object.keys(order.invoiceAddress).length === 0){
-			delete order.invoiceAddress
-		}else {
-			delete order.invoiceAddress.id
-		}
-
-		Order.create(order, Order.createOptions())
-
-		next(err)
-	})
+	conektaHelper.paymentFlow(req, res, next)
 })
 
 router.post("/payment/cash", isLogin, function (req, res, next) {
-	conektaHelper.paymentFlow(req.body, req.jwtUser.userId).then(conektaOrder => {
-		let order = req.body
-		conektaOrder = conektaOrder.toObject()
-		order.conekta_id = conektaOrder.id
-		order.status = paymentStatus[conektaOrder.payment_status]
-		order.user_id = req.jwtUser.userId
-		delete order.shipping_address_id
-		delete order.invoice_address_id
-		delete order.shippingAddress.id
-
-		if(Object.keys(order.invoiceAddress).length === 0){
-			delete order.invoiceAddress
-		}else {
-			delete order.invoiceAddress.id
-		}
-
-		return Order.create(order, Order.createOptions()).then(order => {
-			let jorder = order.toJSON()
-			jorder.charges = {
-				payment_method: {
-					type: conektaOrder.charges.data[0].payment_method.type,
-					reference: conektaOrder.charges.data[0].payment_method.reference,
-					clabe: conektaOrder.charges.data[0].payment_method.clabe,
-					auth_code: conektaOrder.charges.data[0].payment_method.auth_code,
-					last_4: conektaOrder.charges.data[0].payment_method.last_4,
-					name: conektaOrder.charges.data[0].payment_method.name,
-				}
-			}
-			jorder.details = req.body.details
-
-			User.findOne({where: {id: req.jwtUser.userId}, attributes: ["first_name", "last_name", "email"]})
-				.then( user => {
-					let type = jorder.charges.payment_method.type
-					req.app.render(`emails/${type}_info`, {order: jorder, user: user.toJSON()}, function (err, html) {
-						if(err) next(err)
-						res.json(jorder)
-
-						let sesConfig = {
-							accessKeyId: req.app.get("SES_ID"),
-							secretAccessKey: req.app.get("SES_SECRET_KEY"),
-							region: req.app.get("SES_REGION")
-						}
-						emailSender.sendEmail(user.toJSON().email, html, sesConfig)
-					})
-				})
-		})
-	}).catch(err => {
-		let errNote = null
-		if(err.details.length > 0){
-			errNote = err.details[0].message
-		}else if(err.name === "VerificationError"){
-			errNote = err.name
-		}else{
-			errNote = err.message
-		}
-
-		let order = req.body
-		order.status = "intencion"
-		order.notes = errNote
-		order.user_id = req.jwtUser.userId
-		delete order.shipping_address_id
-		delete order.invoice_address_id
-		delete order.shippingAddress.id
-
-		if(Object.keys(order.invoiceAddress).length === 0){
-			delete order.invoiceAddress
-		}else {
-			delete order.invoiceAddress.id
-		}
-
-		Order.create(order, Order.createOptions())
-
-		next(err)
-	})
+	conektaHelper.paymentFlow(req, res, next)
 })
 
-router.post("/payment/webhook", function (req, res, next) {
+router.post("/payment/webhook", function (req, res) {
 	if(req.ips[0] === "52.200.151.182"){
 		let object = req.body.data ? req.body.data.object : {}
 		if(object.object === "order" && object.payment_status){

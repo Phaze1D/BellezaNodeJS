@@ -1,8 +1,10 @@
 "use strict"
 let models = require("../models")
 let conekta = require("conekta-promise")
+let emailSender = require("../helpers/emailSender.js")
 let User = models.User
 let Product = models.Product
+let Order = models.Order
 let DiscountCode = models.DiscountCode
 
 conekta.locale = "es"
@@ -23,18 +25,31 @@ let prodAtt = [
 	"iva",
 	"stock"
 ]
+let paymentStatus = {
+	paid: "pagado",
+	pending_payment: "pendiente",
+	refunded: "cancelado"
+}
 
 let VERIFICATION_ERROR = {name: "VerificationError", error: 401, message: "verification error"}
 
-const paymentFlow = (cart, userId) => {
-	conekta.api_key = process.env.CONEKTA
+const paymentFlow = (req, res, next) => {
+	let cart = req.body
+	let userId = req.jwtUser.userId
+	let fUser = null
+	let fConektaOrder = null
 	let toPro = []
+	conekta.api_key = req.app.get("CONEKTA")
+
 	return verifyCart(cart, userId)
+		// Get User
 		.then(products => {
 			toPro = products
 			return User.findOne({where: {id: userId}, attributes: userAtt, rejectOnEmpty: true})
 		})
+		// Get conekta_id by creating conekta.Customer or return previous conekta_id
 		.then(user => {
+			fUser = user
 			if(user.conekta_id){
 				return user
 			}else{
@@ -47,6 +62,7 @@ const paymentFlow = (cart, userId) => {
 				})
 			}
 		})
+		// Create conekta.Order
 		.then(user => {
 			let expiresDate = new Date()
 			expiresDate.setDate(expiresDate.getDate() + 3)
@@ -61,9 +77,85 @@ const paymentFlow = (cart, userId) => {
 				amount: cart.total
 			}]
 			return conekta.Order.create(formatted)
-		}).then(conektaOrder => {
+		})
+		// Update products stock and create Order
+		.then(conektaOrder => {
 			toPro.forEach(product => product.save())
-			return conektaOrder
+			fConektaOrder = conektaOrder.toObject()
+
+			let order = req.body
+			order.conekta_id = fConektaOrder.id
+			order.status = paymentStatus[fConektaOrder.payment_status]
+			order.user_id = userId
+			delete order.shipping_address_id
+			delete order.invoice_address_id
+			delete order.shippingAddress.id
+
+			if(Object.keys(order.invoiceAddress).length === 0){
+				delete order.invoiceAddress
+			}else {
+				delete order.invoiceAddress.id
+			}
+
+			return Order.create(order, Order.createOptions())
+		})
+		// Render email template and send email
+		.then(order => {
+			let jorder = order.toJSON()
+			jorder.charges = {
+				payment_method: {
+					type: fConektaOrder.charges.data[0].payment_method.type,
+					reference: fConektaOrder.charges.data[0].payment_method.reference,
+					clabe: fConektaOrder.charges.data[0].payment_method.clabe,
+					auth_code: fConektaOrder.charges.data[0].payment_method.auth_code,
+					last4: fConektaOrder.charges.data[0].payment_method.last4,
+					name: fConektaOrder.charges.data[0].payment_method.name,
+				}
+			}
+			jorder.details = req.body.details
+
+			let etype = cart.payment_source.type
+			etype = (etype === "card") ? "paid" : etype
+
+			req.app.render(`emails/${etype}_info`, {order: jorder, user: fUser.toJSON()}, function (err, html) {
+				if(err) next(err)
+				res.json(jorder)
+
+				let sesConfig = {
+					accessKeyId: req.app.get("SES_ID"),
+					secretAccessKey: req.app.get("SES_SECRET_KEY"),
+					region: req.app.get("SES_REGION")
+				}
+				emailSender.sendEmail(fUser.toJSON().email, html, sesConfig)
+			})
+		})
+		// Catch err and create order intencion
+		.catch(err => {
+			let errNote = null
+			if(err.details.length > 0){
+				errNote = err.details[0].message
+			}else if(err.name === "VerificationError"){
+				errNote = err.name
+			}else{
+				errNote = err.message
+			}
+
+			let order = req.body
+			order.status = "intencion"
+			order.notes = errNote
+			order.user_id = userId
+			delete order.shipping_address_id
+			delete order.invoice_address_id
+			delete order.shippingAddress.id
+
+			if(Object.keys(order.invoiceAddress).length === 0){
+				delete order.invoiceAddress
+			}else {
+				delete order.invoiceAddress.id
+			}
+
+			Order.create(order, Order.createOptions())
+			next(err)
 		})
 }
 
