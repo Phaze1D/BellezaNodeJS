@@ -148,7 +148,7 @@ router.post("/payment/cash", isLogin, function (req, res, next) {
 router.post("/payment/webhook", function (req, res, next) {
 	if(req.ips[0] === "52.200.151.182"){
 		let object = req.body.data ? req.body.data.object : {}
-		if(object.object === "order"){
+		if(object.object === "order" && object.payment_status){
 			let type = object.charges.data[0].payment_method.type
 			let status = object.payment_status
 
