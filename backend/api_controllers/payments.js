@@ -67,6 +67,8 @@ const cashPaidHook = function (jorder, user, req) {
 			region: req.app.get("SES_REGION")
 		}
 		emailSender.sendEmail(user.email, html, sesConfig)
+		emailSender.sendEmail("recepcion@vidaflor.com.mx", html, sesConfig)
+		emailSender.sendEmail("ventas@bellezaorganica.com.mx", html, sesConfig)
 	})
 }
 
