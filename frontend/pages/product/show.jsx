@@ -98,7 +98,7 @@ export default class ProductShow extends React.Component {
 			dispatch
 		} = this.props
 
-		const price = product.get("price") ? (product.get("price")/100).toFixed(2) : 0
+		const price = product.get("price") ? ((product.get("price") * (1 - product.get("discount")/100))/100).toFixed(2) : 0
 
 		const relatList = product.get("related").map( (rproduct, index) =>
 			<ProductResult key={index} product={rproduct} dispatch={dispatch}/>
@@ -149,7 +149,9 @@ export default class ProductShow extends React.Component {
 								<p className="sub-text">PLU: {product.get("plu")} / Disponibles: {product.get("stock")}</p>
 								<p className="sub-text primary">${price} / {product.get("volume")}</p>
 								{product.get("discount") > 0 &&
-									<p className="discount-text">Con {product.get("discount")}% de Descuento </p>
+									<p className="discount-text">
+										<span>${(product.get("price")/100).toFixed(2)}</span> Con {product.get("discount")}% de Descuento
+									</p>
 								}
 							</div>
 

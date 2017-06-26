@@ -92,7 +92,7 @@ const OrderRow = (props) => (
 			</span>
 
 			<span className="xs-span">
-				<span className="sub-text">Precio: </span>${(props.detail.get("price")/100).toFixed(2)}
+				<span className="sub-text">Precio: </span>${((props.detail.get("price") * (1 - props.detail.get("discount")/100))/100).toFixed(2)}
 			</span>
 
 			<span className="xs-span">
@@ -117,7 +117,7 @@ const OrderRow = (props) => (
 		</td>
 
 		<td className="sm-td">
-      ${(props.detail.get("price")/100).toFixed(2)}
+      ${((props.detail.get("price") * (1 - props.detail.get("discount")/100))/100).toFixed(2)}
 		</td>
 
 		<td className="sm-td">

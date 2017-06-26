@@ -134,7 +134,7 @@ const paymentFlow = (req, res, next) => {
 		// Catch err and create order intencion
 		.catch(err => {
 			let errNote = null
-			if(err.details.length > 0){
+			if(err.details && err.details.length > 0){
 				errNote = err.details[0].message
 			}else if(err.name === "VerificationError"){
 				errNote = err.name
@@ -191,8 +191,8 @@ const verifyCart = (cart, userId) => {
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					sub_total += pPrice * oDetails[pjson.id].quantity
-					iva_total += Math.round(pPrice * oDetails[pjson.id].quantity * (pjson.iva/100))
+					sub_total += Math.round( pPrice/(1+oDetails[pjson.id].iva/100) ) *  oDetails[pjson.id].quantity
+					iva_total += Math.round(oDetails[pjson.id].sub_total*(oDetails[pjson.id].iva/100))
 					product.stock = pjson.stock - oDetails[pjson.id].quantity
 				}
 
@@ -243,10 +243,12 @@ const verifyCart = (cart, userId) => {
 
 const formatOrder = (cart, customer_id) => {
 	let line_items = cart.details.map(detail => {
+		let price = Math.round( detail.price * (1 - (detail.discount/100)) )
 		return {
 			name: detail.name,
-			unit_price: Math.round( detail.price * (1 - (detail.discount/100)) ),
+			unit_price: Math.round(price/(1+detail.iva/100)),
 			quantity: detail.quantity,
+			sku: detail.plu
 		}
 	})
 

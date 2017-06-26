@@ -45,7 +45,7 @@ export default class ProductResult extends React.PureComponent {
 						<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${product.get("plu")}.jpg`} alt={product.get("name")}/>
 					</picture>
 					<h4 className="overflow-text">{product.get("name")}</h4>
-					<p>${(product.get("price")/100).toFixed(2)}</p>
+					<p>${((product.get("price") * (1 - product.get("discount")/100))/100).toFixed(2)}</p>
 				</Link>
 
 				{product.get("stock") > 0 ?
