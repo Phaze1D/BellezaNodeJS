@@ -34,7 +34,7 @@ export default class CheckoutConfirmation extends React.Component {
 
 	componentDidMount() {
 		if(window.Conekta){
-			window.Conekta.setPublicKey("key_AaqMzJxRutqdky7ECgp8jAw")
+			window.Conekta.setPublicKey("key_dmgrELA97rrrgKSU7ZKSeKw")
 		}
 	}
 
