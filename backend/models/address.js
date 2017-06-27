@@ -25,17 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		last_name: {
 			type: DataTypes.STRING(45),
-			allowNull: false,
-			validate: {
-				len: {
-					args: [1, 45],
-					msg: valmsg.len(1, 45)
-				},
-				notEmpty: {
-					args: true,
-					msg: valmsg.required
-				},
-			}
+			allowNull: true,
 		},
 		telephone: {
 			type: DataTypes.STRING(45),
