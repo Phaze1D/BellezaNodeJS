@@ -73,7 +73,7 @@ class AddressForm extends React.Component {
 		} = this.props
 
 		return (
-			<div className="box with-y" style={{minWidth: "400px"}}>
+			<div className="box with-y">
 				<h3>
           Dirección
 					<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>

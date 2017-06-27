@@ -202,7 +202,7 @@ const UserEdit = (props) => {
 
 
 	return (
-		<div className="box with-y" style={{minWidth: "400px"}}>
+		<div className="box with-y">
 			<h3>
         Editar Detalles
 				<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
