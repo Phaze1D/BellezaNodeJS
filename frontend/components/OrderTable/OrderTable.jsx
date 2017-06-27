@@ -56,7 +56,7 @@ class OrderTable extends React.Component {
 						<span>Subtotal:</span>
 						<span>IVA:</span>
 						<span>Costo de Envío: </span>
-						<span>Discount:</span>
+						<span>Descuento:</span>
 						<span>Total:</span>
 					</div>
 					<div>
