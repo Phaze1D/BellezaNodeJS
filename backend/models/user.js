@@ -93,7 +93,10 @@ module.exports = function(sequelize, DataTypes) {
 					msg: valmsg.len(1, 45)
 				},
 				phone: (value) => {
-					return valmsg.phone(value)
+					if(value){
+						return valmsg.phone(value)
+					}
+					return value
 				}
 			}
 		},
@@ -135,7 +138,6 @@ module.exports = function(sequelize, DataTypes) {
 	})
 
 	User.beforeCreate((user, options, cb) => {
-		user.telephone = valmsg.phone(user.telephone)
 		bcrypt.hash(user.password, 10).then((hash) => {
 			user.password = hash
 			return cb(null, options)
@@ -143,7 +145,9 @@ module.exports = function(sequelize, DataTypes) {
 	})
 
 	User.beforeUpdate((user, options) => {
-		user.telephone = valmsg.phone(user.telephone)
+		if(user.telephone){
+			user.telephone = valmsg.phone(user.telephone)
+		}
 	})
 
 	User.findLogin = function (email) {
