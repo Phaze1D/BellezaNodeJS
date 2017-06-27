@@ -118,7 +118,7 @@ class ProductForm extends React.Component {
 						<label>Price</label>
 						{errors.get("price") && <div className="error-div">{errors.get("price")}</div>}
 						<input type="number" min="0" step="any" name="price" className="input input-quantity"
-							defaultValue={(product.get("price"/100)).toFixed(2)}/>
+							defaultValue={(product.get("price")/100).toFixed(2)}/>
 					</div>
 
 					<div className="col-3">
