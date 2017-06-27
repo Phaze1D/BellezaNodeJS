@@ -128,7 +128,7 @@ class AddressForm extends React.Component {
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="telephone">Telefono</label>
+					<label htmlFor="telephone">Telefono <span className="sub-text">10 digitos</span></label>
 					{errors.get("telephone") && <div className="error-div">{errors.get("telephone")}</div>}
 					<input type="text" name="telephone"
 						defaultValue={address.get("telephone")}
