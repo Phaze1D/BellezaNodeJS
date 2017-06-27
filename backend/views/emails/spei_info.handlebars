@@ -250,6 +250,10 @@
         Gracias por comprar nuestros productos. Cuando recibamos su pago, su pedido será enviado
       </p>
 
+			<p style="font-weight: bold">
+				<span class="sub-text" style="color: #757575;font-size: 0.9em;">Número de Referencia: </span>{{order.id}} <br>
+			</p>
+
       <div class="oxxo-sub" style="border: 1px solid #e0e0e0;border-radius: 2px;background-color: white;padding: 16px;font-family: sans-serif;color: #091f5d;margin-top: 20px;font-size: 0.9em;max-width: 616px;text-align: left;">
         <div class="opps-info" style="display: table;margin-bottom: 10px;color: #091f5d;">
           <div class="opps-brand" style="display: table-cell;vertical-align: middle;width: 35%;padding-right: 16px;"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/spei.png" alt="SPEI" style="width: 100%;"></div>
@@ -310,12 +314,16 @@
                 {{this.name}}
               </span>
 
+							<span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
+                <span class="sub-text" style="color: #757575;font-size: 0.9em;">PLU: </span>{{this.plu}}
+              </span>
+
               <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
                 <span class="sub-text" style="color: #757575;font-size: 0.9em;">Precio: </span>${{formatNumber this.price}}
               </span>
 
-              <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
-                {{this.quantity}}
+							<span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
+                <span class="sub-text" style="color: #757575;font-size: 0.9em;">Cantidad: </span>{{this.quantity}}
               </span>
 
               <span class="xs-span" style="display: block;text-align: left;padding: 8px 0;white-space: normal;color: #091f5d;">
@@ -362,7 +370,7 @@
             <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">${{formatNumber order.shipping_total }}</td>
           </tr>
           <tr>
-            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Discount:</td>
+            <td colspan="4" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 5px 5px;color: #616161;border: none;font-size: 0.9em;">Descuento:</td>
             <td class="foot-main" style="border-bottom: 1px solid #e0e0e0;text-align: right;padding: 0;color: #091f5d;border: none;font-size: 1em;width: 50px;padding-right: 8px !important;">-${{formatNumber order.discount_total }}</td>
           </tr>
           <tr>
