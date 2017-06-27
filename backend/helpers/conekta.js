@@ -56,7 +56,7 @@ const paymentFlow = (req, res, next) => {
 				return conekta.Customer.create({
 					name: `${user.first_name} ${user.last_name}`,
 					email: user.email,
-					phone: user.telephone,
+					phone: (user.telephone ? user.telephone : undefined),
 				}).then(conCust => {
 					return user.update({conekta_id: conCust.toObject().id})
 				})
@@ -183,22 +183,22 @@ const verifyCart = (cart, userId) => {
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					let pPrice = Math.round(pjson.price * (1 - pjson.discount/100))
-					let dPrice = Math.round(oDetails[pjson.id].price * (1 - oDetails[pjson.id].discount/100))
+					let pPrice = pjson.price * (1 - pjson.discount/100)
+					let dPrice = oDetails[pjson.id].price * (1 - oDetails[pjson.id].discount/100)
 
-					if( dPrice != pPrice){
+					if( Math.round(dPrice) != Math.round(pPrice)){
 						VERIFICATION_ERROR.info = {dPrice: dPrice, pPrice: pPrice}
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					sub_total += Math.round( pPrice/(1+oDetails[pjson.id].iva/100) ) *  oDetails[pjson.id].quantity
-					iva_total += Math.round(oDetails[pjson.id].sub_total*(oDetails[pjson.id].iva/100))
+					sub_total += pPrice/(1+oDetails[pjson.id].iva/100) *  oDetails[pjson.id].quantity
+					iva_total += oDetails[pjson.id].sub_total*(oDetails[pjson.id].iva/100)
 					product.stock = pjson.stock - oDetails[pjson.id].quantity
 				}
 
 				shipping_total = sub_total < 100000 ? 15000 : 0
 
-				if( !(sub_total == cart.sub_total && iva_total == cart.iva_total && shipping_total == cart.shipping_total) ){
+				if( !(Math.round(sub_total) == cart.sub_total && Math.round(iva_total) == cart.iva_total && shipping_total == cart.shipping_total) ){
 					VERIFICATION_ERROR.info = {
 						subt: sub_total,
 						csubt: cart.sub_total,
@@ -215,7 +215,7 @@ const verifyCart = (cart, userId) => {
 				if(cart.discount_code_id){
 					if(cart.discount_code_id == discount_code.id && discount_code.user_id == userId){
 						let discount_total = 0
-						discount_total = Math.round(total * (discount_code.discount/100))
+						discount_total = total * (discount_code.discount/100)
 						total -= discount_total
 					}else{
 						VERIFICATION_ERROR.info = {
@@ -228,7 +228,7 @@ const verifyCart = (cart, userId) => {
 					}
 				}
 
-				if(total != cart.total){
+				if(Math.round(total) != cart.total){
 					VERIFICATION_ERROR.info = {
 						tot: total,
 						ctot: cart.totaln
@@ -243,7 +243,7 @@ const verifyCart = (cart, userId) => {
 
 const formatOrder = (cart, customer_id) => {
 	let line_items = cart.details.map(detail => {
-		let price = Math.round( detail.price * (1 - (detail.discount/100)) )
+		let price = detail.price * (1 - (detail.discount/100))
 		return {
 			name: detail.name,
 			unit_price: Math.round(price/(1+detail.iva/100)),
