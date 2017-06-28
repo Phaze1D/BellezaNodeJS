@@ -138,6 +138,12 @@ export default class Footer extends React.Component {
 						</ul>
 
 						<h3>Seguridad</h3>
+						<ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
+							<li>
+								<script type="text/javascript" src="https://seal.geotrust.com/getgeotrustsslseal?host_name=bellezaorganica.com.mx&amp;size=M&amp;lang=en"></script><br />
+								<a href="http://www.geotrust.com/ssl/" target="_blank"  style={{color:'#000000', textDecoration:'none', font:'bold 7px verdana,sans-serif', letterSpacing:'.5px', textAlign:'center', margin:'0px', padding:0}}></a>
+							</li>
+						</ul>
 
 					</section>
 				</div>
@@ -145,11 +151,3 @@ export default class Footer extends React.Component {
 		)
 	}
 }
-
-
-// <table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose GeoTrust SSL for secure e-commerce and confidential communications.">
-// <tr>
-// <td width="135" align="center" valign="top"><script type="text/javascript" src="https://seal.geotrust.com/getgeotrustsslseal?host_name=bellezaorganica.com.mx&amp;size=M&amp;lang=en"></script><br />
-// <a href="http://www.geotrust.com/ssl/" target="_blank"  style="color:#000000; text-decoration:none; font:bold 7px verdana,sans-serif; letter-spacing:.5px; text-align:center; margin:0px; padding:0px;"></a></td>
-// </tr>
-// </table>

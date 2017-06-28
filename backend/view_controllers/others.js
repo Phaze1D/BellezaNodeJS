@@ -9,6 +9,19 @@ let Product = models.Product
 let router = express.Router()
 
 
+router.get('/', function (req, res, next) {
+	let promises = [
+		Category.formattedAll(),
+		Banner.carouselImages(),
+		Product.favorites()
+	]
+
+	reactRender(promises, {categories: 0, banners: 1, products: 2}, req.url)
+		.then(viewOptions => {
+			res.render('index', viewOptions)
+		}).catch(next)
+})
+
 router.get('/home', function (req, res, next) {
 	let promises = [
 		Category.formattedAll(),

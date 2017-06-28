@@ -45,10 +45,6 @@ for (let key in viewControllers) {
 	}
 }
 
-app.get('/', function (req, res) {
-	res.redirect('/home')
-})
-
 app.use(function(req, res) {
 	res.redirect('/home')
 })
