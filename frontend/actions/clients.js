@@ -1,15 +1,15 @@
-import * as types from "actions/types"
-import axios from "axios"
+import * as types from 'actions/types'
+import axios from 'axios'
 
 export const getClients = (query, page, token) => {
 	return {
 		type: types.GET_CLIENTS,
-		payload: axios.get("/api/clients", {
+		payload: axios.get('/api/clients', {
 			params: {
 				search: query,
 				page: page
 			},
-			headers: {"Authorization": `Bearer ${token}`}
+			headers: {'Authorization': `Bearer ${token}`}
 		})
 	}
 }
@@ -25,7 +25,7 @@ export const getClient = (id, token) => {
 	return {
 		type: types.GET_CLIENT,
 		payload: axios.get(`/api/client/${id}`, {
-			headers: {"Authorization": `Bearer ${token}`}
+			headers: {'Authorization': `Bearer ${token}`}
 		})
 	}
 }

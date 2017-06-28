@@ -1,6 +1,6 @@
-import React from "react"
-import { BrowserRouter, Route, StaticRouter } from "react-router-dom"
-import Layout from "components/Layout/Layout"
+import React from 'react'
+import { BrowserRouter, Route, StaticRouter } from 'react-router-dom'
+import Layout from 'components/Layout/Layout'
 
 
 export const Routes = () => (

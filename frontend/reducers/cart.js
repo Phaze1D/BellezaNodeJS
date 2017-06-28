@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 
 export const INITIAL_CART = fromJS({
@@ -9,11 +9,11 @@ export const INITIAL_CART = fromJS({
 	discount_total: 0,
 	shipping_total: 0,
 	total: 0,
-	notes: "",
+	notes: '',
 	shippingAddress: {},
 	invoiceAddress: {},
-	rfc: "",
-	razon_social: "",
+	rfc: '',
+	razon_social: '',
 	discount_code_id: null,
 	show: false,
 })
@@ -68,36 +68,36 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 export const changeQuantityReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.CART_CHANGE_QUANTITY){
 		let quantity = action.payload.newQuantity
-		if(quantity == 0 && state.get("details").size == 1){
+		if(quantity == 0 && state.get('details').size == 1){
 			return INITIAL_CART
 		}
 
-		let oldDetail = state.getIn(["details", action.payload.index])
-		let oldP = oldDetail.get("price") * (1 - oldDetail.get("discount")/100)
-		let oldSub = oldP/(1+oldDetail.get("iva")/100) * oldDetail.get("quantity")
-		let newSub = oldP/(1+oldDetail.get("iva")/100) * quantity
+		let oldDetail = state.getIn(['details', action.payload.index])
+		let oldP = oldDetail.get('price') * (1 - oldDetail.get('discount')/100)
+		let oldSub = oldP/(1+oldDetail.get('iva')/100) * oldDetail.get('quantity')
+		let newSub = oldP/(1+oldDetail.get('iva')/100) * quantity
 
 		let newDetail = oldDetail.withMutations(map => {
-			map.set("quantity", quantity).set("sub_total", Math.round(newSub))
+			map.set('quantity', quantity).set('sub_total', Math.round(newSub))
 		})
 
 		let difSub = newSub - oldSub
-		let difIva = (newSub * (newDetail.get("iva")/100)) - (oldSub * (oldDetail.get("iva")/100))
+		let difIva = (newSub * (newDetail.get('iva')/100)) - (oldSub * (oldDetail.get('iva')/100))
 
 		return state.withMutations(map => {
-			let sub_total = map.get("sub_total") + difSub
-			let iva_total = map.get("iva_total") + difIva
+			let sub_total = map.get('sub_total') + difSub
+			let iva_total = map.get('iva_total') + difIva
 			let shipping_total = sub_total < 100000 ? 15000 : 0
 			let total = sub_total + iva_total + shipping_total
 
-			let f = quantity > 0 ? "setIn" : "deleteIn"
-			map[f](["details", action.payload.index], newDetail)
-				.set("sub_total", Math.round(sub_total))
-				.set("iva_total", Math.round(iva_total))
-				.set("shipping_total", shipping_total)
-				.set("total", Math.round(total))
-				.set("discount_total", 0)
-				.set("discount_code_id", null)
+			let f = quantity > 0 ? 'setIn' : 'deleteIn'
+			map[f](['details', action.payload.index], newDetail)
+				.set('sub_total', Math.round(sub_total))
+				.set('iva_total', Math.round(iva_total))
+				.set('shipping_total', shipping_total)
+				.set('total', Math.round(total))
+				.set('discount_total', 0)
+				.set('discount_code_id', null)
 		})
 
 	}
@@ -106,26 +106,26 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
 
 export const removeDetailReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.CART_REMOVE_DETAIL){
-		let oldDetail = state.getIn(["details", action.payload.index])
-		let oldP = oldDetail.get("price") * (1 - oldDetail.get("discount")/100)
-		let oldSub = oldP/(1+oldDetail.get("iva")/100) * oldDetail.get("quantity")
+		let oldDetail = state.getIn(['details', action.payload.index])
+		let oldP = oldDetail.get('price') * (1 - oldDetail.get('discount')/100)
+		let oldSub = oldP/(1+oldDetail.get('iva')/100) * oldDetail.get('quantity')
 
-		if(state.get("details").size == 1){
+		if(state.get('details').size == 1){
 			return INITIAL_CART
 		}
 		return state.withMutations(map => {
-			let sub_total = map.get("sub_total") - oldSub
-			let iva_total = map.get("iva_total") - oldSub * (oldDetail.get("iva")/100)
+			let sub_total = map.get('sub_total') - oldSub
+			let iva_total = map.get('iva_total') - oldSub * (oldDetail.get('iva')/100)
 			let shipping_total = sub_total < 100000 ? 15000 : 0
 			let total = sub_total + iva_total  + shipping_total
 
-			map.deleteIn(["details", action.payload.index])
-				.set("sub_total", Math.round(sub_total))
-				.set("iva_total", Math.round(iva_total))
-				.set("shipping_total", shipping_total)
-				.set("total", Math.round(total))
-				.set("discount_total", 0)
-				.set("discount_code_id", null)
+			map.deleteIn(['details', action.payload.index])
+				.set('sub_total', Math.round(sub_total))
+				.set('iva_total', Math.round(iva_total))
+				.set('shipping_total', shipping_total)
+				.set('total', Math.round(total))
+				.set('discount_total', 0)
+				.set('discount_code_id', null)
 		})
 	}
 	return state
@@ -134,7 +134,7 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
 
 export const hideCartReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.HIDE_CART){
-		return state.set("show", false)
+		return state.set('show', false)
 	}
 	return state
 }
@@ -149,9 +149,9 @@ export const addCartAddressReducer = (state = INITIAL_CART, action) => {
 export const addCartExtraReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.CART_EXTRA){
 		return state.withMutations(map => {
-			map.set("notes", action.payload.notes)
-				.set("rfc", action.payload.rfc)
-				.set("razon_social", action.payload.razon_social)
+			map.set('notes', action.payload.notes)
+				.set('rfc', action.payload.rfc)
+				.set('razon_social', action.payload.razon_social)
 		})
 	}
 	return state
@@ -163,14 +163,14 @@ export const checkUserCodeReducer = (state = INITIAL_CART, action) => {
 		let code = action.payload.data
 		return state.withMutations(map => {
 
-			let total = map.get("sub_total") + map.get("iva_total")
+			let total = map.get('sub_total') + map.get('iva_total')
 			let discount_total = 0
 
 			discount_total = total * (code.discount/100)
 
-			map.set("discount_total", Math.round(discount_total))
-				.set("total", Math.round(total - discount_total + map.get("shipping_total")))
-				.set("discount_code_id", code.id)
+			map.set('discount_total', Math.round(discount_total))
+				.set('total', Math.round(total - discount_total + map.get('shipping_total')))
+				.set('discount_code_id', code.id)
 		})
 	}
 

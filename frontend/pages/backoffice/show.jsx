@@ -1,15 +1,15 @@
-import React from "react"
-import { Route, Link, Redirect } from "react-router-dom"
-import BackofficeOrders from "pages/backoffice/orders"
-import BackofficeMails from "pages/backoffice/mails"
-import ProductsIndex from "pages/product/index"
-import ProductsNew from "pages/product/new"
-import ProductsEdit from "pages/product/edit"
-import UsersIndex from "pages/user/index"
-import CodesNew from "pages/code/new"
-import BannersIndex from "pages/banner/index"
-import BannersNew from "pages/banner/new"
-import BannersEdit from "pages/banner/edit"
+import React from 'react'
+import { Route, Link, Redirect } from 'react-router-dom'
+import BackofficeOrders from 'pages/backoffice/orders'
+import BackofficeMails from 'pages/backoffice/mails'
+import ProductsIndex from 'pages/product/index'
+import ProductsNew from 'pages/product/new'
+import ProductsEdit from 'pages/product/edit'
+import UsersIndex from 'pages/user/index'
+import CodesNew from 'pages/code/new'
+import BannersIndex from 'pages/banner/index'
+import BannersNew from 'pages/banner/new'
+import BannersEdit from 'pages/banner/edit'
 
 
 
@@ -21,7 +21,7 @@ export default class BackofficeShow extends React.Component {
 			match
 		} = this.props
 
-		if( !(user.get("token") && user.get("admin")) ){
+		if( !(user.get('token') && user.get('admin')) ){
 			return <Redirect to='/home'/>
 		}
 

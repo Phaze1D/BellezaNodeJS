@@ -1,8 +1,8 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-	const Product =  sequelize.define("Product", {
+	const Product =  sequelize.define('Product', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -81,7 +81,7 @@ module.exports = function(sequelize, DataTypes) {
 		discount: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
-			defaultValue: "0",
+			defaultValue: '0',
 			validate:{
 				max: {
 					args: 100,
@@ -106,7 +106,7 @@ module.exports = function(sequelize, DataTypes) {
 		stock: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
-			defaultValue: "0",
+			defaultValue: '0',
 			validate:{
 				notEmpty: {
 					args: true,
@@ -117,15 +117,15 @@ module.exports = function(sequelize, DataTypes) {
 		fav: {
 			type: DataTypes.BOOLEAN(),
 			allowNull: false,
-			defaultValue: "0"
+			defaultValue: '0'
 		},
 		active: {
 			type: DataTypes.BOOLEAN(),
 			allowNull: false,
-			defaultValue: "1"
+			defaultValue: '1'
 		}
 	}, {
-		tableName: "products"
+		tableName: 'products'
 	})
 
 	Product.mFindAll = function (querys, active) {
@@ -134,10 +134,10 @@ module.exports = function(sequelize, DataTypes) {
 		let sort = querys.sort ? querys.sort : 0
 		let page = querys.page ? querys.page : 0
 
-		let sortOptions = [["name", "ASC"], ["name", "DESC"], ["price", "DESC"], ["price", "ASC"]]
+		let sortOptions = [['name', 'ASC'], ['name', 'DESC'], ['price', 'DESC'], ['price', 'ASC']]
 		let options = {
 			subquery: false,
-			attributes: { exclude: ["description", "ingredients", "benefits"] },
+			attributes: { exclude: ['description', 'ingredients', 'benefits'] },
 			offset: 16 * page,
 			limit: 16,
 			order: [sortOptions[sort]],
@@ -152,8 +152,8 @@ module.exports = function(sequelize, DataTypes) {
 
 		if(category){
 			options.include = [{
-				model: sequelize.model("Category"),
-				as: "categories",
+				model: sequelize.model('Category'),
+				as: 'categories',
 				where: {id: category},
 				attributes: [],
 				through: {
@@ -169,8 +169,8 @@ module.exports = function(sequelize, DataTypes) {
 		let options = {
 			where: {id: id},
 			include: [{
-				model: sequelize.model("Category"),
-				as: "categories",
+				model: sequelize.model('Category'),
+				as: 'categories',
 				through: {
 					where: {products_id: id}
 				}
@@ -183,13 +183,13 @@ module.exports = function(sequelize, DataTypes) {
 	Product.categoryProducts = function (category_id) {
 		let options = {
 			limit: 4,
-			attributes: { exclude: ["description", "ingredients", "benefits"] },
+			attributes: { exclude: ['description', 'ingredients', 'benefits'] },
 		}
 
 		if(category_id){
 			options.include = [{
-				model: sequelize.model("Category"),
-				as: "categories",
+				model: sequelize.model('Category'),
+				as: 'categories',
 				where: {id: category_id},
 				attributes: [],
 				through: {

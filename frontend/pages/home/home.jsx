@@ -1,15 +1,15 @@
-import React from "react"
-import Carousel from "components/Carousel/Carousel"
-import Favorites from "components/Favorites/Favorites"
-import { connect } from "react-redux"
-import { getCarousel } from "actions/others"
-import { getFavs, resetProducts } from "actions/product"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import Carousel from 'components/Carousel/Carousel'
+import Favorites from 'components/Favorites/Favorites'
+import { connect } from 'react-redux'
+import { getCarousel } from 'actions/others'
+import { getFavs, resetProducts } from 'actions/product'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
 	return {
-		banners: store.others.get("banners"),
+		banners: store.others.get('banners'),
 		products: store.products
 	}
 })
@@ -17,7 +17,7 @@ export default class Home extends React.Component {
 	constructor(props){
 		super(props)
 
-		if(typeof window !== "undefined"){
+		if(typeof window !== 'undefined'){
 			facebookScript()
 			twitterScript()
 			tintScript()
@@ -28,7 +28,7 @@ export default class Home extends React.Component {
 		this.props.dispatch(getCarousel())
 		this.props.dispatch(getFavs())
 
-		if(typeof window !== "undefined" && window.innerWidth > 828){
+		if(typeof window !== 'undefined' && window.innerWidth > 828){
 
 			if(window.FB){
 				window.FB.XFBML.parse()
@@ -83,8 +83,8 @@ export default class Home extends React.Component {
 					</div>
 
 					<div className="col-4 social-feed">
-						<div className="tintup" data-id="nealsyardmexico" data-columns="" data-mobilescroll="true" data-infinitescroll="true" style={{height:"100%", width:"100%"}}>
-							<a href="http://www.tintup.com/blog/the-best-instagram-widget" style={{width:"118px", height:"31px", backgroundImage: "url(//d33w9bm0n1egwm.cloudfront.net/assets/logos/poweredbytintsmall.png)", position: "absolute", bottom:"10px", right: "20px", textIndent: "-9999px", zIndex:"9"}}>instagram widget</a>
+						<div className="tintup" data-id="nealsyardmexico" data-columns="" data-mobilescroll="true" data-infinitescroll="true" style={{height:'100%', width:'100%'}}>
+							<a href="http://www.tintup.com/blog/the-best-instagram-widget" style={{width:'118px', height:'31px', backgroundImage: 'url(//d33w9bm0n1egwm.cloudfront.net/assets/logos/poweredbytintsmall.png)', position: 'absolute', bottom:'10px', right: '20px', textIndent: '-9999px', zIndex:'9'}}>instagram widget</a>
 						</div>
 					</div>
 
@@ -95,9 +95,9 @@ export default class Home extends React.Component {
 }
 
 const tintScript = function () {
-	var script = document.createElement("script")
-	script.src = "https://d36hc0p18k1aoc.cloudfront.net/public/js/modules/tintembed.js"
-	document.getElementsByTagName("head")[0].appendChild(script)
+	var script = document.createElement('script')
+	script.src = 'https://d36hc0p18k1aoc.cloudfront.net/public/js/modules/tintembed.js'
+	document.getElementsByTagName('head')[0].appendChild(script)
 }
 
 const facebookScript = function () {
@@ -105,9 +105,9 @@ const facebookScript = function () {
 		var js, fjs = d.getElementsByTagName(s)[0]
 		if (d.getElementById(id)) return
 		js = d.createElement(s); js.id = id
-		js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9"
+		js.src = '//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9'
 		fjs.parentNode.insertBefore(js, fjs)
-	}(document, "script", "facebook-jssdk"))
+	}(document, 'script', 'facebook-jssdk'))
 }
 
 const twitterScript = function () {
@@ -118,13 +118,13 @@ const twitterScript = function () {
 		if (d.getElementById(id)) return t
 		js = d.createElement(s)
 		js.id = id
-		js.src = "https://platform.twitter.com/widgets.js"
+		js.src = 'https://platform.twitter.com/widgets.js'
 		fjs.parentNode.insertBefore(js, fjs)
 		t._e = []
 		t.ready = function(f) {
 			t._e.push(f)
 		}
 		return t
-	}(document, "script", "twitter-wjs"))
+	}(document, 'script', 'twitter-wjs'))
 
 }

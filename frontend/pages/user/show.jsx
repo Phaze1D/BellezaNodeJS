@@ -1,9 +1,9 @@
-import React from "react"
-import { Route, Link, Redirect } from "react-router-dom"
-import UserDetails from "pages/user/details"
-import UserOrders from "pages/user/orders"
-import UserAddresses from "pages/user/addresses"
-import UserCodes from "pages/user/codes"
+import React from 'react'
+import { Route, Link, Redirect } from 'react-router-dom'
+import UserDetails from 'pages/user/details'
+import UserOrders from 'pages/user/orders'
+import UserAddresses from 'pages/user/addresses'
+import UserCodes from 'pages/user/codes'
 
 
 class UserShow extends React.Component {
@@ -13,7 +13,7 @@ class UserShow extends React.Component {
 			match
 		} = this.props
 
-		if(!user.get("token")){
+		if(!user.get('token')){
 			return <Redirect to='/signin'/>
 		}
 
@@ -40,7 +40,7 @@ class UserShow extends React.Component {
 							<Link to={`${match.url}/codes`}>Códigos de Descuento</Link>
 						</li>
 
-						{user.get("admin") &&
+						{user.get('admin') &&
 														<li>
 															<Link to="/backoffice/orders?status=pendiente&page=0">Backoffice</Link>
 														</li>

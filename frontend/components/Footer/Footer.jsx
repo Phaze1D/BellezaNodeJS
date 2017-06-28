@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { addMailer } from "actions/others"
-import { resetErrors } from "actions/errors"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { addMailer } from 'actions/others'
+import { resetErrors } from 'actions/errors'
 
 export default class Footer extends React.Component {
 	constructor(props) {
@@ -15,8 +15,8 @@ export default class Footer extends React.Component {
 		this.props.dispatch(resetErrors())
 		event.preventDefault()
 		let formData = new FormData()
-		formData.append("email", event.target.elements.email.value)
-		formData.append("active", true)
+		formData.append('email', event.target.elements.email.value)
+		formData.append('active', true)
 
 		this.props.dispatch(addMailer(formData, false))
 			.then()
@@ -32,15 +32,15 @@ export default class Footer extends React.Component {
 		return (
 			<footer>
 				<div id="footer-divider" className="grid center around cover-image"
-					style={{backgroundImage: "url(https://s3-us-west-1.amazonaws.com/belleza-node/web/footer.jpg)"}}>
+					style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/footer.jpg)'}}>
 					<h4 className="col-xs-hide grow">Registrate y reciba información, ofertas y tips directo a su correo</h4>
 					<form onSubmit={this.handleSubmit}>
-						<input type="submit" style={{display: "none"}}/>
+						<input type="submit" style={{display: 'none'}}/>
 						<input type="text" name="email" placeholder="Email y Presione Entre"/>
 					</form>
 				</div>
 
-				<div className="grid-wrap around" style={{margin: "0 16px"}}>
+				<div className="grid-wrap around" style={{margin: '0 16px'}}>
 					<section className="col-4 col-sm-6 first-sm col-xs-12">
 						<h3>Ubicaciones</h3>
 						<a className="footer-address-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
@@ -115,7 +115,7 @@ export default class Footer extends React.Component {
 						</ul>
 
 						<h3>Métodos de Pago</h3>
-						<ul className="grid center around footer-img-ul" style={{marginTop: "0"}}>
+						<ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
 							<li>
 								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png" alt="visa"/>
 							</li>

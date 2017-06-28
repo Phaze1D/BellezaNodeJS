@@ -1,8 +1,8 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import AddressList from "components/AddressList/AddressList"
-import { userLogout } from "actions/user"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import AddressList from 'components/AddressList/AddressList'
+import { userLogout } from 'actions/user'
 
 
 @connect( store => {
@@ -35,14 +35,14 @@ class UserAddresses extends React.Component {
 			<section className="col-9 col-sm-8 col-xs-11">
 				<h2>
           Mi Directorio
-					<Link to="#" className="sub-text light" style={{float: "right"}}
+					<Link to="#" className="sub-text light" style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 
 				<AddressList
 					selectable={false}
-					addresses={user.get("addresses")}
-					token={user.get("token")}
+					addresses={user.get('addresses')}
+					token={user.get('token')}
 					userId={match.params.id}
 					dispatch={this.props.dispatch}
 					errors={errors}/>

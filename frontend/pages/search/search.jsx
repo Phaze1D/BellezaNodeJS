@@ -1,8 +1,8 @@
-import React from "react"
-import Results from "components/Results/Results"
-import { connect } from "react-redux"
-import { getProducts, resetProducts } from "actions/product"
-import queryString from "query-string"
+import React from 'react'
+import Results from 'components/Results/Results'
+import { connect } from 'react-redux'
+import { getProducts, resetProducts } from 'actions/product'
+import queryString from 'query-string'
 
 
 @connect( store => {
@@ -57,8 +57,8 @@ class Search extends React.Component {
           "<i><span className="sub-text light">{parse.q}</span></i>"
 				</p>
 				<Results
-					products={products.get("rows")}
-					total={products.get("count")}
+					products={products.get('rows')}
+					total={products.get('count')}
 					url={`${match.url}?q=${parse.q}&`}
 					page={parse.page}
 					sort={parse.sort}

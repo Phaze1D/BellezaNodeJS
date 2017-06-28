@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import { dateOptions } from "utils/date"
-import { userLogout } from "actions/user"
-import { getUserCodes, resetCodes } from "actions/discountcode"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { dateOptions } from 'utils/date'
+import { userLogout } from 'actions/user'
+import { getUserCodes, resetCodes } from 'actions/discountcode'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
@@ -22,7 +22,7 @@ export default class UserCodes extends React.Component {
 
 	componentDidMount() {
 		let user_id = this.props.match.params.id
-		this.props.dispatch(getUserCodes(user_id, this.props.user.get("token")))
+		this.props.dispatch(getUserCodes(user_id, this.props.user.get('token')))
 			.then()
 			.catch(this.handleError)
 	}
@@ -45,11 +45,11 @@ export default class UserCodes extends React.Component {
 			codes
 		} = this.props
 
-		const aList = codes.get("active").map( (code, index) =>
+		const aList = codes.get('active').map( (code, index) =>
 			<CodeItem key={index} code={code}/>
 		)
 
-		const dList = codes.get("deactive").map( (code, index) =>
+		const dList = codes.get('deactive').map( (code, index) =>
 			<CodeItem key={index} code={code}/>
 		)
 
@@ -57,28 +57,28 @@ export default class UserCodes extends React.Component {
 			<section className="col-9 col-sm-8 col-xs-11">
 				<h2>
           Códigos de Descuento
-					<Link to="#" className="sub-text light" style={{float: "right"}}
+					<Link to="#" className="sub-text light" style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 
 				<Loader>
 					<div className="grid-wrap top around">
 
-						{codes.get("active").size > 0 &&
+						{codes.get('active').size > 0 &&
 														<article className="col-5 col-sm-12 box active">
 															<div className="code-top">Activados</div>
 															{aList}
 														</article>
 						}
 
-						{codes.get("deactive").size > 0 &&
+						{codes.get('deactive').size > 0 &&
 														<article className="col-5 col-sm-12 box deactive">
 															<div className="code-top">Desactivados</div>
 															{dList}
 														</article>
 						}
 
-						{codes.get("active").size == 0 && codes.get("deactive").size == 0 &&
+						{codes.get('active').size == 0 && codes.get('deactive').size == 0 &&
 														<h4 className="sub-text">Cero Códigos Encontrados</h4>
 						}
 
@@ -92,8 +92,8 @@ export default class UserCodes extends React.Component {
 
 const CodeItem = props => (
 	<div className="code-item sub-text">
-		<p >Codigo: <span>{props.code.get("code")}</span></p>
-		<p>Descuento: <span>{props.code.get("discount")}% </span></p>
-		<p>Fecha de Caducidad: <span>{new Date(props.code.get("expires_date")).toLocaleString("en-us", dateOptions)}</span></p>
+		<p >Codigo: <span>{props.code.get('code')}</span></p>
+		<p>Descuento: <span>{props.code.get('discount')}% </span></p>
+		<p>Fecha de Caducidad: <span>{new Date(props.code.get('expires_date')).toLocaleString('en-us', dateOptions)}</span></p>
 	</div>
 )

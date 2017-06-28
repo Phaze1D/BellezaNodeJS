@@ -1,15 +1,15 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Pagination from "components/Pagination/Pagination"
-import { connect } from "react-redux"
-import { resetMailing, getMailing } from "actions/others"
-import queryString from "query-string"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Pagination from 'components/Pagination/Pagination'
+import { connect } from 'react-redux'
+import { resetMailing, getMailing } from 'actions/others'
+import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
 	return {
-		mailing: store.others.get("mailing"),
+		mailing: store.others.get('mailing'),
 		user: store.user
 	}
 })
@@ -38,7 +38,7 @@ class BackofficeMails extends React.Component {
 		if(this.props.match.url === location.pathname){
 			const parse = queryString.parse(location.search)
 
-			this.props.dispatch(getMailing(parse.page, this.props.user.get("token")))
+			this.props.dispatch(getMailing(parse.page, this.props.user.get('token')))
 				.then()
 				.catch(this.handleError)
 		}
@@ -57,15 +57,15 @@ class BackofficeMails extends React.Component {
 			match,
 		} = this.props
 
-		const emailList = mailing.get("rows").map((mail, index) =>
+		const emailList = mailing.get('rows').map((mail, index) =>
 			<tr key={index}>
-				<td>{mail.get("active") ? "Yes" : "No"}</td>
-				<td>{mail.get("email")}</td>
+				<td>{mail.get('active') ? 'Yes' : 'No'}</td>
+				<td>{mail.get('email')}</td>
 			</tr>
 		)
 
 		const links = []
-		for(let i = 0; i < Math.ceil(mailing.get("count")/this.state.prePage); i++ ){
+		for(let i = 0; i < Math.ceil(mailing.get('count')/this.state.prePage); i++ ){
 			links.push({value: `${match.url}?page=${i}`, name: i+1})
 		}
 

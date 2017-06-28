@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import classnames from "classnames"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import classnames from 'classnames'
 
 
 export default class CartBox extends React.PureComponent {
@@ -11,7 +11,7 @@ export default class CartBox extends React.PureComponent {
 	}
 
 	handleMouseLeave(event) {
-		document.body.style.overflow = ""
+		document.body.style.overflow = ''
 		this.props.onRequestMouseLeave()
 	}
 
@@ -22,27 +22,27 @@ export default class CartBox extends React.PureComponent {
 		} = this.props
 
 
-		const detList = cart.get("details").map( (detail, index) =>
+		const detList = cart.get('details').map( (detail, index) =>
 			<CartItem key={index} detail={detail}/>
 		)
 
-		const boxClasses = classnames("cart-box", {"show": show})
+		const boxClasses = classnames('cart-box', {'show': show})
 
 		return (
 			<div
 				className={boxClasses}
-				onMouseEnter={(event) => document.body.style.overflow = "hidden"}
+				onMouseEnter={(event) => document.body.style.overflow = 'hidden'}
 				onMouseLeave={this.handleMouseLeave}>
 				<h3>Tu Carrito</h3>
 
 				<div className="cart-mid">
-					{cart.get("details").size == 0 && <h4 className="sub-text">No Hay Productos</h4>}
+					{cart.get('details').size == 0 && <h4 className="sub-text">No Hay Productos</h4>}
 					<ul>
 						{detList}
 					</ul>
 				</div>
 
-				{cart.get("details").size > 0 &&
+				{cart.get('details').size > 0 &&
 										<div className="cart-bottom">
 											<Link className="light-button margin-button" to="/cart">Detalles</Link>
 											<Link className="dark-button margin-button" to="/checkout">Checkout</Link>
@@ -56,11 +56,11 @@ export default class CartBox extends React.PureComponent {
 
 const CartItem = props => (
 	<li className="cart-item">
-		<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get("plu")}.jpg`}/>
+		<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
 		<div>
-			<p className="overflow-text">{props.detail.get("name")}</p>
-			<p><span className="sub-text">Cantidad:</span> {props.detail.get("quantity")}</p>
-			<p><span className="sub-text">Precio:</span> ${(props.detail.get("sub_total")/100).toFixed(2)} </p>
+			<p className="overflow-text">{props.detail.get('name')}</p>
+			<p><span className="sub-text">Cantidad:</span> {props.detail.get('quantity')}</p>
+			<p><span className="sub-text">Precio:</span> ${(props.detail.get('sub_total')/100).toFixed(2)} </p>
 		</div>
 	</li>
 )

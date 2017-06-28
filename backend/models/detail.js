@@ -1,8 +1,8 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-	const Detail = sequelize.define("Detail", {
+	const Detail = sequelize.define('Detail', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
 		discount: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
-			defaultValue: "0",
+			defaultValue: '0',
 			validate:{
 				max: {
 					args: 100,
@@ -78,20 +78,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
 			references: {
-				model: "Order",
-				key: "id"
+				model: 'Order',
+				key: 'id'
 			}
 		},
 		product_id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
 			references: {
-				model: "Product",
-				key: "id"
+				model: 'Product',
+				key: 'id'
 			}
 		}
 	}, {
-		tableName: "details"
+		tableName: 'details'
 	})
 
 	return Detail

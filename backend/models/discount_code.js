@@ -1,8 +1,8 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-	const DiscountCode =  sequelize.define("DiscountCode", {
+	const DiscountCode =  sequelize.define('DiscountCode', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			unique: {
 				args: true,
-				message: "Codigo Invalido"
+				message: 'Codigo Invalido'
 			},
 			validate: {
 				notEmpty: {
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 					DiscountCode.findOne({where: {code: value}})
 						.then( (discountCode) => {
 							if(discountCode){
-								throw new Error("Codigo Invalido")
+								throw new Error('Codigo Invalido')
 							}
 							return next()
 						}).catch(next)
@@ -65,12 +65,12 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
 			references: {
-				model: "User",
-				key: "id"
+				model: 'User',
+				key: 'id'
 			}
 		},
 	}, {
-		tableName: "discount_codes"
+		tableName: 'discount_codes'
 	})
 
 	DiscountCode.userCodes = function (user_id) {

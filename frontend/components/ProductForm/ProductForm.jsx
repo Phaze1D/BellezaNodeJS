@@ -1,13 +1,13 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Loader from 'components/Loader/Loader'
 
 
 
 class ProductForm extends React.Component {
 	constructor(props){
 		super(props)
-		this.state = {selectedCats: props.product.get("categories").toJS()}
+		this.state = {selectedCats: props.product.get('categories').toJS()}
 
 		this.handleAddCategory = this.handleAddCategory.bind(this)
 	}
@@ -15,15 +15,15 @@ class ProductForm extends React.Component {
 	componentDidMount() {
 		if(window.tinymce){
 			window.tinymce.init({
-				selector: "textarea",
-				body_class: "tinymce-default"
+				selector: 'textarea',
+				body_class: 'tinymce-default'
 			})
 		}
 	}
 
 	componentWillUnmount() {
 		if(window.tinymce){
-			window.tinymce.remove("textarea")
+			window.tinymce.remove('textarea')
 		}
 	}
 
@@ -64,9 +64,9 @@ class ProductForm extends React.Component {
 
 
 		const catList = categories.map( (category) => {
-			return category.get("subs").map( (subc) => {
-				return subc.get("subs").map( (subd) =>
-					<option key={subd.get("id")} value={subd.get("id")}>{subd.get("name")}</option>
+			return category.get('subs').map( (subc) => {
+				return subc.get('subs').map( (subd) =>
+					<option key={subd.get('id')} value={subd.get('id')}>{subd.get('name')}</option>
 				)
 			})
 		})
@@ -76,7 +76,7 @@ class ProductForm extends React.Component {
 				<input type="text" name="categories[]" disabled="true" value={category.name} className="col-9" data-id={category.id}/>
 				<button
 					className="cancel col-3 margin-button"
-					style={{marginTop: "0"}}
+					style={{marginTop: '0'}}
 					onClick={this.handleRemoveCategory.bind(this, index)}>Remove</button>
 			</div>
 		)
@@ -86,63 +86,63 @@ class ProductForm extends React.Component {
 				<form className="main-form grid-wrap" onSubmit={onRequestSubmit}>
 					<div className="col-6">
 						<label>Activo</label>
-						{errors.get("active") && <div className="error-div">{errors.get("active")}</div>}
-						<input type="checkbox" name="active" defaultChecked={product.get("active")}/>
+						{errors.get('active') && <div className="error-div">{errors.get('active')}</div>}
+						<input type="checkbox" name="active" defaultChecked={product.get('active')}/>
 					</div>
 
 					<div className="col-6">
 						<label>Favorito</label>
-						{errors.get("fav") && <div className="error-div">{errors.get("fav")}</div>}
-						<input type="checkbox" name="fav" defaultChecked={product.get("fav")}/>
+						{errors.get('fav') && <div className="error-div">{errors.get('fav')}</div>}
+						<input type="checkbox" name="fav" defaultChecked={product.get('fav')}/>
 					</div>
 
 					<div className="col-4">
 						<label>PLU</label>
-						{errors.get("plu") && <div className="error-div">{errors.get("plu")}</div>}
-						<input type="text" name="plu" className="input" defaultValue={product.get("plu")}/>
+						{errors.get('plu') && <div className="error-div">{errors.get('plu')}</div>}
+						<input type="text" name="plu" className="input" defaultValue={product.get('plu')}/>
 					</div>
 
 					<div className="col-4">
 						<label>Nombre</label>
-						{errors.get("name") && <div className="error-div">{errors.get("name")}</div>}
-						<input type="text" name="name" className="input" defaultValue={product.get("name")}/>
+						{errors.get('name') && <div className="error-div">{errors.get('name')}</div>}
+						<input type="text" name="name" className="input" defaultValue={product.get('name')}/>
 					</div>
 
 					<div className="col-4">
 						<label>Volumen</label>
-						{errors.get("volume") && <div className="error-div">{errors.get("volume")}</div>}
-						<input type="text" name="volume" className="input" defaultValue={product.get("volume")}/>
+						{errors.get('volume') && <div className="error-div">{errors.get('volume')}</div>}
+						<input type="text" name="volume" className="input" defaultValue={product.get('volume')}/>
 					</div>
 
 					<div className="col-3">
 						<label>Price</label>
-						{errors.get("price") && <div className="error-div">{errors.get("price")}</div>}
+						{errors.get('price') && <div className="error-div">{errors.get('price')}</div>}
 						<input type="number" min="0" step="any" name="price" className="input input-quantity"
-							defaultValue={(product.get("price")/100).toFixed(2)}/>
+							defaultValue={(product.get('price')/100).toFixed(2)}/>
 					</div>
 
 					<div className="col-3">
 						<label>Discount</label>
-						{errors.get("discount") && <div className="error-div">{errors.get("discount")}</div>}
-						<input type="number" min="0" max="100" name="discount" className="input input-quantity" defaultValue={product.get("discount")}/>
+						{errors.get('discount') && <div className="error-div">{errors.get('discount')}</div>}
+						<input type="number" min="0" max="100" name="discount" className="input input-quantity" defaultValue={product.get('discount')}/>
 					</div>
 
 					<div className="col-3">
 						<label>Stock</label>
-						{errors.get("stock") && <div className="error-div">{errors.get("stock")}</div>}
-						<input type="number" min="0" max="100" name="stock" className="input input-quantity" defaultValue={product.get("stock")}/>
+						{errors.get('stock') && <div className="error-div">{errors.get('stock')}</div>}
+						<input type="number" min="0" max="100" name="stock" className="input input-quantity" defaultValue={product.get('stock')}/>
 					</div>
 
 					<div className="col-3">
 						<label>IVA</label>
-						{errors.get("iva") && <div className="error-div">{errors.get("iva")}</div>}
-						<input type="number" min="0" max="100" step="any" name="iva" className="input input-quantity" defaultValue={product.get("iva")}/>
+						{errors.get('iva') && <div className="error-div">{errors.get('iva')}</div>}
+						<input type="number" min="0" max="100" step="any" name="iva" className="input input-quantity" defaultValue={product.get('iva')}/>
 					</div>
 
 					<div className="col-4">
 						<label>Subcategories</label>
-						{errors.get("categories") && <div className="error-div">{errors.get("categories")}</div>}
-						<select ref='categorySelect' style={{margin: "0 0 18px"}}>
+						{errors.get('categories') && <div className="error-div">{errors.get('categories')}</div>}
+						<select ref='categorySelect' style={{margin: '0 0 18px'}}>
 							{catList}
 						</select>
 
@@ -152,32 +152,32 @@ class ProductForm extends React.Component {
 
 					<div className="col-4">
 						<label>Main Image (830x969)</label>
-						{errors.get("main_image") && <div className="error-div">{errors.get("main_image")}</div>}
+						{errors.get('main_image') && <div className="error-div">{errors.get('main_image')}</div>}
 						<input type="file" name="main_image"/>
 					</div>
 
 					<div className="col-4">
 						<label>Second Image (830x969)</label>
-						{errors.get("second_image") && <div className="error-div">{errors.get("second_image")}</div>}
+						{errors.get('second_image') && <div className="error-div">{errors.get('second_image')}</div>}
 						<input type="file" name="second_image"/>
 					</div>
 
 					<div className="col-12">
 						<label>Description</label>
-						{errors.get("description") && <div className="error-div">{errors.get("description")}</div>}
-						<textarea id="description" name="description" defaultValue={product.get("description")}></textarea>
+						{errors.get('description') && <div className="error-div">{errors.get('description')}</div>}
+						<textarea id="description" name="description" defaultValue={product.get('description')}></textarea>
 					</div>
 
 					<div className="col-12">
 						<label>Benefits</label>
-						{errors.get("benefits") && <div className="error-div">{errors.get("benefits")}</div>}
-						<textarea id="benefits" name="benefits" defaultValue={product.get("benefits")}></textarea>
+						{errors.get('benefits') && <div className="error-div">{errors.get('benefits')}</div>}
+						<textarea id="benefits" name="benefits" defaultValue={product.get('benefits')}></textarea>
 					</div>
 
 					<div className="col-12">
 						<label>Ingredients</label>
-						{errors.get("ingredients") && <div className="error-div">{errors.get("ingredients")}</div>}
-						<textarea id="ingredients" name="ingredients" defaultValue={product.get("ingredients")}></textarea>
+						{errors.get('ingredients') && <div className="error-div">{errors.get('ingredients')}</div>}
+						<textarea id="ingredients" name="ingredients" defaultValue={product.get('ingredients')}></textarea>
 					</div>
 
 					<Loader>

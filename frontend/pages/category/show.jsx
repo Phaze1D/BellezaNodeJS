@@ -1,9 +1,9 @@
-import React from "react"
-import Results from "components/Results/Results"
-import { Redirect } from "react-router-dom"
-import { connect } from "react-redux"
-import { getProducts, resetProducts } from "actions/product"
-import queryString from "query-string"
+import React from 'react'
+import Results from 'components/Results/Results'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getProducts, resetProducts } from 'actions/product'
+import queryString from 'query-string'
 
 
 @connect( store => {
@@ -44,12 +44,12 @@ export default class CategoryShow extends React.Component {
 	handleUrlChanged(location) {
 		let mParams = this.props.match.params
 		let category = this.props.categories.get(mParams.index)
-		category = category ? category.getIn(["subs", mParams.sub]) : false
-		category = category ? category.getIn(["subs", mParams.show]) : false
+		category = category ? category.getIn(['subs', mParams.sub]) : false
+		category = category ? category.getIn(['subs', mParams.show]) : false
 
 		if((this.props.match.url === location.pathname) && category){
 			const parse = queryString.parse(location.search)
-			this.props.dispatch(getProducts(undefined, category.get("id"), parse.page, parse.sort))
+			this.props.dispatch(getProducts(undefined, category.get('id'), parse.page, parse.sort))
 				.then()
 				.catch(this.handleError)
 		}
@@ -70,20 +70,20 @@ export default class CategoryShow extends React.Component {
 
 		let category = categories.get(match.params.index)
 		if(!category) return (<Redirect to="/"/>)
-		category = category.getIn(["subs", match.params.sub])
+		category = category.getIn(['subs', match.params.sub])
 		if(!category) return (<Redirect to="/"/>)
-		category = category.getIn(["subs", match.params.show])
+		category = category.getIn(['subs', match.params.show])
 		if(!category) return (<Redirect to="/"/>)
 
 		const parse = queryString.parse(history.location.search)
 		return (
 			<main>
-				<div className="category-cover"  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get("id")}.jpg)`}}>
-					<h2>{category.get("name")}</h2>
+				<div className="category-cover"  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
+					<h2>{category.get('name')}</h2>
 				</div>
 				<Results
-					products={products.get("rows")}
-					total={products.get("count")}
+					products={products.get('rows')}
+					total={products.get('count')}
 					url={`${match.url}?`}
 					page={parse.page}
 					sort={parse.sort}

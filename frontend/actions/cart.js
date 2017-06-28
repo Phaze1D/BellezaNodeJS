@@ -1,4 +1,4 @@
-import * as types from "actions/types"
+import * as types from 'actions/types'
 
 
 export const addDetail = (detail) => {

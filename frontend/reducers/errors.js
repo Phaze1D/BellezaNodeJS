@@ -1,16 +1,16 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 const INITIAL_ERRORS = fromJS({
 	global: {
-		status: "",
-		message: ""
+		status: '',
+		message: ''
 	}
 })
 
 
 export const errorsResponseReducer = (state = INITIAL_ERRORS, action) => {
-	if(action.type.includes("ERROR")){
+	if(action.type.includes('ERROR')){
 		switch (action.payload.response.status) {
 		case 422: {
 			let res = action.payload.response.data
@@ -20,8 +20,8 @@ export const errorsResponseReducer = (state = INITIAL_ERRORS, action) => {
 		}
 
 		default:
-			return state.setIn(["global", "status"], action.payload.response.status)
-				.setIn(["global", "message"], action.payload.response.statusText)
+			return state.setIn(['global', 'status'], action.payload.response.status)
+				.setIn(['global', 'message'], action.payload.response.statusText)
 		}
 	}
 

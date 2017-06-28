@@ -1,9 +1,9 @@
-import React from "react"
-import DropDown from "components/DropDown/DropDown"
-import Pagination from "components/Pagination/Pagination"
-import ProductResult from "components/ProductResult/ProductResult"
-import Loader from "components/Loader/Loader"
-import { resetProducts } from "actions/product"
+import React from 'react'
+import DropDown from 'components/DropDown/DropDown'
+import Pagination from 'components/Pagination/Pagination'
+import ProductResult from 'components/ProductResult/ProductResult'
+import Loader from 'components/Loader/Loader'
+import { resetProducts } from 'actions/product'
 
 
 
@@ -60,7 +60,7 @@ export default class Results extends React.Component {
 			<section>
 				<div className="grid-wrap between results-options center">
 					<div className="grid center">
-						<span className="col-xxs-hide" style={{marginRight: "16px"}}>Ordenar por:</span>
+						<span className="col-xxs-hide" style={{marginRight: '16px'}}>Ordenar por:</span>
 						<DropDown
 							url={url}
 							focuson={this.state.sortIndex}

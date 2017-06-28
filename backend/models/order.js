@@ -1,6 +1,6 @@
-"use strict"
+'use strict'
 module.exports = function(sequelize, DataTypes) {
-	const Order =  sequelize.define("Order", {
+	const Order =  sequelize.define('Order', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -71,53 +71,53 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
 			references: {
-				model: "User",
-				key: "id"
+				model: 'User',
+				key: 'id'
 			}
 		},
 		shipping_address_id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			references: {
-				model: "Address",
-				key: "id"
+				model: 'Address',
+				key: 'id'
 			}
 		},
 		invoice_address_id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			references: {
-				model: "Address",
-				key: "id"
+				model: 'Address',
+				key: 'id'
 			}
 		},
 		discount_code_id: {
 			type: DataTypes.STRING(45),
 			allowNull: true,
 			references: {
-				model: "DiscountCode",
-				key: "id"
+				model: 'DiscountCode',
+				key: 'id'
 			}
 		},
 	}, {
-		tableName: "orders"
+		tableName: 'orders'
 	})
 
 	Order.mFindOne = function (params, reject=true) {
 		let options = {
 			where: {id: params.id, user_id: params.user_id},
 			include: [{
-				model: sequelize.model("Detail"),
-				as: "details",
+				model: sequelize.model('Detail'),
+				as: 'details',
 				include: [{
-					model: sequelize.model("Product"),
-					as: "product",
-					attributes: ["id", "plu"]
+					model: sequelize.model('Product'),
+					as: 'product',
+					attributes: ['id', 'plu']
 				}]
 			},{
-				model: sequelize.model("Address"),
-				as: "shippingAddress",
+				model: sequelize.model('Address'),
+				as: 'shippingAddress',
 			},{
-				model: sequelize.model("Address"),
-				as: "invoiceAddress",
+				model: sequelize.model('Address'),
+				as: 'invoiceAddress',
 			}],
 			rejectOnEmpty: reject
 		}
@@ -128,23 +128,23 @@ module.exports = function(sequelize, DataTypes) {
 		let options = {
 			where: {conekta_id: conekta_id},
 			include: [{
-				model: sequelize.model("Detail"),
-				as: "details",
+				model: sequelize.model('Detail'),
+				as: 'details',
 				include: [{
-					model: sequelize.model("Product"),
-					as: "product",
-					attributes: ["id", "plu"]
+					model: sequelize.model('Product'),
+					as: 'product',
+					attributes: ['id', 'plu']
 				}]
 			},{
-				model: sequelize.model("Address"),
-				as: "shippingAddress",
+				model: sequelize.model('Address'),
+				as: 'shippingAddress',
 			},{
-				model: sequelize.model("Address"),
-				as: "invoiceAddress",
+				model: sequelize.model('Address'),
+				as: 'invoiceAddress',
 			},{
-				model: sequelize.model("User"),
-				as: "user",
-				attributes: ["first_name", "last_name", "email"]
+				model: sequelize.model('User'),
+				as: 'user',
+				attributes: ['first_name', 'last_name', 'email']
 			}],
 			rejectOnEmpty: true
 		}
@@ -159,25 +159,25 @@ module.exports = function(sequelize, DataTypes) {
 				$not: {status: 'intencion'}
 			},
 			attributes: [
-				"id",
-				"status",
-				"sub_total",
-				"iva_total",
-				"shipping_total",
-				"discount_total",
-				"total",
-				"created_at"
+				'id',
+				'status',
+				'sub_total',
+				'iva_total',
+				'shipping_total',
+				'discount_total',
+				'total',
+				'created_at'
 			],
 			offset: 20 * page,
 			limit: 20,
-			order: [["created_at", "DESC"]],
+			order: [['created_at', 'DESC']],
 			include: [{
-				model: sequelize.model("Detail"),
-				as: "details",
+				model: sequelize.model('Detail'),
+				as: 'details',
 				include: [{
-					model: sequelize.model("Product"),
-					as: "product",
-					attributes: ["id", "plu"]
+					model: sequelize.model('Product'),
+					as: 'product',
+					attributes: ['id', 'plu']
 				}]
 			}],
 		}
@@ -192,11 +192,11 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			offset: 20 * page,
 			limit: 20,
-			order: [["created_at", "DESC"]],
+			order: [['created_at', 'DESC']],
 			include: [{
-				model: sequelize.model("User"),
-				as: "user",
-				attributes: ["id", "first_name", "last_name"]
+				model: sequelize.model('User'),
+				as: 'user',
+				attributes: ['id', 'first_name', 'last_name']
 			}],
 		}
 		return this.findAndCountAll(options)
@@ -205,61 +205,61 @@ module.exports = function(sequelize, DataTypes) {
 	Order.createOptions = function () {
 		let options = {
 			fields: [
-				"status",
-				"sub_total",
-				"iva_total",
-				"shipping_total",
-				"discount_total",
-				"total",
-				"notes",
-				"rfc",
-				"razon_social",
-				"conekta_id",
-				"user_id",
-				"discount_code_id",
-				"invoice_address_id",
-				"shipping_address_id"
+				'status',
+				'sub_total',
+				'iva_total',
+				'shipping_total',
+				'discount_total',
+				'total',
+				'notes',
+				'rfc',
+				'razon_social',
+				'conekta_id',
+				'user_id',
+				'discount_code_id',
+				'invoice_address_id',
+				'shipping_address_id'
 			],
 			include: [{
-				model: sequelize.model("Detail"),
-				as: "details",
+				model: sequelize.model('Detail'),
+				as: 'details',
 				fields: [
-					"name",
-					"price",
-					"discount",
-					"quantity",
-					"iva",
-					"sub_total",
-					"product_id",
-					"order_id"
+					'name',
+					'price',
+					'discount',
+					'quantity',
+					'iva',
+					'sub_total',
+					'product_id',
+					'order_id'
 				]
 			},{
-				model: sequelize.model("Address"),
-				as: "shippingAddress",
+				model: sequelize.model('Address'),
+				as: 'shippingAddress',
 				fields: [
-					"first_name",
-					"last_name",
-					"telephone",
-					"street",
-					"street2",
-					"city",
-					"state",
-					"zipcode",
-					"country"
+					'first_name',
+					'last_name',
+					'telephone',
+					'street',
+					'street2',
+					'city',
+					'state',
+					'zipcode',
+					'country'
 				]
 			},{
-				model: sequelize.model("Address"),
-				as: "invoiceAddress",
+				model: sequelize.model('Address'),
+				as: 'invoiceAddress',
 				fields: [
-					"first_name",
-					"last_name",
-					"telephone",
-					"street",
-					"street2",
-					"city",
-					"state",
-					"zipcode",
-					"country"
+					'first_name',
+					'last_name',
+					'telephone',
+					'street',
+					'street2',
+					'city',
+					'state',
+					'zipcode',
+					'country'
 				]
 			}]
 		}

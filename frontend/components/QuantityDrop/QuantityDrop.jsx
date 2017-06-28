@@ -1,6 +1,6 @@
-import React from "react"
-import { ArrowDown } from "components/SVGIcons/Material"
-import { MDCSimpleMenu } from "@material/menu/dist/mdc.menu.js"
+import React from 'react'
+import { ArrowDown } from 'components/SVGIcons/Material'
+import { MDCSimpleMenu } from '@material/menu/dist/mdc.menu.js'
 
 
 export default class QuantityDrop extends React.Component {
@@ -14,7 +14,7 @@ export default class QuantityDrop extends React.Component {
 
 	componentDidMount() {
 		this.menu = new MDCSimpleMenu(this.refs.dom_menu)
-		this.refs.dom_menu.addEventListener("MDCSimpleMenu:selected", this.handleItemSelect)
+		this.refs.dom_menu.addEventListener('MDCSimpleMenu:selected', this.handleItemSelect)
 	}
 
 	handleToggle(event) {

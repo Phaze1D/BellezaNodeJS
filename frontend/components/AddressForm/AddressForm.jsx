@@ -1,12 +1,12 @@
-import React from "react"
-import { Clear } from "components/SVGIcons/Material"
-import { resetErrors } from "actions/errors"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Clear } from 'components/SVGIcons/Material'
+import { resetErrors } from 'actions/errors'
+import Loader from 'components/Loader/Loader'
 import {
 	addressNew,
 	addressUpdate,
 	validateAddress
-} from "actions/address"
+} from 'actions/address'
 
 
 class AddressForm extends React.Component {
@@ -25,18 +25,18 @@ class AddressForm extends React.Component {
 
 	handleSubmit(event){
 		event.preventDefault()
-		let id = this.props.address.get("id")
-		let index = this.props.address.get("index")
+		let id = this.props.address.get('id')
+		let index = this.props.address.get('index')
 		let elements = event.target.elements
 		let formData = new FormData()
-		formData.append("first_name", elements.first_name.value)
-		formData.append("last_name", elements.last_name.value)
-		formData.append("street", elements.street.value)
-		formData.append("street2", elements.street2.value)
-		formData.append("city", elements.city.value)
-		formData.append("state", elements.state.value)
-		formData.append("zipcode", elements.zipcode.value)
-		formData.append("telephone", elements.telephone.value)
+		formData.append('first_name', elements.first_name.value)
+		formData.append('last_name', elements.last_name.value)
+		formData.append('street', elements.street.value)
+		formData.append('street2', elements.street2.value)
+		formData.append('city', elements.city.value)
+		formData.append('state', elements.state.value)
+		formData.append('zipcode', elements.zipcode.value)
+		formData.append('telephone', elements.telephone.value)
 
 		if(id){
 			this.props.dispatch(addressUpdate(index, formData, id, this.props.userId, this.props.token))
@@ -80,58 +80,58 @@ class AddressForm extends React.Component {
 				</h3>
 				<form className="main-form" onSubmit={this.handleSubmit}>
 					<label htmlFor="first_name">Nombre</label>
-					{errors.get("first_name") && <div className="error-div">{errors.get("first_name")}</div>}
+					{errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
 					<input type="text" name="first_name"
-						defaultValue={address.get("first_name")}
+						defaultValue={address.get('first_name')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="last_name">Apellidos</label>
-					{errors.get("last_name") && <div className="error-div">{errors.get("last_name")}</div>}
+					{errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
 					<input type="text" name="last_name"
-						defaultValue={address.get("last_name")}
+						defaultValue={address.get('last_name')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="street">Dirección</label>
-					{errors.get("street") && <div className="error-div">{errors.get("street")}</div>}
+					{errors.get('street') && <div className="error-div">{errors.get('street')}</div>}
 					<input type="text" name="street"
-						defaultValue={address.get("street")}
+						defaultValue={address.get('street')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="street2">Colonia</label>
-					{errors.get("street2") && <div className="error-div">{errors.get("street2")}</div>}
+					{errors.get('street2') && <div className="error-div">{errors.get('street2')}</div>}
 					<input type="text" name="street2"
-						defaultValue={address.get("street2")}
+						defaultValue={address.get('street2')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="city">Ciudad</label>
-					{errors.get("city") && <div className="error-div">{errors.get("city")}</div>}
+					{errors.get('city') && <div className="error-div">{errors.get('city')}</div>}
 					<input type="text" name="city"
-						defaultValue={address.get("city")}
+						defaultValue={address.get('city')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="state">Estado</label>
-					{errors.get("state") && <div className="error-div">{errors.get("state")}</div>}
+					{errors.get('state') && <div className="error-div">{errors.get('state')}</div>}
 					<input type="text" name="state"
-						defaultValue={address.get("state")}
+						defaultValue={address.get('state')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="zipcode">Codigo Postal</label>
-					{errors.get("zipcode") && <div className="error-div">{errors.get("zipcode")}</div>}
+					{errors.get('zipcode') && <div className="error-div">{errors.get('zipcode')}</div>}
 					<input type="text" name="zipcode"
-						defaultValue={address.get("zipcode")}
+						defaultValue={address.get('zipcode')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="telephone">Telefono <span className="sub-text">10 digitos</span></label>
-					{errors.get("telephone") && <div className="error-div">{errors.get("telephone")}</div>}
+					{errors.get('telephone') && <div className="error-div">{errors.get('telephone')}</div>}
 					<input type="text" name="telephone"
-						defaultValue={address.get("telephone")}
+						defaultValue={address.get('telephone')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 					<Loader>

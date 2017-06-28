@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 const INITIAL_PRODUCTS = fromJS({
 	rows: [],
@@ -33,7 +33,7 @@ export const resetProductsReducer = (state = INITIAL_PRODUCTS, action) => {
 export const getProductReducer = ( state = INITIAL_PRODUCT, action) => {
 	switch (action.type) {
 	case `${types.GET_PRODUCT}_LOADING`:
-		return state.set("loading", true)
+		return state.set('loading', true)
 
 	case `${types.GET_PRODUCT}_SUCCESS`:
 		return fromJS(action.payload.data)

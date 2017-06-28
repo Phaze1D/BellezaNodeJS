@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 const INITIAL_ORDERS = fromJS({
 	rows: [],
@@ -8,17 +8,17 @@ const INITIAL_ORDERS = fromJS({
 
 const INITIAL_ORDER = fromJS({
 	details: [],
-	status: "",
+	status: '',
 	sub_total: 0,
 	iva_total: 0,
 	discount_total: 0,
 	shipping_total: 0,
 	total: 0,
-	notes: "",
+	notes: '',
 	shippingAddress: {},
 	invoiceAddress: {},
-	rfc: "",
-	razon_social: "",
+	rfc: '',
+	razon_social: '',
 	date: new Date()
 })
 

@@ -1,15 +1,15 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import { Clear } from "components/SVGIcons/Material"
-import Loader from "components/Loader/Loader"
-import { addMailer } from "actions/others"
-import { resetErrors } from "actions/errors"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Clear } from 'components/SVGIcons/Material'
+import Loader from 'components/Loader/Loader'
+import { addMailer } from 'actions/others'
+import { resetErrors } from 'actions/errors'
 import {
 	userUpdate,
 	validateUser,
 	userLogout,
-} from "actions/user"
+} from 'actions/user'
 
 
 @connect( store => {
@@ -44,27 +44,27 @@ class UserDetails extends React.Component {
 	}
 
 	handleOverlayClick(event){
-		if(event.target.classList.contains("overlay")){
+		if(event.target.classList.contains('overlay')){
 			this.setState({showForm: false})
-			document.body.style.overflow = ""
+			document.body.style.overflow = ''
 		}
 	}
 
 	handleCancel(event){
 		this.setState({showForm: false})
-		document.body.style.overflow = ""
+		document.body.style.overflow = ''
 	}
 
 	handleSubmit(event){
 		event.preventDefault()
 		let elements = event.target.elements
 		let formData = new FormData()
-		formData.append("telephone", elements.telephone.value)
-		formData.append("first_name", elements.first_name.value)
-		formData.append("last_name", elements.last_name.value)
-		let id = this.props.user.get("id")
+		formData.append('telephone', elements.telephone.value)
+		formData.append('first_name', elements.first_name.value)
+		formData.append('last_name', elements.last_name.value)
+		let id = this.props.user.get('id')
 
-		this.props.dispatch(userUpdate(formData, id, this.props.user.get("token")))
+		this.props.dispatch(userUpdate(formData, id, this.props.user.get('token')))
 			.then(this.handleCancel)
 			.catch(this.handleError)
 	}
@@ -83,11 +83,11 @@ class UserDetails extends React.Component {
 	}
 
 	handlePreference(event){
-		const value = event.target.value == "true" ? false : true
-		const email = this.props.user.get("email")
+		const value = event.target.value == 'true' ? false : true
+		const email = this.props.user.get('email')
 		let formData = new FormData()
-		formData.append("email", email)
-		formData.append("active", value)
+		formData.append('email', email)
+		formData.append('active', value)
 
 		this.props.dispatch(addMailer(formData, true))
 			.then()
@@ -109,25 +109,25 @@ class UserDetails extends React.Component {
 			errors
 		} = this.props
 
-		const addreList = user.get("addresses").map( (add, index) =>
-			<p key={index} className="overflow-text sub-text primary">{add.get("street")}</p>
+		const addreList = user.get('addresses').map( (add, index) =>
+			<p key={index} className="overflow-text sub-text primary">{add.get('street')}</p>
 		)
 
 		return (
 			<section className="col-9 col-sm-8 col-xs-11">
 				<h2>
           Detalles
-					<Link to="#" className="sub-text light" style={{float: "right"}}
+					<Link to="#" className="sub-text light" style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 
 				<div className="grid-wrap top">
 					<div className="col-6 col-sm-12">
 						<h4 className="h-underline overflow-text">
-							<span className="overflow-text" style={{float: "left", maxWidth: "calc(100% - 70px)"}}>
-								{user.get("first_name")} {user.get("last_name")}
+							<span className="overflow-text" style={{float: 'left', maxWidth: 'calc(100% - 70px)'}}>
+								{user.get('first_name')} {user.get('last_name')}
 							</span>
-							<span style={{float: "right"}}>
+							<span style={{float: 'right'}}>
                 ( <Link to="#" className="sub-text light" onClick={this.handleShow}>Editar</Link> )
 							</span>
 						</h4>
@@ -135,7 +135,7 @@ class UserDetails extends React.Component {
 						<div className="grid-wrap top">
 							<div className="col-6">
 								<p className="sub-text">Teléfono: </p>
-								<p className="overflow-text sub-text primary">{user.get("telephone")}</p>
+								<p className="overflow-text sub-text primary">{user.get('telephone')}</p>
 							</div>
 
 							<div className="col-6">
@@ -145,7 +145,7 @@ class UserDetails extends React.Component {
 
 							<div className="col-6 grow">
 								<p className="sub-text">Email: </p>
-								<p className="overflow-text sub-text primary">{user.get("email")}</p>
+								<p className="overflow-text sub-text primary">{user.get('email')}</p>
 							</div>
 						</div>
 
@@ -158,8 +158,8 @@ class UserDetails extends React.Component {
 						<label htmlFor="pref" className="grid center sub-text col-12">
 							<input type="checkbox" name="pref"
 								className="col-1 col-md-2 col-sm-1"
-								checked={user.get("preferences")}
-								value={user.get("preferences")}
+								checked={user.get('preferences')}
+								value={user.get('preferences')}
 								onChange={this.handlePreference}/>
               Por favor agregarme a Neals Yard Remedies ofertas y actualizaciones por correo electrónico.
 						</label>
@@ -169,8 +169,8 @@ class UserDetails extends React.Component {
 						<div
 							className="overlay show"
 							onClick={this.handleOverlayClick}
-							onMouseEnter={(event) => document.body.style.overflow = "hidden"}
-							onMouseLeave={(event) => document.body.style.overflow = ""}>
+							onMouseEnter={(event) => document.body.style.overflow = 'hidden'}
+							onMouseLeave={(event) => document.body.style.overflow = ''}>
 
 							<UserEdit
 								user={user}
@@ -209,26 +209,26 @@ const UserEdit = (props) => {
 			</h3>
 			<form className="main-form" onSubmit={onRequestSubmit}>
 				<label htmlFor="first_name">Nombre</label>
-				{errors.get("first_name") && <div className="error-div">{errors.get("first_name")}</div>}
+				{errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
 				<input type="text" name="first_name"
-					defaultValue={user.get("first_name")}
+					defaultValue={user.get('first_name')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 
 				<label htmlFor="last_name">Apellidos</label>
-				{errors.get("last_name") && <div className="error-div">{errors.get("last_name")}</div>}
+				{errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
 				<input type="text" name="last_name"
-					defaultValue={user.get("last_name")}
+					defaultValue={user.get('last_name')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 
 				<label htmlFor="email">Email</label>
-				<input type="text" name="email" defaultValue={user.get("email")} disabled={true}/>
+				<input type="text" name="email" defaultValue={user.get('email')} disabled={true}/>
 
 				<label htmlFor="telephone">Telefono</label>
-				{errors.get("telephone") && <div className="error-div">{errors.get("telephone")}</div>}
+				{errors.get('telephone') && <div className="error-div">{errors.get('telephone')}</div>}
 				<input type="text" name="telephone"
-					defaultValue={user.get("telephone")}
+					defaultValue={user.get('telephone')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 				<Loader>

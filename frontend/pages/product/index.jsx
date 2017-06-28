@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Pagination from "components/Pagination/Pagination"
-import { connect } from "react-redux"
-import { getBackofficeProducts, resetProducts } from "actions/product"
-import queryString from "query-string"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Pagination from 'components/Pagination/Pagination'
+import { connect } from 'react-redux'
+import { getBackofficeProducts, resetProducts } from 'actions/product'
+import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
@@ -39,7 +39,7 @@ export default class ProductsIndex extends React.Component {
 		if(this.props.match.url === location.pathname){
 			const parse = queryString.parse(location.search)
 
-			this.props.dispatch(getBackofficeProducts(parse.query, parse.page, 0 , this.props.user.get("token")))
+			this.props.dispatch(getBackofficeProducts(parse.query, parse.page, 0 , this.props.user.get('token')))
 				.then()
 				.catch(this.handleError)
 		}
@@ -51,11 +51,11 @@ export default class ProductsIndex extends React.Component {
 
 	handleSearch(event) {
 		event.preventDefault()
-		let input = event.target.elements["query"]
-		let search = input.value ? `?query=${input.value}&page=0&sort=0` : "?page=0&sort=0"
+		let input = event.target.elements['query']
+		let search = input.value ? `?query=${input.value}&page=0&sort=0` : '?page=0&sort=0'
 
 		this.props.history.push({
-			pathname: "/backoffice/products",
+			pathname: '/backoffice/products',
 			search: search
 		})
 	}
@@ -71,7 +71,7 @@ export default class ProductsIndex extends React.Component {
 			history
 		} = this.props
 
-		const productList = products.get("rows").map( (product, index) =>
+		const productList = products.get('rows').map( (product, index) =>
 			<ProductItem
 				key={index}
 				product={product}
@@ -80,7 +80,7 @@ export default class ProductsIndex extends React.Component {
 
 		const parse = queryString.parse(history.location.search)
 		const links = []
-		for(let i = 0; i < Math.ceil(products.get("count")/this.state.prePage); i++ ){
+		for(let i = 0; i < Math.ceil(products.get('count')/this.state.prePage); i++ ){
 			if(parse.query){
 				links.push({value: `${match.url}?query=${parse.query}&page=${i}`, name: i+1})
 			}else{
@@ -91,10 +91,10 @@ export default class ProductsIndex extends React.Component {
 		return (
 			<div>
 				<div className="protop">
-					<Link to={"product/new"} className="secondary-button">Add Product</Link>
+					<Link to={'product/new'} className="secondary-button">Add Product</Link>
 					<form onSubmit={this.handleSearch}>
 						<input type="text" name="query"/>
-						<input type="submit" style={{display: "none"}}/>
+						<input type="submit" style={{display: 'none'}}/>
 					</form>
 				</div>
 				<Loader>
@@ -132,11 +132,11 @@ export default class ProductsIndex extends React.Component {
 
 const ProductItem = props => (
 	<tr>
-		<td>{props.product.get("plu")}</td>
-		<td>{props.product.get("name")} {props.product.get("volume")}</td>
-		<td>{props.product.get("stock")}</td>
+		<td>{props.product.get('plu')}</td>
+		<td>{props.product.get('name')} {props.product.get('volume')}</td>
+		<td>{props.product.get('stock')}</td>
 		<td>
-			<Link to={`product/edit/${props.product.get("id")}`}>Update</Link>
+			<Link to={`product/edit/${props.product.get('id')}`}>Update</Link>
 		</td>
 	</tr>
 )

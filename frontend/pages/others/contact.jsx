@@ -1,10 +1,10 @@
-import React from "react"
-import { connect } from "react-redux"
-import { resetErrors } from "actions/errors"
+import React from 'react'
+import { connect } from 'react-redux'
+import { resetErrors } from 'actions/errors'
 import {
 	contact,
 	validateContact,
-} from "actions/others"
+} from 'actions/others'
 
 
 
@@ -28,9 +28,9 @@ class Contact extends React.Component {
 		event.preventDefault()
 		let elements = event.target.elements
 		let formData = new FormData()
-		formData.append("email", elements.email.value)
-		formData.append("name", elements.name.value)
-		formData.append("question", elements.question.value)
+		formData.append('email', elements.email.value)
+		formData.append('name', elements.name.value)
+		formData.append('question', elements.question.value)
 
 		this.props.dispatch(contact(formData))
 			.then()
@@ -62,23 +62,23 @@ class Contact extends React.Component {
 				<h2>Contáctanos</h2>
 				<form
 					className="main-form"
-					style={{maxWidth: "400px", width: "100%"}}
+					style={{maxWidth: '400px', width: '100%'}}
 					onSubmit={this.handleSubmit}>
 
 					<label htmlFor="name">Nombre</label>
-					{errors.get("name") && <div className="error-div">{errors.get("name")}</div>}
+					{errors.get('name') && <div className="error-div">{errors.get('name')}</div>}
 					<input type="text" name="name"
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="email">Email</label>
-					{errors.get("email") && <div className="error-div">{errors.get("email")}</div>}
+					{errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
 					<input type="text" name="email"
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
 					<label htmlFor="question">Pregunta</label>
-					{errors.get("question") && <div className="error-div">{errors.get("question")}</div>}
+					{errors.get('question') && <div className="error-div">{errors.get('question')}</div>}
 					<textarea name="question" className="input" rows="5" cols="40"
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}></textarea>

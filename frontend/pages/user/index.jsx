@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Pagination from "components/Pagination/Pagination"
-import { connect } from "react-redux"
-import { getClients, resetClients } from "actions/clients"
-import queryString from "query-string"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Pagination from 'components/Pagination/Pagination'
+import { connect } from 'react-redux'
+import { getClients, resetClients } from 'actions/clients'
+import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
@@ -39,7 +39,7 @@ export default class UsersIndex extends React.Component {
 		if(this.props.match.url === location.pathname){
 			const parse = queryString.parse(location.search)
 
-			this.props.dispatch(getClients(parse.query, parse.page, this.props.user.get("token")))
+			this.props.dispatch(getClients(parse.query, parse.page, this.props.user.get('token')))
 				.then()
 				.catch(this.handleError)
 		}
@@ -51,11 +51,11 @@ export default class UsersIndex extends React.Component {
 
 	handleSearch(event) {
 		event.preventDefault()
-		let input = event.target.elements["query"]
-		let search = input.value ? `?query=${input.value}&page=0&sort=0` : "?page=0&sort=0"
+		let input = event.target.elements['query']
+		let search = input.value ? `?query=${input.value}&page=0&sort=0` : '?page=0&sort=0'
 
 		this.props.history.push({
-			pathname: "/backoffice/users",
+			pathname: '/backoffice/users',
 			search: search
 		})
 	}
@@ -71,7 +71,7 @@ export default class UsersIndex extends React.Component {
 			history
 		} = this.props
 
-		const userList = clients.get("rows").map( (client, index) =>
+		const userList = clients.get('rows').map( (client, index) =>
 			<UserItem
 				client={client}
 				key={index}/>
@@ -79,7 +79,7 @@ export default class UsersIndex extends React.Component {
 
 		const parse = queryString.parse(history.location.search)
 		const links = []
-		for(let i = 0; i < Math.ceil(clients.get("count")/this.state.prePage); i++ ){
+		for(let i = 0; i < Math.ceil(clients.get('count')/this.state.prePage); i++ ){
 			if(parse.query){
 				links.push({value: `${match.url}?query=${parse.query}&page=${i}`, name: i+1})
 			}else{
@@ -128,18 +128,18 @@ export default class UsersIndex extends React.Component {
 
 const UserItem = props => (
 	<tr>
-		<td>{props.client.get("first_name")}</td>
-		<td>{props.client.get("last_name")}</td>
-		<td>{props.client.get("email")}</td>
-		<td>${props.client.get("amount")}</td>
+		<td>{props.client.get('first_name')}</td>
+		<td>{props.client.get('last_name')}</td>
+		<td>{props.client.get('email')}</td>
+		<td>${props.client.get('amount')}</td>
 		<td>
-			<Link  to={`/user/${props.client.get("id")}/orders`}>Pedidos</Link>
+			<Link  to={`/user/${props.client.get('id')}/orders`}>Pedidos</Link>
 		</td>
 		<td>
-			<Link  to={`/backoffice/user/${props.client.get("id")}/codes/new`}>Give Discount</Link>
+			<Link  to={`/backoffice/user/${props.client.get('id')}/codes/new`}>Give Discount</Link>
 		</td>
 		<td>
-			<Link  to={`/user/${props.client.get("id")}/codes`}>Show Discounts</Link>
+			<Link  to={`/user/${props.client.get('id')}/codes`}>Show Discounts</Link>
 		</td>
 	</tr>
 )

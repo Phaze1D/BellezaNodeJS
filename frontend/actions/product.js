@@ -1,11 +1,11 @@
-import * as types from "actions/types"
-import axios from "axios"
+import * as types from 'actions/types'
+import axios from 'axios'
 
 
 export const getProducts = (search, category, page, sort=0) => {
 	return {
 		type: types.GET_PRODUCTS,
-		payload: axios.get("/api/products", {
+		payload: axios.get('/api/products', {
 			params: {
 				q: search,
 				category: category,
@@ -19,20 +19,20 @@ export const getProducts = (search, category, page, sort=0) => {
 export const getFavs = () => {
 	return {
 		type: types.GET_PRODUCTS,
-		payload: axios.get("/api/favProducts")
+		payload: axios.get('/api/favProducts')
 	}
 }
 
 export const getBackofficeProducts = (search, page, sort=0, token) => {
 	return {
 		type: types.GET_PRODUCTS,
-		payload: axios.get("/api/backoffice/products", {
+		payload: axios.get('/api/backoffice/products', {
 			params: {
 				q: search,
 				page: page,
 				sort: sort
 			},
-			headers: {"Authorization": `Bearer ${token}`}
+			headers: {'Authorization': `Bearer ${token}`}
 		})
 	}
 }
@@ -59,8 +59,8 @@ export const resetProduct = () => {
 export const newProduct = (formData, token) => {
 	return {
 		type: types.NEW_PRODUCT,
-		payload: axios.post("/api/product", formData, {
-			headers: {"Authorization": `Bearer ${token}`}
+		payload: axios.post('/api/product', formData, {
+			headers: {'Authorization': `Bearer ${token}`}
 		})
 	}
 }
@@ -69,7 +69,7 @@ export const editProduct = (formData, id, token) => {
 	return {
 		type: types.EDIT_PRODUCT,
 		payload: axios.put(`/api/product/${id}`, formData, {
-			headers: {"Authorization": `Bearer ${token}`}
+			headers: {'Authorization': `Bearer ${token}`}
 		})
 	}
 }

@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 const INITIAL_CODES = fromJS({
 	active: [],

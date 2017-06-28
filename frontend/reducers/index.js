@@ -1,18 +1,18 @@
-import { combineReducers } from "redux-immutable"
-import reduceReducers from "reduce-reducers"
-import Immutable from "immutable"
+import { combineReducers } from 'redux-immutable'
+import reduceReducers from 'reduce-reducers'
+import Immutable from 'immutable'
 
 
 import {
 	getCategoriesReducer,
-} from "reducers/category"
+} from 'reducers/category'
 
 import {
 	getProductsReducer,
 	resetProductsReducer,
 	getProductReducer,
 	resetProductReducer
-} from "reducers/product"
+} from 'reducers/product'
 
 import {
 	addDetailReducer,
@@ -23,7 +23,7 @@ import {
 	addCartExtraReducer,
 	resetCartReducer,
 	checkUserCodeReducer
-} from "reducers/cart"
+} from 'reducers/cart'
 
 import {
 	userSignUpReducer,
@@ -32,7 +32,7 @@ import {
 	userPreferenceReducer,
 	userLogoutReducer,
 	passwordResetReducer
-} from "reducers/user"
+} from 'reducers/user'
 
 import {
 	getBannersReducer,
@@ -40,45 +40,45 @@ import {
 	getBannerReducer,
 	getMailingReducer,
 	resetMailingReducer
-} from "reducers/others"
+} from 'reducers/others'
 
 import {
 	addressNewReducer,
 	addressUpdateReducer,
 	addressDeleteReducer
-} from "reducers/address"
+} from 'reducers/address'
 
 import {
 	getOrdersReducer,
 	resetOrdersReducer,
 	getOrderReducer,
 	resetOrderReducer
-} from "reducers/order"
+} from 'reducers/order'
 
 import {
 	getUserCodesReducer,
 	resetCodesReducer
-} from "reducers/discountcode"
+} from 'reducers/discountcode'
 
 import {
 	cashPaymentReducer,
 	cardPaymentReducer
-} from "reducers/payment"
+} from 'reducers/payment'
 
 import {
 	errorsResponseReducer,
 	resetErrorsReducer,
 	setErrorReducer
-} from "reducers/errors"
+} from 'reducers/errors'
 
 import {
 	getClientsReducer,
 	resetClientsReducer,
 	getClientReducer,
 	resetClientReducer
-} from "reducers/clients"
+} from 'reducers/clients'
 
-import { fetchingReducer } from "reducers/fetching"
+import { fetchingReducer } from 'reducers/fetching'
 
 const errorsReducer = reduceReducers(
 	errorsResponseReducer,

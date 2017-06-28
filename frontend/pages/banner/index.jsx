@@ -1,17 +1,17 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import Pagination from "components/Pagination/Pagination"
-import { dateOptions } from "utils/date"
-import queryString from "query-string"
-import { getBanners, resetBanners, deleteBanner } from "actions/others"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Pagination from 'components/Pagination/Pagination'
+import { dateOptions } from 'utils/date'
+import queryString from 'query-string'
+import { getBanners, resetBanners, deleteBanner } from 'actions/others'
+import Loader from 'components/Loader/Loader'
 
 
 
 @connect(store => {
 	return {
-		banners: store.others.get("banners"),
+		banners: store.others.get('banners'),
 		user: store.user
 	}
 })
@@ -40,7 +40,7 @@ class BannersIndex extends React.Component {
 		if(this.props.match.url === location.pathname){
 			const parse = queryString.parse(location.search)
 
-			this.props.dispatch(getBanners(parse.page, this.props.user.get("token")))
+			this.props.dispatch(getBanners(parse.page, this.props.user.get('token')))
 				.then()
 				.catch(this.handleError)
 		}
@@ -52,7 +52,7 @@ class BannersIndex extends React.Component {
 
 	handleDelete(id, event){
 		event.preventDefault()
-		this.props.dispatch(deleteBanner(id, this.props.user.get("token")))
+		this.props.dispatch(deleteBanner(id, this.props.user.get('token')))
 			.then( () => {
 				this.handleUrlChanged(this.props.history.location)
 			})
@@ -69,15 +69,15 @@ class BannersIndex extends React.Component {
 			match,
 		} = this.props
 
-		const bannerList = banners.get("rows").map( (banner) =>
+		const bannerList = banners.get('rows').map( (banner) =>
 			<BannerItem
-				key={banner.get("id")}
+				key={banner.get('id')}
 				banner={banner}
-				onRequestDelete={this.handleDelete.bind(this, banner.get("id"))}/>
+				onRequestDelete={this.handleDelete.bind(this, banner.get('id'))}/>
 		)
 
 		const links = []
-		for(let i = 0; i < Math.ceil(banners.get("count")/this.state.prePage); i++ ){
+		for(let i = 0; i < Math.ceil(banners.get('count')/this.state.prePage); i++ ){
 			links.push({value: `${match.url}?page=${i}`, name: i+1})
 		}
 
@@ -128,16 +128,16 @@ export default BannersIndex
 const BannerItem = props => (
 	<tr>
 		<td>
-			<img className="banner-sm" src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${props.banner.get("id")}_lg.jpg`}/>
+			<img className="banner-sm" src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${props.banner.get('id')}_lg.jpg`}/>
 		</td>
 		<td>
-			<Link to={props.banner.get("link_to")}>Link</Link>
+			<Link to={props.banner.get('link_to')}>Link</Link>
 		</td>
-		<td>{props.banner.get("manual_active") ? "Yes": "No"}</td>
-		<td>{new Date(props.banner.get("start_date")).toLocaleString("en-us", dateOptions)}</td>
-		<td>{new Date(props.banner.get("end_date")).toLocaleString("en-us", dateOptions)}</td>
+		<td>{props.banner.get('manual_active') ? 'Yes': 'No'}</td>
+		<td>{new Date(props.banner.get('start_date')).toLocaleString('en-us', dateOptions)}</td>
+		<td>{new Date(props.banner.get('end_date')).toLocaleString('en-us', dateOptions)}</td>
 		<td>
-			<Link to={`/backoffice/banner/${props.banner.get("id")}/edit`}>Update</Link>
+			<Link to={`/backoffice/banner/${props.banner.get('id')}/edit`}>Update</Link>
 		</td>
 
 		<td>

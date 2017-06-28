@@ -1,11 +1,11 @@
-import React from "react"
-import { Link, Redirect } from "react-router-dom"
-import { connect } from "react-redux"
-import OrderTable from "components/OrderTable/OrderTable"
-import { checkUserCode } from "actions/discountcode"
-import { resetErrors, setError } from "actions/errors"
-import { cashPayment, cardPayment } from "actions/payment"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import OrderTable from 'components/OrderTable/OrderTable'
+import { checkUserCode } from 'actions/discountcode'
+import { resetErrors, setError } from 'actions/errors'
+import { cashPayment, cardPayment } from 'actions/payment'
+import Loader from 'components/Loader/Loader'
 
 
 @connect( store => {
@@ -34,7 +34,7 @@ export default class CheckoutConfirmation extends React.Component {
 
 	componentDidMount() {
 		if(window.Conekta){
-			window.Conekta.setPublicKey("key_dmgrELA97rrrgKSU7ZKSeKw")
+			window.Conekta.setPublicKey('key_dmgrELA97rrrgKSU7ZKSeKw')
 		}
 	}
 
@@ -49,10 +49,10 @@ export default class CheckoutConfirmation extends React.Component {
 	handleSubmitCode(event){
 		event.preventDefault()
 		let formData = {}
-		formData["code"] = event.target.elements.code.value
+		formData['code'] = event.target.elements.code.value
 		let user = this.props.user
 
-		this.props.dispatch(checkUserCode(formData, user.get("id") ,user.get("token")))
+		this.props.dispatch(checkUserCode(formData, user.get('id') ,user.get('token')))
 			.then()
 			.catch(this.handleError)
 	}
@@ -62,12 +62,12 @@ export default class CheckoutConfirmation extends React.Component {
 		event.preventDefault()
 		let elements = event.target.elements
 		let data = {
-			"card": {
-				"number": elements.number.value,
-				"name": elements.holder.value,
-				"exp_year": elements.year.value,
-				"exp_month": elements.month.value,
-				"cvc": elements.secret.value
+			'card': {
+				'number': elements.number.value,
+				'name': elements.holder.value,
+				'exp_year': elements.year.value,
+				'exp_month': elements.month.value,
+				'cvc': elements.secret.value
 			}
 		}
 		elements.submit.disabled = true
@@ -79,16 +79,16 @@ export default class CheckoutConfirmation extends React.Component {
 		let formData = this.props.cart.toJS()
 		formData.payment_source = {
 			token: token.id,
-			type: "card"
+			type: 'card'
 		}
-		this.props.dispatch(cardPayment(formData, this.props.user.get("token")))
+		this.props.dispatch(cardPayment(formData, this.props.user.get('token')))
 			.then(this.handleSuccess)
 			.catch(this.handleError)
 	}
 
 	errorToken(err){
-		this.props.dispatch(setError("card_token", err.message_to_purchaser))
-		document.getElementById("card-form").elements.submit.disabled = false
+		this.props.dispatch(setError('card_token', err.message_to_purchaser))
+		document.getElementById('card-form').elements.submit.disabled = false
 	}
 
 	handleSubmitCash(event){
@@ -98,25 +98,25 @@ export default class CheckoutConfirmation extends React.Component {
 		elements.submit.disabled = true
 		let formData = this.props.cart.toJS()
 		formData.payment_source = {
-			type: elements["payment_type"].value
+			type: elements['payment_type'].value
 		}
 
-		this.props.dispatch(cashPayment(formData, this.props.user.get("token")))
+		this.props.dispatch(cashPayment(formData, this.props.user.get('token')))
 			.then(this.handleSuccess)
 			.catch(this.handleError)
 	}
 
 	handleSuccess(respones){
-		document.getElementById("card-form").elements.submit.disabled = false
-		document.getElementById("cash-form").elements.submit.disabled = false
+		document.getElementById('card-form').elements.submit.disabled = false
+		document.getElementById('cash-form').elements.submit.disabled = false
 		this.props.history.push({
-			pathname: "/successful",
+			pathname: '/successful',
 		})
 	}
 
 	handleError(response){
-		document.getElementById("card-form").elements.submit.disabled = false
-		document.getElementById("cash-form").elements.submit.disabled = false
+		document.getElementById('card-form').elements.submit.disabled = false
+		document.getElementById('cash-form').elements.submit.disabled = false
 	}
 
 	render () {
@@ -127,7 +127,7 @@ export default class CheckoutConfirmation extends React.Component {
 			fetching
 		} = this.props
 
-		if(!user.get("token")){
+		if(!user.get('token')){
 			return <Redirect to='/home'/>
 		}
 
@@ -142,20 +142,20 @@ export default class CheckoutConfirmation extends React.Component {
 				<h2>Confirmar Orden</h2>
 				<div className="grid-wrap top between">
 					<section className="col-8 col-sm-12 last-sm">
-						<Link to="/cart" style={{float: "right"}}>Editar</Link>
+						<Link to="/cart" style={{float: 'right'}}>Editar</Link>
 						<OrderTable
 							order={cart}
 							editable={false}/>
 
-						{cart.get("discount_code_id") ?
+						{cart.get('discount_code_id') ?
 							<div className="success-box">Descuento Aplicado</div>
 							:
 							<form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
 								<div className="col-8">
 									<label htmlFor="code">Codigo De Descuento</label>
-									{errors.get("code") && <div className="error-div">{errors.get("code")}</div>}
+									{errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
 									<input name="code" type="text" className="input"
-										onFocus={(event) => this.props.dispatch(resetErrors("code"))}/>
+										onFocus={(event) => this.props.dispatch(resetErrors('code'))}/>
 								</div>
 
 								<div className="col-4">
@@ -169,14 +169,14 @@ export default class CheckoutConfirmation extends React.Component {
 
 						<Loader>
 							<radioGroup>
-								<div className={"box " + (!this.state.radio ? "hide-pay" : "")}>
+								<div className={'box ' + (!this.state.radio ? 'hide-pay' : '')}>
 									<div className="grid center">
                     Tarjeta de Crédito:
 										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png"/>
 										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png"/>
 										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png"/>
 										<input
-											style={{marginLeft: "auto"}}
+											style={{marginLeft: 'auto'}}
 											name="active" type="radio"
 											checked={this.state.radio}
 											onChange={this.handleRadio}/>
@@ -221,17 +221,17 @@ export default class CheckoutConfirmation extends React.Component {
 										</div>
 
 										<input type="submit" value="Pagar" name="submit" className="submit full"/>
-										{errors.get("card_token") && <div className="error-div">{errors.get("card_token")}</div>}
+										{errors.get('card_token') && <div className="error-div">{errors.get('card_token')}</div>}
 									</form>
 								</div>
 
-								<div className={"box " + (this.state.radio ? "hide-pay" : "")}>
+								<div className={'box ' + (this.state.radio ? 'hide-pay' : '')}>
 									<div className="grid center">
                     Pagar en Efectivo
 										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png"/>
 										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png"/>
 										<input
-											style={{marginLeft: "auto"}}
+											style={{marginLeft: 'auto'}}
 											name="active" type="radio"
 											checked={!this.state.radio}
 											onChange={this.handleRadio}/>
@@ -247,22 +247,22 @@ export default class CheckoutConfirmation extends React.Component {
 										</div>
 
 										<input type="submit" value="Pagar" name="submit" className="submit full"/>
-										{errors.get("cash") && <div className="error-div">{errors.get("cash")}</div>}
+										{errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
 									</form>
 
-									<p className="sub-text" style={{fontStyle: "italic"}}>No aceptan devoluciones para pagos en efectivo</p>
+									<p className="sub-text" style={{fontStyle: 'italic'}}>No aceptan devoluciones para pagos en efectivo</p>
 								</div>
 
-								{errors.get("parameter") && <div className="error-div">{errors.get("parameter")}</div>}
+								{errors.get('parameter') && <div className="error-div">{errors.get('parameter')}</div>}
 							</radioGroup>
 						</Loader>
 
 					</section>
 
 					<section className="col-4 col-sm-12 first-sm">
-						<Address address={cart.get("shippingAddress")} title="Dirección de Envío"/>
-						{!cart.get("invoiceAddress").isEmpty() &&
-							<Address address={cart.get("invoiceAddress")} title="Facturacion" rfc={cart.get("rfc")} razonSocial={cart.get("razon_social")}/>
+						<Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
+						{!cart.get('invoiceAddress').isEmpty() &&
+							<Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')} razonSocial={cart.get('razon_social')}/>
 						}
 					</section>
 				</div>
@@ -279,15 +279,15 @@ export const Address = props => (
 		<p>{props.razonSocial}</p>
 		<hr></hr>
 		<p className="overflow-text">
-			{props.address.get("first_name")} {props.address.get("last_name")}
+			{props.address.get('first_name')} {props.address.get('last_name')}
 		</p>
-		<p className="overflow-text">{props.address.get("telephone")}</p>
-		<p className="overflow-text">{props.address.get("street")}</p>
-		<p className="overflow-text">{props.address.get("street2")}</p>
+		<p className="overflow-text">{props.address.get('telephone')}</p>
+		<p className="overflow-text">{props.address.get('street')}</p>
+		<p className="overflow-text">{props.address.get('street2')}</p>
 		<p className="overflow-text">
-			{props.address.get("city")}, {props.address.get("state")}
+			{props.address.get('city')}, {props.address.get('state')}
 		</p>
-		<p className="overflow-text">{props.address.get("zipcode")}</p>
-		<p className="overflow-text">{props.address.get("country")}</p>
+		<p className="overflow-text">{props.address.get('zipcode')}</p>
+		<p className="overflow-text">{props.address.get('country')}</p>
 	</div>
 )

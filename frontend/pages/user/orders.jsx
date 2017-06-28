@@ -1,12 +1,12 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import OrderItem from "components/OrderItem/OrderItem"
-import Pagination from "components/Pagination/Pagination"
-import { connect } from "react-redux"
-import { userLogout } from "actions/user"
-import { resetOrders, getOrders } from "actions/order"
-import queryString from "query-string"
-import Loader from "components/Loader/Loader"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import OrderItem from 'components/OrderItem/OrderItem'
+import Pagination from 'components/Pagination/Pagination'
+import { connect } from 'react-redux'
+import { userLogout } from 'actions/user'
+import { resetOrders, getOrders } from 'actions/order'
+import queryString from 'query-string'
+import Loader from 'components/Loader/Loader'
 
 
 @connect(store => {
@@ -41,7 +41,7 @@ export default class UserOrders extends React.Component {
 		if(this.props.match.url === location.pathname){
 			const parse = queryString.parse(location.search)
 			let user_id = this.props.match.params.id
-			this.props.dispatch(getOrders(parse.page, user_id, this.props.user.get("token")))
+			this.props.dispatch(getOrders(parse.page, user_id, this.props.user.get('token')))
 				.then()
 				.catch(this.handleError)
 		}
@@ -66,12 +66,12 @@ export default class UserOrders extends React.Component {
 			match
 		} = this.props
 
-		const orderList = orders.get("rows").map( (order, index) =>
+		const orderList = orders.get('rows').map( (order, index) =>
 			<OrderItem key={index} order={order} match={match}/>
 		)
 
 		const links = []
-		for(let i = 0; i < Math.ceil(orders.get("count")/this.state.prePage); i++ ){
+		for(let i = 0; i < Math.ceil(orders.get('count')/this.state.prePage); i++ ){
 			links.push({value: `${match.url}?page=${i}`, name: i+1})
 		}
 
@@ -79,7 +79,7 @@ export default class UserOrders extends React.Component {
 			<section className="col-9 col-sm-8 col-xs-11">
 				<h2>
           Pedidos
-					<Link to="#" className="sub-text light" style={{float: "right"}}
+					<Link to="#" className="sub-text light" style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 

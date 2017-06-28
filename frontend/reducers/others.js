@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS } from "immutable"
+import * as types from 'actions/types'
+import { fromJS } from 'immutable'
 
 const INITIAL_OTHERS = fromJS({
 	banners: {
@@ -16,7 +16,7 @@ const INITIAL_OTHERS = fromJS({
 export const getBannersReducer = (state = INITIAL_OTHERS, action) => {
 	switch (action.type) {
 	case `${types.GET_BANNERS}_SUCCESS`:
-		return state.set("banners", fromJS(action.payload.data))
+		return state.set('banners', fromJS(action.payload.data))
 	default: return state
 	}
 }
@@ -24,10 +24,10 @@ export const getBannersReducer = (state = INITIAL_OTHERS, action) => {
 export const getBannerReducer = (state = INITIAL_OTHERS, action) => {
 	switch (action.type) {
 	case `${types.GET_BANNER}_LOADING`:
-		return state.setIn(["banner","loading"], true)
+		return state.setIn(['banner','loading'], true)
 
 	case `${types.GET_BANNER}_SUCCESS`:
-		return state.set("banner", fromJS(action.payload.data))
+		return state.set('banner', fromJS(action.payload.data))
 
 	default: return state
 	}
@@ -43,7 +43,7 @@ export const resetBannersReducer = (state = INITIAL_OTHERS, action) => {
 export const getMailingReducer = (state = INITIAL_OTHERS, action) => {
 	switch (action.type) {
 	case `${types.GET_MAILING}_SUCCESS`:
-		return state.set("mailing", fromJS(action.payload.data))
+		return state.set('mailing', fromJS(action.payload.data))
 
 	default: return state
 	}

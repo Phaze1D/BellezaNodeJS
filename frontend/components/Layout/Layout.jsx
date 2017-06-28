@@ -1,19 +1,19 @@
-import React from "react"
-import ReactGA from "react-ga"
-import { Route, Redirect, Switch } from "react-router-dom"
-import { connect } from "react-redux"
+import React from 'react'
+import ReactGA from 'react-ga'
+import { Route, Redirect, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import Header from "components/Header/Header"
-import Footer from "components/Footer/Footer"
-import GlobalError from "components/GlobalError/GlobalError"
-import Home from "pages/home/home"
-import CategoryIndex from "pages/category/index"
-import CategoryShow from "pages/category/show"
-import ProductShow from "pages/product/show"
-import Search from "pages/search/search"
-import Signin from "pages/signin/signin"
-import CartShow from "pages/cart/show"
-import PasswordReset from "pages/password/reset"
+import Header from 'components/Header/Header'
+import Footer from 'components/Footer/Footer'
+import GlobalError from 'components/GlobalError/GlobalError'
+import Home from 'pages/home/home'
+import CategoryIndex from 'pages/category/index'
+import CategoryShow from 'pages/category/show'
+import ProductShow from 'pages/product/show'
+import Search from 'pages/search/search'
+import Signin from 'pages/signin/signin'
+import CartShow from 'pages/cart/show'
+import PasswordReset from 'pages/password/reset'
 
 
 let UserShow = null
@@ -24,12 +24,12 @@ let OrderShow = null
 let BackofficeShow = null
 
 require.ensure([], function (require) {
-	UserShow = require("pages/user/show").default
-	CheckoutDirections = require("pages/checkout/directions").default
-	CheckoutConfirmation = require("pages/checkout/confirmation").default
-	CheckoutSuccessful = require("pages/checkout/successful").default
-	OrderShow = require("pages/order/show").default
-	BackofficeShow = require("pages/backoffice/show").default
+	UserShow = require('pages/user/show').default
+	CheckoutDirections = require('pages/checkout/directions').default
+	CheckoutConfirmation = require('pages/checkout/confirmation').default
+	CheckoutSuccessful = require('pages/checkout/successful').default
+	OrderShow = require('pages/order/show').default
+	BackofficeShow = require('pages/backoffice/show').default
 })
 
 let QuienSomos = null
@@ -42,14 +42,14 @@ let PasswordForgot = null
 let Stores = null
 
 require.ensure([], function (require) {
-	QuienSomos = require("pages/others/quien_somos").default
-	History = require("pages/others/history").default
-	NuestraPro = require("pages/others/nuestra_pro").default
-	PorqueOrganico = require("pages/others/porque_organico").default
-	Terms = require("pages/others/terms").default
-	Awards = require("pages/others/awards").default
-	PasswordForgot = require("pages/password/forgot").default
-	Stores = require("pages/store/stores").default
+	QuienSomos = require('pages/others/quien_somos').default
+	History = require('pages/others/history').default
+	NuestraPro = require('pages/others/nuestra_pro').default
+	PorqueOrganico = require('pages/others/porque_organico').default
+	Terms = require('pages/others/terms').default
+	Awards = require('pages/others/awards').default
+	PasswordForgot = require('pages/password/forgot').default
+	Stores = require('pages/store/stores').default
 })
 
 
@@ -64,8 +64,8 @@ export default class Layout extends React.Component {
 	constructor(props) {
 		super(props)
 
-		if(typeof window !== "undefined"){
-			ReactGA.initialize("UA-101407990-1")
+		if(typeof window !== 'undefined'){
+			ReactGA.initialize('UA-101407990-1')
 			props.history.listen((location, action) => {
 				ReactGA.set({ page: location.pathname })
 				ReactGA.pageview(location.pathname)
@@ -113,7 +113,7 @@ export default class Layout extends React.Component {
 				<Route path="/confirmation" render={props => signinRedirect(user, props, CheckoutConfirmation)}/>
 				<Route path="/successful" render={props => signinRedirect(user, props, CheckoutSuccessful)}/>
 
-				{user.get("token") && user.get("admin") &&
+				{user.get('token') && user.get('admin') &&
 					<Route path="/backoffice" render={props => signinRedirect(user, props, BackofficeShow)}/>
 				}
 
@@ -136,5 +136,5 @@ export default class Layout extends React.Component {
 
 
 const signinRedirect = (user, props, Component) => (
-	user.get("token") ? <Component user={user} {...props}/> : <Redirect to={`/signin?redirect=${props.match.url}`}/>
+	user.get('token') ? <Component user={user} {...props}/> : <Redirect to={`/signin?redirect=${props.match.url}`}/>
 )

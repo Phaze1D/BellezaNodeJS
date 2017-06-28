@@ -1,9 +1,9 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import CartBox from "components/CartBox/CartBox"
-import { Menu, ShoppingCart, Search } from "components/SVGIcons/Material"
-import { getCategories } from "actions/category"
-import { hideCart } from "actions/cart"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import CartBox from 'components/CartBox/CartBox'
+import { Menu, ShoppingCart, Search } from 'components/SVGIcons/Material'
+import { getCategories } from 'actions/category'
+import { hideCart } from 'actions/cart'
 
 
 export default class Header extends React.Component {
@@ -24,41 +24,41 @@ export default class Header extends React.Component {
 	}
 
 	componentWillUpdate(nextProps, nextState) {
-		if( nextProps.cart.get("show") && !this.props.cart.get("show") ) {
+		if( nextProps.cart.get('show') && !this.props.cart.get('show') ) {
 			setTimeout( () => {
-				document.body.style.overflow = ""
+				document.body.style.overflow = ''
 				this.props.dispatch(hideCart())
 			}, 2000)
 		}
 	}
 
 	handleNavClick(event) {
-		if(event.target.tagName === "A"){
-			event.currentTarget.classList.add("hide")
-			this.refs.overlay.classList.toggle("show")
-			this.refs.side.classList.toggle("show")
+		if(event.target.tagName === 'A'){
+			event.currentTarget.classList.add('hide')
+			this.refs.overlay.classList.toggle('show')
+			this.refs.side.classList.toggle('show')
 		}
 	}
 
 	handleNavLeave(event) {
-		if(event.currentTarget.classList.contains("hide")){
-			event.currentTarget.classList.remove("hide")
+		if(event.currentTarget.classList.contains('hide')){
+			event.currentTarget.classList.remove('hide')
 		}
 	}
 
 	handleToggleSide(event) {
-		this.refs.overlay.classList.toggle("show")
-		this.refs.side.classList.toggle("show")
+		this.refs.overlay.classList.toggle('show')
+		this.refs.side.classList.toggle('show')
 	}
 
 	handleSearchSubmit(event) {
 		event.preventDefault()
-		let input = event.target.elements["query"]
+		let input = event.target.elements['query']
 		this.props.history.push({
-			pathname: "/search",
+			pathname: '/search',
 			search: `?q=${input.value}&page=0&sort=0`
 		})
-		input.value = ""
+		input.value = ''
 	}
 
 	handleError(response) {
@@ -71,17 +71,17 @@ export default class Header extends React.Component {
 			cart
 		} = this.props
 
-		const showC = this.state.showCart || cart.get("show")
+		const showC = this.state.showCart || cart.get('show')
 
 		const navList = categories.map( (category, index) =>
 			<li
-				key={category.get("id")}
+				key={category.get('id')}
 				className="nav-item"
 				onClick={this.handleNavClick}
 				onMouseLeave={this.handleNavLeave}>
 
-				<Link to={`/categories/${index}`} title={category.get("name")} className="nav-link">{category.get("name")}</Link>
-				<MainList subs={category.get("subs")} index={index}/>
+				<Link to={`/categories/${index}`} title={category.get('name')} className="nav-link">{category.get('name')}</Link>
+				<MainList subs={category.get('subs')} index={index}/>
 			</li>
 		)
 
@@ -179,17 +179,17 @@ const MainList = (props) => {
 
 	const mainList = props.subs.map( (main, mindex) => {
 
-		const subList = main.get("subs").map( (sub, sindex) =>
-			<li key={sub.get("id")} title={sub.get("name")}>
+		const subList = main.get('subs').map( (sub, sindex) =>
+			<li key={sub.get('id')} title={sub.get('name')}>
 				<Link to={`/categories/${props.index}/${mindex}/${sindex}`} className="sub-text">
-					{sub.get("name")}
+					{sub.get('name')}
 				</Link>
 			</li>
 		)
 
 		return (
-			<ul key={main.get("id")} className="main-item">
-				<Link to={`/categories/${props.index}/${mindex}`} title={main.get("name")} className="dark-a">{main.get("name")}</Link>
+			<ul key={main.get('id')} className="main-item">
+				<Link to={`/categories/${props.index}/${mindex}`} title={main.get('name')} className="dark-a">{main.get('name')}</Link>
 				{subList}
 			</ul>
 		)

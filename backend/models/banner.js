@@ -1,7 +1,7 @@
-"use strict"
+'use strict'
 
 module.exports = function(sequelize, DataTypes) {
-	let Banner = sequelize.define("Banner", {
+	let Banner = sequelize.define('Banner', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 		manual_active: {
 			type: DataTypes.BOOLEAN(),
 			allowNull: false,
-			defaultValue: "0"
+			defaultValue: '0'
 		},
 		start_date: {
 			type: DataTypes.DATE,
@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	}, {
-		tableName: "banners"
+		tableName: 'banners'
 	})
 
 	Banner.carouselImages = function () {

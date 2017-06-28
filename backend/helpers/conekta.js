@@ -1,37 +1,37 @@
-"use strict"
-let models = require("../models")
-let conekta = require("conekta-promise")
-let emailSender = require("../helpers/emailSender.js")
+'use strict'
+let models = require('../models')
+let conekta = require('conekta-promise')
+let emailSender = require('../helpers/emailSender.js')
 let User = models.User
 let Product = models.Product
 let Order = models.Order
 let DiscountCode = models.DiscountCode
 
-conekta.locale = "es"
-conekta.api_version = "2.0.0"
+conekta.locale = 'es'
+conekta.api_version = '2.0.0'
 
 let userAtt = [
-	"first_name",
-	"last_name",
-	"email",
-	"telephone",
-	"conekta_id",
-	"id"
+	'first_name',
+	'last_name',
+	'email',
+	'telephone',
+	'conekta_id',
+	'id'
 ]
 let prodAtt = [
-	"id",
-	"price",
-	"discount",
-	"iva",
-	"stock"
+	'id',
+	'price',
+	'discount',
+	'iva',
+	'stock'
 ]
 let paymentStatus = {
-	paid: "pagado",
-	pending_payment: "pendiente",
-	refunded: "cancelado"
+	paid: 'pagado',
+	pending_payment: 'pendiente',
+	refunded: 'cancelado'
 }
 
-let VERIFICATION_ERROR = {name: "VerificationError", error: 401, message: "verification error"}
+let VERIFICATION_ERROR = {name: 'VerificationError', error: 401, message: 'verification error'}
 
 const paymentFlow = (req, res, next) => {
 	let cart = req.body
@@ -39,7 +39,7 @@ const paymentFlow = (req, res, next) => {
 	let fUser = null
 	let fConektaOrder = null
 	let toPro = []
-	conekta.api_key = req.app.get("CONEKTA")
+	conekta.api_key = req.app.get('CONEKTA')
 
 	return verifyCart(cart, userId)
 		// Get User
@@ -68,7 +68,7 @@ const paymentFlow = (req, res, next) => {
 			expiresDate.setDate(expiresDate.getDate() + 3)
 			let formatted = formatOrder(cart, user.conekta_id)
 			let payment_method = {type: cart.payment_source.type}
-			if(payment_method.type === "card"){
+			if(payment_method.type === 'card'){
 				payment_method.token_id = cart.payment_source.token
 			}
 			formatted.charges = [{
@@ -115,20 +115,20 @@ const paymentFlow = (req, res, next) => {
 			jorder.details = req.body.details
 
 			let etype = cart.payment_source.type
-			etype = (etype === "card") ? "paid" : etype
+			etype = (etype === 'card') ? 'paid' : etype
 
 			req.app.render(`emails/${etype}_info`, {order: jorder, user: fUser.toJSON()}, function (err, html) {
 				if(err) next(err)
 				res.json(jorder)
 
 				let sesConfig = {
-					accessKeyId: req.app.get("SES_ID"),
-					secretAccessKey: req.app.get("SES_SECRET_KEY"),
-					region: req.app.get("SES_REGION")
+					accessKeyId: req.app.get('SES_ID'),
+					secretAccessKey: req.app.get('SES_SECRET_KEY'),
+					region: req.app.get('SES_REGION')
 				}
 				emailSender.sendEmail(fUser.toJSON().email, html, sesConfig)
-				emailSender.sendEmail("recepcion@vidaflor.com.mx", html, sesConfig)
-				emailSender.sendEmail("ventas@bellezaorganica.com.mx", html, sesConfig)
+				emailSender.sendEmail('recepcion@vidaflor.com.mx', html, sesConfig)
+				emailSender.sendEmail('ventas@bellezaorganica.com.mx', html, sesConfig)
 			})
 		})
 		// Catch err and create order intencion
@@ -136,14 +136,14 @@ const paymentFlow = (req, res, next) => {
 			let errNote = null
 			if(err.details && err.details.length > 0){
 				errNote = err.details[0].message
-			}else if(err.name === "VerificationError"){
+			}else if(err.name === 'VerificationError'){
 				errNote = err.name
 			}else{
 				errNote = err.message
 			}
 
 			let order = req.body
-			order.status = "intencion"
+			order.status = 'intencion'
 			order.notes = errNote
 			order.user_id = userId
 			delete order.shipping_address_id
@@ -256,11 +256,11 @@ const formatOrder = (cart, customer_id) => {
 
 	let shipping_line = {
 		amount: cart.shipping_total,
-		carrier: "RedPax"
+		carrier: 'RedPax'
 	}
 
 	let tax_line = {
-		description: "IVA",
+		description: 'IVA',
 		amount: cart.iva_total
 	}
 
@@ -269,7 +269,7 @@ const formatOrder = (cart, customer_id) => {
 		discount_line = {
 			amount: cart.discount_total,
 			code: `${cart.discount_code_id*100}`,
-			type: "coupon"
+			type: 'coupon'
 		}
 	}
 
@@ -288,7 +288,7 @@ const formatOrder = (cart, customer_id) => {
 
 	return {
 		customer_info: {customer_id: customer_id},
-		currency: "MXN",
+		currency: 'MXN',
 		line_items: line_items,
 		shipping_lines: [shipping_line],
 		tax_lines: [tax_line],

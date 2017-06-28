@@ -1,14 +1,14 @@
-import React from "react"
-import { Link, Redirect } from "react-router-dom"
-import { connect } from "react-redux"
-import Loader from "components/Loader/Loader"
-import queryString from "query-string"
-import { resetErrors } from "actions/errors"
+import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Loader from 'components/Loader/Loader'
+import queryString from 'query-string'
+import { resetErrors } from 'actions/errors'
 import {
 	userSignUp,
 	userLogin,
 	validateUser,
-} from "actions/user"
+} from 'actions/user'
 
 
 @connect( store => {
@@ -37,8 +37,8 @@ export default class Signin extends React.Component {
 		this.props.dispatch(resetErrors())
 		let elements = event.target.elements
 		let formData = new FormData()
-		formData.append("email", elements.login.value)
-		formData.append("password", elements.password.value)
+		formData.append('email', elements.login.value)
+		formData.append('password', elements.password.value)
 
 		this.props.dispatch(userLogin(formData))
 			.then()
@@ -50,10 +50,10 @@ export default class Signin extends React.Component {
 		this.props.dispatch(resetErrors())
 		let elements = event.target.elements
 		let formData = new FormData()
-		formData.append("email", elements.email.value)
-		formData.append("password", elements.password.value)
-		formData.append("first_name", elements.first_name.value)
-		formData.append("last_name", elements.last_name.value)
+		formData.append('email', elements.email.value)
+		formData.append('password', elements.password.value)
+		formData.append('first_name', elements.first_name.value)
+		formData.append('last_name', elements.last_name.value)
 
 		this.props.dispatch(userSignUp(formData))
 			.then()
@@ -70,7 +70,7 @@ export default class Signin extends React.Component {
 	}
 
 	handleInputFocus(event){
-		event.target.value=""
+		event.target.value=''
 		this.props.dispatch(resetErrors(event.target.name))
 	}
 
@@ -86,12 +86,12 @@ export default class Signin extends React.Component {
 		} = this.props
 
 		const parse = queryString.parse(history.location.search)
-		if(parse.redirect && user.get("token")){
+		if(parse.redirect && user.get('token')){
 			return <Redirect to={`${parse.redirect}`}/>
 		}
 
-		if(user.get("token")){
-			return <Redirect to={`/user/${user.get("id")}`}/>
+		if(user.get('token')){
+			return <Redirect to={`/user/${user.get('id')}`}/>
 		}
 
 		return (
@@ -124,11 +124,11 @@ const LoginFrom = props => {
 			<h5 className="sub-text">Si usted ya tiene una cuenta, ingrese aquí.</h5>
 			<form className="main-form" onSubmit={props.onRequestSubmit}>
 				<label htmlFor="email">Email</label>
-				{props.errors.get("login") && <div className="error-div">{props.errors.get("login")}</div>}
+				{props.errors.get('login') && <div className="error-div">{props.errors.get('login')}</div>}
 				<input type="text" name="login"
 					onFocus={props.onRequestFocus}/>
 
-				<label htmlFor="password">Contraseña <Link to="/password/forgot" className="sub-text light" style={{float: "right"}}>(Olvidó su Contraseña)</Link></label>
+				<label htmlFor="password">Contraseña <Link to="/password/forgot" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
 				<input type="password" name="password"/>
 
 				<Loader>
@@ -151,19 +151,19 @@ const SignUpForm = props => {
 			<form className="main-form" onSubmit={props.onRequestSubmit} autoComplete="dont you dare chrome">
 
 				<label htmlFor="first_name">Nombre</label>
-				{props.errors.get("first_name") && <div className="error-div">{props.errors.get("first_name")}</div>}
+				{props.errors.get('first_name') && <div className="error-div">{props.errors.get('first_name')}</div>}
 				<input type="text" name="first_name"
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
 				<label htmlFor="last_name">Apellido</label>
-				{props.errors.get("last_name") && <div className="error-div">{props.errors.get("last_name")}</div>}
+				{props.errors.get('last_name') && <div className="error-div">{props.errors.get('last_name')}</div>}
 				<input type="text" name="last_name"
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
 				<label htmlFor="email">Email</label>
-				{props.errors.get("email") && <div className="error-div">{props.errors.get("email")}</div>}
+				{props.errors.get('email') && <div className="error-div">{props.errors.get('email')}</div>}
 				<input type="text" name="email"
 					autoComplete="dont you dare chrome"
 					defaultValue=" "
@@ -171,7 +171,7 @@ const SignUpForm = props => {
 					onFocus={props.onRequestFocus}/>
 
 				<label htmlFor="password">Contraseña </label>
-				{props.errors.get("password") && <div className="error-div">{props.errors.get("password")}</div>}
+				{props.errors.get('password') && <div className="error-div">{props.errors.get('password')}</div>}
 				<input type="password" name="password"
 					autoComplete="dont you dare chrome"
 					defaultValue=""

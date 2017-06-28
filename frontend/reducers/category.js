@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { List, fromJS } from "immutable"
+import * as types from 'actions/types'
+import { List, fromJS } from 'immutable'
 
 const INITIAL_CATEGORIES = List()
 

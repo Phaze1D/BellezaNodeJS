@@ -1,10 +1,10 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
-let Sequelize = require("sequelize")
-var bcrypt = require("bcryptjs")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
+let Sequelize = require('sequelize')
+var bcrypt = require('bcryptjs')
 
 module.exports = function(sequelize, DataTypes) {
-	const User = sequelize.define("User", {
+	const User = sequelize.define('User', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -134,7 +134,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: Sequelize.NOW
 		}
 	}, {
-		tableName: "users"
+		tableName: 'users'
 	})
 
 	User.beforeCreate((user, options, cb) => {
@@ -153,10 +153,10 @@ module.exports = function(sequelize, DataTypes) {
 	User.findLogin = function (email) {
 		return this.findOne({
 			where: {email: email},
-			attributes: {exclude :["conekta_id", "password_reset_token", "password_reset_date"]},
+			attributes: {exclude :['conekta_id', 'password_reset_token', 'password_reset_date']},
 			include: [{
-				model: sequelize.model("Address"),
-				as: "addresses",
+				model: sequelize.model('Address'),
+				as: 'addresses',
 			}]
 		})
 	}
@@ -168,7 +168,7 @@ module.exports = function(sequelize, DataTypes) {
 	User.findClient = function (client_id, reject=true) {
 		return this.findOne(
 			{where: {id: client_id},
-				attributes: ["first_name", "last_name", "id", "email"],
+				attributes: ['first_name', 'last_name', 'id', 'email'],
 				rejectOnEmpty: reject})
 	}
 

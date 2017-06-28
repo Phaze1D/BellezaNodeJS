@@ -1,10 +1,10 @@
 export const fetchingReducer = (state = false, action) => {
 
-	if(action.type.includes("LOADING")){
+	if(action.type.includes('LOADING')){
 		return true
 	}
 
-	if(action.type.includes("SUCCESS") || action.type.includes("ERROR") ){
+	if(action.type.includes('SUCCESS') || action.type.includes('ERROR') ){
 		return false
 	}
 

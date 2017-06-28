@@ -1,9 +1,9 @@
-import React from "react"
-import { Redirect } from "react-router-dom"
-import { Address } from "./confirmation"
-import OrderTable from "components/OrderTable/OrderTable"
-import { connect } from "react-redux"
-import { resetCart } from "actions/cart"
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import { Address } from './confirmation'
+import OrderTable from 'components/OrderTable/OrderTable'
+import { connect } from 'react-redux'
+import { resetCart } from 'actions/cart'
 
 
 @connect( store => {
@@ -23,38 +23,38 @@ class CheckoutSuccessful extends React.Component {
 			user,
 		} = this.props
 
-		if(!user.get("token")){
+		if(!user.get('token')){
 			return <Redirect to='/home'/>
 		}
 
 		return (
 			<main>
-				{cart.getIn(["charges", "payment_method", "type"]) === "oxxo" &&
+				{cart.getIn(['charges', 'payment_method', 'type']) === 'oxxo' &&
 					<OxxoSuccess
-						email={user.get("email")}
-						total={cart.get("total")}
-						reference={cart.getIn(["charges", "payment_method", "reference"])}/>
+						email={user.get('email')}
+						total={cart.get('total')}
+						reference={cart.getIn(['charges', 'payment_method', 'reference'])}/>
 				}
 
-				{cart.getIn(["charges", "payment_method", "type"]) === "credit" &&
-					<CardSuccess email={user.get("email")}/>
+				{cart.getIn(['charges', 'payment_method', 'type']) === 'credit' &&
+					<CardSuccess email={user.get('email')}/>
 				}
 
-				{cart.getIn(["charges", "payment_method", "type"]) === "spei" &&
+				{cart.getIn(['charges', 'payment_method', 'type']) === 'spei' &&
 					<BankSuccess
-						email={user.get("email")}
-						total={cart.get("total")}
-						clabe={cart.getIn(["charges", "payment_method", "clabe"])}/>
+						email={user.get('email')}
+						total={cart.get('total')}
+						clabe={cart.getIn(['charges', 'payment_method', 'clabe'])}/>
 				}
 
 				<div className="col-8 col-xs-12">
-					<Address address={cart.get("shippingAddress")} title="Dirección de Envío"/>
-					{!cart.get("invoiceAddress").isEmpty() &&
+					<Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
+					{!cart.get('invoiceAddress').isEmpty() &&
 						<Address
-							address={cart.get("invoiceAddress")}
+							address={cart.get('invoiceAddress')}
 							title="Facturacion"
-							rfc={cart.get("rfc")}
-							razonSocial={cart.get("razon_social")}/>
+							rfc={cart.get('rfc')}
+							razonSocial={cart.get('razon_social')}/>
 					}
 					<OrderTable
 						order={cart}
@@ -70,7 +70,7 @@ export default CheckoutSuccessful
 
 const CardSuccess = (props) => (
 	<div className="col-8 col-xs-12">
-		<h2 style={{color: "#1eab30"}}>Pago Exitoso</h2>
+		<h2 style={{color: '#1eab30'}}>Pago Exitoso</h2>
 		<p>
       Tu pedido está siendo procesado
 			<br/>
@@ -84,7 +84,7 @@ const CardSuccess = (props) => (
 
 const OxxoSuccess = (props) => (
 	<div className="col-8 col-xs-12">
-		<h2 style={{color: "#FFC107"}}>En Espera de Pago</h2>
+		<h2 style={{color: '#FFC107'}}>En Espera de Pago</h2>
 		<p>
       Cuando el pago se ha hecho, enviaremos su pedido
 			<br/>
@@ -127,7 +127,7 @@ const OxxoSuccess = (props) => (
 
 const BankSuccess = (props) => (
 	<div className="col-8 col-xs-12">
-		<h2 style={{color: "#FFC107"}}>En Espera de Pago</h2>
+		<h2 style={{color: '#FFC107'}}>En Espera de Pago</h2>
 		<p>
       Cuando el pago se ha hecho, enviaremos su pedido
 			<br/>

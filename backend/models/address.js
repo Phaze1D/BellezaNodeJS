@@ -1,8 +1,8 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-	const Address = sequelize.define("Address", {
+	const Address = sequelize.define('Address', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -107,18 +107,18 @@ module.exports = function(sequelize, DataTypes) {
 		country: {
 			type: DataTypes.STRING(45),
 			allowNull: false,
-			defaultValue: "Mexico"
+			defaultValue: 'Mexico'
 		},
 		user_id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: true,
 			references: {
-				model: "users",
-				key: "id"
+				model: 'users',
+				key: 'id'
 			}
 		}
 	}, {
-		tableName: "addresses"
+		tableName: 'addresses'
 	})
 
 	Address.beforeCreate((address, options) => {

@@ -1,13 +1,13 @@
-import React from "react"
-import { connect } from "react-redux"
-import classnames from "classnames"
-import { resetErrors } from "actions/errors"
+import React from 'react'
+import { connect } from 'react-redux'
+import classnames from 'classnames'
+import { resetErrors } from 'actions/errors'
 
 
 
 @connect( store => {
 	return {
-		global: store.errors.get("global")
+		global: store.errors.get('global')
 	}
 })
 export default class GlobalError extends React.Component {
@@ -17,7 +17,7 @@ export default class GlobalError extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.global.get("status")){
+		if(nextProps.global.get('status')){
 			this.setState({show: true})
 
 			setTimeout(() => {
@@ -32,12 +32,12 @@ export default class GlobalError extends React.Component {
 			global
 		} = this.props
 
-		const errClasses = classnames({"show": this.state.show})
+		const errClasses = classnames({'show': this.state.show})
 
 		return (
 			<div id="error-box" className={errClasses}>
-				<h3>Error {global.get("status")}</h3>
-				<p>{global.get("message")}</p>
+				<h3>Error {global.get('status')}</h3>
+				<p>{global.get('message')}</p>
 			</div>
 		)
 	}

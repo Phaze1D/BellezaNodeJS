@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { ArrowDown } from "components/SVGIcons/Material"
-import { MDCSimpleMenu } from "@material/menu/dist/mdc.menu.js"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowDown } from 'components/SVGIcons/Material'
+import { MDCSimpleMenu } from '@material/menu/dist/mdc.menu.js'
 
 
 export default class DropDown extends React.Component {
@@ -33,10 +33,10 @@ export default class DropDown extends React.Component {
 		} = this.props
 
 		const options = [
-			{link: `${url}page=0&sort=0`, name:"A-Z"},
-			{link: `${url}page=0&sort=1`, name:"Z-A"},
-			{link: `${url}page=0&sort=2`, name:"Precio Alto"},
-			{link: `${url}page=0&sort=3`, name:"Precio Bajo"}
+			{link: `${url}page=0&sort=0`, name:'A-Z'},
+			{link: `${url}page=0&sort=1`, name:'Z-A'},
+			{link: `${url}page=0&sort=2`, name:'Precio Alto'},
+			{link: `${url}page=0&sort=3`, name:'Precio Bajo'}
 		]
 
 		const optionList = options.map( (option, index) =>

@@ -1,8 +1,8 @@
-"use strict"
-let valmsg =  require("../helpers/validationMessages.js")
+'use strict'
+let valmsg =  require('../helpers/validationMessages.js')
 
 module.exports = function(sequelize, DataTypes) {
-	let Mailing = sequelize.define("Mailing", {
+	let Mailing = sequelize.define('Mailing', {
 		id: {
 			type: DataTypes.INTEGER(10).UNSIGNED,
 			allowNull: false,
@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		}
 	}, {
-		tableName: "mailing"
+		tableName: 'mailing'
 	})
 
 	Mailing.backOfficeAll = function (page, prePage) {

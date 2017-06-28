@@ -4,7 +4,7 @@ module.exports = {
 			return (num/100).toFixed(2)
 		},
 		formatImageLink: function (plu) {
-			return "https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/" + plu + ".jpg"
+			return 'https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/' + plu + '.jpg'
 		},
 		checkType: function (v1, v2, options) {
 			if(v1 === v2) {

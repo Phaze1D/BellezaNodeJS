@@ -1,53 +1,53 @@
-"use strict"
-let express = require("express")
-let multer = require("multer")
-let crypto = require("crypto")
-let Sequelize = require("sequelize")
-var bcrypt = require("bcryptjs")
-let jwt = require("jsonwebtoken")
-let models = require("../models")
+'use strict'
+let express = require('express')
+let multer = require('multer')
+let crypto = require('crypto')
+let Sequelize = require('sequelize')
+var bcrypt = require('bcryptjs')
+let jwt = require('jsonwebtoken')
+let models = require('../models')
 let User = models.User
 let Address = models.Address
-let emailSender = require("../helpers/emailSender.js")
+let emailSender = require('../helpers/emailSender.js')
 
 
 let upload = multer()
 let router = express.Router()
 
 
-router.post("/forgot", upload.none(), function (req, res, next) {
+router.post('/forgot', upload.none(), function (req, res, next) {
 	User.findByEmail(req.body.email).then(user => {
 		if(user){
-			let token = crypto.randomBytes(32).toString("hex")
+			let token = crypto.randomBytes(32).toString('hex')
 			user.update({password_reset_token: token, password_reset_date: Date.now() + 3600000})
 				.then( user => {
 					let info = {
-						name: user.first_name + " " + user.last_name,
-						action_url: "http://"+req.headers.host+"/password/reset/"+token,
-						support_url: "http://"+req.headers.host+""
+						name: user.first_name + ' ' + user.last_name,
+						action_url: 'http://'+req.headers.host+'/password/reset/'+token,
+						support_url: 'http://'+req.headers.host+''
 					}
 
-					req.app.render("emails/password_reset", info, function (err, html) {
+					req.app.render('emails/password_reset', info, function (err, html) {
 						if(err) next(err)
 						res.sendStatus(200)
 
 						let sesConfig = {
-							accessKeyId: req.app.get("SES_ID"),
-							secretAccessKey: req.app.get("SES_SECRET_KEY"),
-							region: req.app.get("SES_REGION")
+							accessKeyId: req.app.get('SES_ID'),
+							secretAccessKey: req.app.get('SES_SECRET_KEY'),
+							region: req.app.get('SES_REGION')
 						}
-						emailSender.sendEmail(user.toJSON().email, html, sesConfig, "Restablecimiento de Contraseña")
+						emailSender.sendEmail(user.toJSON().email, html, sesConfig, 'Restablecimiento de Contraseña')
 					})
 				})
 		}else{
-			let err = new Sequelize.ValidationError("Correo electrónico no registrado")
-			err.errors.push({path: "email", message: "Correo electrónico no registrado"})
+			let err = new Sequelize.ValidationError('Correo electrónico no registrado')
+			err.errors.push({path: 'email', message: 'Correo electrónico no registrado'})
 			return Promise.reject(err)
 		}
 	}).catch(next)
 })
 
-router.post("/reset/:token", upload.none(), function (req, res, next) {
+router.post('/reset/:token', upload.none(), function (req, res, next) {
 
 	let option = {
 		where: {
@@ -57,7 +57,7 @@ router.post("/reset/:token", upload.none(), function (req, res, next) {
 		},
 		include: [{
 			model: Address,
-			as: "addresses",
+			as: 'addresses',
 		}]
 	}
 
@@ -71,18 +71,18 @@ router.post("/reset/:token", upload.none(), function (req, res, next) {
 				return user.save()
 			})
 		}else{
-			let err = new Sequelize.ValidationError("Inválido")
-			err.errors.push({path: "token", message: "Inválido"})
+			let err = new Sequelize.ValidationError('Inválido')
+			err.errors.push({path: 'token', message: 'Inválido'})
 			return Promise.reject(err)
 		}
 	}).then(user => {
 		let ru = user.toJSON()
-		let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get("SECRET"))
+		let token =  jwt.sign({ userId:  ru.id, isAdmin: ru.admin}, req.app.get('SECRET'))
 		delete ru.password
 		delete ru.conekta_id
 		delete ru.password_reset_token
 		delete ru.password_reset_date
-		res.append("Authorization", `Bearer ${token}`)
+		res.append('Authorization', `Bearer ${token}`)
 		res.json(ru)
 	}).catch(next)
 

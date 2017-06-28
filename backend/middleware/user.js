@@ -1,13 +1,13 @@
-"use strict"
-let jwt = require("jsonwebtoken")
+'use strict'
+let jwt = require('jsonwebtoken')
 
 
 const isLogin = function (req, res, next) {
-	let authHeader = req.get("Authorization")
+	let authHeader = req.get('Authorization')
 	if(authHeader){
-		let split = authHeader.split(" ")
+		let split = authHeader.split(' ')
 		try {
-			var decoded = jwt.verify(split[1], req.app.get("SECRET"))
+			var decoded = jwt.verify(split[1], req.app.get('SECRET'))
 			req.jwtUser = decoded
 			next()
 		} catch (e) {

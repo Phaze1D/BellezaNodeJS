@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { ArrowLeft, ArrowRight } from "components/SVGIcons/Material"
-import classnames from "classnames"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowLeft, ArrowRight } from 'components/SVGIcons/Material'
+import classnames from 'classnames'
 
 
 export default class Pagination extends React.PureComponent {
@@ -12,7 +12,7 @@ export default class Pagination extends React.PureComponent {
 	}
 
 	componentWillMount() {
-		if(typeof window !== "undefined" && window.innerWidth <= 712){
+		if(typeof window !== 'undefined' && window.innerWidth <= 712){
 			this.small = true
 		}
 	}
@@ -37,24 +37,24 @@ export default class Pagination extends React.PureComponent {
 				key={index}
 				to={link.value}
 				onClick={this.handleClick.bind(this, index)}
-				className={page == index ? "dark-button margin-button" : "white-button margin-button"}>
+				className={page == index ? 'dark-button margin-button' : 'white-button margin-button'}>
 
 				{link.name}
 			</Link>
 		)
 
 		if(this.small){
-			const al = classnames("white-button margin-button arrow-button", {"disable": page - 1 <= -1})
-			const ar = classnames("white-button margin-button arrow-button", {"disable": page + 1 >= children.length})
+			const al = classnames('white-button margin-button arrow-button', {'disable': page - 1 <= -1})
+			const ar = classnames('white-button margin-button arrow-button', {'disable': page + 1 >= children.length})
 
 			return (
 				<div className="grid center">
-					<Link className={al} to={(links.length > 0 && page > 0) ? links[page - 1].value : "#"}
+					<Link className={al} to={(links.length > 0 && page > 0) ? links[page - 1].value : '#'}
 						onClick={this.handleClick.bind(this, page - 1)}>
 						<ArrowLeft/>
 					</Link>
 					{children[page]}
-					<Link className={ar} to={(links.length > 0 && page < links.length - 1) ? links[page + 1].value : "#"}
+					<Link className={ar} to={(links.length > 0 && page < links.length - 1) ? links[page + 1].value : '#'}
 						onClick={this.handleClick.bind(this, page + 1)}>
 						<ArrowRight/>
 					</Link>

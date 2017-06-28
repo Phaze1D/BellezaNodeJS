@@ -1,12 +1,12 @@
-"use strict"
-let express = require("express")
+'use strict'
+let express = require('express')
 let router = express.Router()
-let multer = require("multer")
-let models = require("../models")
-let middleware = require("../middleware/user.js")
-let productImage = require("../helpers/validationMessages.js").productImage
-let aws = require("aws-sdk")
-let awsHelper = require("../helpers/aws.js")
+let multer = require('multer')
+let models = require('../models')
+let middleware = require('../middleware/user.js')
+let productImage = require('../helpers/validationMessages.js').productImage
+let aws = require('aws-sdk')
+let awsHelper = require('../helpers/aws.js')
 
 let isLogin = middleware.isLogin
 let isAdmin = middleware.isAdmin
@@ -16,39 +16,39 @@ let upload = multer()
 
 
 let productFields = [
-	"plu",
-	"name",
-	"volume",
-	"description",
-	"benefits",
-	"ingredients",
-	"price",
-	"discount",
-	"iva",
-	"stock",
-	"active",
-	"fav"
+	'plu',
+	'name',
+	'volume',
+	'description',
+	'benefits',
+	'ingredients',
+	'price',
+	'discount',
+	'iva',
+	'stock',
+	'active',
+	'fav'
 ]
 
 let productFiles = [
-	{name: "main_image"},
-	{name: "second_image"},
+	{name: 'main_image'},
+	{name: 'second_image'},
 ]
 
 
-router.get("/products", function (req, res, next) {
+router.get('/products', function (req, res, next) {
 	Product.mFindAll(req.query, true).then( results => {
 		res.json(results)
 	}).catch(next)
 })
 
-router.get("/favProducts", function (req, res, next) {
+router.get('/favProducts', function (req, res, next) {
 	Product.favorites().then( results => {
-		res.set({ "Cache-Control": "max-age=350000"}).json(results)
+		res.set({ 'Cache-Control': 'max-age=350000'}).json(results)
 	}).catch(next)
 })
 
-router.get("/product/:id", function (req, res, next) {
+router.get('/product/:id', function (req, res, next) {
 	Product.mFindOne(req.params.id).then(product => {
 		let category_id = product.categories.length > 0 ? product.categories[0].id : undefined
 		Product.categoryProducts(category_id).then(related => {
@@ -60,21 +60,21 @@ router.get("/product/:id", function (req, res, next) {
 
 })
 
-router.get("/backoffice/products", isLogin, isAdmin, function (req, res, next) {
+router.get('/backoffice/products', isLogin, isAdmin, function (req, res, next) {
 	Product.mFindAll(req.query, false).then( results => {
 		res.json(results)
 	}).catch(next)
 })
 
-router.post("/product", isLogin, isAdmin, upload.fields(productFiles), function (req, res, next) {
+router.post('/product', isLogin, isAdmin, upload.fields(productFiles), function (req, res, next) {
 	let mainimg = req.files.main_image ? req.files.main_image[0].buffer : null
 	let secimg = req.files.second_image ? req.files.second_image[0].buffer : null
 
 	productImage(mainimg, secimg).then(buffers => {
 		return Product.create(req.body, {fields: productFields}).then(product => {
 			let s3 = new aws.S3({
-				accessKeyId: req.app.get("S3_ID"),
-				secretAccessKey: req.app.get("S3_SECRET_KEY"),
+				accessKeyId: req.app.get('S3_ID'),
+				secretAccessKey: req.app.get('S3_SECRET_KEY'),
 			})
 			let uploads = [
 				s3.upload(awsHelper.uploadS3(buffers[0], `products/lg/${product.plu}.jpg`)).promise(),
@@ -97,7 +97,7 @@ router.post("/product", isLogin, isAdmin, upload.fields(productFiles), function 
 	}).catch(next)
 })
 
-router.put("/product/:id", isLogin, isAdmin, upload.fields(productFiles), function (req, res, next) {
+router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), function (req, res, next) {
 	let mainimg = req.files.main_image ? req.files.main_image[0].buffer : null
 	let secimg = req.files.second_image ? req.files.second_image[0].buffer : null
 	let realProduct = null
@@ -114,8 +114,8 @@ router.put("/product/:id", isLogin, isAdmin, upload.fields(productFiles), functi
 		if(mainimg && secimg){
 			return productImage(mainimg, secimg).then(buffers => {
 				let s3 = new aws.S3({
-					accessKeyId: req.app.get("S3_ID"),
-					secretAccessKey: req.app.get("S3_SECRET_KEY"),
+					accessKeyId: req.app.get('S3_ID'),
+					secretAccessKey: req.app.get('S3_SECRET_KEY'),
 				})
 				let uploads = [
 					s3.upload(awsHelper.uploadS3(buffers[0], `products/lg/${realProduct.plu}.jpg`)).promise(),

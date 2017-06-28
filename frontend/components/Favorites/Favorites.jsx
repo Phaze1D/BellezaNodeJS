@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Slider from "react-slick"
-import { ArrowLeft, ArrowRight } from "components/SVGIcons/Material"
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Slider from 'react-slick'
+import { ArrowLeft, ArrowRight } from 'components/SVGIcons/Material'
 
 
 
@@ -17,7 +17,7 @@ export default class Favorites extends React.Component {
 
 		const settings = {
 			infinite: true,
-			centerPadding: "60px",
+			centerPadding: '60px',
 			slidesToShow: 5,
 			swipeToSlide: true,
 			dots: false,
@@ -46,14 +46,14 @@ export default class Favorites extends React.Component {
 			}]
 		}
 
-		if(products.get("rows").size == 0){
+		if(products.get('rows').size == 0){
 			return null
 		}
-		const favList = products.get("rows").map( (product, index) =>
+		const favList = products.get('rows').map( (product, index) =>
 			<div key={index} className="fav-item" draggable="false">
-				<Link to={`/product/${product.get("id")}`} draggable="false">
-					<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get("plu")}.jpg`} alt={product.get("name")} draggable="false"/>
-					<p className="overflow-text">{product.get("name")}</p>
+				<Link to={`/product/${product.get('id')}`} draggable="false">
+					<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable="false"/>
+					<p className="overflow-text">{product.get('name')}</p>
 				</Link>
 			</div>
 		)

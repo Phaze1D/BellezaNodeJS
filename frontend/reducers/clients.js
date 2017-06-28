@@ -1,5 +1,5 @@
-import * as types from "actions/types"
-import { fromJS, Map } from "immutable"
+import * as types from 'actions/types'
+import { fromJS, Map } from 'immutable'
 
 const INITIAL_CLIENTS = fromJS({
 	rows: [],
