@@ -6,8 +6,9 @@ import { resetErrors } from 'actions/errors'
 export default class Footer extends React.Component {
 	constructor(props) {
 		super(props)
-
+		this.state = {submitted: false}
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleSuccess = this.handleSuccess.bind(this)
 		this.handleError = this.handleError.bind(this)
 	}
 
@@ -19,8 +20,12 @@ export default class Footer extends React.Component {
 		formData.append('active', true)
 
 		this.props.dispatch(addMailer(formData, false))
-			.then()
+			.then(this.handleSuccess)
 			.catch(this.handleError)
+	}
+
+	handleSuccess(response){
+		this.setState({submitted: true})
 	}
 
 	handleError(response){
@@ -29,15 +34,20 @@ export default class Footer extends React.Component {
 
 	render(){
 
+		var subText = this.state.submitted ? 'Gracias por registrarte' : 'Registrate y reciba información, ofertas y tips directo a su correo'
+
 		return (
 			<footer>
 				<div id="footer-divider" className="grid center around cover-image"
 					style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/footer.jpg)'}}>
-					<h4 className="col-xs-hide grow">Registrate y reciba información, ofertas y tips directo a su correo</h4>
-					<form onSubmit={this.handleSubmit}>
-						<input type="submit" style={{display: 'none'}}/>
-						<input type="text" name="email" placeholder="Email y Presione Entre"/>
-					</form>
+					<h4 className="col-xs-hide grow">{subText}</h4>
+
+					{!this.state.submitted &&
+						<form onSubmit={this.handleSubmit}>
+							<input type="submit" style={{display: 'none'}}/>
+							<input type="text" name="email" placeholder="Email y Presione Entre"/>
+						</form>
+					}
 				</div>
 
 				<div className="grid-wrap around" style={{margin: '0 16px'}}>

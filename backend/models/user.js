@@ -162,7 +162,7 @@ module.exports = function(sequelize, DataTypes) {
 	}
 
 	User.backOfficeAll = function (page, prePage) {
-		return this.findAndCountAll({offset: prePage*page, limit: prePage})
+		return this.findAndCountAll({offset: prePage*page, limit: prePage, order: [['first_name', 'ASC']]})
 	}
 
 	User.findClient = function (client_id, reject=true) {
