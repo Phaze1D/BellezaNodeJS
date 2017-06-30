@@ -69,16 +69,16 @@ export default class CategoryShow extends React.Component {
 		} = this.props
 
 		let category = categories.get(match.params.index)
-		if(!category) return (<Redirect to="/"/>)
+		if(!category) return (<Redirect to='/'/>)
 		category = category.getIn(['subs', match.params.sub])
-		if(!category) return (<Redirect to="/"/>)
+		if(!category) return (<Redirect to='/'/>)
 		category = category.getIn(['subs', match.params.show])
-		if(!category) return (<Redirect to="/"/>)
+		if(!category) return (<Redirect to='/'/>)
 
 		const parse = queryString.parse(history.location.search)
 		return (
 			<main>
-				<div className="category-cover"  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
+				<div className='category-cover'  style={{backgroundImage: `url(https://s3-us-west-1.amazonaws.com/belleza-node/categories/${category.get('id')}.jpg)`}}>
 					<h2>{category.get('name')}</h2>
 				</div>
 				<Results

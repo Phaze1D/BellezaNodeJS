@@ -43,19 +43,19 @@ export default class DropDown extends React.Component {
 			<Link
 				to={option.link} key={index}
 				onClick={this.handleItemSelect.bind(this, index)}
-				className="mdc-list-item" role="menuitem" tabIndex="0">
+				className='mdc-list-item' role='menuitem' tabIndex='0'>
 				{option.name}
 			</Link>
 		)
 
 		return (
-			<div className="mdc-menu-anchor">
-				<button className="drop-button center" onClick={this.handleToggle}>
+			<div className='mdc-menu-anchor'>
+				<button className='drop-button center' onClick={this.handleToggle}>
 					{options[focuson].name}
 					<ArrowDown/>
 				</button>
-				<div ref="dom_menu" className="mdc-simple-menu" tabIndex="-1">
-					<ul className="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+				<div ref='dom_menu' className='mdc-simple-menu' tabIndex='-1'>
+					<ul className='mdc-simple-menu__items mdc-list' role='menu' aria-hidden='true'>
 						{optionList}
 					</ul>
 				</div>

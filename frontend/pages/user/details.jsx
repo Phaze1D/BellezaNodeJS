@@ -110,54 +110,54 @@ class UserDetails extends React.Component {
 		} = this.props
 
 		const addreList = user.get('addresses').map( (add, index) =>
-			<p key={index} className="overflow-text sub-text primary">{add.get('street')}</p>
+			<p key={index} className='overflow-text sub-text primary'>{add.get('street')}</p>
 		)
 
 		return (
-			<section className="col-9 col-sm-8 col-xs-11">
+			<section className='col-9 col-sm-8 col-xs-11'>
 				<h2>
           Detalles
-					<Link to="#" className="sub-text light" style={{float: 'right'}}
+					<Link to='#' className='sub-text light' style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 
-				<div className="grid-wrap top">
-					<div className="col-6 col-sm-12">
-						<h4 className="h-underline overflow-text">
-							<span className="overflow-text" style={{float: 'left', maxWidth: 'calc(100% - 70px)'}}>
+				<div className='grid-wrap top'>
+					<div className='col-6 col-sm-12'>
+						<h4 className='h-underline overflow-text'>
+							<span className='overflow-text' style={{float: 'left', maxWidth: 'calc(100% - 70px)'}}>
 								{user.get('first_name')} {user.get('last_name')}
 							</span>
 							<span style={{float: 'right'}}>
-                ( <Link to="#" className="sub-text light" onClick={this.handleShow}>Editar</Link> )
+                ( <Link to='#' className='sub-text light' onClick={this.handleShow}>Editar</Link> )
 							</span>
 						</h4>
 
-						<div className="grid-wrap top">
-							<div className="col-6">
-								<p className="sub-text">Teléfono: </p>
-								<p className="overflow-text sub-text primary">{user.get('telephone')}</p>
+						<div className='grid-wrap top'>
+							<div className='col-6'>
+								<p className='sub-text'>Teléfono: </p>
+								<p className='overflow-text sub-text primary'>{user.get('telephone')}</p>
 							</div>
 
-							<div className="col-6">
-								<p className="sub-text">Direcciones: </p>
+							<div className='col-6'>
+								<p className='sub-text'>Direcciones: </p>
 								{addreList}
 							</div>
 
-							<div className="col-6 grow">
-								<p className="sub-text">Email: </p>
-								<p className="overflow-text sub-text primary">{user.get('email')}</p>
+							<div className='col-6 grow'>
+								<p className='sub-text'>Email: </p>
+								<p className='overflow-text sub-text primary'>{user.get('email')}</p>
 							</div>
 						</div>
 
 					</div>
 
-					<div className="col-6 col-sm-12">
-						<h4 className="h-underline">Sus Preferencias</h4>
+					<div className='col-6 col-sm-12'>
+						<h4 className='h-underline'>Sus Preferencias</h4>
 
 
-						<label htmlFor="pref" className="grid center sub-text col-12">
-							<input type="checkbox" name="pref"
-								className="col-1 col-md-2 col-sm-1"
+						<label htmlFor='pref' className='grid center sub-text col-12'>
+							<input type='checkbox' name='pref'
+								className='col-1 col-md-2 col-sm-1'
 								checked={user.get('preferences')}
 								value={user.get('preferences')}
 								onChange={this.handlePreference}/>
@@ -167,7 +167,7 @@ class UserDetails extends React.Component {
 
 					{this.state.showForm &&
 						<div
-							className="overlay show"
+							className='overlay show'
 							onClick={this.handleOverlayClick}
 							onMouseEnter={(event) => document.body.style.overflow = 'hidden'}
 							onMouseLeave={(event) => document.body.style.overflow = ''}>
@@ -202,37 +202,37 @@ const UserEdit = (props) => {
 
 
 	return (
-		<div className="box with-y">
+		<div className='box with-y'>
 			<h3>
         Editar Detalles
-				<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
+				<Clear fill='red' className='clear-icon' onClick={onRequestCancel}/>
 			</h3>
-			<form className="main-form" onSubmit={onRequestSubmit}>
-				<label htmlFor="first_name">Nombre</label>
-				{errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
-				<input type="text" name="first_name"
+			<form className='main-form' onSubmit={onRequestSubmit}>
+				<label htmlFor='first_name'>Nombre</label>
+				{errors.get('first_name') && <div className='error-div'>{errors.get('first_name')}</div>}
+				<input type='text' name='first_name'
 					defaultValue={user.get('first_name')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 
-				<label htmlFor="last_name">Apellidos</label>
-				{errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
-				<input type="text" name="last_name"
+				<label htmlFor='last_name'>Apellidos</label>
+				{errors.get('last_name') && <div className='error-div'>{errors.get('last_name')}</div>}
+				<input type='text' name='last_name'
 					defaultValue={user.get('last_name')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 
-				<label htmlFor="email">Email</label>
-				<input type="text" name="email" defaultValue={user.get('email')} disabled={true}/>
+				<label htmlFor='email'>Email</label>
+				<input type='text' name='email' defaultValue={user.get('email')} disabled={true}/>
 
-				<label htmlFor="telephone">Telefono</label>
-				{errors.get('telephone') && <div className="error-div">{errors.get('telephone')}</div>}
-				<input type="text" name="telephone"
+				<label htmlFor='telephone'>Telefono</label>
+				{errors.get('telephone') && <div className='error-div'>{errors.get('telephone')}</div>}
+				<input type='text' name='telephone'
 					defaultValue={user.get('telephone')}
 					onBlur={onRequestBlur}
 					onFocus={onRequestFocus}/>
 				<Loader>
-					<input className="submit full" type="submit" value="Guardar"/>
+					<input className='submit full' type='submit' value='Guardar'/>
 				</Loader>
 			</form>
 		</div>

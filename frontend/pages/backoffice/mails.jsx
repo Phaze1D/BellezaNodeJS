@@ -71,12 +71,12 @@ class BackofficeMails extends React.Component {
 
 		return (
 			<div>
-				<div className="protop">
-					<Link to ="#" className="white-button">Download</Link>
+				<div className='protop'>
+					<Link to ='#' className='white-button'>Download</Link>
 				</div>
 
 				<Loader>
-					<table className="backoffice-table">
+					<table className='backoffice-table'>
 						<thead>
 							<tr>
 								<th>Active</th>
@@ -90,7 +90,7 @@ class BackofficeMails extends React.Component {
 
 						<tfoot>
 							<tr>
-								<td colSpan="1">
+								<td colSpan='1'>
 									<Pagination
 										links={links}
 										page={this.state.page}

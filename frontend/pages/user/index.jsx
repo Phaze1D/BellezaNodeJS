@@ -90,7 +90,7 @@ export default class UsersIndex extends React.Component {
 		return (
 			<div>
 				<Loader>
-					<table className="backoffice-table">
+					<table className='backoffice-table'>
 						<thead>
 							<tr>
 								<th>First Name</th>
@@ -109,7 +109,7 @@ export default class UsersIndex extends React.Component {
 
 						<tfoot>
 							<tr>
-								<td colSpan="7">
+								<td colSpan='7'>
 									<Pagination
 										links={links}
 										page={this.state.page}

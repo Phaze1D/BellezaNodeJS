@@ -35,7 +35,7 @@ export default class GlobalError extends React.Component {
 		const errClasses = classnames({'show': this.state.show})
 
 		return (
-			<div id="error-box" className={errClasses}>
+			<div id='error-box' className={errClasses}>
 				<h3>Error {global.get('status')}</h3>
 				<p>{global.get('message')}</p>
 			</div>

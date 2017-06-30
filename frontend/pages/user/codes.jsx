@@ -54,32 +54,32 @@ export default class UserCodes extends React.Component {
 		)
 
 		return (
-			<section className="col-9 col-sm-8 col-xs-11">
+			<section className='col-9 col-sm-8 col-xs-11'>
 				<h2>
           Códigos de Descuento
-					<Link to="#" className="sub-text light" style={{float: 'right'}}
+					<Link to='#' className='sub-text light' style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 
 				<Loader>
-					<div className="grid-wrap top around">
+					<div className='grid-wrap top around'>
 
 						{codes.get('active').size > 0 &&
-														<article className="col-5 col-sm-12 box active">
-															<div className="code-top">Activados</div>
+														<article className='col-5 col-sm-12 box active'>
+															<div className='code-top'>Activados</div>
 															{aList}
 														</article>
 						}
 
 						{codes.get('deactive').size > 0 &&
-														<article className="col-5 col-sm-12 box deactive">
-															<div className="code-top">Desactivados</div>
+														<article className='col-5 col-sm-12 box deactive'>
+															<div className='code-top'>Desactivados</div>
 															{dList}
 														</article>
 						}
 
 						{codes.get('active').size == 0 && codes.get('deactive').size == 0 &&
-														<h4 className="sub-text">Cero Códigos Encontrados</h4>
+														<h4 className='sub-text'>Cero Códigos Encontrados</h4>
 						}
 
 					</div>
@@ -91,7 +91,7 @@ export default class UserCodes extends React.Component {
 }
 
 const CodeItem = props => (
-	<div className="code-item sub-text">
+	<div className='code-item sub-text'>
 		<p >Codigo: <span>{props.code.get('code')}</span></p>
 		<p>Descuento: <span>{props.code.get('discount')}% </span></p>
 		<p>Fecha de Caducidad: <span>{new Date(props.code.get('expires_date')).toLocaleString('en-us', dateOptions)}</span></p>

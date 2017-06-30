@@ -39,22 +39,22 @@ export default class ProductResult extends React.PureComponent {
 		} = this.props
 
 		return (
-			<article className="col-3 col-md-4 col-xs-6 col-xxs-12 product-cell">
+			<article className='col-3 col-md-4 col-xs-6 col-xxs-12 product-cell'>
 				<Link to={`/product/${product.get('id')}`}>
 					<picture>
 						<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${product.get('plu')}.jpg`} alt={product.get('name')}/>
 					</picture>
-					<h4 className="overflow-text">{product.get('name')}</h4>
+					<h4 className='overflow-text'>{product.get('name')}</h4>
 					<p>${((product.get('price') * (1 - product.get('discount')/100))/100).toFixed(2)}</p>
 				</Link>
 
 				{product.get('stock') > 0 ?
 					<form onSubmit={this.handleAddDetail}>
-						<input className="secondary-button" type="submit" value="Agregar al Carrito" style={{marginRight: '5px'}}/>
+						<input className='secondary-button' type='submit' value='Agregar al Carrito' style={{marginRight: '5px'}}/>
 						<QuantityDrop stock={product.get('stock')}/>
 					</form>
 					:
-					<input className="secondary-button" type="submit" value="Agotado" disabled/>
+					<input className='secondary-button' type='submit' value='Agotado' disabled/>
 				}
 			</article>
 		)

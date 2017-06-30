@@ -4,8 +4,8 @@ const Awards = (props) => {
 	return (
 		<main>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3>Anti-Ageing Beauty Bible Awards 2011</h3>
 
 					<p>La Biblia de Belleza Premios 2011 - Anti-Envejecimiento <br /> Ganadores Categoría Anti-Envejecimiento</p>
@@ -18,11 +18,11 @@ const Awards = (props) => {
 					</ul>
 				</div>
 
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/1p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/1p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 >The Natural &amp; Organic Awards 2011 The Natural Products Achievement Award</h3>
 
 					<p>Los Premios Naturales y Orgánicos 2011<br />
@@ -33,11 +33,11 @@ const Awards = (props) => {
           Él realmente predica con el ejemplo y les puedo asegurar que realmente le han entregado un reconocimiento a alguien que está totalmente comprometido con los valores que todos compartimos. "</p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/2p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/2p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 >Natural Health &amp; Beauty Awards 2011</h3>
 
 					<p>Premios Salud y Belleza Natural 2011<br />
@@ -45,11 +45,11 @@ const Awards = (props) => {
           Ganador</p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/3p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/3p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>SHE Beauty Awards 2011</strong></h3>
 
 					<p>Premios de Belleza SHE(Ella) 2011<br />
@@ -58,11 +58,11 @@ const Awards = (props) => {
           La mejor línea de productos Naturales y orgánicos<br />
           Neal´s Yard Remedies</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/4p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/4p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 >handbag.com Beauty Awards 2010</h3>
 
 					<p>handbag.com Premios de Belleza 2010<br />
@@ -71,11 +71,11 @@ const Awards = (props) => {
           Mejor Producto Orgánico<br />
           Elixir de belleza de rosas silvestres </p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/5p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/5p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 >The UK Beauty Awards 2010</h3>
 
 					<p>Premios de Belleza en el Reino Unido 2010<br />
@@ -86,8 +86,8 @@ const Awards = (props) => {
 				</div>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>The Ethical Living Health &amp; Beauty Awards 2010</strong></h3>
 
 					<p>Los Premios por una vida ética en Salud y Belleza 2010<br />
@@ -99,8 +99,8 @@ const Awards = (props) => {
 				</div>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 >The Sunday Times STYLE Beauty Awards 2010</h3>
 
 					<p>Premios de Belleza “The Sunday Times STYLE” 2010<br />
@@ -110,11 +110,11 @@ const Awards = (props) => {
           Crema Hidratante de Incienso</p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/8p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/8p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>Natural Health Magazine's 2010 Beauty Awards</strong></h3>
 
 					<p>
@@ -129,11 +129,11 @@ const Awards = (props) => {
 					</p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/9p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/9p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>handbag.com Beauty Awards 2009</strong></h3>
 
 					<p>handbag.com Premios de Belleza 2009<br />
@@ -141,21 +141,21 @@ const Awards = (props) => {
           Ganador: Crema Nutriente de incienso</p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/10p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/10p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>BAZAAR Best of the Best 2009</strong></h3>
 					<p>Lo Mejor de lo Mejor. Revista BAZAAR 2009<br />
           Neal´s Yard Remedies fue el ganador en una categoría:<br />
           Ganador: Aceite de belleza orgánico</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/11p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/11p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>The Green Beauty Bible Awards 2009</strong></h3>
 
 					<p>La Biblia Verde de la Belleza Premios 2009<br />
@@ -177,11 +177,11 @@ const Awards = (props) => {
           Ganador: Protector Solar de Hierba de limón SPF10<br />
           Ganador: Protector de Sol de lavanda SPF22</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/12p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/12p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>The Beauty Bible Awards 2009</strong></h3>
 
 					<p>La Biblia de la Belleza Premios 2009<br />
@@ -191,11 +191,11 @@ const Awards = (props) => {
           Ganador: Fórmula para labios Orgánica<br />
           Ganador: Protector Solar de hierba de limón SPF10</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/13p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/13p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>Pure Beauty Awards 2009</strong></h3>
 
 					<p>Premios Belleza Pura 2009<br />
@@ -208,11 +208,11 @@ const Awards = (props) => {
           Crema Nutriente de noche de flor de Naranja </p>
 
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/14p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/14p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>The CEW UK Beauty Insiders Awards 2009</strong></h3>
 					<p>Neal´s Yard Remedies fue el ganador en 2 categorías:<br />
           Ganador:<br />
@@ -221,11 +221,11 @@ const Awards = (props) => {
           Mejor Producto Certificado Orgánico para Piel:<br />
           Mascarilla enriquecedora de te blanco</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/15p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/15p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>Natural Health Magazine's 2009 Beauty Awards</strong></h3>
 
 					<p>Ganador del premio a la mejor línea de productos orgánicos Neal´s Yard Remedies<br />
@@ -238,18 +238,18 @@ const Awards = (props) => {
           Mejor Aceite facial: Aceite facial de Flor de naranja <br />
           Mejor crema humectante para la piel seca: Crema Nutriente de Incienso</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/16p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/16p.png'/>
 			</div>
 
-			<div className="grid center">
-				<div className="col-11">
+			<div className='grid center'>
+				<div className='col-11'>
 					<h3 ><strong>The UK Beauty Awards 2009</strong></h3>
 
 					<p>La Premios de belleza del Reino Unido 2009<br />
           Ganador: Mejor Producto Orgánico<br />
           Crema Nutriente de Incienso</p>
 				</div>
-				<img className="col-1" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/17p.png"/>
+				<img className='col-1' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/17p.png'/>
 			</div>
 
 		</main>

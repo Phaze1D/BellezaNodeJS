@@ -2,7 +2,7 @@ import React from 'react'
 
 const Terms = (props) => {
 	return (
-		<main className="others-wrapper">
+		<main className='others-wrapper'>
 			<h1>Terminos y Condiciones</h1>
 			<p>
       Al acceder a esta página, usted reconoce haber leído y entendido sus contenidos y manifiesta estar de acuerdo con los mismos. Si usted no está de acuerdo
@@ -62,7 +62,7 @@ const Terms = (props) => {
       surgir entre la versión de sus documentos impresos y la versión electrónica de los mismos publicados en este sitio.
 				<br/>
       Comercializadora Vida Flor S.A. de C.V., sus empresas subsidiarias, filiales o asociadas, no asumen responsabilidad alguna con los contenidos y servicios
-  comerciales o de otra índole, páginas webs que se puedan enlazar electrónicamente (link) directa o indirectamente a través de los portales de<a href="http://www.nealsyardremedies.com/">www.nealsyardremedies.com</a> o <a href="http://www.nelsonsnaturalworld.com/">www.nelsonsnaturalworld.com</a> o    <a href="http://www.sparoom.com">www.sparoom.com</a>.
+  comerciales o de otra índole, páginas webs que se puedan enlazar electrónicamente (link) directa o indirectamente a través de los portales de<a href='http://www.nealsyardremedies.com/'>www.nealsyardremedies.com</a> o <a href='http://www.nelsonsnaturalworld.com/'>www.nelsonsnaturalworld.com</a> o    <a href='http://www.sparoom.com'>www.sparoom.com</a>.
 				<br/>
       Comercializadora Vida Flor S.A. de C.V. , sus empresas subsidiarias, filiales o asociadas, no asumen responsabilidad alguna que derive del intercambio de
       información electrónica entre usuarios de la red Internet y no adquiere ninguna responsabilidad por causa de problemas técnicos que se pudieran producir en
@@ -95,7 +95,7 @@ const Terms = (props) => {
 				<br/>
 				<strong>Conformidad del Usuario</strong>
 				<br/>
-  La presente constituye un acuerdo legal entre cualquier usuario y Comercializadora Vida Flor S.A. de C.V., y/o    <a href="http://www.bellezaorganica.com.mx/">www.bellezaorganica.com.mx</a> o cualquiera de sus dominios anteriormente mencionados. Se da por entendido que
+  La presente constituye un acuerdo legal entre cualquier usuario y Comercializadora Vida Flor S.A. de C.V., y/o    <a href='http://www.bellezaorganica.com.mx/'>www.bellezaorganica.com.mx</a> o cualquiera de sus dominios anteriormente mencionados. Se da por entendido que
       el cliente, antes de solicitar algún servicio a través de este sitio, ha revisado, entendido y acordado los términos expuestos en las Políticas de nuestro
       Portal o Tienda en Línea. En caso de inconformidad, el usuario deberá abstenerse de proporcionar información personal, así como de levantar algún
       requerimiento comercial.
@@ -129,13 +129,13 @@ const Terms = (props) => {
       siguientes alternativas:
 				<br/>
       Transferencia bancaria de manera electrónica o deposito en nuestras cuentas bancarias en cualquier caso el cliente está comprometido a enviar su
-  comprobante de pago a: <a href="mailto:cliente@vidaflor.com.mx">cliente@vidaflor.com.mx</a> O RECEPCION DE PEDIDOS a :    <a href="mailto:recepcion@vidaflor.com.mx">recepcion@vidaflor.com.mx</a>
+  comprobante de pago a: <a href='mailto:cliente@vidaflor.com.mx'>cliente@vidaflor.com.mx</a> O RECEPCION DE PEDIDOS a :    <a href='mailto:recepcion@vidaflor.com.mx'>recepcion@vidaflor.com.mx</a>
 			</p>
 			<p>
       Favor de Solicitar número de Cuentas Bancarias a nuestros Teléfonos o vía correo electrónico a:
 				<br/>
-				<a href="mailto:cliente@vidaflor.com.mx">cliente@vidaflor.com.mx</a>
-      O RECEPCION DE PEDIDOS a : <a href="mailto:recepcion@vidaflor.com.mx">recepcion@vidaflor.com.mx</a>
+				<a href='mailto:cliente@vidaflor.com.mx'>cliente@vidaflor.com.mx</a>
+      O RECEPCION DE PEDIDOS a : <a href='mailto:recepcion@vidaflor.com.mx'>recepcion@vidaflor.com.mx</a>
 				<br/>
 				<br/>
 			</p>
@@ -150,7 +150,7 @@ const Terms = (props) => {
 				<br/>
       Se surtirá el PEDIDO bajo las siguientes condiciones:
 			</p>
-			<ul className="ul-normal" type="disc" >
+			<ul className='ul-normal' type='disc' >
 				<li>
           Si existe inventario físico suficiente del(los) producto(s) PEDIDOS y la mercancía es entregada a mensajería dentro del tiempo señalado y enviada a su
           destino final.
@@ -159,7 +159,7 @@ const Terms = (props) => {
 			<p>
       En el caso de que no exista inventario físico (suficiente) en nuestro almacén:
 			</p>
-			<ul className="ul-normal" type="disc">
+			<ul className='ul-normal' type='disc'>
 				<li>
           Se le notificara al cliente de manera inmediata y el PEDIDO no se procesará, nuestro sistema está diseñado para procesar producto que se encuentre
           físicamente disponible en nuestro almacén.
@@ -185,7 +185,7 @@ const Terms = (props) => {
 				<br/>
       En caso de Embarque Erróneo o Producto Defectuoso se aplicaran los siguientes movimientos:
 			</p>
-			<ul className="ul-normal" type="disc">
+			<ul className='ul-normal' type='disc'>
 				<li>
           En caso de haber recibido un producto que no haya sido solicitado por el cliente (únicamente atribuible a un despacho incorrecto de mercancía de parte
           de nuestro almacén).
@@ -197,12 +197,12 @@ const Terms = (props) => {
 			<p>
       Para ambos casos, la mecánica es la siguiente:
 			</p>
-			<ul className="ul-normal" type="disc">
+			<ul className='ul-normal' type='disc'>
 				<li>
           Debe ser reportado durante las primeras 48 horas posteriores a su entrega como máximo.
 				</li>
 				<li>
-          Deberá enviar un correo electrónico a la dirección <a href="mailto:quejas@vidaflor.com.mx">quejas@vidaflor.com.mx</a> y reportar el movimiento o
+          Deberá enviar un correo electrónico a la dirección <a href='mailto:quejas@vidaflor.com.mx'>quejas@vidaflor.com.mx</a> y reportar el movimiento o
           problema a nuestros teléfonos 33 3642 0178 o 33 3640 1240
 				</li>
 				<li>
@@ -225,7 +225,7 @@ const Terms = (props) => {
 			<p>
       El procedimiento de devolución de producto incorrecto o defectuoso es el siguiente:
 			</p>
-			<ul className="ul-normal" type="disc">
+			<ul className='ul-normal' type='disc'>
 				<li>
           El interesado deberá de mandar el producto incorrecto y solicitar una guía para su envío o por paquetería con una guía por cobrar, dicho producto a
           nuestras oficinas.
@@ -262,8 +262,8 @@ const Terms = (props) => {
 				<br/>
 				<strong>Facturación</strong>
 				<br/>
-      En caso de que requiera facturar su pedido, tendrá que enviar por correo electrónico a <a href="mailto:cliente@vidaflor.com.mx">cliente@vidaflor.com.mx</a>
-      o <a href="mailto:contabilidad@bellezaorganica.com.mx">contabilidad@bellezaorganica.com.mx</a> con su número de pedido y sus datos de facturación
+      En caso de que requiera facturar su pedido, tendrá que enviar por correo electrónico a <a href='mailto:cliente@vidaflor.com.mx'>cliente@vidaflor.com.mx</a>
+      o <a href='mailto:contabilidad@bellezaorganica.com.mx'>contabilidad@bellezaorganica.com.mx</a> con su número de pedido y sus datos de facturación
       completos. La factura se enviará directamente al domicilio fiscal reportado o al correo electrónico del comprador
 			</p>
 

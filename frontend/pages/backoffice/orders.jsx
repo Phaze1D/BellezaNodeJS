@@ -72,7 +72,7 @@ class BackofficeOrders extends React.Component {
 
 		return (
 			<div>
-				<ul className="backorders-nav">
+				<ul className='backorders-nav'>
 					<li>
 						<Link
 							className={parse.status === 'intencion' ? 'active' : ''}
@@ -96,7 +96,7 @@ class BackofficeOrders extends React.Component {
 				</ul>
 
 				<Loader>
-					<table className="backoffice-table">
+					<table className='backoffice-table'>
 						<thead>
 							<tr>
 								<th>Referencia</th>
@@ -113,7 +113,7 @@ class BackofficeOrders extends React.Component {
 
 						<tfoot>
 							<tr>
-								<td colSpan="5">
+								<td colSpan='5'>
 									<Pagination
 										links={links}
 										page={this.state.page}

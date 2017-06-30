@@ -4,9 +4,9 @@ const PorqueOrganico = (props) => {
 	return (
 		<main>
 			<h1>¿Porque Orgánico?</h1>
-			<div className="grid top">
+			<div className='grid top'>
 
-				<div className="col-10">
+				<div className='col-10'>
 					<ul>
 						<li><strong>¿Qué significa orgánico?</strong></li>
 					</ul>
@@ -41,9 +41,9 @@ const PorqueOrganico = (props) => {
 					<p>Algo que hace que nuestros productos sean diferentes es que nosotros en Neal’s Yard investigamos, desarrollamos y hacemos nuestros productos, a diferencia de muchas marcas, nosotros sabemos exactamente lo que los compone y nos comprometemos a que nuestros ingredientes sean de la más alta calidad y pureza.</p>
 				</div>
 
-				<div className="col-2">
-					<img src= "https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/porque-ogranicos-soil_association.png" alt=""/>
-					<img src= "https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/porque-ogranicos.png" alt=""/>
+				<div className='col-2'>
+					<img src= 'https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/porque-ogranicos-soil_association.png' alt=''/>
+					<img src= 'https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/porque-ogranicos.png' alt=''/>
 				</div>
 
 			</div>

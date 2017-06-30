@@ -140,62 +140,62 @@ export default class CheckoutConfirmation extends React.Component {
 		return (
 			<main>
 				<h2>Confirmar Orden</h2>
-				<div className="grid-wrap top between">
-					<section className="col-8 col-sm-12 last-sm">
-						<Link to="/cart" style={{float: 'right'}}>Editar</Link>
+				<div className='grid-wrap top between'>
+					<section className='col-8 col-sm-12 last-sm'>
+						<Link to='/cart' style={{float: 'right'}}>Editar</Link>
 						<OrderTable
 							order={cart}
 							editable={false}/>
 
 						{cart.get('discount_code_id') ?
-							<div className="success-box">Descuento Aplicado</div>
+							<div className='success-box'>Descuento Aplicado</div>
 							:
-							<form className="main-form grid bottom" onSubmit={this.handleSubmitCode}>
-								<div className="col-8">
-									<label htmlFor="code">Codigo De Descuento</label>
-									{errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
-									<input name="code" type="text" className="input"
+							<form className='main-form grid bottom' onSubmit={this.handleSubmitCode}>
+								<div className='col-8'>
+									<label htmlFor='code'>Codigo De Descuento</label>
+									{errors.get('code') && <div className='error-div'>{errors.get('code')}</div>}
+									<input name='code' type='text' className='input'
 										onFocus={(event) => this.props.dispatch(resetErrors('code'))}/>
 								</div>
 
-								<div className="col-4">
-									<input type="submit" value="Aplicar" className="submit full"/>
+								<div className='col-4'>
+									<input type='submit' value='Aplicar' className='submit full'/>
 								</div>
 							</form>
 						}
 
 						<h2>Forma de Pago</h2>
-						{fetching && <h4 className="sub-text">Favor espera mientras tu transacción esta siendo procesada</h4>}
+						{fetching && <h4 className='sub-text'>Favor espera mientras tu transacción esta siendo procesada</h4>}
 
 						<Loader>
 							<radioGroup>
 								<div className={'box ' + (!this.state.radio ? 'hide-pay' : '')}>
-									<div className="grid center">
+									<div className='grid center'>
                     Tarjeta de Crédito:
-										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png"/>
-										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png"/>
-										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png"/>
+										<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png'/>
+										<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png'/>
+										<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png'/>
 										<input
 											style={{marginLeft: 'auto'}}
-											name="active" type="radio"
+											name='active' type='radio'
 											checked={this.state.radio}
 											onChange={this.handleRadio}/>
 									</div>
 
-									<form id="card-form" className="payment-form" onSubmit={this.handleSubmitCard}>
-										<div className="grid center">
-											<label className="col-4 col-md-5" htmlFor="holder">Nombre: </label>
-											<input className="col-8 col-md-7" name="holder" type="text"/>
+									<form id='card-form' className='payment-form' onSubmit={this.handleSubmitCard}>
+										<div className='grid center'>
+											<label className='col-4 col-md-5' htmlFor='holder'>Nombre: </label>
+											<input className='col-8 col-md-7' name='holder' type='text'/>
 										</div>
 
-										<div className="grid center">
-											<label className="col-4 col-md-5" htmlFor="number">Numero de Tarjeta: </label>
-											<input className="col-8 col-md-7" name="number" type="text"/>
+										<div className='grid center'>
+											<label className='col-4 col-md-5' htmlFor='number'>Numero de Tarjeta: </label>
+											<input className='col-8 col-md-7' name='number' type='text'/>
 										</div>
 
-										<div className="grid center">
-											<label className="col-4 col-md-5" htmlFor="month">Fecha de Caducidad: </label>
-											<select name="month">
+										<div className='grid center'>
+											<label className='col-4 col-md-5' htmlFor='month'>Fecha de Caducidad: </label>
+											<select name='month'>
 												<option value='01'>Enero (1)</option>
 												<option value='02'>Febrero (2)</option>
 												<option value='03'>Marzo (3)</option>
@@ -210,59 +210,59 @@ export default class CheckoutConfirmation extends React.Component {
 												<option value='12'>Diciembre (12)</option>
 											</select>
 
-											<select name="year">
+											<select name='year'>
 												{years}
 											</select>
 										</div>
 
-										<div className="grid center">
-											<label className="col-4 col-md-5" htmlFor="secret">Codigo de Seguridad: </label>
-											<input className="col-3 col-md-7" name="secret" type="text"/>
+										<div className='grid center'>
+											<label className='col-4 col-md-5' htmlFor='secret'>Codigo de Seguridad: </label>
+											<input className='col-3 col-md-7' name='secret' type='text'/>
 										</div>
 
-										<input type="submit" value="Pagar" name="submit" className="submit full"/>
-										{errors.get('card_token') && <div className="error-div">{errors.get('card_token')}</div>}
+										<input type='submit' value='Pagar' name='submit' className='submit full'/>
+										{errors.get('card_token') && <div className='error-div'>{errors.get('card_token')}</div>}
 									</form>
 								</div>
 
 								<div className={'box ' + (this.state.radio ? 'hide-pay' : '')}>
-									<div className="grid center">
+									<div className='grid center'>
                     Pagar en Efectivo
-										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png"/>
-										<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png"/>
+										<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png'/>
+										<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png'/>
 										<input
 											style={{marginLeft: 'auto'}}
-											name="active" type="radio"
+											name='active' type='radio'
 											checked={!this.state.radio}
 											onChange={this.handleRadio}/>
 									</div>
 
-									<form id="cash-form" className="payment-form" onSubmit={this.handleSubmitCash}>
-										<div className="grid center">
-											<label className="col-4" htmlFor="card-date">Tipo: </label>
-											<select name="payment_type">
-												<option value="oxxo_cash">OXXO</option>
-												<option value="spei">Transferencia Bancaria</option>
+									<form id='cash-form' className='payment-form' onSubmit={this.handleSubmitCash}>
+										<div className='grid center'>
+											<label className='col-4' htmlFor='card-date'>Tipo: </label>
+											<select name='payment_type'>
+												<option value='oxxo_cash'>OXXO</option>
+												<option value='spei'>Transferencia Bancaria</option>
 											</select>
 										</div>
 
-										<input type="submit" value="Pagar" name="submit" className="submit full"/>
-										{errors.get('cash') && <div className="error-div">{errors.get('cash')}</div>}
+										<input type='submit' value='Pagar' name='submit' className='submit full'/>
+										{errors.get('cash') && <div className='error-div'>{errors.get('cash')}</div>}
 									</form>
 
-									<p className="sub-text" style={{fontStyle: 'italic'}}>No aceptan devoluciones para pagos en efectivo</p>
+									<p className='sub-text' style={{fontStyle: 'italic'}}>No aceptan devoluciones para pagos en efectivo</p>
 								</div>
 
-								{errors.get('parameter') && <div className="error-div">{errors.get('parameter')}</div>}
+								{errors.get('parameter') && <div className='error-div'>{errors.get('parameter')}</div>}
 							</radioGroup>
 						</Loader>
 
 					</section>
 
-					<section className="col-4 col-sm-12 first-sm">
-						<Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
+					<section className='col-4 col-sm-12 first-sm'>
+						<Address address={cart.get('shippingAddress')} title='Dirección de Envío'/>
 						{!cart.get('invoiceAddress').isEmpty() &&
-							<Address address={cart.get('invoiceAddress')} title="Facturacion" rfc={cart.get('rfc')} razonSocial={cart.get('razon_social')}/>
+							<Address address={cart.get('invoiceAddress')} title='Facturacion' rfc={cart.get('rfc')} razonSocial={cart.get('razon_social')}/>
 						}
 					</section>
 				</div>
@@ -273,21 +273,21 @@ export default class CheckoutConfirmation extends React.Component {
 
 
 export const Address = props => (
-	<div className="box overflow-text sub-text">
+	<div className='box overflow-text sub-text'>
 		<p>{props.title}</p>
 		<p>{props.rfc}</p>
 		<p>{props.razonSocial}</p>
 		<hr></hr>
-		<p className="overflow-text">
+		<p className='overflow-text'>
 			{props.address.get('first_name')} {props.address.get('last_name')}
 		</p>
-		<p className="overflow-text">{props.address.get('telephone')}</p>
-		<p className="overflow-text">{props.address.get('street')}</p>
-		<p className="overflow-text">{props.address.get('street2')}</p>
-		<p className="overflow-text">
+		<p className='overflow-text'>{props.address.get('telephone')}</p>
+		<p className='overflow-text'>{props.address.get('street')}</p>
+		<p className='overflow-text'>{props.address.get('street2')}</p>
+		<p className='overflow-text'>
 			{props.address.get('city')}, {props.address.get('state')}
 		</p>
-		<p className="overflow-text">{props.address.get('zipcode')}</p>
-		<p className="overflow-text">{props.address.get('country')}</p>
+		<p className='overflow-text'>{props.address.get('zipcode')}</p>
+		<p className='overflow-text'>{props.address.get('country')}</p>
 	</div>
 )

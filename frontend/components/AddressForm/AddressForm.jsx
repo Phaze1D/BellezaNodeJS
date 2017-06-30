@@ -73,69 +73,69 @@ class AddressForm extends React.Component {
 		} = this.props
 
 		return (
-			<div className="box with-y">
+			<div className='box with-y'>
 				<h3>
           Dirección
-					<Clear fill="red" className="clear-icon" onClick={onRequestCancel}/>
+					<Clear fill='red' className='clear-icon' onClick={onRequestCancel}/>
 				</h3>
-				<form className="main-form" onSubmit={this.handleSubmit}>
-					<label htmlFor="first_name">Nombre</label>
-					{errors.get('first_name') && <div className="error-div">{errors.get('first_name')}</div>}
-					<input type="text" name="first_name"
+				<form className='main-form' onSubmit={this.handleSubmit}>
+					<label htmlFor='first_name'>Nombre</label>
+					{errors.get('first_name') && <div className='error-div'>{errors.get('first_name')}</div>}
+					<input type='text' name='first_name'
 						defaultValue={address.get('first_name')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="last_name">Apellidos</label>
-					{errors.get('last_name') && <div className="error-div">{errors.get('last_name')}</div>}
-					<input type="text" name="last_name"
+					<label htmlFor='last_name'>Apellidos</label>
+					{errors.get('last_name') && <div className='error-div'>{errors.get('last_name')}</div>}
+					<input type='text' name='last_name'
 						defaultValue={address.get('last_name')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="street">Dirección</label>
-					{errors.get('street') && <div className="error-div">{errors.get('street')}</div>}
-					<input type="text" name="street"
+					<label htmlFor='street'>Dirección</label>
+					{errors.get('street') && <div className='error-div'>{errors.get('street')}</div>}
+					<input type='text' name='street'
 						defaultValue={address.get('street')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="street2">Colonia</label>
-					{errors.get('street2') && <div className="error-div">{errors.get('street2')}</div>}
-					<input type="text" name="street2"
+					<label htmlFor='street2'>Colonia</label>
+					{errors.get('street2') && <div className='error-div'>{errors.get('street2')}</div>}
+					<input type='text' name='street2'
 						defaultValue={address.get('street2')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="city">Ciudad</label>
-					{errors.get('city') && <div className="error-div">{errors.get('city')}</div>}
-					<input type="text" name="city"
+					<label htmlFor='city'>Ciudad</label>
+					{errors.get('city') && <div className='error-div'>{errors.get('city')}</div>}
+					<input type='text' name='city'
 						defaultValue={address.get('city')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="state">Estado</label>
-					{errors.get('state') && <div className="error-div">{errors.get('state')}</div>}
-					<input type="text" name="state"
+					<label htmlFor='state'>Estado</label>
+					{errors.get('state') && <div className='error-div'>{errors.get('state')}</div>}
+					<input type='text' name='state'
 						defaultValue={address.get('state')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="zipcode">Codigo Postal</label>
-					{errors.get('zipcode') && <div className="error-div">{errors.get('zipcode')}</div>}
-					<input type="text" name="zipcode"
+					<label htmlFor='zipcode'>Codigo Postal</label>
+					{errors.get('zipcode') && <div className='error-div'>{errors.get('zipcode')}</div>}
+					<input type='text' name='zipcode'
 						defaultValue={address.get('zipcode')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="telephone">Telefono <span className="sub-text">10 digitos</span></label>
-					{errors.get('telephone') && <div className="error-div">{errors.get('telephone')}</div>}
-					<input type="text" name="telephone"
+					<label htmlFor='telephone'>Telefono <span className='sub-text'>10 digitos</span></label>
+					{errors.get('telephone') && <div className='error-div'>{errors.get('telephone')}</div>}
+					<input type='text' name='telephone'
 						defaultValue={address.get('telephone')}
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 					<Loader>
-						<input className="submit" type="submit" value="Guardar"/>
+						<input className='submit' type='submit' value='Guardar'/>
 					</Loader>
 				</form>
 			</div>

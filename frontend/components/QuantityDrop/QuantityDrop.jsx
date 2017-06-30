@@ -41,18 +41,18 @@ export default class QuantityDrop extends React.Component {
 
 		const optionList = []
 		for (let i = 1; i <= stock; i++) {
-			optionList.push(<div key={i} className="mdc-list-item quantity" role="menuitem" tabIndex="0">{i}</div>)
+			optionList.push(<div key={i} className='mdc-list-item quantity' role='menuitem' tabIndex='0'>{i}</div>)
 		}
 
 		return (
-			<div className="mdc-menu-anchor quantity">
-				<input name="quantity" type="hidden" value={this.state.focuson + 1}/>
-				<button type="button" className="drop-button center quantity" onClick={this.handleToggle}>
+			<div className='mdc-menu-anchor quantity'>
+				<input name='quantity' type='hidden' value={this.state.focuson + 1}/>
+				<button type='button' className='drop-button center quantity' onClick={this.handleToggle}>
 					{this.state.focuson + 1}
 					<ArrowDown/>
 				</button>
-				<div ref="dom_menu" className="mdc-simple-menu" tabIndex="-1">
-					<ul className="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+				<div ref='dom_menu' className='mdc-simple-menu' tabIndex='-1'>
+					<ul className='mdc-simple-menu__items mdc-list' role='menu' aria-hidden='true'>
 						{optionList}
 					</ul>
 				</div>

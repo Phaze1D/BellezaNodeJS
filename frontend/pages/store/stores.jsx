@@ -17,32 +17,32 @@ export default class Stores extends React.Component {
 	render () {
 		return (
 			<main>
-				<div className="grid-wrap center around">
-					<h2 className="col-12 h-underline">
-            Guadalajara <span className="sub-text" style={{fontSize: '0.6em'}}> Oficina Matriz </span>
+				<div className='grid-wrap center around'>
+					<h2 className='col-12 h-underline'>
+            Guadalajara <span className='sub-text' style={{fontSize: '0.6em'}}> Oficina Matriz </span>
 					</h2>
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div className="map-img contain-image" style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office.jpg)'}}></div>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div className='map-img contain-image' style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office.jpg)'}}></div>
 					</div>
 
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div id="guad-map" className="map-div"></div>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div id='guad-map' className='map-div'></div>
 					</div>
 
-					<h2 className="col-12 h-underline">México DF</h2>
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div className="map-img contain-image" style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office2.jpg)'}}></div>
+					<h2 className='col-12 h-underline'>México DF</h2>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div className='map-img contain-image' style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office2.jpg)'}}></div>
 					</div>
 
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div id="df1-map" className="map-div"></div>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div id='df1-map' className='map-div'></div>
 					</div>
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div className="map-img contain-image" style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office1.jpg)'}}></div>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div className='map-img contain-image' style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/office1.jpg)'}}></div>
 					</div>
 
-					<div className="col-6 col-xs-9 col-xxs-12">
-						<div id="df2-map" className="map-div"></div>
+					<div className='col-6 col-xs-9 col-xxs-12'>
+						<div id='df2-map' className='map-div'></div>
 					</div>
 				</div>
 

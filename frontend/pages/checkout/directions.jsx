@@ -96,10 +96,10 @@ export default class CheckoutDirections extends React.Component {
 		return (
 			<main>
 				<h2>Información del Contacto</h2>
-				<div className="grid-wrap around">
-					<section className="col-9 col-md-8 col-sm-7 col-xs-12 last-xs">
-						<article className="box">
-							<h4 className="h-underline">Dirección de Envio</h4>
+				<div className='grid-wrap around'>
+					<section className='col-9 col-md-8 col-sm-7 col-xs-12 last-xs'>
+						<article className='box'>
+							<h4 className='h-underline'>Dirección de Envio</h4>
 
 							<AddressList
 								selectable={true}
@@ -110,20 +110,20 @@ export default class CheckoutDirections extends React.Component {
 								userId={user.get('id')}
 								token={user.get('token')}/>
 
-							<h5 className="h-underline">Instrucciones de envío (Opcional)</h5>
+							<h5 className='h-underline'>Instrucciones de envío (Opcional)</h5>
 
-							<textarea rows="6" ref="noteInput"></textarea>
+							<textarea rows='6' ref='noteInput'></textarea>
 						</article>
 
-						<article className="box hide-f" ref="facturaBox">
-							<h4 className="h-underline">
+						<article className='box hide-f' ref='facturaBox'>
+							<h4 className='h-underline'>
                 Datos de Facturación
-								<label className="sub-text" style={{float: 'right'}}>
-									<span className="col-xxs-hide">
+								<label className='sub-text' style={{float: 'right'}}>
+									<span className='col-xxs-hide'>
                     Quieres factura
 									</span>
 
-									<input type="checkbox" onChange={this.handleFactura}/>
+									<input type='checkbox' onChange={this.handleFactura}/>
 								</label>
 							</h4>
 
@@ -136,31 +136,31 @@ export default class CheckoutDirections extends React.Component {
 								userId={user.get('id')}
 								token={user.get('token')}/>
 
-							<form className="main-form" onSubmit={event => event.preventDefault()}>
-								<label htmlFor="rfc">RFC</label>
-								{errors.get('rfc') && <div className="error-div">{errors.get('rfc')}</div>}
-								<input name="rfc" type="text" ref="rfcInput"
+							<form className='main-form' onSubmit={event => event.preventDefault()}>
+								<label htmlFor='rfc'>RFC</label>
+								{errors.get('rfc') && <div className='error-div'>{errors.get('rfc')}</div>}
+								<input name='rfc' type='text' ref='rfcInput'
 									onFocus={(event) => this.props.dispatch(resetErrors('rfc'))}/>
 
-								<label htmlFor="razon_social">Razon Social</label>
-								{errors.get('razon_social') && <div className="error-div">{errors.get('razon_social')}</div>}
-								<input name="razon_social" type="text" ref="razonInput"
+								<label htmlFor='razon_social'>Razon Social</label>
+								{errors.get('razon_social') && <div className='error-div'>{errors.get('razon_social')}</div>}
+								<input name='razon_social' type='text' ref='razonInput'
 									onFocus={(event) => this.props.dispatch(resetErrors('razon_social'))}/>
 							</form>
 						</article>
 
-						<Link to="/confirmation"
-							className="submit full"
+						<Link to='/confirmation'
+							className='submit full'
 							onClick={this.handleContinue}>
               Continuar
 						</Link>
-						{errors.get('shippingAddress') && <div className="error-div">{errors.get('shippingAddress')}</div>}
-						{errors.get('invoiceAddress') && <div className="error-div">{errors.get('invoiceAddress')}</div>}
+						{errors.get('shippingAddress') && <div className='error-div'>{errors.get('shippingAddress')}</div>}
+						{errors.get('invoiceAddress') && <div className='error-div'>{errors.get('invoiceAddress')}</div>}
 					</section>
 
-					<section className="col-3 col-md-4 col-sm-5 col-xs-12 first-xs col-xxs-hide">
-						<article className="box">
-							<ul className="grid-wrap">
+					<section className='col-3 col-md-4 col-sm-5 col-xs-12 first-xs col-xxs-hide'>
+						<article className='box'>
+							<ul className='grid-wrap'>
 								{detailList}
 							</ul>
 						</article>
@@ -175,11 +175,11 @@ export default class CheckoutDirections extends React.Component {
 
 
 const DetailItem = props => (
-	<li className="grid center col-12 col-xs-6">
-		<img className="col-4" src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
-		<div className="col-8">
-			<p className="sub-text primary">{props.detail.get('name')}</p>
-			<p className="sub-text">
+	<li className='grid center col-12 col-xs-6'>
+		<img className='col-4' src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
+		<div className='col-8'>
+			<p className='sub-text primary'>{props.detail.get('name')}</p>
+			<p className='sub-text'>
         Cantidad: {props.detail.get('quantity')} <br/>
         Subtotal: ${(props.detail.get('sub_total')/100).toFixed(2)}
 			</p>

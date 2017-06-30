@@ -93,40 +93,40 @@ export default class Layout extends React.Component {
 				<GlobalError/>
 				<Header history={history} cart={cart} categories={categories} dispatch={dispatch}/>
 
-				<Route exact path="/" component={Home}/>
-				<Route path="/home" component={Home}/>
-				<Route exact path="/categories/:index" component={CategoryIndex}/>
-				<Route exact path="/categories/:index/:sub" component={CategoryIndex}/>
-				<Route exact path="/categories/:index/:sub/:show" component={CategoryShow}/>
+				<Route exact path='/' component={Home}/>
+				<Route path='/home' component={Home}/>
+				<Route exact path='/categories/:index' component={CategoryIndex}/>
+				<Route exact path='/categories/:index/:sub' component={CategoryIndex}/>
+				<Route exact path='/categories/:index/:sub/:show' component={CategoryShow}/>
 
-				<Route path="/product/:id" component={ProductShow}/>
-				<Route path="/search" component={Search}/>
-				<Route path="/cart" component={CartShow}/>
-				<Route path="/signin" component={Signin}/>
+				<Route path='/product/:id' component={ProductShow}/>
+				<Route path='/search' component={Search}/>
+				<Route path='/cart' component={CartShow}/>
+				<Route path='/signin' component={Signin}/>
 
 				<Switch>
-					<Route exact path="/user/:id/order/:order_id" render={props => signinRedirect(user, props, OrderShow)}/>
-					<Route path="/user/:id" render={props => signinRedirect(user, props, UserShow)}/>
+					<Route exact path='/user/:id/order/:order_id' render={props => signinRedirect(user, props, OrderShow)}/>
+					<Route path='/user/:id' render={props => signinRedirect(user, props, UserShow)}/>
 				</Switch>
 
-				<Route path="/checkout" render={props => signinRedirect(user, props, CheckoutDirections)}/>
-				<Route path="/confirmation" render={props => signinRedirect(user, props, CheckoutConfirmation)}/>
-				<Route path="/successful" render={props => signinRedirect(user, props, CheckoutSuccessful)}/>
+				<Route path='/checkout' render={props => signinRedirect(user, props, CheckoutDirections)}/>
+				<Route path='/confirmation' render={props => signinRedirect(user, props, CheckoutConfirmation)}/>
+				<Route path='/successful' render={props => signinRedirect(user, props, CheckoutSuccessful)}/>
 
 				{user.get('token') && user.get('admin') &&
-					<Route path="/backoffice" render={props => signinRedirect(user, props, BackofficeShow)}/>
+					<Route path='/backoffice' render={props => signinRedirect(user, props, BackofficeShow)}/>
 				}
 
-				<Route path="/quiensomos" component={QuienSomos}/>
-				<Route path="/history" component={History}/>
-				<Route path="/nuestrapromesa" component={NuestraPro}/>
-				<Route path="/porqueorganico" component={PorqueOrganico}/>
-				<Route path="/terminoscondiciones" component={Terms}/>
-				<Route path="/awards" component={Awards}/>
+				<Route path='/quiensomos' component={QuienSomos}/>
+				<Route path='/history' component={History}/>
+				<Route path='/nuestrapromesa' component={NuestraPro}/>
+				<Route path='/porqueorganico' component={PorqueOrganico}/>
+				<Route path='/terminoscondiciones' component={Terms}/>
+				<Route path='/awards' component={Awards}/>
 				{/*<Route path="/contact" component={Contact}/>*/}
-				<Route path="/password/forgot" component={PasswordForgot}/>
-				<Route path="/stores" component={Stores}/>
-				<Route path="/password/reset/:token" render={props => <PasswordReset {...props} user={user}/>}/>
+				<Route path='/password/forgot' component={PasswordForgot}/>
+				<Route path='/stores' component={Stores}/>
+				<Route path='/password/reset/:token' render={props => <PasswordReset {...props} user={user}/>}/>
 
 				<Footer dispatch={dispatch}/>
 			</div>

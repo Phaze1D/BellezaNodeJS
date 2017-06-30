@@ -32,10 +32,10 @@ class UserAddresses extends React.Component {
 		} = this.props
 
 		return (
-			<section className="col-9 col-sm-8 col-xs-11">
+			<section className='col-9 col-sm-8 col-xs-11'>
 				<h2>
           Mi Directorio
-					<Link to="#" className="sub-text light" style={{float: 'right'}}
+					<Link to='#' className='sub-text light' style={{float: 'right'}}
 						onClick={this.handleLogout}>Salir</Link>
 				</h2>
 

@@ -56,23 +56,23 @@ class PasswordForgot extends React.Component {
 		return (
 			<main>
 				<h2>¿Olvidaste Tu Contraseña?</h2>
-				<p className="sub">
+				<p className='sub'>
 					Proporcione a su cuenta de correo electrónico para recibir un correo electrónico para restablecer su contraseña
 				</p>
 
 				{this.state.showSuccess ?
 					<h3 style={{color: '#1eab30'}}>
             Le hemos enviado un correo electrónico a
-						<span className="sub-text primary"> {this.email} </span>
+						<span className='sub-text primary'> {this.email} </span>
             con las instrucciones de cómo restablecer su contraseña
 					</h3>
 					:
 					<Loader>
-						<form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
-							<label htmlFor="email">Email</label>
-							{errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
-							<input name="email" type="text" onFocus={this.handleInputFocus} autoComplete="off"/>
-							<input  className="submit full"  type="submit" value="Enviar"/>
+						<form className='main-form' style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit}>
+							<label htmlFor='email'>Email</label>
+							{errors.get('email') && <div className='error-div'>{errors.get('email')}</div>}
+							<input name='email' type='text' onFocus={this.handleInputFocus} autoComplete='off'/>
+							<input  className='submit full'  type='submit' value='Enviar'/>
 						</form>
 					</Loader>
 				}

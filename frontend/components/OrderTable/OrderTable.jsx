@@ -36,12 +36,12 @@ class OrderTable extends React.Component {
 			<div style={{width: '100%'}}>
 				<table className='order-table'>
 					<thead>
-						<tr className="col-xs-hide">
+						<tr className='col-xs-hide'>
 							<th>Producto</th>
 							<th>Descripción</th>
 							<th>Precio</th>
 							<th>Cantidad</th>
-							<th className="overflow-text">Subtotal <span className="sub-text" style={{fontSize: '0.7em'}}>Sin IVA</span></th>
+							<th className='overflow-text'>Subtotal <span className='sub-text' style={{fontSize: '0.7em'}}>Sin IVA</span></th>
 							{this.props.editable && <th></th> }
 						</tr>
 					</thead>
@@ -51,8 +51,8 @@ class OrderTable extends React.Component {
 					</tbody>
 				</table>
 
-				<div className="order-table-foot">
-					<div className="sub-titles">
+				<div className='order-table-foot'>
+					<div className='sub-titles'>
 						<span>Subtotal:</span>
 						<span>IVA:</span>
 						<span>Costo de Envío: </span>
@@ -60,11 +60,11 @@ class OrderTable extends React.Component {
 						<span>Total:</span>
 					</div>
 					<div>
-						<span className="foot-main">${(order.get('sub_total')/100).toFixed(2)}</span>
-						<span className="foot-main">${(order.get('iva_total')/100).toFixed(2)}</span>
-						<span className="foot-main">${(order.get('shipping_total')/100).toFixed(2)}</span>
-						<span className="foot-main">-${(order.get('discount_total')/100 ).toFixed(2)}</span>
-						<span className="foot-main">${(order.get('total')/100).toFixed(2)}</span>
+						<span className='foot-main'>${(order.get('sub_total')/100).toFixed(2)}</span>
+						<span className='foot-main'>${(order.get('iva_total')/100).toFixed(2)}</span>
+						<span className='foot-main'>${(order.get('shipping_total')/100).toFixed(2)}</span>
+						<span className='foot-main'>-${(order.get('discount_total')/100 ).toFixed(2)}</span>
+						<span className='foot-main'>${(order.get('total')/100).toFixed(2)}</span>
 					</div>
 				</div>
 			</div>
@@ -81,21 +81,21 @@ const OrderRow = (props) => (
 			<picture>
 				<source
 					srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xs/${props.detail.get('plu')}.jpg`}
-					media="(max-width: 712px)"/>
+					media='(max-width: 712px)'/>
 				<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/sm/${props.detail.get('plu')}.jpg`}/>
 			</picture>
 		</td>
 
-		<td className="xs-td" colSpan="4">
-			<span className="xs-span">
+		<td className='xs-td' colSpan='4'>
+			<span className='xs-span'>
 				{props.detail.get('name')}
 			</span>
 
-			<span className="xs-span">
-				<span className="sub-text">Precio: </span>${((props.detail.get('price') * (1 - props.detail.get('discount')/100))/100).toFixed(2)}
+			<span className='xs-span'>
+				<span className='sub-text'>Precio: </span>${((props.detail.get('price') * (1 - props.detail.get('discount')/100))/100).toFixed(2)}
 			</span>
 
-			<span className="xs-span">
+			<span className='xs-span'>
 				{props.editable ?
 					<QuantityDrop
 						stock={props.detail.get('stock')}
@@ -106,21 +106,21 @@ const OrderRow = (props) => (
 				}
 			</span>
 
-			<span className="xs-span">
-				<span className="sub-text">Subtotal: </span>${(props.detail.get('sub_total')/100).toFixed(2)}
+			<span className='xs-span'>
+				<span className='sub-text'>Subtotal: </span>${(props.detail.get('sub_total')/100).toFixed(2)}
 			</span>
 		</td>
 
 
-		<td className="sm-td">
+		<td className='sm-td'>
 			{props.detail.get('name')}
 		</td>
 
-		<td className="sm-td">
+		<td className='sm-td'>
       ${((props.detail.get('price') * (1 - props.detail.get('discount')/100))/100).toFixed(2)}
 		</td>
 
-		<td className="sm-td">
+		<td className='sm-td'>
 			{props.editable ?
 				<QuantityDrop
 					stock={props.detail.get('stock')}
@@ -131,13 +131,13 @@ const OrderRow = (props) => (
 			}
 		</td>
 
-		<td className="sm-td">
+		<td className='sm-td'>
       ${(props.detail.get('sub_total')/100).toFixed(2)}
 		</td>
 
 		{props.editable &&
 			<td>
-				<Clear fill="red" onClick={props.onRequestRemove}/>
+				<Clear fill='red' onClick={props.onRequestRemove}/>
 			</td>
 		}
 	</tr>

@@ -27,7 +27,7 @@ export default class BackofficeShow extends React.Component {
 
 		return (
 			<main>
-				<ul className="backoffice-nav">
+				<ul className='backoffice-nav'>
 					<li>
 						<Link to={`${match.url}/orders?status=pagado&page=0`}>Orders</Link>
 					</li>

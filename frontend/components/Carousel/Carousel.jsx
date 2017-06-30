@@ -19,14 +19,14 @@ export default class Carousel extends React.Component {
 		}
 
 		const carList = banners.get('rows').map( (banner, index) =>
-			<Link key={index} to={banner.get('link_to')} className="carousel-item">
+			<Link key={index} to={banner.get('link_to')} className='carousel-item'>
 				<picture>
 					<source
 						srcSet={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_sm.jpg`}
-						media="(max-width: 463px)"/>
-					<img className="carousel-img"
+						media='(max-width: 463px)'/>
+					<img className='carousel-img'
 						src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${banner.get('id')}_lg.jpg`}
-						alt="Banner Image"/>
+						alt='Banner Image'/>
 				</picture>
 			</Link>
 		)
@@ -42,7 +42,7 @@ export default class Carousel extends React.Component {
 		}
 
 		return (
-			<div id="banners" className="carousel">
+			<div id='banners' className='carousel'>
 				<Slider {...settings}>
 					{carList}
 				</Slider>

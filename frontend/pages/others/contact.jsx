@@ -61,29 +61,29 @@ class Contact extends React.Component {
 			<main>
 				<h2>Contáctanos</h2>
 				<form
-					className="main-form"
+					className='main-form'
 					style={{maxWidth: '400px', width: '100%'}}
 					onSubmit={this.handleSubmit}>
 
-					<label htmlFor="name">Nombre</label>
-					{errors.get('name') && <div className="error-div">{errors.get('name')}</div>}
-					<input type="text" name="name"
+					<label htmlFor='name'>Nombre</label>
+					{errors.get('name') && <div className='error-div'>{errors.get('name')}</div>}
+					<input type='text' name='name'
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="email">Email</label>
-					{errors.get('email') && <div className="error-div">{errors.get('email')}</div>}
-					<input type="text" name="email"
+					<label htmlFor='email'>Email</label>
+					{errors.get('email') && <div className='error-div'>{errors.get('email')}</div>}
+					<input type='text' name='email'
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}/>
 
-					<label htmlFor="question">Pregunta</label>
-					{errors.get('question') && <div className="error-div">{errors.get('question')}</div>}
-					<textarea name="question" className="input" rows="5" cols="40"
+					<label htmlFor='question'>Pregunta</label>
+					{errors.get('question') && <div className='error-div'>{errors.get('question')}</div>}
+					<textarea name='question' className='input' rows='5' cols='40'
 						onBlur={this.handleInputBlur}
 						onFocus={this.handleInputFocus}></textarea>
 
-					<input className="submit full" type="submit" value="Enviar"/>
+					<input className='submit full' type='submit' value='Enviar'/>
 				</form>
 			</main>
 		)

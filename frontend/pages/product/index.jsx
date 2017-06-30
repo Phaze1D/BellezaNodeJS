@@ -90,15 +90,15 @@ export default class ProductsIndex extends React.Component {
 
 		return (
 			<div>
-				<div className="protop">
-					<Link to={'product/new'} className="secondary-button">Add Product</Link>
+				<div className='protop'>
+					<Link to={'product/new'} className='secondary-button'>Add Product</Link>
 					<form onSubmit={this.handleSearch}>
-						<input type="text" name="query"/>
-						<input type="submit" style={{display: 'none'}}/>
+						<input type='text' name='query'/>
+						<input type='submit' style={{display: 'none'}}/>
 					</form>
 				</div>
 				<Loader>
-					<table className="backoffice-table">
+					<table className='backoffice-table'>
 						<thead>
 							<tr>
 								<th>PLU</th>
@@ -114,7 +114,7 @@ export default class ProductsIndex extends React.Component {
 
 						<tfoot>
 							<tr>
-								<td colSpan="4">
+								<td colSpan='4'>
 									<Pagination
 										links={links}
 										page={this.state.page}

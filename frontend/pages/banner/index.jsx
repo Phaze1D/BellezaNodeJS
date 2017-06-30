@@ -83,12 +83,12 @@ class BannersIndex extends React.Component {
 
 		return (
 			<div>
-				<div className="protop">
-					<Link to ="/backoffice/banner/new" className="secondary-button">Add Banner</Link>
+				<div className='protop'>
+					<Link to ='/backoffice/banner/new' className='secondary-button'>Add Banner</Link>
 				</div>
 
 				<Loader>
-					<table className="backoffice-table">
+					<table className='backoffice-table'>
 						<thead>
 							<tr>
 								<th>Image</th>
@@ -107,7 +107,7 @@ class BannersIndex extends React.Component {
 
 						<tfoot>
 							<tr>
-								<td colSpan="7">
+								<td colSpan='7'>
 									<Pagination
 										links={links}
 										page={this.state.page}
@@ -128,7 +128,7 @@ export default BannersIndex
 const BannerItem = props => (
 	<tr>
 		<td>
-			<img className="banner-sm" src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${props.banner.get('id')}_lg.jpg`}/>
+			<img className='banner-sm' src={`https://s3-us-west-1.amazonaws.com/belleza-node/banners/${props.banner.get('id')}_lg.jpg`}/>
 		</td>
 		<td>
 			<Link to={props.banner.get('link_to')}>Link</Link>

@@ -70,35 +70,35 @@ class CodesNew extends React.Component {
 
 		return (
 			<div>
-				<h2><span className="sub-text">Discount Code For:</span> {client.get('first_name')} {client.get('last_name')}</h2>
-				<h4><span className="sub-text">Email:</span> {client.get('email')}</h4>
+				<h2><span className='sub-text'>Discount Code For:</span> {client.get('first_name')} {client.get('last_name')}</h2>
+				<h4><span className='sub-text'>Email:</span> {client.get('email')}</h4>
 
-				<form className="main-form grid-wrap center" onSubmit={this.handleSubmit}>
-					<div className="col-6">
+				<form className='main-form grid-wrap center' onSubmit={this.handleSubmit}>
+					<div className='col-6'>
 						<label>Discount Code</label>
-						{errors.get('code') && <div className="error-div">{errors.get('code')}</div>}
-						<input type="text" name="code"/>
+						{errors.get('code') && <div className='error-div'>{errors.get('code')}</div>}
+						<input type='text' name='code'/>
 					</div>
-					<div className="col-6"></div>
+					<div className='col-6'></div>
 
-					<div className="col-4">
+					<div className='col-4'>
 						<label>Discount Amount</label>
-						{errors.get('discount') && <div className="error-div">{errors.get('discount')}</div>}
-						<input type="number" name="discount" min='0' max='90'/>
+						{errors.get('discount') && <div className='error-div'>{errors.get('discount')}</div>}
+						<input type='number' name='discount' min='0' max='90'/>
 					</div>
 
-					<div className="col-6"></div>
-					<div className="col-6">
+					<div className='col-6'></div>
+					<div className='col-6'>
 						<label>Expires</label>
-						{errors.get('expires_date') && <div className="error-div">{errors.get('expires_date')}</div>}
-						<input type="date" name="expires_date"/>
+						{errors.get('expires_date') && <div className='error-div'>{errors.get('expires_date')}</div>}
+						<input type='date' name='expires_date'/>
 					</div>
 
-					<div className="col-6"></div>
+					<div className='col-6'></div>
 					<Loader>
-						<div className="col-6">
-							<input className="submit full" type="submit" value="Send"/>
-							<Link className="cancel full" to="/backoffice/users">Cancel</Link>
+						<div className='col-6'>
+							<input className='submit full' type='submit' value='Send'/>
+							<Link className='cancel full' to='/backoffice/users'>Cancel</Link>
 						</div>
 					</Loader>
 

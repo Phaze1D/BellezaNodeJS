@@ -50,16 +50,16 @@ export default class Favorites extends React.Component {
 			return null
 		}
 		const favList = products.get('rows').map( (product, index) =>
-			<div key={index} className="fav-item" draggable="false">
-				<Link to={`/product/${product.get('id')}`} draggable="false">
-					<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable="false"/>
-					<p className="overflow-text">{product.get('name')}</p>
+			<div key={index} className='fav-item' draggable='false'>
+				<Link to={`/product/${product.get('id')}`} draggable='false'>
+					<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${product.get('plu')}.jpg`} alt={product.get('name')} draggable='false'/>
+					<p className='overflow-text'>{product.get('name')}</p>
 				</Link>
 			</div>
 		)
 
 		return (
-			<div id="favorites" className="fav-wrapper">
+			<div id='favorites' className='fav-wrapper'>
 				<Slider {...settings}>
 					{favList}
 				</Slider>
@@ -71,7 +71,7 @@ export default class Favorites extends React.Component {
 
 const NextArrow = (props) => {
 	return (
-		<button className="fav-arrow" onClick={props.onClick} className={props.className}>
+		<button className='fav-arrow' onClick={props.onClick} className={props.className}>
 			<ArrowRight/>
 		</button>
 	)

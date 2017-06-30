@@ -65,22 +65,22 @@ class PasswordReset extends React.Component {
 			<main>
 				<h2>Restablecer la Contraseña</h2>
 				<Loader>
-					<form className="main-form" style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit} autoComplete="nope">
-						<input name="femail" type="text" style={{display: 'none'}}/>
-						<input name="fpassword" type="password" style={{display: 'none'}}/>
+					<form className='main-form' style={{width: '100%', maxWidth: '400px'}} onSubmit={this.handleSubmit} autoComplete='nope'>
+						<input name='femail' type='text' style={{display: 'none'}}/>
+						<input name='fpassword' type='password' style={{display: 'none'}}/>
 
-						<label htmlFor="email">Email</label>
-						<input name="email" type="text" onFocus={this.handleInputFocus}
-							autoComplete="nope"
-							defaultValue=" "/>
+						<label htmlFor='email'>Email</label>
+						<input name='email' type='text' onFocus={this.handleInputFocus}
+							autoComplete='nope'
+							defaultValue=' '/>
 
-						<label htmlFor="password">Password</label>
-						{errors.get('password') && <div className="error-div">{errors.get('password')}</div>}
-						<input name="password" type="password" onFocus={this.handleInputFocus} autoComplete="nope"/>
+						<label htmlFor='password'>Password</label>
+						{errors.get('password') && <div className='error-div'>{errors.get('password')}</div>}
+						<input name='password' type='password' onFocus={this.handleInputFocus} autoComplete='nope'/>
 
 
-						<input  className="submit full"  type="submit" value="Enviar"/>
-						{errors.get('token') && <div className="error-div">{errors.get('token')}</div>}
+						<input  className='submit full'  type='submit' value='Enviar'/>
+						{errors.get('token') && <div className='error-div'>{errors.get('token')}</div>}
 					</form>
 				</Loader>
 			</main>

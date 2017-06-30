@@ -18,10 +18,10 @@ class UserShow extends React.Component {
 		}
 
 		return (
-			<main className="grid-wrap around top">
+			<main className='grid-wrap around top'>
 
-				<section className="col-3 col-sm-4 col-xs-12">
-					<ul id="user-options" className="box">
+				<section className='col-3 col-sm-4 col-xs-12'>
+					<ul id='user-options' className='box'>
 						<h4>Mis Pedidos</h4>
 						<li>
 							<Link to={`${match.url}/orders?page=0`}>Historial de Pedidos</Link>
@@ -41,14 +41,14 @@ class UserShow extends React.Component {
 						</li>
 
 						{user.get('admin') &&
-														<li>
-															<Link to="/backoffice/orders?status=pendiente&page=0">Backoffice</Link>
-														</li>
+							<li>
+								<Link to='/backoffice/orders?status=pendiente&page=0'>Backoffice</Link>
+							</li>
 						}
 
 						<h4>Privacidad</h4>
 						<li>
-							<Link to="/terminosCondiciones">Política de Privacidad</Link>
+							<Link to='/terminosCondiciones'>Política de Privacidad</Link>
 						</li>
 					</ul>
 				</section>

@@ -51,27 +51,27 @@ class OrderShow extends React.Component {
 			<Loader>
 				<main>
 					<h2 className={`status-${order.get('status')}`}>Status: {order.get('status')}</h2>
-					<h4 className="sub-text">Referencia: #{order.get('id')}</h4>
-					<h4 className="sub-text">
+					<h4 className='sub-text'>Referencia: #{order.get('id')}</h4>
+					<h4 className='sub-text'>
             Fecha Realizado: {new Date(order.get('created_at')).toLocaleString('en-us', dateOptions)}
 					</h4>
 					{order.get('notes') &&
-						<h4 className="sub-text">
+						<h4 className='sub-text'>
 							Notas: {order.get('notes')}
 						</h4>
 					}
-					<div className="grid-wrap">
-						<div className="col-9 col-md-8 col-sm-12">
+					<div className='grid-wrap'>
+						<div className='col-9 col-md-8 col-sm-12'>
 							<OrderTable
 								order={order}
 								editable={false}/>
 						</div>
 
 
-						<div className="col-3 col-md-4 col-sm-12">
-							<Address address={order.get('shippingAddress')} title="Dirección de Envío"/>
+						<div className='col-3 col-md-4 col-sm-12'>
+							<Address address={order.get('shippingAddress')} title='Dirección de Envío'/>
 							{order.get('invoiceAddress') != null && !order.get('invoiceAddress').isEmpty() &&
-																<Address address={order.get('invoiceAddress')} title="Facturacion" rfc={order.get('rfc')} razonSocial={order.get('razon_social')}/>
+																<Address address={order.get('invoiceAddress')} title='Facturacion' rfc={order.get('rfc')} razonSocial={order.get('razon_social')}/>
 							}
 						</div>
 					</div>

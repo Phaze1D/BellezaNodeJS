@@ -47,12 +47,12 @@ class CheckoutSuccessful extends React.Component {
 						clabe={cart.getIn(['charges', 'payment_method', 'clabe'])}/>
 				}
 
-				<div className="col-8 col-xs-12">
-					<Address address={cart.get('shippingAddress')} title="Dirección de Envío"/>
+				<div className='col-8 col-xs-12'>
+					<Address address={cart.get('shippingAddress')} title='Dirección de Envío'/>
 					{!cart.get('invoiceAddress').isEmpty() &&
 						<Address
 							address={cart.get('invoiceAddress')}
-							title="Facturacion"
+							title='Facturacion'
 							rfc={cart.get('rfc')}
 							razonSocial={cart.get('razon_social')}/>
 					}
@@ -69,13 +69,13 @@ export default CheckoutSuccessful
 
 
 const CardSuccess = (props) => (
-	<div className="col-8 col-xs-12">
+	<div className='col-8 col-xs-12'>
 		<h2 style={{color: '#1eab30'}}>Pago Exitoso</h2>
 		<p>
       Tu pedido está siendo procesado
 			<br/>
       Te hemos enviado instrucciones a su correo electrónico
-      (<span className="sub-text light"> {props.email} </span>) acerca de su estado de la orden
+      (<span className='sub-text light'> {props.email} </span>) acerca de su estado de la orden
 			<br/>
 		</p>
 	</div>
@@ -83,28 +83,28 @@ const CardSuccess = (props) => (
 
 
 const OxxoSuccess = (props) => (
-	<div className="col-8 col-xs-12">
+	<div className='col-8 col-xs-12'>
 		<h2 style={{color: '#FFC107'}}>En Espera de Pago</h2>
 		<p>
       Cuando el pago se ha hecho, enviaremos su pedido
 			<br/>
       Te hemos enviado instrucciones a su correo electrónico
-      (<span className="sub-text light">{props.email}</span>) acerca de su estado de la orden
+      (<span className='sub-text light'>{props.email}</span>) acerca de su estado de la orden
 			<br/>
 		</p>
 
-		<div className="oxxo-sub">
-			<div className="opps-info">
-				<div className="opps-brand"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxopay.png" alt="OXXOPay"/></div>
-				<div className="opps-amount">
+		<div className='oxxo-sub'>
+			<div className='opps-info'>
+				<div className='opps-brand'><img src='https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxopay.png' alt='OXXOPay'/></div>
+				<div className='opps-amount'>
 					<h3>Monto a pagar</h3>
 					<h2>${(props.total/100).toFixed(2)}<sup>MXN</sup></h2>
-					<p className="sub-text">OXXO cobrará una comisión adicional al momento de realizar el pago.</p>
-					<p className="sub-text">Esto expira en 3 días</p>
+					<p className='sub-text'>OXXO cobrará una comisión adicional al momento de realizar el pago.</p>
+					<p className='sub-text'>Esto expira en 3 días</p>
 				</div>
 			</div>
 
-			<div className="box ref-box">
+			<div className='box ref-box'>
 				<h3>Referencia</h3>
 				<h1>{props.reference}</h1>
 			</div>
@@ -112,7 +112,7 @@ const OxxoSuccess = (props) => (
 			<h3>Instrucciones</h3>
 
 			<ol>
-				<li>Acude a la tienda OXXO más cercana. <a href="https://www.google.com.mx/maps/search/oxxo/" target="_blank">Encuéntrala aquí</a>.</li>
+				<li>Acude a la tienda OXXO más cercana. <a href='https://www.google.com.mx/maps/search/oxxo/' target='_blank'>Encuéntrala aquí</a>.</li>
 				<li>Indica en caja que quieres ralizar un pago de <strong>OXXOPay</strong>.</li>
 				<li>Dicta al cajero el número de referencia en esta ficha para que tecleé directamete en la pantalla de venta.</li>
 				<li>Realiza el pago correspondiente con dinero en efectivo.</li>
@@ -126,31 +126,31 @@ const OxxoSuccess = (props) => (
 )
 
 const BankSuccess = (props) => (
-	<div className="col-8 col-xs-12">
+	<div className='col-8 col-xs-12'>
 		<h2 style={{color: '#FFC107'}}>En Espera de Pago</h2>
 		<p>
       Cuando el pago se ha hecho, enviaremos su pedido
 			<br/>
       Te hemos enviado instrucciones a su correo electrónico
-      (<span className="sub-text light">{props.email}</span>) acerca de su estado de la orden
+      (<span className='sub-text light'>{props.email}</span>) acerca de su estado de la orden
 			<br/>
 		</p>
 
-		<div className="oxxo-sub">
-			<div className="opps-info">
-				<div className="opps-brand"><img src="https://s3-us-west-1.amazonaws.com/belleza-node/web/spei.png" alt="SPEI"/></div>
-				<div className="opps-amount">
+		<div className='oxxo-sub'>
+			<div className='opps-info'>
+				<div className='opps-brand'><img src='https://s3-us-west-1.amazonaws.com/belleza-node/web/spei.png' alt='SPEI'/></div>
+				<div className='opps-amount'>
 					<h3>Monto a pagar</h3>
 					<h2>${(props.total/100).toFixed(2)}<sup>MXN</sup></h2>
-					<p className="sub-text">Esto expira en 3 días</p>
+					<p className='sub-text'>Esto expira en 3 días</p>
 				</div>
 			</div>
 
-			<div className="box ref-box">
+			<div className='box ref-box'>
 				<h3>Banco Santander</h3>
-				<h3>Cuenta a Nombre De: <span className="sub-text">COMERCIALIZADORA VIDA FLOR S.A. DE C.V</span></h3>
-				<h3>Numero de Cuenta: <span className="sub-text">92000400080</span></h3>
-				<h3>Clabe: <span className="sub-text">014320920004000807</span></h3>
+				<h3>Cuenta a Nombre De: <span className='sub-text'>COMERCIALIZADORA VIDA FLOR S.A. DE C.V</span></h3>
+				<h3>Numero de Cuenta: <span className='sub-text'>92000400080</span></h3>
+				<h3>Clabe: <span className='sub-text'>014320920004000807</span></h3>
 			</div>
 
 			<h3>Instrucciones</h3>

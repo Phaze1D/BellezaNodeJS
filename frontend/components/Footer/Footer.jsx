@@ -38,22 +38,22 @@ export default class Footer extends React.Component {
 
 		return (
 			<footer>
-				<div id="footer-divider" className="grid center around cover-image"
+				<div id='footer-divider' className='grid center around cover-image'
 					style={{backgroundImage: 'url(https://s3-us-west-1.amazonaws.com/belleza-node/web/footer.jpg)'}}>
-					<h4 className="col-xs-hide grow">{subText}</h4>
+					<h4 className='col-xs-hide grow'>{subText}</h4>
 
 					{!this.state.submitted &&
 						<form onSubmit={this.handleSubmit}>
-							<input type="submit" style={{display: 'none'}}/>
-							<input type="text" name="email" placeholder="Email y Presione Entre"/>
+							<input type='submit' style={{display: 'none'}}/>
+							<input type='text' name='email' placeholder='Email y Presione Entre'/>
 						</form>
 					}
 				</div>
 
-				<div className="grid-wrap around" style={{margin: '0 16px'}}>
-					<section className="col-4 col-sm-6 first-sm col-xs-12">
+				<div className='grid-wrap around' style={{margin: '0 16px'}}>
+					<section className='col-4 col-sm-6 first-sm col-xs-12'>
 						<h3>Ubicaciones</h3>
-						<a className="footer-address-title" href="#" title="Oficina Matriz">Oficina Matriz</a>
+						<a className='footer-address-title' href='#' title='Oficina Matriz'>Oficina Matriz</a>
 						<address>
 							Rubén Darío 1208-PB 2b, Col. Providencia,<br/>
 							Guadalajara Jalisco 44647<br/>
@@ -62,31 +62,31 @@ export default class Footer extends React.Component {
 						</address>
 					</section>
 
-					<section className="col-3 col-sm-12 last-sm col-xs-12">
+					<section className='col-3 col-sm-12 last-sm col-xs-12'>
 						<h3>Acerca de</h3>
-						<ul className="ul-dots">
+						<ul className='ul-dots'>
 							<li>
-								<Link to="/quiensomos"> Quienes Somos</Link>
+								<Link to='/quiensomos'> Quienes Somos</Link>
 							</li>
 
 							<li>
-								<Link to="/history"> Historia</Link>
+								<Link to='/history'> Historia</Link>
 							</li>
 
 							<li>
-								<Link to="/nuestrapromesa"> Nuestras Promesas</Link>
+								<Link to='/nuestrapromesa'> Nuestras Promesas</Link>
 							</li>
 
 							<li>
-								<Link to="/porqueorganico"> ¿Porqué Orgánico?</Link>
+								<Link to='/porqueorganico'> ¿Porqué Orgánico?</Link>
 							</li>
 
 							<li>
-								<Link to="/awards"> Reconocimientos</Link>
+								<Link to='/awards'> Reconocimientos</Link>
 							</li>
 
 							<li>
-								<Link to="/terminoscondiciones"> Términos y condiciones</Link>
+								<Link to='/terminoscondiciones'> Términos y condiciones</Link>
 							</li>
 
 							{/*
@@ -96,28 +96,28 @@ export default class Footer extends React.Component {
               */}
 
 							<li>
-								<a href="http://www.nealsyardremedies.com/store-finder#international" target="_blank">Tiendas Internacionales</a>
+								<a href='http://www.nealsyardremedies.com/store-finder#international' target='_blank'>Tiendas Internacionales</a>
 							</li>
 						</ul>
 					</section>
 
-					<section className="col-4 col-sm-6 first-sm col-xs-12">
+					<section className='col-4 col-sm-6 first-sm col-xs-12'>
 						<h3>Redes Sociales</h3>
-						<ul className="grid center around footer-img-ul">
-							<li className="col-2">
-								<a href="https://www.facebook.com/BellezaOrganicaCertificada/" target="_blank" title="facebook page">
-									<i className="fa fa-facebook-square" aria-hidden="true"></i>
+						<ul className='grid center around footer-img-ul'>
+							<li className='col-2'>
+								<a href='https://www.facebook.com/BellezaOrganicaCertificada/' target='_blank' title='facebook page'>
+									<i className='fa fa-facebook-square' aria-hidden='true'></i>
 								</a>
 							</li>
 
-							<li className="col-2">
-								<a href="https://twitter.com/NealsYardMexico" target="_blank" title="twitter page">
-									<i className="fa fa-twitter-square" aria-hidden="true"></i>
+							<li className='col-2'>
+								<a href='https://twitter.com/NealsYardMexico' target='_blank' title='twitter page'>
+									<i className='fa fa-twitter-square' aria-hidden='true'></i>
 								</a>
 							</li>
 
-							<li className="col-2">
-								<a href="https://www.instagram.com/nyr_mexico/" target="_blank" title="instagram page">
+							<li className='col-2'>
+								<a href='https://www.instagram.com/nyr_mexico/' target='_blank' title='instagram page'>
 									<div className='instagram'>
 									</div>
 								</a>
@@ -125,33 +125,33 @@ export default class Footer extends React.Component {
 						</ul>
 
 						<h3>Métodos de Pago</h3>
-						<ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
+						<ul className='grid center around footer-img-ul' style={{marginTop: '0'}}>
 							<li>
-								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png" alt="visa"/>
+								<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/visa.png' alt='visa'/>
 							</li>
 
 							<li>
-								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png" alt="mastercard"/>
+								<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/mastercard.png' alt='mastercard'/>
 							</li>
 
 							<li>
-								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png" alt="americanexpress"/>
+								<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/americanexpress.png' alt='americanexpress'/>
 							</li>
 
 							<li>
-								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png"  alt="oxxo"/>
+								<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/oxxo.png'  alt='oxxo'/>
 							</li>
 
 							<li>
-								<img className="card-img" src="https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png" alt="bank transfer"/>
+								<img className='card-img' src='https://s3-us-west-1.amazonaws.com/belleza-node/web/bank.png' alt='bank transfer'/>
 							</li>
 						</ul>
 
 						<h3>Seguridad</h3>
-						<ul className="grid center around footer-img-ul" style={{marginTop: '0'}}>
+						<ul className='grid center around footer-img-ul' style={{marginTop: '0'}}>
 							<li>
-								<script type="text/javascript" src="https://seal.geotrust.com/getgeotrustsslseal?host_name=bellezaorganica.com.mx&amp;size=M&amp;lang=en"></script><br />
-								<a href="http://www.geotrust.com/ssl/" target="_blank"  style={{color:'#000000', textDecoration:'none', font:'bold 7px verdana,sans-serif', letterSpacing:'.5px', textAlign:'center', margin:'0px', padding:0}}></a>
+								<script type='text/javascript' src='https://seal.geotrust.com/getgeotrustsslseal?host_name=bellezaorganica.com.mx&amp;size=M&amp;lang=en'></script><br />
+								<a href='http://www.geotrust.com/ssl/' target='_blank'  style={{color:'#000000', textDecoration:'none', font:'bold 7px verdana,sans-serif', letterSpacing:'.5px', textAlign:'center', margin:'0px', padding:0}}></a>
 							</li>
 						</ul>
 

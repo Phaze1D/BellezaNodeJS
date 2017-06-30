@@ -53,8 +53,8 @@ class Search extends React.Component {
 		const parse = queryString.parse(history.location.search)
 		return (
 			<main>
-				<p className="search-label">Resultados para:
-          "<i><span className="sub-text light">{parse.q}</span></i>"
+				<p className='search-label'>Resultados para:
+          "<i><span className='sub-text light'>{parse.q}</span></i>"
 				</p>
 				<Results
 					products={products.get('rows')}

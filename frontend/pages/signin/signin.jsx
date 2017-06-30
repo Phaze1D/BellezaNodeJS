@@ -98,7 +98,7 @@ export default class Signin extends React.Component {
 			<main>
 				<h3>Iniciar Sesión o Crea Nuevo Usuario</h3>
 
-				<div className="grid-wrap around">
+				<div className='grid-wrap around'>
 					<LoginFrom
 						errors={errors}
 						onRequestSubmit={this.handleLogin}
@@ -119,20 +119,20 @@ export default class Signin extends React.Component {
 const LoginFrom = props => {
 
 	return (
-		<section className="col-5 col-xs-10">
-			<h4 className="h-underline">Iniciar Sesión</h4>
-			<h5 className="sub-text">Si usted ya tiene una cuenta, ingrese aquí.</h5>
-			<form className="main-form" onSubmit={props.onRequestSubmit}>
-				<label htmlFor="email">Email</label>
-				{props.errors.get('login') && <div className="error-div">{props.errors.get('login')}</div>}
-				<input type="text" name="login"
+		<section className='col-5 col-xs-10'>
+			<h4 className='h-underline'>Iniciar Sesión</h4>
+			<h5 className='sub-text'>Si usted ya tiene una cuenta, ingrese aquí.</h5>
+			<form className='main-form' onSubmit={props.onRequestSubmit}>
+				<label htmlFor='email'>Email</label>
+				{props.errors.get('login') && <div className='error-div'>{props.errors.get('login')}</div>}
+				<input type='text' name='login'
 					onFocus={props.onRequestFocus}/>
 
-				<label htmlFor="password">Contraseña <Link to="/password/forgot" className="sub-text light" style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
-				<input type="password" name="password"/>
+				<label htmlFor='password'>Contraseña <Link to='/password/forgot' className='sub-text light' style={{float: 'right'}}>(Olvidó su Contraseña)</Link></label>
+				<input type='password' name='password'/>
 
 				<Loader>
-					<input className="submit full" type="submit" value="Ingresar"/>
+					<input className='submit full' type='submit' value='Ingresar'/>
 				</Loader>
 			</form>
 		</section>
@@ -142,44 +142,44 @@ const LoginFrom = props => {
 const SignUpForm = props => {
 
 	return (
-		<section className="col-5 col-xs-10">
-			<h4 className="h-underline">Crea Nuevo Usuario</h4>
-			<h5 className="sub-text">
+		<section className='col-5 col-xs-10'>
+			<h4 className='h-underline'>Crea Nuevo Usuario</h4>
+			<h5 className='sub-text'>
 				Al crear una cuenta en nuestra tienda, usted será capaz de moverse a través del proceso
         de pago más rápido, guardar múltiples direcciones de envío.
 			</h5>
-			<form className="main-form" onSubmit={props.onRequestSubmit} autoComplete="dont you dare chrome">
+			<form className='main-form' onSubmit={props.onRequestSubmit} autoComplete='dont you dare chrome'>
 
-				<label htmlFor="first_name">Nombre</label>
-				{props.errors.get('first_name') && <div className="error-div">{props.errors.get('first_name')}</div>}
-				<input type="text" name="first_name"
+				<label htmlFor='first_name'>Nombre</label>
+				{props.errors.get('first_name') && <div className='error-div'>{props.errors.get('first_name')}</div>}
+				<input type='text' name='first_name'
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
-				<label htmlFor="last_name">Apellido</label>
-				{props.errors.get('last_name') && <div className="error-div">{props.errors.get('last_name')}</div>}
-				<input type="text" name="last_name"
+				<label htmlFor='last_name'>Apellido</label>
+				{props.errors.get('last_name') && <div className='error-div'>{props.errors.get('last_name')}</div>}
+				<input type='text' name='last_name'
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
-				<label htmlFor="email">Email</label>
-				{props.errors.get('email') && <div className="error-div">{props.errors.get('email')}</div>}
-				<input type="text" name="email"
-					autoComplete="dont you dare chrome"
-					defaultValue=" "
+				<label htmlFor='email'>Email</label>
+				{props.errors.get('email') && <div className='error-div'>{props.errors.get('email')}</div>}
+				<input type='text' name='email'
+					autoComplete='dont you dare chrome'
+					defaultValue=' '
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
-				<label htmlFor="password">Contraseña </label>
-				{props.errors.get('password') && <div className="error-div">{props.errors.get('password')}</div>}
-				<input type="password" name="password"
-					autoComplete="dont you dare chrome"
-					defaultValue=""
+				<label htmlFor='password'>Contraseña </label>
+				{props.errors.get('password') && <div className='error-div'>{props.errors.get('password')}</div>}
+				<input type='password' name='password'
+					autoComplete='dont you dare chrome'
+					defaultValue=''
 					onBlur={props.onRequestBlur}
 					onFocus={props.onRequestFocus}/>
 
 				<Loader>
-					<input className="submit full" type="submit" value="Crear"/>
+					<input className='submit full' type='submit' value='Crear'/>
 				</Loader>
 
 			</form>

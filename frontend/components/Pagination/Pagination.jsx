@@ -48,7 +48,7 @@ export default class Pagination extends React.PureComponent {
 			const ar = classnames('white-button margin-button arrow-button', {'disable': page + 1 >= children.length})
 
 			return (
-				<div className="grid center">
+				<div className='grid center'>
 					<Link className={al} to={(links.length > 0 && page > 0) ? links[page - 1].value : '#'}
 						onClick={this.handleClick.bind(this, page - 1)}>
 						<ArrowLeft/>
@@ -90,13 +90,13 @@ export default class Pagination extends React.PureComponent {
 			}
 
 			return (
-				<div className="grid center">
+				<div className='grid center'>
 					{children.length > 1 && startArray}
 
-					{midArray.length > 0 && <span className="white-button disable margin-button">...</span>}
+					{midArray.length > 0 && <span className='white-button disable margin-button'>...</span>}
 					{midArray.length > 0 && midArray}
 
-					{children.length > this.startMax + 2 && <span className="white-button disable margin-button">...</span>}
+					{children.length > this.startMax + 2 && <span className='white-button disable margin-button'>...</span>}
 
 					{endArray}
 				</div>

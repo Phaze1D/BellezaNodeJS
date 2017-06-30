@@ -58,9 +58,9 @@ export default class Results extends React.Component {
 
 		return (
 			<section>
-				<div className="grid-wrap between results-options center">
-					<div className="grid center">
-						<span className="col-xxs-hide" style={{marginRight: '16px'}}>Ordenar por:</span>
+				<div className='grid-wrap between results-options center'>
+					<div className='grid center'>
+						<span className='col-xxs-hide' style={{marginRight: '16px'}}>Ordenar por:</span>
 						<DropDown
 							url={url}
 							focuson={this.state.sortIndex}
@@ -74,7 +74,7 @@ export default class Results extends React.Component {
 				</div>
 
 				{prodList.size > 0 ?
-					<div className="grid-wrap">
+					<div className='grid-wrap'>
 						{prodList}
 					</div>
 					:
@@ -82,7 +82,7 @@ export default class Results extends React.Component {
 				}
 
 				{links.length > 1 &&
-					<div className="grid between results-options center end">
+					<div className='grid between results-options center end'>
 						<Pagination
 							links={links}
 							page={this.state.page}

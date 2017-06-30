@@ -35,17 +35,17 @@ export default class CartBox extends React.PureComponent {
 				onMouseLeave={this.handleMouseLeave}>
 				<h3>Tu Carrito</h3>
 
-				<div className="cart-mid">
-					{cart.get('details').size == 0 && <h4 className="sub-text">No Hay Productos</h4>}
+				<div className='cart-mid'>
+					{cart.get('details').size == 0 && <h4 className='sub-text'>No Hay Productos</h4>}
 					<ul>
 						{detList}
 					</ul>
 				</div>
 
 				{cart.get('details').size > 0 &&
-										<div className="cart-bottom">
-											<Link className="light-button margin-button" to="/cart">Detalles</Link>
-											<Link className="dark-button margin-button" to="/checkout">Checkout</Link>
+										<div className='cart-bottom'>
+											<Link className='light-button margin-button' to='/cart'>Detalles</Link>
+											<Link className='dark-button margin-button' to='/checkout'>Checkout</Link>
 										</div>
 				}
 			</div>
@@ -55,12 +55,12 @@ export default class CartBox extends React.PureComponent {
 
 
 const CartItem = props => (
-	<li className="cart-item">
+	<li className='cart-item'>
 		<img src={`https://s3-us-west-1.amazonaws.com/belleza-node/products/xxs/${props.detail.get('plu')}.jpg`}/>
 		<div>
-			<p className="overflow-text">{props.detail.get('name')}</p>
-			<p><span className="sub-text">Cantidad:</span> {props.detail.get('quantity')}</p>
-			<p><span className="sub-text">Precio:</span> ${(props.detail.get('sub_total')/100).toFixed(2)} </p>
+			<p className='overflow-text'>{props.detail.get('name')}</p>
+			<p><span className='sub-text'>Cantidad:</span> {props.detail.get('quantity')}</p>
+			<p><span className='sub-text'>Precio:</span> ${(props.detail.get('sub_total')/100).toFixed(2)} </p>
 		</div>
 	</li>
 )

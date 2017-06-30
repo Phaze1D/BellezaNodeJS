@@ -68,7 +68,7 @@ export default class AddressList extends React.Component {
 		} = this.props
 
 		const addrList = addresses.map( (address, index) =>
-			<div key={address.get('id')} className="col-4 col-md-6 col-sm-12">
+			<div key={address.get('id')} className='col-4 col-md-6 col-sm-12'>
 				<Address
 					address={address.set('index', index)}
 					selectable={selectable}
@@ -84,15 +84,15 @@ export default class AddressList extends React.Component {
 		return (
 			<div>
 				{ addresses.size == 0 &&
-										<p className="sub-text">Usted no tiene ninguna dirección registrada</p>
+										<p className='sub-text'>Usted no tiene ninguna dirección registrada</p>
 				}
 
-				<div className="grid-wrap" ref='grid'>
+				<div className='grid-wrap' ref='grid'>
 					{addrList}
 
 					{this.state.showForm &&
 						<div
-							className="overlay show"
+							className='overlay show'
 							onClick={this.handleOverlayClick}
 							onMouseEnter={(event) => document.body.style.overflow = 'hidden'}
 							onMouseLeave={(event) => document.body.style.overflow = ''}>
@@ -108,7 +108,7 @@ export default class AddressList extends React.Component {
 					}
 				</div>
 
-				<button className="light-button"
+				<button className='light-button'
 					onClick={this.handleShow.bind(this, Map({}))}>
           Nueva Dirección
 				</button>
@@ -160,28 +160,28 @@ class Address extends React.PureComponent {
 
 		return (
 			<div className={selClass} onClick={this.handleSelect}>
-				<p className="overflow-text">
+				<p className='overflow-text'>
 					{address.get('first_name')} {address.get('last_name')}
 				</p>
 
-				<p className="overflow-text">{address.get('telephone')}</p>
+				<p className='overflow-text'>{address.get('telephone')}</p>
 
 				<hr></hr>
 
-				<p className="overflow-text">{address.get('street')}</p>
+				<p className='overflow-text'>{address.get('street')}</p>
 
-				<p className="overflow-text">{address.get('street2')}</p>
+				<p className='overflow-text'>{address.get('street2')}</p>
 
-				<p className="overflow-text">
+				<p className='overflow-text'>
 					{address.get('city')}, {address.get('state')}
 				</p>
-				<p className="overflow-text">{address.get('zipcode')}</p>
-				<p className="overflow-text">{address.get('country')}</p>
+				<p className='overflow-text'>{address.get('zipcode')}</p>
+				<p className='overflow-text'>{address.get('country')}</p>
 
-				<ul className="grid center end">
-					<li><Link to="#" onClick={onRequestEdit}>Editar</Link></li>
-					<hr className="vertical-hr"></hr>
-					<li><Link to="#" onClick={this.handleDelete}>Borrar</Link></li>
+				<ul className='grid center end'>
+					<li><Link to='#' onClick={onRequestEdit}>Editar</Link></li>
+					<hr className='vertical-hr'></hr>
+					<li><Link to='#' onClick={this.handleDelete}>Borrar</Link></li>
 				</ul>
 			</div>
 		)

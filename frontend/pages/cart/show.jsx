@@ -40,8 +40,8 @@ class CartShow extends React.Component {
 				</h2>
 
 				{this.props.cart.get('details').size > 0 &&
-					<div className="grid end center" style={{margin: '10px 0'}}>
-						<Link to="/checkout" className="dark-button"> Checkout </Link>
+					<div className='grid end center' style={{margin: '10px 0'}}>
+						<Link to='/checkout' className='dark-button'> Checkout </Link>
 					</div>
 				}
 
@@ -55,13 +55,13 @@ class CartShow extends React.Component {
 				}
 
 				{this.props.cart.get('details').size > 0 &&
-					<div className="grid end center" style={{margin: '10px 0'}}>
-						<Link to="/checkout" className="dark-button"> Checkout </Link>
+					<div className='grid end center' style={{margin: '10px 0'}}>
+						<Link to='/checkout' className='dark-button'> Checkout </Link>
 					</div>
 				}
 
 				{this.props.cart.get('details').size == 0 &&
-					<h1 className="sub-text">Tu Carrito Esta Vacío</h1>
+					<h1 className='sub-text'>Tu Carrito Esta Vacío</h1>
 				}
 			</main>
 		)

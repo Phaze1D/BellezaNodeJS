@@ -5,8 +5,8 @@ const NuestraPro = (props) => {
 		<main>
 			<h1>Nuestra Promesa</h1>
 
-			<div className="grid top">
-				<div className="col-9">
+			<div className='grid top'>
+				<div className='col-9'>
 					<p><strong><em>Qué hay en nuestros productos?</em></strong><br />
           Desarrollamos nuestros productos en nuestro laboratorio en Peacemarsh, Inglaterra, combinando extractos de plantas orgánicas tradicionales con los últimos avances en la Química verde podemos ofrecerte la gama más efectiva, natural e innovadora de la salud orgánica y cuidados de belleza disponibles en el mercado.<br />
           Utilizamos una amplia gama de ingredientes orgánicos y naturales; sin embargo te queremos informar de algunos ingredientes que no usamos y que pudieran causarte algún daño:</p>
@@ -38,7 +38,7 @@ const NuestraPro = (props) => {
           Nuestro compromiso con el uso de ingredientes seguros y naturales con una tradición terapéutica altamente reconocida crea productos que son beneficiosos para usted y para el medio ambiente. Todos nuestros productos son sometidos a pruebas estrictas de calidad para garantizar que son seguros y eficaces para su uso.</p>
 				</div>
 
-				<img className="col-3" src="https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/nuestra-promesa.png" alt="" />
+				<img className='col-3' src='https://s3-us-west-1.amazonaws.com/belleza-organica-images/images/web/nuestra-promesa.png' alt='' />
 
 			</div>
 
