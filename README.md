@@ -51,6 +51,46 @@ I structured the redux store accordingly because each object represents either a
 
 There are multiple reducer functions for each individual object and I used the reduce-reducers package to combine them into one.
 
+#### Code Splitting With Webpack
+To improve the initial load time I used Webpack's code splitting technic to create 4 chunks. The main chunk contains the most important information like the product's and category's pages, where a user would not be required to be logged in.
+
+
+This chunk is part of the app where a user would have to be logged in to access. So the payments pages and the user's profile and the back-office for admin users.
+```
+require.ensure([], function (require) {
+	UserShow = require('pages/user/show').default
+	CheckoutDirections = require('pages/checkout/directions').default
+	CheckoutConfirmation = require('pages/checkout/confirmation').default
+	CheckoutSuccessful = require('pages/checkout/successful').default
+	OrderShow = require('pages/order/show').default
+	BackofficeShow = require('pages/backoffice/show').default
+})
+```
+
+This chunk is part of the payment gateway that I use. I could put this file with the previous chunk, but unfortunately, this throws an error when using server side rendering, so I had to require it from a different file that is not run on the server.
+```
+require.ensure([], function (require) {
+	require('utils/conekta.js')
+})
+```
+
+This last chunk is all static components that are not essential to the web app, and they take up a lot of space, so I separated them into a different chunk to priorities the main components/pages.
+```
+require.ensure([], function (require) {
+	QuienSomos = require('pages/others/quien_somos').default
+	History = require('pages/others/history').default
+	NuestraPro = require('pages/others/nuestra_pro').default
+	PorqueOrganico = require('pages/others/porque_organico').default
+	Terms = require('pages/others/terms').default
+	Awards = require('pages/others/awards').default
+	PasswordForgot = require('pages/password/forgot').default
+	Stores = require('pages/store/stores').default
+})
+```
+
+
+
+
 ### Backend
 For the backend code, I used ExpressJS to handle all the web requests and some rendering. For the view renderer, I used handlebars, but I only use it to render email templates and the initial index.html page. For rendering the actual web app I used React Server Side render, and for handling a user's session, I used JSON Web Tokens (JWT). The ORM that I use to connect to the MySQL database is Sequelize. Sequelize is one of the most popular ORM for NodeJS, and I found it very simple to use.
 
