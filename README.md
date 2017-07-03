@@ -74,7 +74,7 @@ require.ensure([], function (require) {
 })
 ```
 
-This last chunk is all static components that are not essential to the web app, and they take up a lot of space, so I separated them into a different chunk to priorities the main components/pages.
+This last chunk is all static components that are not essential to the web app, and they take up a lot of space, so I separated them into a different chunk to prioritize the main components/pages.
 ```
 require.ensure([], function (require) {
 	QuienSomos = require('pages/others/quien_somos').default
@@ -87,9 +87,6 @@ require.ensure([], function (require) {
 	Stores = require('pages/store/stores').default
 })
 ```
-
-
-
 
 ### Backend
 For the backend code, I used ExpressJS to handle all the web requests and some rendering. For the view renderer, I used handlebars, but I only use it to render email templates and the initial index.html page. For rendering the actual web app I used React Server Side render, and for handling a user's session, I used JSON Web Tokens (JWT). The ORM that I use to connect to the MySQL database is Sequelize. Sequelize is one of the most popular ORM for NodeJS, and I found it very simple to use.
@@ -155,13 +152,30 @@ module.exports = function (promises, map, url) {
 
 
 ## Production
+For the frontend production build I used [webpack.config.production.js](webpack.config.production.js) config file to minify the CSS and Javascript, reducing the bundle from 1.34 MB to 444.25 KB. For the backend production build I also webpack but with a different config file [webpack.config.server.js](webpack.config.server.js). The difference between the server config file and the frontend config file is that the server file ignores all node_modules packages and doesn't use code spliting or css loaders. The final builds are then place in the build folder (server build) and public folder (frontend build).
 
-### Security
+### Optimizations
+To optimize the page for a faster initial load speed I followed Google's [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) and got the following scores.
 
-### Optimization
+#### Desktop Score
+<img src="./readme_images/desktop_insight.png" height="260"/>
+
+#### Mobile Score
+<img src="./readme_images/mobile_insight.png" height="260"/>
+
+Unfortunately, I couldn't get a score of 100 mostly because Google also takes into account the social media feeds which reduce my score. Even so, I used GZIP to reduce the main bundle size from 444.24 KB to just 115 KB, which lead to an initial load time that is less than 1 sec on a 5mb/s network and with server side rendering I get less then 0.5s initial rendered DOM. I also used GraphicsMagick to optimize all the images on the site, and I used the picture tag to create an even better responsive experience.
+
+### Hosting
+I hosted the website on AWS, and I used Amazon's Elastic Beanstalk to simplify the process, which makes it a lot easier to quickly deploy a new version and downgrade a version if anything goes wrong. I saved all the images in an S3 bucket instead of web server mostly because of security, e.g., if a corrupt file somehow happens to be saved, it will not have access to the web server. The database is also hosted on AWS because it is straightforward to connect the database to the web server. I use Amazon builtin system alongside [PM2 Keymetrics](https://keymetrics.io/) to monitor the health of the application. For website analytics, I use the commonly known tool  Google Analytics to get information about how the website is being used and find areas where I can improve the site.
 
 ## Usage
+If you would like to contribute or just play around with the inner workings of the site you can found the next steps to the site up and running
 
-## Contributing
+1. Fork the repo
+2. Once your in the directory install the npm dependencies with `npm install`
+3. To setup, the database check out this file [here](backend/config/database.js) to see how the database is configured and checkout all the models to see what tables need to be created. Unfortunately, you will have to create the tables manually
+4. Once the database is setup you can run the development server using `npm run server-dev`
+5. Once the development server is running you can then run the frontend using `npm run dev`
 
 ## License
+This work is licensed under the terms of the Apache License.
