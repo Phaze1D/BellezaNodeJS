@@ -51,7 +51,7 @@ I structured the redux store accordingly because each object represents either a
 There are multiple reducer functions for each individual object and I used the reduce-reducers package to combine them into one.
 
 #### Code Splitting With Webpack
-To improve the initial load time I used Webpack's code splitting technic to create 4 chunks. The main chunk contains the most important information like the product's and category's pages, where a user would not be required to be logged in.
+To improve the initial load time I used Webpack's code splitting technic to create 4 chunks. The main chunk contains the most important information like the product's and category's pages, where a user would not be required to be logged in to view the content.
 
 
 This chunk is part of the app where a user would have to be logged in to access. So the payments pages and the user's profile and the back-office for admin users.
@@ -88,9 +88,9 @@ require.ensure([], function (require) {
 ```
 
 ### Backend
-For the backend code, I used ExpressJS to handle all the web requests and some rendering. For the view renderer, I used handlebars, but I only use it to render email templates and the initial index.html page. For rendering the actual web app I used React Server Side render, and for handling a user's session, I used JSON Web Tokens (JWT). The ORM that I use to connect to the MySQL database is Sequelize. Sequelize is one of the most popular ORM for NodeJS, and I found it very simple to use.
+For the backend code, I used ExpressJS to handle all the web requests and some rendering. For the view renderer, I used handlebars, but I only use it to render email templates and the initial index.html page. For rendering the actual web app I used React Server Side rendering, and for handling a user's session, I used JSON Web Tokens (JWT). The ORM that I use to connect to the MySQL database is Sequelize. Sequelize is one of the most popular ORM for NodeJS, and I found it very simple to use.
 
-I structured the backend using the general MVC pattern, and I included middleware, and helpers, kind of like how a Rails app is structured. I used two types of controllers the API controllers and the view controllers. The main difference between these controllers is that one returns a rendered HTML string and the other only returns JSON object.
+I structured the backend using the general MVC pattern, and I included middleware, and helpers for a little more organization, kind of like how a Rails app is structured. I used two types of controllers the API controllers and the view controllers. The main difference between these controllers is that one returns a rendered HTML string and the other only returns JSON object.
 
 #### React Server Side
 This simple helper function handles all of the React Server Side rendering. The only thing that changes with each request is the data and the URL. The only routes that are rendered with React are the ones found in the view_controllers folder. The one thing that they all have in common is that they are all accessible without a JSON Web Token, if a user tries to access a route where a JWT is required they will be redirect to the home page.
@@ -165,14 +165,14 @@ To optimize the page for a faster initial load speed I followed Google's [PageSp
 Unfortunately, I couldn't get a score of 100 mostly because Google also takes into account the social media feeds which reduce my score. Even so, I used GZIP to reduce the main bundle size from 444.24 KB to just 115 KB, which lead to an initial load time that is less than 1 sec on a 5mb/s network and with server side rendering I get less then 0.5s initial rendered DOM. I also used GraphicsMagick to optimize all the images on the site, and I used the picture tag to create an even better responsive experience.
 
 ### Hosting
-I hosted the website on AWS, and I used Amazon's Elastic Beanstalk to simplify the process, which makes it a lot easier to quickly deploy a new version and downgrade a version if anything goes wrong. I saved all the images in an S3 bucket instead of web server mostly because of security, e.g., if a corrupt file somehow happens to be saved, it will not have access to the web server. The database is also hosted on AWS because it is straightforward to connect the database to the web server. I use Amazon builtin system alongside [PM2 Keymetrics](https://keymetrics.io/) to monitor the health of the application. For website analytics, I use the commonly known tool  Google Analytics to get information about how the website is being used and find areas where I can improve the site.
+I hosted the website on AWS, and I used Amazon's Elastic Beanstalk to simplify the process, which makes it a lot easier to quickly deploy a new version and downgrade a version if anything goes wrong. I saved all the images in an S3 bucket instead of web server mostly because of security, e.g., if a corrupt file somehow happens to be saved, it will not have access to the web server. The database is also hosted on AWS because it is straightforward to connect the database to the web server. I use Amazon builtin system alongside [PM2 Keymetrics](https://keymetrics.io/) to monitor the health of the application. For website analytics, I use the commonly known tool Google Analytics to get information about how the website is being used and find areas where I can improve the site.
 
 ## Usage
-If you would like to contribute or just play around with the inner workings of the site you can found the next steps to the site up and running
+If you would like to contribute or just play around with the inner workings of the site you can follow the next steps
 
 1. Fork the repo
 2. Once your in the directory install the npm dependencies with `npm install`
-3. To setup, the database check out this file [here](backend/config/database.js) to see how the database is configured and checkout all the models to see what tables need to be created. Unfortunately, you will have to create the tables manually
+3. To setup checkout this file [here](backend/config/database.js) to see how the database is configured and checkout all the models to see what tables need to be created. Unfortunately, you will have to create the tables manually
 4. Once the database is setup you can run the development server using `npm run server-dev`
 5. Once the development server is running you can then run the frontend using `npm run dev`
 
