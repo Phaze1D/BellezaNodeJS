@@ -30,7 +30,7 @@ For the frontend code, I used what I like to call the **React Stack**, which is 
 
 #### Redux Store Structure
 I structured the redux store accordingly because each object represents either a single row from a table or a collection of rows from a table.  I organized it like this so that whenever I fetch for a collection of objects, I only have to load the necessary data and not the entire object. For example loading a list of products only loads the product's name, price, and SKU instead of all of the product data.
-```
+```js
 {
 	categories: categoriesReducer,
 	cart: cartReducer,
@@ -55,7 +55,7 @@ To improve the initial load time I used Webpack's code splitting technic to crea
 
 
 This chunk is part of the app where a user would have to be logged in to access. So the payments pages and the user's profile and the back-office for admin users.
-```
+```js
 require.ensure([], function (require) {
 	UserShow = require('pages/user/show').default
 	CheckoutDirections = require('pages/checkout/directions').default
@@ -67,14 +67,14 @@ require.ensure([], function (require) {
 ```
 
 This chunk is part of the payment gateway that I use. I could put this file with the previous chunk, but unfortunately, this throws an error when using server side rendering, so I had to require it from a different file that is not run on the server.
-```
+```js
 require.ensure([], function (require) {
 	require('utils/conekta.js')
 })
 ```
 
 This last chunk is all static components that are not essential to the web app, and they take up a lot of space, so I separated them into a different chunk to prioritize the main components/pages.
-```
+```js
 require.ensure([], function (require) {
 	QuienSomos = require('pages/others/quien_somos').default
 	History = require('pages/others/history').default
@@ -95,7 +95,7 @@ I structured the backend using the general MVC pattern, and I included middlewar
 #### React Server Side
 This simple helper function handles all of the React Server Side rendering. The only thing that changes with each request is the data and the URL. The only routes that are rendered with React are the ones found in the view_controllers folder. The one thing that they all have in common is that they are all accessible without a JSON Web Token, if a user tries to access a route where a JWT is required they will be redirect to the home page.
 
-```
+```js
 module.exports = function (promises, map, url) {
 	return Promise.all(promises).then(results => {
 		let middleware = applyMiddleware(promise({promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']}))
