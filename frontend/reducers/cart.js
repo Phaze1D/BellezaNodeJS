@@ -20,6 +20,7 @@ export const INITIAL_CART = fromJS({
 
 export const addDetailReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.CART_ADD_DETAIL){
+
 		let cart = state.toJS()
 		let newDet = action.payload.detail
 		let found = false
@@ -32,13 +33,18 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 			let price = detail.price * (1 - detail.discount/100)
 			let subTotal = price/(1+detail.iva/100) * detail.quantity
 			let ivaTotal = subTotal*(detail.iva/100)
+
 			if(detail.product_id === newDet.product_id){
 				found = true
 				if(newDet.quantity <= detail.stock){
+					price = newDet.price * (1 - newDet.discount/100)
+					subTotal = price/(1+newDet.iva/100) * newDet.quantity
+					ivaTotal = subTotal*(newDet.iva/100)
 					detail.quantity = newDet.quantity
 					detail.sub_total = Math.round(subTotal)
 				}
 			}
+
 			cart.sub_total += subTotal
 			cart.iva_total += ivaTotal
 		})
