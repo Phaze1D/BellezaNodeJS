@@ -11,7 +11,6 @@ This repository is a production grade e-commerce website that I built for a clie
 - [Production](#production)
 	- [Optimizations](#optimizations)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 
