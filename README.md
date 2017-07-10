@@ -175,7 +175,7 @@ If you would like to contribute or just play around with the inner workings of t
 
 1. Fork the repo
 2. Once your in the directory install the npm dependencies with `npm install`
-3. To setup checkout this file [here](backend/config/database.js) to see how the database is configured and checkout all the models to see what tables need to be created. Unfortunately, you will have to create the tables manually
+3. Setting up the database. Checkout this file [here](backend/config/database.js) to see how the database is configured and checkout all the [models](backend/models/) to see what tables need to be created. Unfortunately, you will have to create the tables manually
 4. Once the database is setup you can run the development server using `npm run server-dev`
 5. Once the development server is running you can then run the frontend using `npm run dev`
 
