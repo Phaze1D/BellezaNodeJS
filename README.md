@@ -3,6 +3,10 @@
 
 This repository is a production grade e-commerce website that I built for a client of mine. The backend is powered with ExpressJS, and the front-end is powered with ReactJS. The design was inspired by their previous website and improved on for a better user experience. You can view the production version of this website [here](https://bellezaorganica.com.mx/home).
 
+<p align="center">
+<img src="readme_images/home.jpg" height="350px"/>
+</p>
+
 ## Table of Content
 - [Development](#development)
 	- [Database](#database)
