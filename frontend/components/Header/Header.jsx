@@ -59,6 +59,8 @@ export default class Header extends React.Component {
 			search: `?q=${input.value}&page=0&sort=0`
 		})
 		input.value = ''
+		this.refs.overlay.classList.toggle('show')
+		this.refs.side.classList.toggle('show')
 	}
 
 	handleError(response) {
