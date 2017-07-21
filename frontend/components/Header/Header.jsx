@@ -82,7 +82,11 @@ export default class Header extends React.Component {
 				onClick={this.handleNavClick}
 				onMouseLeave={this.handleNavLeave}>
 
-				<Link to={`/categories/${index}`} title={category.get('name')} className='nav-link'>{category.get('name')}</Link>
+				<Link to={`/categories/${index}`} title={category.get('name')} className='nav-link'>
+					<h3>
+						{category.get('name')}
+					</h3>
+				</Link>
 				<MainList subs={category.get('subs')} index={index}/>
 			</li>
 		)
