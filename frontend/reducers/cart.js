@@ -31,14 +31,14 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 
 		cart.details.forEach(detail => {
 			let price = detail.price * (1 - detail.discount/100)
-			let subTotal = Math.round(price/(1+detail.iva/100) * detail.quantity)
+			let subTotal = Math.round(price/(1+detail.iva/100)) * detail.quantity
 			let ivaTotal = Math.round(price*detail.quantity) - subTotal
 
 			if(detail.product_id === newDet.product_id){
 				found = true
 				if(newDet.quantity <= detail.stock){
 					price = newDet.price * (1 - newDet.discount/100)
-					subTotal = Math.round(price/(1+newDet.iva/100) * newDet.quantity)
+					subTotal = Math.round(price/(1+newDet.iva/100)) * newDet.quantity
 					ivaTotal = Math.round(price*newDet.quantity) - subTotal
 					detail.quantity = newDet.quantity
 					detail.sub_total = subTotal
@@ -51,7 +51,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 
 		if(!found){
 			let price = newDet.price * (1 - newDet.discount/100)
-			let subTotal =  Math.round(price/(1+newDet.iva/100) * newDet.quantity)
+			let subTotal =  Math.round(price/(1+newDet.iva/100)) * newDet.quantity
 			let ivaTotal = Math.round(price*newDet.quantity) - subTotal
 			newDet.sub_total = subTotal
 			cart.details.push(newDet)
@@ -80,8 +80,8 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
 
 		let oldDetail = state.getIn(['details', action.payload.index])
 		let oldP = oldDetail.get('price') * (1 - oldDetail.get('discount')/100)
-		let oldSub = Math.round(oldP/(1+oldDetail.get('iva')/100) * oldDetail.get('quantity'))
-		let newSub = Math.round(oldP/(1+oldDetail.get('iva')/100) * quantity)
+		let oldSub = Math.round(oldP/(1+oldDetail.get('iva')/100)) * oldDetail.get('quantity')
+		let newSub = Math.round(oldP/(1+oldDetail.get('iva')/100)) * quantity
 
 		let newDetail = oldDetail.withMutations(map => {
 			map.set('quantity', quantity).set('sub_total', newSub)
@@ -114,7 +114,7 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
 	if(action.type === types.CART_REMOVE_DETAIL){
 		let oldDetail = state.getIn(['details', action.payload.index])
 		let oldP = oldDetail.get('price') * (1 - oldDetail.get('discount')/100)
-		let oldSub = Math.round(oldP/(1+oldDetail.get('iva')/100) * oldDetail.get('quantity'))
+		let oldSub = Math.round(oldP/(1+oldDetail.get('iva')/100)) * oldDetail.get('quantity')
 
 		if(state.get('details').size == 1){
 			return INITIAL_CART

@@ -192,10 +192,10 @@ const verifyCart = (cart, userId) => {
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					let subTotal = Math.round(pPrice/(1+pjson.iva/100) *  oDetails[pjson.id].quantity)
+					let subTotal = Math.round(pPrice/(1+pjson.iva/100)) * oDetails[pjson.id].quantity
 
 					sub_total += subTotal
-					iva_total += (Math.round(pPrice) - subTotal)
+					iva_total += (Math.round(pPrice * oDetails[pjson.id].quantity) - subTotal)
 					product.stock = pjson.stock - oDetails[pjson.id].quantity
 				}
 
