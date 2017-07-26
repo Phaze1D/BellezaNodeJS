@@ -76,6 +76,7 @@ const paymentFlow = (req, res, next) => {
 				expires_at: expiresDate.getTime(),
 				amount: cart.total
 			}]
+			console.log(formatted)
 			return conekta.Order.create(formatted)
 		})
 		// Update products stock and create Order
@@ -191,10 +192,10 @@ const verifyCart = (cart, userId) => {
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					let subTotal = pPrice/(1+pjson.iva/100) *  oDetails[pjson.id].quantity
+					let subTotal = Math.round(pPrice/(1+pjson.iva/100) *  oDetails[pjson.id].quantity)
 
 					sub_total += subTotal
-					iva_total += subTotal*(oDetails[pjson.id].iva/100)
+					iva_total += (Math.round(pPrice) - subTotal)
 					product.stock = pjson.stock - oDetails[pjson.id].quantity
 				}
 
