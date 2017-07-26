@@ -1,0 +1,9 @@
+// .babelrc
+{
+  "presets": ["es2015"],
+	"plugins": ["transform-decorators-legacy",
+		["module-resolver", {
+	      "root": ["./frontend"],
+	    }]
+		]
+}

@@ -39,7 +39,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 				if(newDet.quantity <= detail.stock){
 					price = newDet.price * (1 - newDet.discount/100)
 					subTotal = Math.round(price/(1+newDet.iva/100) * newDet.quantity)
-					ivaTotal = Math.round(price) - subTotal
+					ivaTotal = Math.round(price*newDet.quantity) - subTotal
 					detail.quantity = newDet.quantity
 					detail.sub_total = subTotal
 				}
@@ -52,7 +52,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 		if(!found){
 			let price = newDet.price * (1 - newDet.discount/100)
 			let subTotal =  Math.round(price/(1+newDet.iva/100) * newDet.quantity)
-			let ivaTotal = Math.round(price) - subTotal
+			let ivaTotal = Math.round(price*newDet.quantity) - subTotal
 			newDet.sub_total = subTotal
 			cart.details.push(newDet)
 			cart.sub_total += subTotal
@@ -88,7 +88,7 @@ export const changeQuantityReducer = (state = INITIAL_CART, action) => {
 		})
 
 		let difSub = newSub - oldSub
-		let difIva = (Math.round(oldP) - newSub) - (Math.round(oldP) - oldSub)
+		let difIva = (Math.round(oldP * quantity) - newSub) - (Math.round(oldP * oldDetail.get('quantity')) - oldSub)
 
 		return state.withMutations(map => {
 			let sub_total = map.get('sub_total') + difSub
@@ -121,7 +121,7 @@ export const removeDetailReducer = (state = INITIAL_CART, action) => {
 		}
 		return state.withMutations(map => {
 			let sub_total = map.get('sub_total') - oldSub
-			let iva_total = map.get('iva_total') - (Math.round(oldP) - oldSub)
+			let iva_total = map.get('iva_total') - (Math.round(oldP * oldDetail.get('quantity')) - oldSub)
 			let shipping_total = sub_total < 100000 ? 15000 : 0
 			let total = sub_total + iva_total  + shipping_total
 
