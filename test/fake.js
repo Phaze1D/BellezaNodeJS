@@ -4,12 +4,12 @@
 
 export function newDetail() {
 
-	let plu = plus[Math.floor(Math.random(prices.length))]
-	let price = prices[Math.floor(Math.random(prices.length))]
-	let iva = Math.floor(Math.random(25))
-	let discount = Math.floor(Math.random(50))
-	let quantity = Math.floor(Math.random(3)+1)
-	let stock = Math.floor(Math.random(6)+1)
+	let plu = plus[Math.floor(Math.random() * prices.length)]
+	let price = prices[Math.floor(Math.random() * prices.length)]
+	let iva = Math.floor(Math.random() * 25)
+	let discount = Math.floor(Math.random() * 50)
+	let quantity = Math.floor(Math.random() * 3 + 1)
+	let stock = Math.floor(Math.random() * 6 + 1)
 
 	return {
 		product_id: plu,
@@ -36,7 +36,7 @@ export function addDetailAction() {
 export function changeQuantity(index) {
 	return {
 		type: 'CART_CHANGE_QUANTITY',
-		payload: {newQuantity: Math.floor(Math.random(3)+1), index: index}
+		payload: {newQuantity: Math.floor(Math.random() * 3 + 1), index: index}
 	}
 }
 
@@ -51,9 +51,37 @@ export function checkUserCode() {
 	return {
 		type: 'CHECK_USER_CODE_SUCCESS',
 		payload: {
-			code: {discount: Math.floor(Math.random(50)), id: Math.random(23432)}
+			data: {discount: Math.floor(Math.random() * 50), id: 'did'}
 		}
 	}
+}
+
+
+export function conektaTotal(cart) {
+	let con = {line_total: 0}
+	cart.details.forEach(detail => {
+		let price = Math.round(detail.price * (1 - (detail.discount/100)))
+		con.line_total += ( Math.round(price/(1+detail.iva/100)) * detail.quantity )
+	})
+
+	con.shipping_total = cart.shipping_total
+	con.iva_total = cart.iva_total
+	con.discount_total = cart.discount_total
+	con.total = con.shipping_total + con.line_total + con.iva_total - con.discount_total
+	return con
+}
+
+export function priceTotal(cart) {
+	let con = {line_total: 0}
+	cart.details.forEach(detail => {
+		let price = Math.round(detail.price * (1 - (detail.discount/100)))
+		con.line_total += (Math.round(price) * detail.quantity)
+	})
+
+	con.shipping_total = cart.shipping_total
+	con.discount_total = cart.discount_total
+	con.total = con.shipping_total + con.line_total - con.discount_total
+	return con
 }
 
 

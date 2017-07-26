@@ -76,7 +76,6 @@ const paymentFlow = (req, res, next) => {
 				expires_at: expiresDate.getTime(),
 				amount: cart.total
 			}]
-			console.log(formatted)
 			return conekta.Order.create(formatted)
 		})
 		// Update products stock and create Order
@@ -184,10 +183,10 @@ const verifyCart = (cart, userId) => {
 						return Promise.reject(VERIFICATION_ERROR)
 					}
 
-					let pPrice = pjson.price * (1 - pjson.discount/100)
-					let dPrice = oDetails[pjson.id].price * (1 - oDetails[pjson.id].discount/100)
+					let pPrice = Math.round(pjson.price * (1 - pjson.discount/100))
+					let dPrice = Math.round(oDetails[pjson.id].price * (1 - oDetails[pjson.id].discount/100))
 
-					if( Math.round(dPrice) != Math.round(pPrice)){
+					if( dPrice != pPrice){
 						VERIFICATION_ERROR.info = {dPrice: dPrice, pPrice: pPrice}
 						return Promise.reject(VERIFICATION_ERROR)
 					}
@@ -218,8 +217,8 @@ const verifyCart = (cart, userId) => {
 				if(cart.discount_code_id){
 					if(cart.discount_code_id == discount_code.id && discount_code.user_id == userId){
 						total = sub_total + iva_total
-						let discount_total = total * (discount_code.discount/100)
-						total = Math.round(total - discount_total + shipping_total)
+						let discount_total = Math.round(total * (discount_code.discount/100))
+						total = total - discount_total + shipping_total
 					}else{
 						VERIFICATION_ERROR.info = {
 							cdis: cart.discount_code_id,
@@ -246,7 +245,7 @@ const verifyCart = (cart, userId) => {
 
 const formatOrder = (cart, customer_id) => {
 	let line_items = cart.details.map(detail => {
-		let price = detail.price * (1 - (detail.discount/100))
+		let price = Math.round(detail.price * (1 - (detail.discount/100)))
 		return {
 			name: detail.name,
 			unit_price: Math.round(price/(1+detail.iva/100)),
