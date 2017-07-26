@@ -32,7 +32,7 @@ export const addDetailReducer = (state = INITIAL_CART, action) => {
 		cart.details.forEach(detail => {
 			let price = detail.price * (1 - detail.discount/100)
 			let subTotal = Math.round(price/(1+detail.iva/100) * detail.quantity)
-			let ivaTotal = Math.round(price) - subTotal
+			let ivaTotal = Math.round(price*detail.quantity) - subTotal
 
 			if(detail.product_id === newDet.product_id){
 				found = true
