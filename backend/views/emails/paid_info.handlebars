@@ -251,6 +251,7 @@
       </p>
 
       <p style="font-weight: bold">
+				<span class="sub-text" style="color: #757575;font-size: 0.9em;">Email:</span> {{user.email}} <br>
         <span class="sub-text" style="color: #757575;font-size: 0.9em;">Tipo De Pago:</span> {{order.charges.payment_method.type}} <br>
         {{#checkType order.charges.payment_method.type "credit"}}
         <span class="sub-text" style="color: #757575;font-size: 0.9em;">Nombre: </span>{{order.charges.payment_method.name}} <br>
