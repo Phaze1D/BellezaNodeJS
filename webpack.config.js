@@ -52,8 +52,8 @@ var config = {
     '/': {
       target: 'http://localhost:8081/',
       secure: false
+      }
     }
-  }
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
