@@ -72,6 +72,13 @@ router.post('/product', isLogin, isAdmin, upload.fields(productFiles), function 
 
 	productImage(mainimg, secimg).then(buffers => {
 		return Product.create(req.body, {fields: productFields}).then(product => {
+
+			if(req.body.categories){
+				product.setCategories(req.body.categories)
+			}else{
+				product.setCategories([])
+			}
+
 			let s3 = new aws.S3({
 				accessKeyId: req.app.get('S3_ID'),
 				secretAccessKey: req.app.get('S3_SECRET_KEY'),
@@ -92,12 +99,13 @@ router.post('/product', isLogin, isAdmin, upload.fields(productFiles), function 
 
 			return Promise.all(uploads)
 		})
-	}).then(data => {
+	}).then(() => {
 		res.sendStatus(200)
 	}).catch(next)
 })
 
 router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), function (req, res, next) {
+
 	let mainimg = req.files.main_image ? req.files.main_image[0].buffer : null
 	let secimg = req.files.second_image ? req.files.second_image[0].buffer : null
 	let realProduct = null
@@ -135,7 +143,7 @@ router.put('/product/:id', isLogin, isAdmin, upload.fields(productFiles), functi
 			})
 		}
 		return procates
-	}).then(data => {
+	}).then(() => {
 		res.sendStatus(200)
 	}).catch(next)
 })

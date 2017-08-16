@@ -68,13 +68,13 @@ class ProductsEdit extends React.Component {
 
 	}
 
-	handleSuccess(response) {
+	handleSuccess() {
 		this.props.history.push({
 			pathname: '/backoffice/products'
 		})
 	}
 
-	handleError(response) {
+	handleError() {
 
 	}
 

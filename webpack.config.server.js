@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
+var WebpackShellPlugin = require('webpack-shell-plugin')
 
 
 var config = {
@@ -40,6 +41,7 @@ var config = {
   },
   plugins: [
     new UglifyJSPlugin(),
+    // new WebpackShellPlugin({onBuildEnd: ['nodemon build/bundle.js --watch build']})
   ],
 }
 
