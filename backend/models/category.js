@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'Category',
 				key: 'id'
 			}
+		},
+		active: {
+			type: DataTypes.BOOLEAN(),
+			allowNull: false,
 		}
 	}, {
 		tableName: 'categories'
@@ -42,16 +46,23 @@ module.exports = function(sequelize, DataTypes) {
 
 	Category.formattedAll = function () {
 		return this.findAll({
+			where: {
+				active: true
+			},
 			include: [{
 				model: this,
 				as: 'subs',
 				where: {
 					id: Sequelize.col('subs.parent_id'),
+					active: true
 				},
 				include: [{
 					model: this,
 					as: 'subs',
-					where: { id: Sequelize.col('subs.parent_id') }
+					where: {
+						id: Sequelize.col('subs.parent_id'),
+						active: true 
+					}
 				}]
 			}],
 			rejectOnEmpty: true
